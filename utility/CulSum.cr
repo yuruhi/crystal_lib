@@ -1,7 +1,4 @@
 class CulSum(T)
-  @n : Int32
-  @s : Array(T)
-
   def initialize(a : Array(T))
     @n = a.size
     @s = Array(T).new(@n + 1, 0)
@@ -17,11 +14,11 @@ class CulSum(T)
     end
   end
 
-  def initialize(a : Indexable, &f)
+  def initialize(a, &f)
     @n = a.size
     @s = Array.new(@n + 1, 0)
     @n.times do |i|
-      @s[i + 1] = @s[i] + f(a[i])
+      @s[i + 1] = @s[i] + yield(a[i])
     end
   end
 
