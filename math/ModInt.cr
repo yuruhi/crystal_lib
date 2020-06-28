@@ -1,12 +1,16 @@
 struct ModInt
-  @@MOD : Int64 = 1_000_000_007i64
+  @@MOD = 1_000_000_007i64
 
-  def initialize(n)
-    @n = n.to_i64 % @@MOD
+  def self.mod
+    @@MOD
   end
 
   def self.zero
     ModInt.new(0)
+  end
+
+  def initialize(n)
+    @n = n.to_i64 % @@MOD
   end
 
   getter n : Int64
