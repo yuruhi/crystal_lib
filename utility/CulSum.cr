@@ -35,6 +35,6 @@ class CulSum(T)
   end
 
   def to_a
-    @n.times.to_a.map { |i| self[i..i] }
+    (0...@n).map { |i| self[i..i] }
   end
 end
