@@ -1,3 +1,4 @@
+# description : 累積和
 class CulSum(T)
   def initialize(a : Array(T))
     @n = a.size

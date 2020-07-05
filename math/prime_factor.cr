@@ -1,3 +1,4 @@
+# description : 素因数分解
 struct Int
   def prime_factor : Array(Tuple(self, Int32))
     res = Array(Tuple(self, Int32)).new

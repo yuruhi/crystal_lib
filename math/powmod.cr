@@ -1,3 +1,4 @@
+# description : powmod
 struct Int
   def powmod(exp : self, mod : self)
     n = self % mod

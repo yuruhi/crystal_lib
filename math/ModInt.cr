@@ -1,3 +1,4 @@
+# description : ModInt
 struct ModInt
   @@MOD = 1_000_000_007i64
 

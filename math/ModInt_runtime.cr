@@ -1,3 +1,4 @@
+# description : 実行時に法が決まるModInt
 struct ModInt
   @@mod : Int64 = 1_000_000_007i64
 
