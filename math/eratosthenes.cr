@@ -4,7 +4,7 @@ def eratosthenes(n : Int32)
   res = [true] * (n + 1)
   res[0] = res[1] = false
   2.upto(n) do |i|
-    next if !res[i] || i.to_i64 ** 2 > n
+    next if !res[i] || i.to_i64 ** 2 > nw
     (i**2).step(to: n, by: i) do |j|
       res[j] = false
     end
