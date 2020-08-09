@@ -1,3 +1,4 @@
+# description : エラトステネスの篩
 def eratosthenes(n : Int32)
   raise ArgumentError.new if n <= 0
   res = [true] * (n + 1)
