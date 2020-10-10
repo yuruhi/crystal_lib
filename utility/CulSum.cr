@@ -23,16 +23,12 @@ class CulSum(T)
     end
   end
 
-  def [](l : Int32, r : Int32)
-    l < r ? @s[r] - @s[l] : 0
+  def [](left : Int32, count : Int32)
+    @s[left + count] - @s[left]
   end
 
-  def [](i : Int32)
-    @s[i]
-  end
-
-  def [](r : Range(Int32, Int32))
-    @s[r.exclusive? ? r.end : r.end + 1] - @s[r.begin]
+  def [](range : Range)
+    self[*Indexable.range_to_index_and_count(range, @n)]
   end
 
   def to_a
