@@ -1,4 +1,5 @@
 # description : ModInt
+
 struct ModInt
   @@MOD = 1_000_000_007i64
 
@@ -53,7 +54,7 @@ struct ModInt
     self / m
   end
 
-  def **(m)
+  def **(m : Int)
     t, res = self, ModInt.new(1)
     while m > 0
       res *= t if m.odd?
@@ -85,4 +86,10 @@ struct ModInt
 
   delegate to_s, to: @n
   delegate inspect, to: @n
+end
+
+struct Int
+  def to_mint : ModInt
+    ModInt.new(self)
+  end
 end
