@@ -93,3 +93,9 @@ struct Int
     ModInt.new(self)
   end
 end
+
+class String
+  def to_mint : ModInt
+    ModInt.new(self)
+  end
+end
