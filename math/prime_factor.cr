@@ -1,22 +1,23 @@
 # description : 素因数分解、約数列挙
 struct Int
   def prime_factor : Array(Tuple(self, Int32))
-    res = Array(Tuple(self, Int32)).new
+    result = Array(Tuple(self, Int32)).new
     n = self
-    typeof(self).new(2).upto(Math.sqrt(self).ceil) do |i|
-      c = 0
-      while n % i == 0
-        n //= i
-        c += 1
+    typeof(self).new(2).upto(Math.sqrt(self).ceil) do |x|
+      count = 0
+      while n % x == 0
+        n //= x
+        count += 1
       end
-      res << {i, c} if c != 0
+      result << {x, count} if count > 0
     end
-    res << {n, 1} if n != 1
-    res
+    result << {n, 1} if n != 1
+    result
   end
+
   def divisors : Array(self)
     result = Array(self).new
-    (1..self).each do |x|
+    typeof(self).new(1).upto(self) do |x|
       break if x * x > self
       result << x if self % x == 0
     end
