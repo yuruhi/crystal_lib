@@ -1,7 +1,6 @@
-# description : 素因数分解、約数列挙
 struct Int
   def prime_factor : Array(Tuple(self, Int32))
-    result = Array(Tuple(self, Int32)).new
+    result = [] of Tuple(self, Int32)
     n = self
     typeof(self).new(2).upto(Math.sqrt(self).ceil) do |x|
       count = 0
@@ -16,14 +15,24 @@ struct Int
   end
 
   def divisors : Array(self)
-    result = Array(self).new
-    typeof(self).new(1).upto(self) do |x|
-      break if x * x > self
-      result << x if self % x == 0
-    end
-    (0...result.size).reverse_each do |i|
-      result << self // result[i] if result[i] * result[i] < self
+    result = [] of self
+    each_divisor do |d|
+      result << d
     end
     result
+  end
+
+  def each_divisor(&)
+    tmp = [] of self
+    typeof(self).new(1).upto(self) do |x|
+      break if x * x > self
+      if self % x == 0
+        yield x
+        tmp << x
+      end
+    end
+    (0...tmp.size).reverse_each do |i|
+      yield self // tmp[i] if tmp[i] * tmp[i] < self
+    end
   end
 end
