@@ -1,6 +1,6 @@
 # description : ModInt
 
-struct ModInt
+struct Mint
   @@MOD = 1_000_000_007i64
 
   def self.mod
@@ -8,33 +8,61 @@ struct ModInt
   end
 
   def self.zero
-    ModInt.new(0)
+    Mint.new
   end
 
-  def initialize(n)
-    @n = n.to_i64 % @@MOD
+  @value : Int64
+
+  def initialize
+    @value = 0i64
   end
 
-  getter n : Int64
+  def initialize(value)
+    @value = value.to_i64 % @@MOD
+  end
+
+  def initialize(m : Mint)
+    @value = m.value
+  end
+
+  protected def value=(value : Int64)
+    @value = value
+  end
+
+  getter value : Int64
 
   def + : self
     self
   end
 
   def - : self
-    ModInt.new(n != 0 ? @@MOD - @n : 0)
+    Mint.new(value != 0 ? @@MOD - @value : 0)
   end
 
   def +(m)
-    ModInt.new(@n + m.to_i64 % @@MOD)
+    Mint.new(@value + m.to_i64 % @@MOD)
+  end
+
+  def +(m : Mint)
+    result = Mint.new
+    result.value = @value + m.value
+    result.value -= @@MOD if result.value > @@MOD
+    result
   end
 
   def -(m)
-    ModInt.new(@n - m.to_i64 % @@MOD)
+    Mint.new(@value - m.to_i64 % @@MOD)
+  end
+
+  def -(m : Mint)
+    result = Mint.new
+    result.value = @value - m.value
+    result.value += @@MOD if result.value < 0
+    result
   end
 
   def *(m)
-    ModInt.new(@n * m.to_i64 % @@MOD)
+    Mint.new(@value * m.to_i64)
   end
 
   def /(m)
@@ -47,7 +75,7 @@ struct ModInt
       u -= t * v
       u, v = v, u
     end
-    ModInt.new(@n * u)
+    Mint.new(@value * u)
   end
 
   def //(m)
@@ -55,7 +83,7 @@ struct ModInt
   end
 
   def **(m : Int)
-    t, res = self, ModInt.new(1)
+    t, res = self, Mint.new(1)
     while m > 0
       res *= t if m.odd?
       t *= t
@@ -65,11 +93,11 @@ struct ModInt
   end
 
   def ==(m)
-    @n == m.to_i64
+    @value == m.to_i64
   end
 
   def !=(m)
-    @n != m.to_i64
+    @value != m.to_i64
   end
 
   def succ
@@ -81,21 +109,21 @@ struct ModInt
   end
 
   def to_i64 : Int64
-    @n
+    @value
   end
 
-  delegate to_s, to: @n
-  delegate inspect, to: @n
+  delegate to_s, to: @value
+  delegate inspect, to: @value
 end
 
 struct Int
-  def to_mint : ModInt
-    ModInt.new(self)
+  def to_mint : Mint
+    Mint.new(self)
   end
 end
 
 class String
-  def to_mint : ModInt
-    ModInt.new(self)
+  def to_mint : Mint
+    Mint.new(self)
   end
 end
