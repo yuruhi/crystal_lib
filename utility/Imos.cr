@@ -1,6 +1,6 @@
 # description : いもす法
 class Imos(T)
-  @flag = false
+  @builded = false
 
   def initialize(@size : Int32)
     @a = Array(T).new(@size + 1, T.zero)
@@ -13,7 +13,7 @@ class Imos(T)
   getter size : Int32
 
   def add(start : Int, count : Int, val : T)
-    raise "self had been called `build`" if @flag
+    raise "self had been called `build`" if @builded
     raise ArgumentError.new "Negative count: #{count}" if count < 0
     start += size if start < 0
     if 0 <= start <= size
@@ -25,12 +25,13 @@ class Imos(T)
   end
 
   def add(range : Range, val : T)
-    add(*Indexable.range_to_index_and_count(range, size), val)
+    start, count = Indexable.range_to_index_and_count(range, size) || raise IndexError.new
+    add(start, count, val)
   end
 
   def build
-    raise "self had been called `build`" if @flag
-    @flag = true
+    raise "self had been called `build`" if @builded
+    @builded = true
     (1..size).each do |i|
       @a[i] += @a[i - 1]
     end
