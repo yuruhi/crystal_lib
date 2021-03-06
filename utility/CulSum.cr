@@ -28,7 +28,7 @@ class CulSum(T)
   end
 
   def [](range : Range)
-    self[*Indexable.range_to_index_and_count(range, @n)]
+    self[*Indexable.range_to_index_and_count(range, @n) || raise IndexError.new]
   end
 
   def to_a
