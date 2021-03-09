@@ -1,5 +1,4 @@
 # description : ModInt
-
 struct Mint
   @@MOD = 1_000_000_007i64
 
@@ -40,18 +39,18 @@ struct Mint
   end
 
   def +(m)
-    Mint.new(@value + m.to_i64 % @@MOD)
+    self + m.to_mint
   end
 
   def +(m : Mint)
     result = Mint.new
     result.value = @value + m.value
-    result.value -= @@MOD if result.value > @@MOD
+    result.value -= @@MOD if result.value >= @@MOD
     result
   end
 
   def -(m)
-    Mint.new(@value - m.to_i64 % @@MOD)
+    self - m.to_mint
   end
 
   def -(m : Mint)
@@ -62,7 +61,9 @@ struct Mint
   end
 
   def *(m)
-    Mint.new(@value * m.to_i64)
+    result = Mint.new
+    result.value = @value * Mint.new(m).value % @@MOD
+    result
   end
 
   def /(m)
