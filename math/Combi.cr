@@ -9,7 +9,7 @@ class Comb(T)
     @inv[1] = T.new(1)
     (2...@Max).each do |i|
       @factorial[i] = @factorial[i - 1] * i
-      @inv[i] = -@inv[T.mod % i] * (T.mod / i)
+      @inv[i] = -@inv[T.mod % i] * (T.mod // i)
       @finv[i] = @finv[i - 1] * @inv[i]
     end
   end
