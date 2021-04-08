@@ -11,7 +11,7 @@ class Graph(T)
   getter graph : Array(Array(Edge(T)))
 
   def initialize(@size)
-    @graph = Array(Array(Edge(T))).new(size) { Array(Edge(T)).new }
+    @graph = Array.new(size) { Array(Edge(T)).new }
   end
 
   def add_edge(i : Int32, j : Int32, cost : T)
