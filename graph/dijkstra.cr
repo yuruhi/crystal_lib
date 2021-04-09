@@ -1,5 +1,5 @@
 require "./graph"
-require "./../atcoder/PriorityQueue"
+require "../atcoder/PriorityQueue"
 
 class Graph(T)
   def dijkstra(start)
