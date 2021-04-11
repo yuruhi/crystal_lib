@@ -1,4 +1,3 @@
-# description : ModInt
 struct Mint
   @@MOD = 1_000_000_007i64
 

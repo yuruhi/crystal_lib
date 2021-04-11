@@ -1,4 +1,3 @@
-# description : UnionFind
 class UnionFind
   @d : Array(Int32)
 

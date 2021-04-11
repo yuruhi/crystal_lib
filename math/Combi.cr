@@ -1,4 +1,3 @@
-# description : calculate combination
 class Comb(T)
   def initialize(@Max = 400009)
     @factorial = Array(T).new(@Max, T.zero)

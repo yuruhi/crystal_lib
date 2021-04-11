@@ -1,4 +1,3 @@
-# description : いもす法
 class Imos(T)
   @builded = false
 
