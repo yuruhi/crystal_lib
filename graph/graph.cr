@@ -6,12 +6,29 @@ struct Edge(T)
   end
 end
 
+struct Edge2(T)
+  property from : Int32
+  property to : Int32
+  property cost : T
+
+  def initialize(@from, @to, @cost)
+  end
+end
+
 class Graph(T)
   getter size : Int32
   getter graph : Array(Array(Edge(T)))
 
   def initialize(@size)
     @graph = Array.new(size) { Array(Edge(T)).new }
+  end
+
+  def initialize(@size, edges : Array(Edge2(T)), undirected : Bool)
+    @graph = Array.new(size) { Array(Edge(T)).new }
+    edges.each do |edge|
+      @graph[edge.from] << Edge.new(edge.to, edge.cost)
+      @graph[edge.to] << Edge.new(edge.from, edge.cost) if undirected
+    end
   end
 
   def add_edge(i : Int32, j : Int32, cost : T)
