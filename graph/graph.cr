@@ -2,7 +2,7 @@ struct Edge(T)
   property to : Int32
   property cost : T
 
-  def initialize(@to, @cost)
+  def initialize(@to : Int32, @cost : T)
   end
 end
 
@@ -11,7 +11,7 @@ struct Edge2(T)
   property to : Int32
   property cost : T
 
-  def initialize(@from, @to, @cost)
+  def initialize(@from : Int32, @to : Int32, @cost : T)
   end
 end
 
@@ -19,7 +19,7 @@ class Graph(T)
   getter size : Int32
   getter graph : Array(Array(Edge(T)))
 
-  def initialize(@size)
+  def initialize(@size : Int32)
     @graph = Array.new(size) { Array(Edge(T)).new }
   end
 
