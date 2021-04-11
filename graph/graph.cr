@@ -20,12 +20,12 @@ class Graph(T)
   getter graph : Array(Array(Edge(T)))
 
   def initialize(@size : Int32)
-    raise ArgumentError.new("Negative graph size: #{size}") if size < 0
+    raise ArgumentError.new("Negative graph size: #{size}") unless size >= 0
     @graph = Array.new(size) { Array(Edge(T)).new }
   end
 
   def initialize(@size, edges : Array(Edge2(T)), undirected : Bool)
-    raise ArgumentError.new("Negative graph size: #{size}") if size < 0
+    raise ArgumentError.new("Negative graph size: #{size}") unless size >= 0
     @graph = Array.new(size) { Array(Edge(T)).new }
     edges.each do |edge|
       @graph[edge.from] << Edge.new(edge.to, edge.cost)
@@ -34,6 +34,7 @@ class Graph(T)
   end
 
   def add_edge(i : Int32, j : Int32, cost : T)
+    raise IndexError.new unless 0 <= i < size
     graph[i] << Edge(T).new(j, cost)
     graph[j] << Edge(T).new(i, cost)
   end
