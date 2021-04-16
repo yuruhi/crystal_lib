@@ -4,6 +4,14 @@ struct Edge(T)
 
   def initialize(@to : Int32, @cost : T)
   end
+
+  def to_s(io) : Nil
+    io << {to, cost}
+  end
+
+  def inspect(io) : Nil
+    io << "->#{to}(#{cost})"
+  end
 end
 
 struct Edge2(T)
@@ -16,6 +24,14 @@ struct Edge2(T)
 
   def reverse
     Edge2(T).new(to, from, cost)
+  end
+
+  def to_s(io) : Nil
+    io << {from, to, cost}
+  end
+
+  def inspect(io) : Nil
+    io << "#{from}->#{to}(#{cost})"
   end
 end
 
