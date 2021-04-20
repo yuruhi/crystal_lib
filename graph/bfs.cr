@@ -1,7 +1,7 @@
 require "./graph"
 
 class Graph(T)
-  def bfs(start : Int32, unreachable : T = nil) forall T
+  def bfs(start : Int32, unreachable : U = nil) forall U
     raise ArgumentError.new unless 0 <= start < size
     queue = Deque(Int32).new
     queue.unshift start
@@ -18,14 +18,18 @@ class Graph(T)
     dist.map { |i| i ? i : unreachable }
   end
 
-  def bfs_st(start : Int32, goal : Int32, unreachable : T = nil) forall T
+  def bfs!(start : Int32)
+    bfs(start).map(&.not_nil!)
+  end
+
+  def bfs_st(start : Int32, goal : Int32, unreachable : U = nil) forall U
     raise ArgumentError.new unless 0 <= start < size
     queue = Deque(Int32).new
     queue.unshift start
     dist = Array(Int32?).new(size, nil)
     dist[start] = 0
     while v = queue.pop?
-			d = dist[v].not_nil!
+      d = dist[v].not_nil!
       return d if v == goal
       graph[v].each do |edge|
         if dist[edge.to].nil?
