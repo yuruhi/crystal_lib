@@ -1,0 +1,12 @@
+name: cp-library
+version: 0.1.0
+authors:
+  - yuruhi
+
+dependencies:
+  atcoder:
+    github: google/ac-library.cr
+
+crystal: 0.36.1
+
+license: MIT

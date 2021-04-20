@@ -1,0 +1,6 @@
+version: 2.0
+shards:
+  atcoder:
+    git: https://github.com/google/ac-library.cr.git
+    version: 0.1.0+git.commit.544a2b900806609161864103ab9b24a7da033451
+
