@@ -1,4 +1,4 @@
-class Comb(T)
+class Combination(T)
   def initialize(@Max = 400009)
     @factorial = Array(T).new(@Max, T.zero)
     @finv = Array(T).new(@Max, T.zero)
