@@ -1,6 +1,8 @@
 class Imos(T)
   @builded = false
 
+  getter size : Int32
+
   def initialize(@size : Int32)
     @a = Array(T).new(@size + 1, T.zero)
   end
@@ -8,8 +10,6 @@ class Imos(T)
   def initialize(@size : Int32, init_val : T)
     @a = Array(T).new(@size + 1, init_val)
   end
-
-  getter size : Int32
 
   def add(start : Int, count : Int, val : T)
     raise "self had been called `build`" if @builded
