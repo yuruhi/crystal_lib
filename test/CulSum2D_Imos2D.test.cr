@@ -1,4 +1,4 @@
-# verify_helper: PROBLEM https://yukicoder.me/problems/no/1490
+# verification-helper: PROBLEM https://yukicoder.me/problems/no/1490
 require "utility/Imos2D"
 require "utility/CulSum2D"
 h, w, n, m = read_line.split.map(&.to_i)
