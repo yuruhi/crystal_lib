@@ -2,22 +2,27 @@ require "../lib/atcoder/atcoder/PriorityQueue"
 require "./graph"
 
 class Graph(T)
-  def dijkstra(start)
+  def dijkstra(start : Int32, unreachable : U = nil) forall U
     que = AtCoder::PriorityQueue({Int32, T}).new { |(vertex, dist)| -dist }
     que << {start, T.zero}
-    dist = Array.new(size, T::MAX)
+    dist = Array(Int32?).new(size, nil)
     dist[start] = T.zero
 
     while vd = que.pop
       v, d = vd
-      next if dist[v] < d
+      next if dist[v].try { |dist_v| dist_v < d }
+      dist_v = dist[v].not_nil!
       graph[v].each do |edge|
-        if dist[edge.to] > dist[v] + edge.cost
-          dist[edge.to] = dist[v] + edge.cost
-          que << {edge.to, dist[edge.to]}
+        if dist[edge.to].nil? || dist[edge.to].not_nil! > dist_v + edge.cost
+          dist[edge.to] = dist_v + edge.cost
+          que << {edge.to, dist_v + edge.cost}
         end
       end
     end
-    dist
+    dist.map { |i| i || unreachable }
+  end
+
+  def dijkstra!(start : Int32)
+    dijkstra(start).map(&.not_nil!)
   end
 end
