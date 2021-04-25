@@ -78,9 +78,23 @@ class Graph(T)
     end
   end
 
+  def each_edge(v : Int32) : Nil
+    graph[v].each do |edge|
+      yield Edge2(T).new(v, edge.to, edge.cost)
+    end
+  end
+
   def edges : Array(Edge2(T))
     result = [] of Edge2(T)
     each_edge do |edge|
+      result << edge
+    end
+    result
+  end
+
+  def edges(v : Int32) : Array(Edge2(T))
+    result = [] of Edge2(T)
+    each_edge(v) do |edge|
       result << edge
     end
     result
