@@ -5,7 +5,7 @@ class Graph(T)
   def dijkstra(start : Int32, unreachable : U = nil) forall U
     que = AtCoder::PriorityQueue({Int32, T}).new { |(vertex, dist)| -dist }
     que << {start, T.zero}
-    dist = Array(Int32?).new(size, nil)
+    dist = Array(T?).new(size, nil)
     dist[start] = T.zero
 
     while vd = que.pop
