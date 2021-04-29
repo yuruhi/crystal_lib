@@ -1,8 +1,14 @@
 struct Edge(T)
+  include Comparable(Edge(T))
+
   property to : Int32
   property cost : T
 
   def initialize(@to : Int32, @cost : T)
+  end
+
+  def <=>(other : Edge(T))
+    {cost, to} <=> {other.cost, other.to}
   end
 
   def to_s(io) : Nil
@@ -15,11 +21,17 @@ struct Edge(T)
 end
 
 struct Edge2(T)
+  include Comparable(Edge2(T))
+
   property from : Int32
   property to : Int32
   property cost : T
 
   def initialize(@from : Int32, @to : Int32, @cost : T)
+  end
+
+  def <=>(other : Edge2(T))
+    {cost, from, to} <=> {other.cost, other.from, other.to}
   end
 
   def reverse
