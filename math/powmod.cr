@@ -1,5 +1,5 @@
 struct Int
-  def powmod(exp : self, mod : self)
+  def powmod(exp : T, mod : self) forall T
     n = self % mod
     res = typeof(self).new(1)
     while exp > 0
