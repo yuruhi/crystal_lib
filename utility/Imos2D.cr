@@ -4,15 +4,9 @@ class Imos2D(T)
   getter height : Int32
   getter width : Int32
 
-  def initialize(@height, @width)
+  def initialize(@height, @width, init_val : T = T.zero)
     @table = Array(Array(T)).new(@height + 1) {
-      Array(T).new(@width + 1, T.zero)
-    }
-  end
-
-  def initialize(@height, @width, init_val : T)
-    @table = Array(Array(T)).new(@height + 1) {
-      Array(T).new(@width + 1, T.zero)
+      Array(T).new(@width + 1, init_val)
     }
   end
 
