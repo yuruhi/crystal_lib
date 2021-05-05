@@ -34,7 +34,7 @@ jobs:
               run: pip3 install -U online-judge-verify-helper
 
             - name: Install shards
-              run: shards install
+              run: shards install --ignore-crystal-version
 
             - name: Run tests
               env:
