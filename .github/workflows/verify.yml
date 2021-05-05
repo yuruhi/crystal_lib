@@ -31,9 +31,10 @@ jobs:
                   profile: minimal
 
             - name: Install dependencies
-              run:
-                  - pip3 install -U online-judge-verify-helper
-                  - shards install
+              run: pip3 install -U online-judge-verify-helper
+
+            - name: Install shards
+              run: shards install
 
             - name: Run tests
               env:
