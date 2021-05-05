@@ -1,1 +1,6 @@
-{}
+{
+"test/Point_to_direction.test.cr": "2021-05-05 20:35:27 +0900",
+"test/diameter.test.cr": "2021-05-05 20:35:27 +0900",
+"test/powmod.test.cr": "2021-05-05 20:35:27 +0900",
+"test/topological_sort.test.cr": "2021-05-05 20:35:27 +0900"
+}
