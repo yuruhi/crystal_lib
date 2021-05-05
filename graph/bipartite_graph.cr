@@ -9,13 +9,13 @@ class Graph(T)
       flag = table[v].not_nil!
       graph[v].each do |edge|
         if (flag2 = table[edge.to]).nil?
-					table[edge.to] = !flag
-					queue.unshift edge.to
+          table[edge.to] = !flag
+          queue.unshift edge.to
         else
           return nil if flag == flag2
         end
       end
     end
-		table.map(&.not_nil!)
+    table.map(&.not_nil!)
   end
 end

@@ -18,7 +18,7 @@ class Matrix(T)
   end
 
   def initialize(init_matrix : Array(Array(T)))
-		@height = init_matrix.size
+    @height = init_matrix.size
     @width = init_matrix[0].size
     raise ArgumentError.new unless init_matrix.all? { |a| a.size == width }
     @data = init_matrix
