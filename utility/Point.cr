@@ -167,6 +167,37 @@ struct Point
   def inspect(io : IO)
     to_s(io)
   end
+
+  def self.to_direction?(c : Char, lrud = "LRUD")
+    raise ArgumentError.new unless lrud.size == 4
+    case c
+    when lrud[0]
+      left
+    when lrud[1]
+      right
+    when lrud[2]
+      up
+    when lrud[3]
+      down
+    end
+  end
+
+  def self.to_direction?(s : String, lrud = "LRUD")
+    case s.size
+    when 1
+      to_direction?(s[0], lrud)
+    when 2
+      p1 = to_direction?(s[0], lrud) || return nil
+      p2 = to_direction?(s[1], lrud) || return nil
+      raise ArgumentError.new unless p1.x ^ p2.x != 0
+      raise ArgumentError.new unless p1.y ^ p2.y != 0
+      p1 + p2
+    end
+  end
+
+  def self.to_direction(c, lrud = "LRUD")
+    to_direction?(c, lrud) || raise ArgumentError.new
+  end
 end
 
 class Array(T)
