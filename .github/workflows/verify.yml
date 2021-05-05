@@ -1,0 +1,46 @@
+name: verify
+
+on: push
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Set up Python
+      uses: actions/setup-python@v1
+
+    - name: Install dependencies
+      run: pip3 install -U online-judge-verify-helper
+      
+    - uses: actions/setup-crystal@v1
+
+    - name: Set up Rust (1.42.0)
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: 1.42.0-x86_64-unknown-linux-gnu
+        default: true
+        profile: minimal
+
+    - name: Set up Crystal
+      uses: MeilCli/setup-crystal-action@v4
+      with:
+        crystal_version: latest
+        shards_version: letest
+
+    # required by cargo-udeps
+    - name: Set up Rust (nightly)
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: nightly-x86_64-unknown-linux-gnu
+        default: true
+        profile: minimal
+
+    - name: Run tests
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: oj-verify all
