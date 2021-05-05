@@ -23,10 +23,7 @@ jobs:
         profile: minimal
 
     - name: Set up Crystal
-      uses: MeilCli/setup-crystal-action@v4
-      with:
-        crystal_version: latest
-        shards_version: letest
+      uses: oprypin/install-crystal@v1
 
     # required by cargo-udeps
     - name: Set up Rust (nightly)
