@@ -56,7 +56,7 @@ class Matrix(T)
 
   def *(other : self)
     IndexError.new unless width == other.height
-    result = Matrix(T).new(height, width)
+    result = Matrix(T).new(height, other.width)
     (0...height).each do |i|
       (0...other.width).each do |j|
         (0...width).each do |k|
