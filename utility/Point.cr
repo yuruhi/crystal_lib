@@ -66,6 +66,10 @@ struct Point
     @y, @x = i // Point.width, i % Point.width
   end
 
+  def self.from(array : Array(Int32)) : self
+    Point.new(array[0], array[1])
+  end
+
   define_direction(zero, 0, 0)
   define_direction(up, -1, 0)
   define_direction(left, 0, -1)
