@@ -36,6 +36,9 @@ jobs:
             - name: Install shards
               run: shards install --ignore-crystal-version
 
+            - name: Skip ac-library tests
+              run: rm atcoder/*.test.cr
+
             - name: Run tests
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
