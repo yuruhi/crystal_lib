@@ -93,6 +93,10 @@ struct Point
     self
   end
 
+  def ==(other : Point)
+    x == other.x && y == other.y
+  end
+
   def [](i : Int32)
     return y if i == 0
     return x if i == 1
