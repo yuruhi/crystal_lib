@@ -43,7 +43,7 @@ jobs:
               run: rm atcoder/*.test.cr && rm atcoder/*.bench.cr
 
             - name: Remove ac-library files
-              run: find lib/ -type f | grep -v 'atcoder/atcoder' | xargs rm -r
+              run: find lib/ -type f | grep -v 'atcoder/atcoder' | xargs rm -r && git fetch
 
             - name: Run tests
               env:
