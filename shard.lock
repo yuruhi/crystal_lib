@@ -4,3 +4,7 @@ shards:
     git: https://github.com/google/ac-library.cr.git
     version: 0.1.0+git.commit.544a2b900806609161864103ab9b24a7da033451
 
+  cr-bundle:
+    git: https://github.com/yuruhi/cr-bundle.git
+    version: 0.2.0
+

@@ -6,6 +6,8 @@ authors:
 dependencies:
   atcoder:
     github: google/ac-library.cr
+  cr-bundle:
+    github: yuruhi/cr-bundle
 
 crystal: 0.36.1
 
