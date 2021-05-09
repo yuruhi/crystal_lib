@@ -2,5 +2,5 @@
 compile = "crystal build {path} --release -o a.out"
 execute = "./a.out"
 verification_file_suffix = ".test.cr"
-bundle = "bin/cr-bundle {path} | crystal tool format -"
+bundle = "cr-bundle {path} | crystal tool format -"
 list_dependencies = "true"

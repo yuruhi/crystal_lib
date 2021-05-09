@@ -37,7 +37,9 @@ jobs:
               run: shards install --ignore-crystal-version
 
             - name: Build cr-bundle
-              run: mkdir bin && crystal build lib/cr-bundle/src/cli.cr -o bin/cr-bundle && rm -r lib/cr-bundle
+              run: |
+                  crystal build lib/cr-bundle/src/cli.cr -o cr-bundle
+                  rm -r lib/cr-bundle
 
             - name: Skip ac-library tests
               run: rm atcoder/*.test.cr && rm atcoder/*.bench.cr
