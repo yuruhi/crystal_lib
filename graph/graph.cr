@@ -56,7 +56,7 @@ class Graph(T)
     @graph = Array.new(size) { Array(Edge(T)).new }
   end
 
-  def initialize(@size, edges : Array(Edge2(T)), undirected : Bool)
+  def initialize(@size, edges : Array(Edge2(T)), *, undirected : Bool)
     raise ArgumentError.new("Negative graph size: #{size}") unless size >= 0
     @graph = Array.new(size) { Array(Edge(T)).new }
     edges.each do |edge|
