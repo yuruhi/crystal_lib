@@ -1,5 +1,5 @@
 # verification-helper: PROBLEM https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_7_C
-require "graph/tree_walk"
+require "../graph/tree_walk"
 
 def in_order(graph, v, result)
   if left = graph[v][0]

@@ -1,5 +1,5 @@
 # verification-helper: PROBLEM https://onlinejudge.u-aizu.ac.jp/problems/GRL_5_C
-require "graph/lca"
+require "../graph/lca"
 n = read_line.to_i
 graph = Graph(Nil).new(n)
 n.times do |u|
