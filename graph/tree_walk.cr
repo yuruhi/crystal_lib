@@ -1,4 +1,4 @@
-require "graph"
+require "./graph"
 
 class Graph(T)
   def pre_order(root : Int32)

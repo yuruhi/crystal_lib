@@ -1,4 +1,4 @@
-require "graph"
+require "./graph"
 
 class LCA(T)
   getter graph : Graph(T)
