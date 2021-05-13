@@ -48,15 +48,14 @@ struct Edge2(T)
 end
 
 class Graph(T)
-  getter size : Int32
   getter graph : Array(Array(Edge(T)))
 
-  def initialize(@size : Int32)
+  def initialize(size : Int32)
     raise ArgumentError.new("Negative graph size: #{size}") unless size >= 0
     @graph = Array.new(size) { Array(Edge(T)).new }
   end
 
-  def initialize(@size, edges : Array(Edge2(T)), *, undirected : Bool)
+  def initialize(size, edges : Array(Edge2(T)), *, undirected : Bool)
     raise ArgumentError.new("Negative graph size: #{size}") unless size >= 0
     @graph = Array.new(size) { Array(Edge(T)).new }
     edges.each do |edge|
@@ -78,9 +77,8 @@ class Graph(T)
     graph[i] << Edge(T).new(j, cost)
   end
 
-  def [](i : Int32)
-    graph[i]
-  end
+  delegate size, to: @graph
+  delegate :[], to: @graph
 
   def each_edge : Nil
     (0...size).each do |v|
@@ -110,5 +108,48 @@ class Graph(T)
       result << edge
     end
     result
+  end
+end
+
+struct UnWeightedEdge
+  property from : Int32
+  property to : Int32
+
+  def initialize(@from, @to)
+  end
+end
+
+class UnWeightedGraph
+  getter size : Int32
+  getter graph : Array(Array(Int32))
+
+  def initialize(@size)
+    raise ArgumentError.new("Negative graph size: #{size}") unless size >= 0
+    @graph = Array.new(size) { Array(Int32).new }
+  end
+
+  def initialize(@size, edges : Array(UnWeightedGraph), *, undirected : Bool)
+    raise ArgumentError.new("Negative graph size: #{size}") unless size >= 0
+    @graph = Array.new(size) { Array(Edge(T)).new }
+    edges.each do |edge|
+      @graph[edge.from] << edge.to
+      @graph[edge.to] << edge.from if undirected
+    end
+  end
+
+  delegate size, to: @graph
+  delegate :[], to: @graph
+
+  def add_edge(i : Int32, j : Int32)
+    raise IndexError.new unless 0 <= i < size
+    raise IndexError.new unless 0 <= j < size
+    graph[i] << j
+    graph[j] << i
+  end
+
+  def add_edge_directed(i : Int32, j : Int32)
+    raise IndexError.new unless 0 <= i < size
+    raise IndexError.new unless 0 <= j < size
+    graph[i] << j
   end
 end
