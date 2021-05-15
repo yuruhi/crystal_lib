@@ -128,9 +128,9 @@ class UnWeightedGraph
     @graph = Array.new(size) { Array(Int32).new }
   end
 
-  def initialize(@size, edges : Array(UnWeightedGraph), *, undirected : Bool)
+  def initialize(@size, edges : Array(UnWeightedEdge), *, undirected : Bool)
     raise ArgumentError.new("Negative graph size: #{size}") unless size >= 0
-    @graph = Array.new(size) { Array(Edge(T)).new }
+    @graph = Array.new(size) { Array(Int32).new }
     edges.each do |edge|
       @graph[edge.from] << edge.to
       @graph[edge.to] << edge.from if undirected
