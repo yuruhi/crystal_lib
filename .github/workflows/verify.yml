@@ -36,7 +36,11 @@ jobs:
             - name: Install shards
               run: |
                   shards install --ignore-crystal-version
-                  crystal build lib/cr-bundle/src/cli.cr -o cr-bundle
+                  cd lib/cr-bundle
+                  shards build
+                  cd bin
+                  pwd >> $GITHUB_PATH
+                  cd ../../..
                   rm -r lib/cr-bundle
 
             - name: Skip ac-library tests
