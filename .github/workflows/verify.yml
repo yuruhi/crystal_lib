@@ -40,7 +40,7 @@ jobs:
                   shards build
                   cd bin
                   pwd
-                  pwd >> $GITHUB_PATH
+                  pwd >> $GITHUB_ENV
                   cd ../../..
                   rm -r lib/cr-bundle
 
