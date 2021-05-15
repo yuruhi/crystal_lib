@@ -40,9 +40,10 @@ jobs:
                   shards build
                   cd bin
                   pwd
-                  pwd >> $GITHUB_ENV
+                  pwd >> $GITHUB_PATH
                   cd ../../..
                   rm -r lib/cr-bundle
+                  echo $GITHUB_PATH
 
             - name: Skip ac-library tests
               run: rm atcoder/*.test.cr && rm atcoder/*.bench.cr
