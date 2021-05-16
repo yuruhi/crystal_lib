@@ -13,4 +13,3 @@ class UnWeightedGraph
     result
   end
 end
-
