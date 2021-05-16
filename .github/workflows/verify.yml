@@ -22,22 +22,8 @@ jobs:
             - name: Set up Crystal
               uses: oprypin/install-crystal@v1
 
-            # required by cargo-udeps
-            # - name: Set up Rust (nightly)
-            #   uses: actions-rs/toolchain@v1
-            #   with:
-            #       toolchain: nightly-x86_64-unknown-linux-gnu
-            #       default: true
-            #       profile: minimal
-
             - name: Install dependencies
               run: pip3 install -U online-judge-verify-helper
-
-            - name: Install ac-library.cr
-              run: |
-                  git clone https://github.com/google/ac-library.cr.git
-                  cp -r ac-library.cr/atcoder/ atcoder/
-                  rm -rf ac-library.cr
 
             - name: Install cr-bundle
               run: |
@@ -45,8 +31,6 @@ jobs:
                   mkdir bin
                   crystal build cr-bundle/src/cli.cr -o bin/cr-bundle
                   rm -rf cr-bundle
-                  pwd
-                  ls bin
                   echo "/home/runner/work/crystal_lib/crystal_lib/bin" >> $GITHUB_PATH
 
             - name: Run tests
