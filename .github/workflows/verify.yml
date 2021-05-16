@@ -50,6 +50,7 @@ jobs:
             - name: Skip ac-library tests
               run: |
                   rm -r lib/atcoder/verify
+                  git fetch
 
             # - name: Remove ac-library files
             # run: find lib/ -type f | grep -v 'atcoder/atcoder' | xargs rm -r && git fetch
@@ -61,5 +62,5 @@ jobs:
                   GH_PAT: ${{ secrets.GH_PAT }}
               run: oj-verify all
 
-            - name: format test
+            - name: Run format check
               run: crystal tool format --check
