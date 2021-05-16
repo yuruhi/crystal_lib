@@ -2,5 +2,5 @@
 compile = "crystal build {path} --release -o a.out"
 execute = "./a.out"
 verification_file_suffix = ".test.cr"
-bundle = "/home/runner/work/crystal_lib/crystal_lib/lib/cr-bundle/bin/cr-bundle {path}"
-list_dependencies = "/home/runner/work/crystal_lib/crystal_lib/lib/cr-bundle/bin/cr-bundle {path} -d"
+bundle = "cr-bundle {path}"
+list_dependencies = "cr-bundle {path} -d"

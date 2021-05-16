@@ -42,6 +42,11 @@ jobs:
                   cd ../..
                   rm -r lib/cr-bundle
 
+            - name: Set path
+              run: |
+                  echo "/home/runner/work/crystal_lib/crystal_lib/lib/cr-bundle/bin" >> $GITHUB_PATH
+                  echo "$PATH"
+
             - name: Skip ac-library tests
               run: rm atcoder/*.test.cr && rm atcoder/*.bench.cr
 
