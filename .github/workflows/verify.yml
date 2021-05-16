@@ -40,7 +40,6 @@ jobs:
                   shards build
                   ls bin
                   cd ../..
-                  rm -r lib/cr-bundle
 
             - name: Set path
               run: |
