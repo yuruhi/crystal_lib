@@ -42,7 +42,7 @@ jobs:
                   echo `pwd` >> $GITHUB_PATH
                   cd ../../..
                   rm -r lib/cr-bundle
-                  echo $GITHUB_PATH
+                  echo $PATH
 
             - name: Skip ac-library tests
               run: rm atcoder/*.test.cr && rm atcoder/*.bench.cr
