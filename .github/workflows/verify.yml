@@ -38,8 +38,9 @@ jobs:
                   shards install --ignore-crystal-version
                   cd lib/cr-bundle
                   shards build
-                  cd bin
-                  echo `pwd` >> $GITHUB_PATH
+                  ls bin
+                  cd ../..
+                  echo "/home/runner/work/crystal_lib/crystal_lib/lib/cr-bundle/bin" >> $GITHUB_PATH
                   cd ../../..
                   rm -r lib/cr-bundle
                   echo $PATH
