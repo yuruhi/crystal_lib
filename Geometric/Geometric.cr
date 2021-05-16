@@ -2,13 +2,13 @@ module Geometric
   alias Real = Float64
   EPS = Real.new(1e-12)
 
+  extend self
+
   struct Real
     def sgn : Int32
       self < -Geometric::EPS ? -1 : self > Geometric::EPS ? 1 : 0
     end
   end
-
-  extend self
 
   struct Vec2
     include Comparable(Vec2)
@@ -24,11 +24,15 @@ module Geometric
       @x, @y = Real.new(x), Real.new(y)
     end
 
-    def <=>(other : Vec2)
-      {x, y} <=> {other.x, other.y}
+    def +
+      self
     end
 
-    macro define_operator(op)
+    def -
+      Vec2.new(-x, -y)
+    end
+
+    {% for op in %w[+ - * /] %}
       def {{op.id}}(other : Vec2)
         Vec2.new(x {{op.id}} other.x, y {{op.id}} other.y)
       end
@@ -36,12 +40,17 @@ module Geometric
       def {{op.id}}(other : Real)
         Vec2.new(x {{op.id}} other, y {{op.id}} other)
       end
+    {% end %}
+
+    def <=>(other : Vec2)
+      {x, y} <=> {other.x, other.y}
     end
 
-    define_operator("+")
-    define_operator("-")
-    define_operator("*")
-    define_operator("/")
+    def [](index : Int)
+      return x if index == 0
+      return y if index == 1
+      raise IndexError.new
+    end
 
     def dot(other : Vec2)
       x * other.y - y * other.x
@@ -71,7 +80,7 @@ module Geometric
     delegate x, to: center
     delegate y, to: center
 
-    macro define_operator(op)
+    {% for op in %w[+ - * /] %}
       def {{op.id}}(other : Vec2)
         Circel.new(x {{op.id}} other.x, y {{op.id}} other.y, radious)
       end
@@ -79,12 +88,7 @@ module Geometric
       def {{op.id}}(other : Real)
         Circle.new(x {{op.id}} other, y {{op.id}} other, radious)
       end
-    end
-
-    define_operator("+")
-    define_operator("-")
-    define_operator("*")
-    define_operator("/")
+    {% end %}
 
     def inspect(io : IO)
       io << '(' << center << ", " << radious << ')'
@@ -139,7 +143,7 @@ module Geometric
       result
     end
 
-    def inspect(io) : Nil
+    def inspect(io)
       io << self
     end
   end
