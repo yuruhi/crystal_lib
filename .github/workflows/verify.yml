@@ -49,8 +49,7 @@ jobs:
 
             - name: Skip ac-library tests
               run: |
-                  ls lib/atcoder
-                  rm lib/atcoder/*.test.cr && rm lib/atcoder/*.bench.cr
+                  rm -r lib/atcoder/verify
 
             # - name: Remove ac-library files
             # run: find lib/ -type f | grep -v 'atcoder/atcoder' | xargs rm -r && git fetch
