@@ -46,6 +46,7 @@ jobs:
                   echo "/home/runner/work/crystal_lib/crystal_lib/lib/cr-bundle/bin" >> $GITHUB_PATH
                   echo "$PATH"
                   ls /home/runner/work/crystal_lib/crystal_lib/lib/cr-bundle/bin
+                  git status
 
             # - name: Skip ac-library tests
             #   run: rm atcoder/*.test.cr && rm atcoder/*.bench.cr
