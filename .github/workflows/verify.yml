@@ -40,10 +40,10 @@ jobs:
                   shards build
                   ls bin
                   cd ../..
-                  echo "/home/runner/work/crystal_lib/crystal_lib/lib/cr-bundle/bin" >> $GITHUB_PATH
                   rm -r lib/cr-bundle
-                  echo $GITHUB_PATH
-                  echo $PATH
+
+            - name: Add path
+              run: echo "/home/runner/work/crystal_lib/crystal_lib/lib/cr-bundle/bin" >> $GITHUB_PATH
 
             - name: Skip ac-library tests
               run: rm atcoder/*.test.cr && rm atcoder/*.bench.cr
