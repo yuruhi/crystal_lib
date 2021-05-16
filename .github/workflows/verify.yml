@@ -40,6 +40,7 @@ jobs:
                   rm -rf ac-library.cr
 
             - name: Install cr-bundle
+               run: |
                   git clone https://github.com/yuruhi/cr-bundle.git
                   mkdir bin
                   crystal build cr-bundle/src/cli.cr -o bin/cr-bundle
