@@ -40,7 +40,6 @@ jobs:
                   shards build
                   ls bin
                   cd ../..
-                  git add .
 
             - name: Set path
               run: |
