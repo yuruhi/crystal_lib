@@ -45,12 +45,13 @@ jobs:
               run: |
                   echo "/home/runner/work/crystal_lib/crystal_lib/lib/cr-bundle/bin" >> $GITHUB_PATH
                   echo "$PATH"
+                  ls /home/runner/work/crystal_lib/crystal_lib/lib/cr-bundle/bin
 
             - name: Skip ac-library tests
               run: rm atcoder/*.test.cr && rm atcoder/*.bench.cr
 
-            - name: Remove ac-library files
-              run: find lib/ -type f | grep -v 'atcoder/atcoder' | xargs rm -r && git fetch
+            # - name: Remove ac-library files
+            # run: find lib/ -type f | grep -v 'atcoder/atcoder' | xargs rm -r && git fetch
 
             - name: Run tests
               env:
