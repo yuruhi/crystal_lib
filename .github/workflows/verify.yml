@@ -38,6 +38,7 @@ jobs:
                   git clone https://github.com/google/ac-library.cr.git
                   cp -r ac-library.cr/atcoder/ atocder/
                   rm -rf ac-library.cr
+                  ls atcoder
 
             - name: Install cr-bundle
               run: |
