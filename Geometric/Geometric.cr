@@ -189,10 +189,10 @@ module Geometric
   end
 
   macro delegate_method(method, type1, type2)
-		def {{method}}(object1 : {{type1}}, object2 : {{type2}})
-			{{method}}(object2, object1)
-		end
-	end
+    def {{method}}(object1 : {{type1}}, object2 : {{type2}})
+      {{method}}(object2, object1)
+    end
+  end
 
   delegate_method(distance, Circle, Vec2)
 end
