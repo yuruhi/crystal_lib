@@ -7,8 +7,8 @@ n, w, k = read_line.split.try { |(n, w, k)|
 }
 a = read_line.split.map(&.to_i)
 
-dp = Array.new(2 * w + 1) { Array.new(2, 0.to_mint) }
-dp[0][0] = 1.to_mint
+dp = Array.new(2 * w + 1) { Array.new(2, 0.to_m) }
+dp[0][0] = 1.to_m
 (1..2 * w).each do |i|
   (0...n).each do |j|
     i2 = i - a[j]
@@ -19,6 +19,6 @@ dp[0][0] = 1.to_mint
 end
 
 val1, val2 = dp[w][0], dp[2 * w][1]
-x = Matrix.new([[val1, val2], [1.to_mint, 0.to_mint]])
-y = Matrix.new([[val1], [1.to_mint]])
+x = Matrix.new([[val1, val2], [1.to_m, 0.to_m]])
+y = Matrix.new([[val1], [1.to_m]])
 puts (x**k * y)[1][0]

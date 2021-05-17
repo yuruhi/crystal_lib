@@ -13,7 +13,7 @@ class Matrix(T)
     result
   end
 
-  def initialize(@height, @width, init_value = T.zero)
+  def initialize(@height, @width, init_value : T = T.zero)
     @data = Array(Array(T)).new(height) { Array(T).new(width, init_value) }
   end
 

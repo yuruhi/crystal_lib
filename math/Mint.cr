@@ -38,7 +38,7 @@ struct Mint
   end
 
   def +(m)
-    self + m.to_mint
+    self + m.to_m
   end
 
   def +(m : Mint)
@@ -49,7 +49,7 @@ struct Mint
   end
 
   def -(m)
-    self - m.to_mint
+    self - m.to_m
   end
 
   def -(m : Mint)
@@ -117,13 +117,13 @@ struct Mint
 end
 
 struct Int
-  def to_mint : Mint
+  def to_m : Mint
     Mint.new(self)
   end
 end
 
 class String
-  def to_mint : Mint
+  def to_m : Mint
     Mint.new(self)
   end
 end
