@@ -180,10 +180,10 @@ struct Point
   def self.to_direction?(s : String, lrud = "LRUD")
     case s.size
     when 1
-      to_direction?(s.unsafe_fetch(0), lrud)
+      to_direction?(s[0], lrud)
     when 2
-      p1 = to_direction?(s.unsafe_fetch(0), lrud) || return nil
-      p2 = to_direction?(s.unsafe_fetch(1), lrud) || return nil
+      p1 = to_direction?(s[0], lrud) || return nil
+      p2 = to_direction?(s[1], lrud) || return nil
       raise ArgumentError.new unless p1.x ^ p2.x != 0 && p1.y ^ p2.y != 0
       p1 + p2
     end
