@@ -6,7 +6,7 @@ struct Point
   property x : Int32
 
   Direction4 = [Point.up, Point.left, Point.down, Point.right]
-  Direction8 = @@Direction4 + [Point.ul, Point.ur, Point.dl, Point.dr]
+  Direction8 = Direction4 + [Point.ul, Point.ur, Point.dl, Point.dr]
 
   @@height : Int32?
   @@width : Int32?
@@ -48,7 +48,7 @@ struct Point
 
   def self.from(array : Array(Int32)) : self
     raise ArgumentError.new unless array.size == 2
-    Point.new(array[0], array[1])
+    Point.new(array.unsafe_fetch(0), array.unsafe_fetch(1))
   end
 
   macro define_direction(name, dy, dx)
@@ -180,10 +180,10 @@ struct Point
   def self.to_direction?(s : String, lrud = "LRUD")
     case s.size
     when 1
-      to_direction?(s[0], lrud)
+      to_direction?(s.unsafe_fetch(0), lrud)
     when 2
-      p1 = to_direction?(s[0], lrud) || return nil
-      p2 = to_direction?(s[1], lrud) || return nil
+      p1 = to_direction?(s.unsafe_fetch(0), lrud) || return nil
+      p2 = to_direction?(s.unsafe_fetch(1), lrud) || return nil
       raise ArgumentError.new unless p1.x ^ p2.x != 0 && p1.y ^ p2.y != 0
       p1 + p2
     end
