@@ -5,8 +5,8 @@ struct Point
   property y : Int32
   property x : Int32
 
-  @@Direction4 : Array(Point) = [Point.up, Point.left, Point.down, Point.right]
-  @@Direction8 : Array(Point) = @@Direction4 + [Point.ul, Point.ur, Point.dl, Point.dr]
+  Direction4 = [Point.up, Point.left, Point.down, Point.right]
+  Direction8 = @@Direction4 + [Point.ul, Point.ur, Point.dl, Point.dr]
 
   @@height : Int32?
   @@width : Int32?
@@ -34,26 +34,6 @@ struct Point
     Point.new(index // Point.width, index % Point.width)
   end
 
-  macro define_direction(name, dy, dx)
-		def self.{{name}}
-			Point.new({{dy}}, {{dx}})
-		end
-
-		def {{name}}
-			Point.new(y + {{dy}}, x + {{dx}})
-		end
-	end
-
-  macro define_operator(op)
-		def {{op.id}}(other : Point)
-			Point.new(y {{op.id}} other.y, x {{op.id}} other.x)
-		end
-
-		def {{op.id}}(other : Int32)
-			Point.new(y {{op.id}} other, x {{op.id}} other)
-		end
-	end
-
   def initialize
     @y, @x = 0, 0
   end
@@ -67,7 +47,18 @@ struct Point
   end
 
   def self.from(array : Array(Int32)) : self
+    raise ArgumentError.new unless array.size == 2
     Point.new(array[0], array[1])
+  end
+
+  macro define_direction(name, dy, dx)
+    def self.{{name}}
+      Point.new({{dy}}, {{dx}})
+    end
+
+    def {{name}}
+      Point.new(y + {{dy}}, x + {{dx}})
+    end
   end
 
   define_direction(zero, 0, 0)
@@ -79,11 +70,16 @@ struct Point
   define_direction(ur, -1, 1)
   define_direction(dl, 1, -1)
   define_direction(dr, 1, 1)
-  define_operator("+")
-  define_operator("-")
-  define_operator("*")
-  define_operator("//")
-  define_operator("%")
+
+  {% for op in %w[+ - * // %] %}
+    def {{op.id}}(other : Point)
+      Point.new(y {{op.id}} other.y, x {{op.id}} other.x)
+    end
+
+    def {{op.id}}(other : Int32)
+      Point.new(y {{op.id}} other, x {{op.id}} other)
+    end
+  {% end %}
 
   def xy
     Point.new(x, y)
@@ -95,6 +91,10 @@ struct Point
 
   def ==(other : Point)
     x == other.x && y == other.y
+  end
+
+  def <=>(other : Point)
+    to_i <=> other.to_i
   end
 
   def [](i : Int32)
@@ -130,10 +130,6 @@ struct Point
   def to_i : Int32
     raise IndexError.new unless in_range?
     y * Point.width + x
-  end
-
-  def <=>(other : Point)
-    to_i <=> other.to_i
   end
 
   def distance_square(other : Point)
@@ -178,16 +174,7 @@ struct Point
 
   def self.to_direction?(c : Char, lrud = "LRUD")
     raise ArgumentError.new unless lrud.size == 4
-    case c
-    when lrud[0]
-      left
-    when lrud[1]
-      right
-    when lrud[2]
-      up
-    when lrud[3]
-      down
-    end
+    lrud.index(c).try { |i| {left, right, up, down}[i] }
   end
 
   def self.to_direction?(s : String, lrud = "LRUD")
@@ -197,8 +184,7 @@ struct Point
     when 2
       p1 = to_direction?(s[0], lrud) || return nil
       p2 = to_direction?(s[1], lrud) || return nil
-      raise ArgumentError.new unless p1.x ^ p2.x != 0
-      raise ArgumentError.new unless p1.y ^ p2.y != 0
+      raise ArgumentError.new unless p1.x ^ p2.x != 0 && p1.y ^ p2.y != 0
       p1 + p2
     end
   end
@@ -208,12 +194,38 @@ struct Point
   end
 end
 
-class Array(T)
-  def [](point : Point)
-    self[point.y][point.x]
+module Indexable(T)
+  private def check_index_out_of_bounds(point : Point)
+    check_index_out_of_bounds(point) { raise IndexError.new }
   end
 
+  private def check_index_out_of_bounds(point : Point)
+    if 0 <= point.y < size && 0 <= point.x < unsafe_fetch(point.y).size
+      point
+    else
+      yield
+    end
+  end
+
+  def fetch(point : Point)
+    point = check_index_out_of_bounds(point) do
+      return yield point
+    end
+    unsafe_fetch(point.y).unsafe_fetch(point.x)
+  end
+
+  def [](point : Point)
+    fetch(point) { raise IndexError.new }
+  end
+
+  def []?(point : Point)
+    fetch(point, nil)
+  end
+end
+
+class Array(T)
   def []=(point : Point, value)
-    self[point.y][point.x] = value
+    index = check_index_out_of_bounds point
+    @buffer[index.y][index.x] = value
   end
 end
