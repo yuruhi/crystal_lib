@@ -211,7 +211,7 @@ module Indexable(T)
     point = check_index_out_of_bounds(point) do
       return yield point
     end
-    unsafe_fetch(point.y).unsafe_fetch(point.x)
+    unsafe_fetch(point.y)[point.x]
   end
 
   def [](point : Point)
