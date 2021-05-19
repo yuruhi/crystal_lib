@@ -131,8 +131,8 @@ describe "MultiSet" do
     MultiSet{0, 0, 0, 1, 1, 2}.all? { |i| i >= 0 }.should eq true
     MultiSet{0, 0, 0, 1, 1, 2}.max.should eq 2
     MultiSet{"a", "ab", "abc", "abcd"}.max_by(&.size).should eq "abcd"
-		MultiSet{0, 0, 0, 1, 1, 2}.first.should eq 0
-		MultiSet{0, 0, 0, 1, 1, 2}.index(1).should eq 3
-		MultiSet{0, 0, 0, 1, 1, 2}.join.should eq "000112"
+    MultiSet{0, 0, 0, 1, 1, 2}.first.should eq 0
+    MultiSet{0, 0, 0, 1, 1, 2}.index(1).should eq 3
+    MultiSet{0, 0, 0, 1, 1, 2}.join.should eq "000112"
   end
 end
