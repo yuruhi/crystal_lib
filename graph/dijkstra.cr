@@ -3,6 +3,7 @@ require "./graph"
 
 class Graph(T)
   def dijkstra(start : Int32, unreachable : U = nil) forall U
+    raise ArgumentError.new unless 0 <= start < size
     que = AtCoder::PriorityQueue({Int32, T}).new { |(vertex, dist)| -dist }
     que << {start, T.zero}
     dist = Array(T?).new(size, nil)

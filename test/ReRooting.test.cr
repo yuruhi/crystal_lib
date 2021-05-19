@@ -29,7 +29,7 @@ end
 
 n = read_line.to_i
 DP.a = read_line.split.map(&.to_i64)
-dp = ReRooting(DP).new(n)
+dp = ReRooting(DP, UnweightedUndirectedGraph).new(n)
 (n - 1).times do
   a, b = read_line.split.map(&.to_i.pred)
   dp.add_edge(a, b)

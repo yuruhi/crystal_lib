@@ -1,14 +1,14 @@
 require "./graph"
 
-class Graph(T)
+class UnweightedGraph
   def pre_order(root : Int32)
     result = Array(Int32).new(size)
     stack = Deque{ {root, -1} }
     while vp = stack.pop?
       vertex, parent = vp
       result << vertex
-      self[vertex].reverse_each do |edge|
-        stack << {edge.to, vertex} if edge.to != parent
+      self[vertex].reverse_each do |to|
+        stack << {to, vertex} if to != parent
       end
     end
     result
@@ -24,8 +24,8 @@ class Graph(T)
         stack.pop
         result << vertex
       else
-        self[vertex].reverse_each do |edge|
-          stack << {edge.to, vertex} if edge.to != parent
+        self[vertex].reverse_each do |to|
+          stack << {to, vertex} if to != parent
         end
         visited[vertex] = true
       end

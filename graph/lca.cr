@@ -1,7 +1,7 @@
 require "./graph"
 
-class LCA(T)
-  getter graph : Graph(T)
+class LCA
+  getter graph : UnweightedUndirectedGraph
   getter size : Int32
   getter depth : Array(Int32)
 
@@ -9,11 +9,11 @@ class LCA(T)
     @parent[0][vertex] = par
     @depth[vertex] = dep
     @graph[vertex].each do |edge|
-      dfs(edge.to, vertex, dep + 1) if edge.to != par
+      dfs(edge, vertex, dep + 1) if edge != par
     end
   end
 
-  def initialize(@graph : Graph(T), root : Int32)
+  def initialize(@graph : UnweightedUndirectedGraph, root : Int32)
     @size = @graph.size
     @log2 = Math.log2(@size).to_i.succ.as(Int32)
     @depth = Array(Int32).new(@size, -1)

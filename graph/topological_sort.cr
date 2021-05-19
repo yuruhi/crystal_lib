@@ -1,11 +1,11 @@
 require "./graph"
 
-class Graph(T)
+class UnweightedGraph
   private def topological_sort_dfs(result, visited, v)
     unless visited[v]
       visited[v] = true
       graph[v].each do |u|
-        topological_sort_dfs(result, visited, u.to)
+        topological_sort_dfs(result, visited, u)
       end
       result << v
     end

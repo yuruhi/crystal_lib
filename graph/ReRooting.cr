@@ -1,16 +1,17 @@
 require "./graph"
 
-class ReRooting(T)
-  getter graph : UnWeightedGraph
+class ReRooting(T, GraphType)
+  getter graph : UnweightedGraph
 
   def initialize(size : Int32)
-    @graph = UnWeightedGraph.new(size)
+    @graph = GraphType.new(size)
     @dp = Array(Array(T)).new
     @result = Array(T).new
   end
 
   delegate size, to: @graph
   delegate add_edge, to: @graph
+  delegate add_edges, to: @graph
 
   private def dfs(v : Int32, p : Int32) : T
     graph[v].each_with_index.select { |(u, i)| u != p }.reduce(T.new) { |acc, (u, i)|

@@ -12,7 +12,7 @@ struct Edge(T)
   end
 
   def to_s(io) : Nil
-    io << {to, cost}
+    io << '(' << to << ", " << cost << ')'
   end
 
   def inspect(io) : Nil
@@ -39,7 +39,7 @@ struct Edge2(T)
   end
 
   def to_s(io) : Nil
-    io << {from, to, cost}
+    io << '(' << from << ", " << to << ", " << cost << ')'
   end
 
   def inspect(io) : Nil
@@ -47,38 +47,43 @@ struct Edge2(T)
   end
 end
 
-class Graph(T)
+struct UnweightedEdge2
+  property from : Int32
+  property to : Int32
+
+  def initialize(@from, @to)
+  end
+
+  def reverse
+    UnweightedEdge2.new(to, from)
+  end
+
+  def to_s(io) : Nil
+    io << '(' << from << ", " << to << ')'
+  end
+
+  def inspect(io) : Nil
+    io << "#{from}->#{to}"
+  end
+end
+
+abstract class Graph(T)
   getter graph : Array(Array(Edge(T)))
-
-  def initialize(size : Int32)
-    raise ArgumentError.new("Negative graph size: #{size}") unless size >= 0
-    @graph = Array.new(size) { Array(Edge(T)).new }
-  end
-
-  def initialize(size, edges : Array(Edge2(T)), *, undirected : Bool)
-    raise ArgumentError.new("Negative graph size: #{size}") unless size >= 0
-    @graph = Array.new(size) { Array(Edge(T)).new }
-    edges.each do |edge|
-      @graph[edge.from] << Edge.new(edge.to, edge.cost)
-      @graph[edge.to] << Edge.new(edge.from, edge.cost) if undirected
-    end
-  end
-
-  def add_edge(i : Int32, j : Int32, cost : T)
-    raise IndexError.new unless 0 <= i < size
-    raise IndexError.new unless 0 <= j < size
-    graph[i] << Edge(T).new(j, cost)
-    graph[j] << Edge(T).new(i, cost)
-  end
-
-  def add_edge_directed(i : Int32, j : Int32, cost : T)
-    raise IndexError.new unless 0 <= i < size
-    raise IndexError.new unless 0 <= j < size
-    graph[i] << Edge(T).new(j, cost)
-  end
 
   delegate size, to: @graph
   delegate :[], to: @graph
+
+  def initialize(size : Int)
+    raise ArgumentError.new("Negative graph size: #{size}") unless size >= 0
+    @graph = Array.new(size) { Array(Edge(T)).new }
+  end
+
+  abstract def add_edge(edge : Edge2(T))
+  abstract def add_edges(edges : Array(Edge2(T)))
+
+  def add_edge(i : Int32, j : Int32, cost : T)
+    add_edge(Edge2.new(i, j, cost))
+  end
 
   def each_edge : Nil
     (0...size).each do |v|
@@ -111,45 +116,115 @@ class Graph(T)
   end
 end
 
-struct UnWeightedEdge
-  property from : Int32
-  property to : Int32
+class DirectedGraph(T) < Graph(T)
+  def initialize(size : Int)
+    super
+  end
 
-  def initialize(@from, @to)
+  def initialize(size : Int, edges : Array(Edge2(T)))
+    super(size)
+    add_edges(edges)
+  end
+
+  def add_edge(edge : Edge2(T))
+    raise IndexError.new unless 0 <= edge.from < size
+    raise IndexError.new unless 0 <= edge.to < size
+    @graph[edge.from] << Edge.new(edge.to, edge.cost)
+    self
+  end
+
+  def add_edges(edges : Array(Edge2(T)))
+    edges.each { |edge| add_edge(edge) }
+    self
   end
 end
 
-class UnWeightedGraph
-  getter size : Int32
+class UndirectedGraph(T) < Graph(T)
+  def initialize(size : Int)
+    super
+  end
+
+  def initialize(size : Int, edges : Array(Edge2(T)))
+    super(size)
+    add_edges(edges)
+  end
+
+  def add_edge(edge : Edge2(T))
+    raise IndexError.new unless 0 <= edge.from < size
+    raise IndexError.new unless 0 <= edge.to < size
+    @graph[edge.from] << Edge.new(edge.to, edge.cost)
+    @graph[edge.to] << Edge.new(edge.from, edge.cost)
+    self
+  end
+
+  def add_edges(edges : Array(Edge2(T)))
+    edges.each { |edge| add_edge(edge) }
+    self
+  end
+end
+
+abstract class UnweightedGraph
   getter graph : Array(Array(Int32))
 
-  def initialize(@size)
+  def initialize(size : Int)
     raise ArgumentError.new("Negative graph size: #{size}") unless size >= 0
     @graph = Array.new(size) { Array(Int32).new }
   end
 
-  def initialize(@size, edges : Array(UnWeightedEdge), *, undirected : Bool)
-    raise ArgumentError.new("Negative graph size: #{size}") unless size >= 0
-    @graph = Array.new(size) { Array(Int32).new }
-    edges.each do |edge|
-      @graph[edge.from] << edge.to
-      @graph[edge.to] << edge.from if undirected
-    end
+  abstract def add_edge(edge : UnweightedEdge2)
+  abstract def add_edges(edges : Array(UnweightedEdge2))
+
+  def add_edge(i : Int32, j : Int32)
+    add_edge(UnweightedEdge2.new(i, j))
   end
 
   delegate size, to: @graph
   delegate :[], to: @graph
+end
 
-  def add_edge(i : Int32, j : Int32)
-    raise IndexError.new unless 0 <= i < size
-    raise IndexError.new unless 0 <= j < size
-    graph[i] << j
-    graph[j] << i
+class UnweightedDirectedGraph < UnweightedGraph
+  def initialize(size : Int)
+    super
   end
 
-  def add_edge_directed(i : Int32, j : Int32)
-    raise IndexError.new unless 0 <= i < size
-    raise IndexError.new unless 0 <= j < size
-    graph[i] << j
+  def initialize(size : Int, edges : Array(UnweightedEdge2))
+    super(size)
+    add_edges(edges)
+  end
+
+  def add_edge(edge : UnweightedEdge2)
+    raise IndexError.new unless 0 <= edge.from < size
+    raise IndexError.new unless 0 <= edge.to < size
+    @graph[edge.from] << edge.to
+    self
+  end
+
+  def add_edges(edges : Array(UnweightedEdge2))
+    edges.each { |edge| add_edge(edge) }
+    self
+  end
+end
+
+class UnweightedUndirectedGraph < UnweightedGraph
+  def initialize(size : Int)
+    super
+  end
+
+  def initialize(size : Int, edges : Array(UnweightedEdge2))
+    super(size)
+    add_edges(edges)
+  end
+
+  def add_edge(edge : UnweightedEdge2)
+    raise IndexError.new unless 0 <= edge.from < size
+    raise IndexError.new unless 0 <= edge.to < size
+    @graph[edge.from] << edge.to
+    @graph[edge.to] << edge.from
+    self
+  end
+
+  def add_edges(edges : Array(UnweightedEdge2))
+    edges.each { |edge| add_edge(edge) }
+    self
   end
 end

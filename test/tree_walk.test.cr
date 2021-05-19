@@ -12,17 +12,17 @@ def in_order(graph, v, result)
 end
 
 n = read_line.to_i
-graph = Graph(Nil).new(n)
+graph = UnweightedUndirectedGraph.new(n)
 graph2 = Array({Int32?, Int32?}).new(n, {nil, nil})
 in_degree = [0] * n
 n.times do |i|
   v, left, right = read_line.split.map(&.to_i)
   if left != -1
-    graph.add_edge_directed(v, left, nil)
+    graph.add_edge(v, left)
     in_degree[left] += 1
   end
   if right != -1
-    graph.add_edge_directed(v, right, nil)
+    graph.add_edge(v, right)
     in_degree[right] += 1
   end
   graph2[v] = {left >= 0 ? left : nil, right >= 0 ? right : nil}

@@ -3,28 +3,30 @@ require "./graph"
 class BipartiteMatching
   getter left : Int32
   getter right : Int32
-  getter graph : Graph(Nil)
+  getter graph : UnweightedDirectedGraph
 
   def initialize(@left, @right)
     raise ArgumentError.new "Negative left vertexes size: #{left}" unless left >= 0
     raise ArgumentError.new "Negative right vertexes size: #{right}" unless right >= 0
-    @graph = Graph(Nil).new(left)
+    @graph = UnweightedDirectedGraph.new(left)
     @left_match = Array(Int32?).new(left, nil)
     @right_match = Array(Int32?).new(right, nil)
     @used = Array(Bool).new(left, false)
   end
 
   def add_edge(l : Int32, r : Int32)
-    raise IndexError.new unless 0 <= l < left
-    raise IndexError.new unless 0 <= r < right
-    graph[l] << Edge.new(r, nil)
+    add_edge(UnweightedEdge2.new(l, r))
+  end
+
+  def add_edge(edge : UnweightedEdge2)
+    raise IndexError.new unless 0 <= edge.from < left
+    raise IndexError.new unless 0 <= edge.to < right
+    graph[edge.from] << edge.to
     self
   end
 
-  def add_edge(edges : Array(Edge2(Nil)))
-    edges.each do |edge|
-      add_edge(edge.from, edge.to)
-    end
+  def add_edges(edges : Array(UnweightedEdge2))
+    edges.each { |edge| add_edge(edge) }
     self
   end
 
@@ -32,8 +34,8 @@ class BipartiteMatching
     return false if @used[v]
     @used[v] = true
     graph[v].each do |edge|
-      if @right_match[edge.to].nil? || dfs(@right_match[edge.to].not_nil!)
-        @left_match[v], @right_match[edge.to] = edge.to, v
+      if @right_match[edge].nil? || dfs(@right_match[edge].not_nil!)
+        @left_match[v], @right_match[edge] = edge, v
         return true
       end
     end
