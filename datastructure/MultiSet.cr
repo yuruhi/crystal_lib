@@ -3,7 +3,6 @@ class MultiSet(T)
   include Enumerable(T)
 
   @count = Hash(T, Int32).new(0)
-  getter kind_count = 0
   getter size = 0
 
   def initialize
@@ -13,8 +12,11 @@ class MultiSet(T)
     concat enumerable
   end
 
+  def kind_count
+    @count.size
+  end
+
   def add(object : T)
-    @kind_count += 1 if @count[object] == 0
     @count[object] += 1
     @size += 1
     self
@@ -23,7 +25,6 @@ class MultiSet(T)
   def add(object : T, count : Int32)
     raise ArgumentError.new unless count >= 0
     return self if count == 0
-    @kind_count += 1 if @count[object] == 0
     @count[object] += count
     @size += count
     self
@@ -36,7 +37,7 @@ class MultiSet(T)
   def delete(object : T)
     if flag = @count[object] > 0
       @count[object] -= 1
-      @kind_count -= 1 if @count[object] == 0
+      @count.delete(object) if @count[object] == 0
     end
     flag
   end
@@ -45,7 +46,7 @@ class MultiSet(T)
     raise ArgumentError.new unless count >= 0
     if flag = @count[object] > 0
       @count[object] = {0, @count[object] - count}.max
-      @kind_count -= 1 if @count[object] == 0
+      @count.delete(object) if @count[object] == 0
     end
   end
 
@@ -57,7 +58,6 @@ class MultiSet(T)
   def clear
     @count.clear
     @size = 0
-    @kind_count = 0
   end
 
   def count(object : T)
