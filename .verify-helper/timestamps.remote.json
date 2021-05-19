@@ -2,6 +2,7 @@
 "test/BipartiteMatching.test.cr": "2021-04-20 20:03:36 +0900",
 "test/CulSum2D_Imos2D.test.cr": "2021-05-05 20:35:27 +0900",
 "test/Matrix.test.cr": "2021-05-17 17:27:18 +0900",
+"test/Point_to_direction.test.cr": "2021-05-18 20:10:12 +0900",
 "test/ReRooting.test.cr": "2021-05-13 21:15:12 +0900",
 "test/diameter.test.cr": "2021-05-05 20:35:27 +0900",
 "test/dijkstra.test.cr": "2021-05-16 15:58:45 +0900",
