@@ -6,10 +6,26 @@ class MultiSet(T)
   getter kind_count = 0
   getter size = 0
 
-  def add(object : T) : self
+  def initialize
+  end
+
+  def initialize(enumerable : Enumerable(T))
+    concat enumerable
+  end
+
+  def add(object : T)
     @kind_count += 1 if @count[object] == 0
     @count[object] += 1
     @size += 1
+    self
+  end
+
+  def add(object : T, count : Int32)
+    raise ArgumentError.new unless count >= 0
+    return self if count == 0
+    @kind_count += 1 if @count[object] == 0
+    @count[object] += count
+    @size += count
     self
   end
 
@@ -18,11 +34,18 @@ class MultiSet(T)
   end
 
   def delete(object : T)
-    (@count[object] > 0).tap do |flag|
-      if flag
-        @count[object] -= 1
-        @kind_count -= 1 if @count[object] == 0
-      end
+    if flag = @count[object] > 0
+      @count[object] -= 1
+      @kind_count -= 1 if @count[object] == 0
+    end
+    flag
+  end
+
+  def delete(object : T, count : Int32)
+    raise ArgumentError.new unless count >= 0
+    if flag = @count[object] > 0
+      @count[object] = {0, @count[object] - count}.max
+      @kind_count -= 1 if @count[object] == 0
     end
   end
 
@@ -74,9 +97,53 @@ class MultiSet(T)
     MultiSetIterator(T).new(@count)
   end
 
-  def each : Nil
+  def each(&) : Nil
     @count.each do |(elem, cnt)|
       cnt.times { yield elem }
     end
+  end
+
+  def each_count
+    @count.each
+  end
+
+  def each_count(&) : Nil
+    @count.each do |(elem, cnt)|
+      yield({elem, cnt})
+    end
+  end
+
+  def &(other : MultiSet(T))
+    small, large = self, other
+    if large.kind_count < small.kind_count
+      small, large = large, small
+    end
+
+    result = MultiSet(T).new
+    small.each_count do |elem, cnt|
+      result.add elem, Math.min(cnt, large.count(elem))
+    end
+    result
+  end
+
+  def |(other : MultiSet(U)) forall U
+    result = MultiSet(T | U).new
+    each_count { |(elem, cnt)| result.add elem, cnt }
+    other.each_count { |(elem, cnt)| result.add elem, cnt }
+    result
+  end
+
+  def +(other : MultiSet(U)) forall U
+    self | other
+  end
+
+  def to_s(io : IO)
+    io << @count
+  end
+
+  def inspect(io : IO)
+    io << '['
+    each.join(io, ", ")
+    io << ']'
   end
 end
