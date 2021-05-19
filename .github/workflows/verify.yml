@@ -40,5 +40,8 @@ jobs:
                   GH_PAT: ${{ secrets.GH_PAT }}
               run: oj-verify all
 
+            - name: Run spec
+              run: crystal spec
+
             - name: Run format check
               run: crystal tool format --check
