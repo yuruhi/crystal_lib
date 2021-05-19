@@ -64,12 +64,29 @@ class MultiSet(T)
     @count[object]
   end
 
+  def empty?
+    size == 0
+  end
+
   def includes?(object : T)
     @count[object] > 0
   end
 
-  def empty?
-    size == 0
+  def intersects?(other : MultiSet(T))
+    if kind_count < other.kind_count
+      any? { |o| other.includes?(o) }
+    else
+      other.any? { |o| includes?(o) }
+    end
+  end
+
+  def subset_of?(other : MultiSet(T))
+    return false if other.size < size
+    all? { |o| other.includes?(o) }
+  end
+
+  def superset_of?(other : MultiSet(T))
+    other.subset_of?(self)
   end
 
   class MultiSetIterator(T)

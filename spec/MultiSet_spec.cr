@@ -72,6 +72,33 @@ describe "MultiSet" do
     MultiSet(Int32).new.empty?.should eq true
   end
 
+  it "intersects?" do
+    a = MultiSet{0, 0, 0, 1, 1, 2}
+    b = MultiSet{2, 3}
+    c = MultiSet{3, 3, 3, 4, 4, 5}
+    a.intersects?(b).should eq true
+    b.intersects?(c).should eq true
+    a.intersects?(c).should eq false
+  end
+
+  it "subset_of?" do
+    a = MultiSet{0, 0, 0, 1, 1, 2}
+    b = MultiSet{0, 1, 0}
+    c = MultiSet{-1, 0, 0, 1}
+    a.subset_of?(b).should eq false
+    b.subset_of?(a).should eq true
+    c.subset_of?(a).should eq false
+  end
+
+  it "superset_of?" do
+    a = MultiSet{0, 0, 0, 1, 1, 2}
+    b = MultiSet{0, 1, 0}
+    c = MultiSet{-1, 0, 0, 1}
+    a.superset_of?(b).should eq true
+    b.superset_of?(a).should eq false
+    c.superset_of?(a).should eq false
+  end
+
   it "each" do
     a = MultiSet{0, 0, 0, 1, 1, 2}
     a.each.to_a.should eq [0, 0, 0, 1, 1, 2]
