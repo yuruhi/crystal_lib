@@ -66,6 +66,7 @@ struct Mint
   end
 
   def /(m)
+    m = Mint.new(m)
     raise DivisionByZeroError.new if m == 0
     a, b, u, v = m.to_i64, @@MOD, 1i64, 0i64
     while b != 0
