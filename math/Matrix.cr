@@ -24,13 +24,8 @@ class Matrix(T)
     @data = init_matrix
   end
 
-  def size
-    data.size
-  end
-
-  def unsafe_fetch(index : Int)
-    data.unsafe_fetch(index)
-  end
+  delegate size, to: @data
+  delegate unsafe_fetch, to: @data
 
   def +(other : self)
     IndexError.new unless height == other.height && width == other.width
