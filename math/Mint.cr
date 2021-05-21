@@ -9,6 +9,12 @@ struct Mint
     Mint.new
   end
 
+  def self.raw(value : Int64)
+    result = Mint.new
+    result.value = value
+    result
+  end
+
   @value : Int64
 
   def initialize
@@ -29,45 +35,48 @@ struct Mint
 
   getter value : Int64
 
-  def + : self
+  def + : Mint
     self
   end
 
-  def - : self
-    Mint.new(value != 0 ? @@MOD - @value : 0)
+  def - : Mint
+    Mint.raw(value != 0 ? @@MOD - value : 0i64)
   end
 
-  def +(m)
-    self + m.to_m
+  def +(v)
+    self + v.to_m
   end
 
   def +(m : Mint)
-    result = Mint.new
-    result.value = @value + m.value
-    result.value -= @@MOD if result.value >= @@MOD
-    result
+    x = value + m.value
+    x -= @@MOD if x >= @@MOD
+    Mint.raw(x)
   end
 
-  def -(m)
-    self - m.to_m
+  def -(v)
+    self - v.to_m
   end
 
   def -(m : Mint)
-    result = Mint.new
-    result.value = @value - m.value
-    result.value += @@MOD if result.value < 0
-    result
+    x = value - m.value
+    x += @@MOD if x < 0
+    Mint.raw(x)
   end
 
-  def *(m)
-    result = Mint.new
-    result.value = @value * Mint.new(m).value % @@MOD
-    result
+  def *(v)
+    self * v.to_m
   end
 
-  def /(m)
-    m = Mint.new(m)
-    raise DivisionByZeroError.new if m == 0
+  def *(m : Mint)
+    Mint.new(value * m.value)
+  end
+
+  def /(v)
+    self / v.to_m
+  end
+
+  def /(m : Mint)
+    raise DivisionByZeroError.new if m.value == 0
     a, b, u, v = m.to_i64, @@MOD, 1i64, 0i64
     while b != 0
       t = a // b
@@ -76,41 +85,45 @@ struct Mint
       u -= t * v
       u, v = v, u
     end
-    Mint.new(@value * u)
+    Mint.new(value * u)
   end
 
-  def //(m)
-    self / m
+  def //(v)
+    self / v
   end
 
-  def **(m : Int)
-    t, res = self, Mint.new(1)
-    while m > 0
-      res *= t if m.odd?
+  def **(exponent : Int)
+    t, res = self, Mint.raw(1i64)
+    while exponent > 0
+      res *= t if exponent.odd?
       t *= t
-      m >>= 1
+      exponent >>= 1
     end
     res
   end
 
-  def ==(m)
-    @value == m.to_i64
+  def ==(v)
+    value == v
   end
 
-  def !=(m)
-    @value != m.to_i64
+  def ==(m : Mint)
+    value == m.value
   end
 
   def succ
-    self + 1
+    Mint.raw(value != @@MOD - 1 ? value + 1 : 0i64)
   end
 
   def pred
-    self - 1
+    Mint.raw(value != 0 ? value - 1 : @@MOD - 1)
+  end
+
+  def abs
+    self
   end
 
   def to_i64 : Int64
-    @value
+    value
   end
 
   delegate to_s, to: @value
