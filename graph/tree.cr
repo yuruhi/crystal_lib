@@ -3,15 +3,28 @@ require "./graph"
 class UnweightedGraph
   # TODO: verify
   private def subtree_size_dfs(v : Int32, p : Int32, result : Array(Int32)) : Int32
-    result[v] = 1 + self[v].select { |u| u != p }.sum { |u|
-      subtree_size_dfs(u, v, result)
-    }
+    result[v] = 1 + self[v].sum do |u|
+      subtree_size_dfs(u, v, result) if u != p
+    end
   end
 
   def subtree_size(root : Int32)
     result = Array.new(size, 0)
     subtree_size_dfs(root, -1, result)
     result
+  end
+
+  private def tree_depth_dfs(v : Int32, p : Int32, dist : Int32, a : Array(Int32)) : Nil
+    a[v] = dist
+    self[v].each do |u|
+      tree_depth_dfs(u, v, dist + 1, a) if u != p
+    end
+  end
+
+  def tree_depth(root : Int32)
+    a = Array.new(size, 0)
+    tree_depth_dfs(root, -1, 0, a)
+    a
   end
 end
 
