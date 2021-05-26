@@ -43,4 +43,16 @@ class Sieve
   def prime_division(x)
     PrimeDivisionIterator.new(x, factor)
   end
+
+  def each_factor(x, &) : Nil
+    while x > 1
+      element = @factor[x]
+      count = 0
+      while x != 1 && @factor[x] == element
+        count += 1
+        x //= element
+      end
+      yield(element, count)
+    end
+  end
 end
