@@ -26,8 +26,8 @@ struct Int
     sub = ~-self & self
     loop do
       yield sub
-      sub = ~-sub & self
       break if sub == 0
+      sub = ~-sub & self
     end
   end
 end
