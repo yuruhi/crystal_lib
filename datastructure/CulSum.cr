@@ -1,4 +1,12 @@
 class CulSum(T)
+  def self.build(a : Enumerable(T))
+    result = [T.zero]
+    a.each do |x|
+      result << result[-1] + x
+    end
+    result
+  end
+
   def initialize(a : Array(T))
     @n = a.size
     @s = Array(T).new(@n + 1, T.zero)
