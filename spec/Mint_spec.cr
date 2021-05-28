@@ -1,4 +1,5 @@
-require "../math/Mint2"
+require "../math/Mint"
+static_modint(Mint, 1000000007)
 mod = 10i64**9 + 7
 x = Mint.new(mod - 1)
 max = Int64::MAX % mod
