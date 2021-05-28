@@ -4,6 +4,7 @@
 "test/CulSum.test.cr": "2021-05-27 16:12:36 +0900",
 "test/CulSum2D_Imos2D.test.cr": "2021-05-27 15:29:21 +0900",
 "test/Imos.test.cr": "2021-05-27 21:39:38 +0900",
+"test/Matrix.test.cr": "2021-05-28 14:11:13 +0900",
 "test/Point_to_direction.test.cr": "2021-05-28 10:38:41 +0900",
 "test/ReRooting.test.cr": "2021-05-19 19:30:36 +0900",
 "test/RollingHash.test.cr": "2021-05-26 17:53:21 +0900",
@@ -15,6 +16,7 @@
 "test/each_subset.test.cr": "2021-05-27 22:21:55 +0900",
 "test/kruskal.test.cr": "2021-05-26 14:02:49 +0900",
 "test/lca.test.cr": "2021-05-19 19:30:36 +0900",
+"test/powmod.test.cr": "2021-05-28 14:11:13 +0900",
 "test/topological_sort.test.cr": "2021-05-19 19:30:36 +0900",
 "test/tree_walk.test.cr": "2021-05-19 19:30:36 +0900"
 }
