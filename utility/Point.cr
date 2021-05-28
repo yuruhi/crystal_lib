@@ -172,6 +172,16 @@ struct Point
     to_s(io)
   end
 
+  def to_direction_char?(lrud = "LRUD") : Char?
+    if y == 0 && x != 0
+      x < 0 ? lrud[0] : lrud[1]
+    elsif x == 0 && y != 0
+      y < 0 ? lrud[2] : lrud[3]
+    else
+      nil
+    end
+  end
+
   def self.to_direction?(c : Char, lrud = "LRUD")
     raise ArgumentError.new unless lrud.size == 4
     lrud.index(c).try { |i| {left, right, up, down}[i] }
