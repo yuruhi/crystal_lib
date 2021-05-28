@@ -3,11 +3,11 @@ macro static_modint(name, mod)
     MOD = {{mod}}.to_i64
 
     def self.zero
-      Mint.new
+      new
     end
 
     def self.raw(value : Int64)
-      result = self.new
+      result = new
       result.value = value
       result
     end
@@ -37,7 +37,7 @@ macro static_modint(name, mod)
     end
 
     def - : self
-      self.class.raw(value != 0 ? MOD - value : 0i64)
+      self.class.raw(value != 0 ? MOD &- value : 0i64)
     end
 
     def +(v)
@@ -45,8 +45,8 @@ macro static_modint(name, mod)
     end
 
     def +(m : self)
-      x = value + m.value
-      x -= MOD if x >= MOD
+      x = value &+ m.value
+      x &-= MOD if x >= MOD
       self.class.raw(x)
     end
 
@@ -55,8 +55,8 @@ macro static_modint(name, mod)
     end
 
     def -(m : self)
-      x = value - m.value
-      x += MOD if x < 0
+      x = value &- m.value
+      x &+= MOD if x < 0
       self.class.raw(x)
     end
 
@@ -65,7 +65,7 @@ macro static_modint(name, mod)
     end
 
     def *(m : self)
-      self.class.new(value * m.value)
+      self.class.new(value &* m.value)
     end
 
     def /(v)
@@ -77,12 +77,12 @@ macro static_modint(name, mod)
       a, b, u, v = m.to_i64, MOD, 1i64, 0i64
       while b != 0
         t = a // b
-        a -= t * b
+        a &-= t &* b
         a, b = b, a
-        u -= t * v
+        u &-= t &* v
         u, v = v, u
       end
-      self.class.new(value * u)
+      self.class.new(value &* u)
     end
 
     def //(v)
@@ -92,7 +92,7 @@ macro static_modint(name, mod)
     def **(exponent : Int)
       t, res = self, self.class.raw(1i64)
       while exponent > 0
-        res *= t if exponent.odd?
+        res *= t if exponent & 1 == 1
         t *= t
         exponent >>= 1
       end
@@ -108,11 +108,11 @@ macro static_modint(name, mod)
     end
 
     def succ
-      self.class.raw(value != MOD - 1 ? value + 1 : 0i64)
+      self.class.raw(value != MOD &- 1 ? value &+ 1 : 0i64)
     end
 
     def pred
-      self.class.raw(value != 0 ? value - 1 : MOD - 1)
+      self.class.raw(value != 0 ? value &- 1 : MOD &- 1)
     end
 
     def abs
