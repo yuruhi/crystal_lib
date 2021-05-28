@@ -70,20 +70,24 @@ end
 abstract class Graph(T)
   getter graph : Array(Array(Edge(T)))
 
-  delegate size, to: @graph
-  delegate :[], to: @graph
-
   def initialize(size : Int)
     raise ArgumentError.new("Negative graph size: #{size}") unless size >= 0
     @graph = Array.new(size) { Array(Edge(T)).new }
   end
 
   abstract def add_edge(edge : Edge2(T))
-  abstract def add_edges(edges : Array(Edge2(T)))
 
   def add_edge(i : Int32, j : Int32, cost : T)
     add_edge(Edge2.new(i, j, cost))
   end
+
+  def add_edges(edges : Array(Edge2(T)))
+    edges.each { |edge| add_edge(edge) }
+    self
+  end
+
+  delegate size, to: @graph
+  delegate :[], to: @graph
 
   def each_edge : Nil
     (0...size).each do |v|
@@ -93,23 +97,9 @@ abstract class Graph(T)
     end
   end
 
-  def each_edge(v : Int32) : Nil
-    graph[v].each do |edge|
-      yield Edge2(T).new(v, edge.to, edge.cost)
-    end
-  end
-
-  def edges : Array(Edge2(T))
+  def edges
     result = [] of Edge2(T)
     each_edge do |edge|
-      result << edge
-    end
-    result
-  end
-
-  def edges(v : Int32) : Array(Edge2(T))
-    result = [] of Edge2(T)
-    each_edge(v) do |edge|
       result << edge
     end
     result
@@ -132,11 +122,6 @@ class DirectedGraph(T) < Graph(T)
     @graph[edge.from] << Edge.new(edge.to, edge.cost)
     self
   end
-
-  def add_edges(edges : Array(Edge2(T)))
-    edges.each { |edge| add_edge(edge) }
-    self
-  end
 end
 
 class UndirectedGraph(T) < Graph(T)
@@ -156,11 +141,6 @@ class UndirectedGraph(T) < Graph(T)
     @graph[edge.to] << Edge.new(edge.from, edge.cost)
     self
   end
-
-  def add_edges(edges : Array(Edge2(T)))
-    edges.each { |edge| add_edge(edge) }
-    self
-  end
 end
 
 abstract class UnweightedGraph
@@ -172,14 +152,34 @@ abstract class UnweightedGraph
   end
 
   abstract def add_edge(edge : UnweightedEdge2)
-  abstract def add_edges(edges : Array(UnweightedEdge2))
 
   def add_edge(i : Int32, j : Int32)
     add_edge(UnweightedEdge2.new(i, j))
   end
 
+  def add_edges(edges : Array(UnweightedEdge2))
+    edges.each { |edge| add_edge(edge) }
+    self
+  end
+
   delegate size, to: @graph
   delegate :[], to: @graph
+
+  def each_edge : Nil
+    (0...size).each do |v|
+      graph[v].each do |u|
+        yield UnweightedEdge2.new(v, u)
+      end
+    end
+  end
+
+  def edges
+    result = [] of UnweightedEdge2
+    each_edge do |edge|
+      result << edge
+    end
+    result
+  end
 end
 
 class UnweightedDirectedGraph < UnweightedGraph
@@ -196,11 +196,6 @@ class UnweightedDirectedGraph < UnweightedGraph
     raise IndexError.new unless 0 <= edge.from < size
     raise IndexError.new unless 0 <= edge.to < size
     @graph[edge.from] << edge.to
-    self
-  end
-
-  def add_edges(edges : Array(UnweightedEdge2))
-    edges.each { |edge| add_edge(edge) }
     self
   end
 end
@@ -220,11 +215,6 @@ class UnweightedUndirectedGraph < UnweightedGraph
     raise IndexError.new unless 0 <= edge.to < size
     @graph[edge.from] << edge.to
     @graph[edge.to] << edge.from
-    self
-  end
-
-  def add_edges(edges : Array(UnweightedEdge2))
-    edges.each { |edge| add_edge(edge) }
     self
   end
 end
