@@ -1,9 +1,5 @@
 struct Mint
-  @@MOD = 1_000_000_007i64
-
-  def self.mod
-    @@MOD
-  end
+  MOD = 1_000_000_007i64
 
   def self.zero
     Mint.new
@@ -22,7 +18,7 @@ struct Mint
   end
 
   def initialize(value)
-    @value = value.to_i64 % @@MOD
+    @value = value.to_i64 % MOD
   end
 
   def initialize(m : Mint)
@@ -40,7 +36,7 @@ struct Mint
   end
 
   def - : Mint
-    Mint.raw(value != 0 ? @@MOD - value : 0i64)
+    Mint.raw(value != 0 ? MOD - value : 0i64)
   end
 
   def +(v)
@@ -49,7 +45,7 @@ struct Mint
 
   def +(m : Mint)
     x = value + m.value
-    x -= @@MOD if x >= @@MOD
+    x -= MOD if x >= MOD
     Mint.raw(x)
   end
 
@@ -59,7 +55,7 @@ struct Mint
 
   def -(m : Mint)
     x = value - m.value
-    x += @@MOD if x < 0
+    x += MOD if x < 0
     Mint.raw(x)
   end
 
@@ -77,7 +73,7 @@ struct Mint
 
   def /(m : Mint)
     raise DivisionByZeroError.new if m.value == 0
-    a, b, u, v = m.to_i64, @@MOD, 1i64, 0i64
+    a, b, u, v = m.to_i64, MOD, 1i64, 0i64
     while b != 0
       t = a // b
       a -= t * b
@@ -111,11 +107,11 @@ struct Mint
   end
 
   def succ
-    Mint.raw(value != @@MOD - 1 ? value + 1 : 0i64)
+    Mint.raw(value != MOD - 1 ? value + 1 : 0i64)
   end
 
   def pred
-    Mint.raw(value != 0 ? value - 1 : @@MOD - 1)
+    Mint.raw(value != 0 ? value - 1 : MOD - 1)
   end
 
   def abs
