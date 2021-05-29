@@ -1,6 +1,6 @@
 macro static_modint(name, mod)
   struct {{name}}
-    MOD = {{mod}}.to_i64
+    MOD = Int64.new({{mod}})
 
     def self.zero
       new
