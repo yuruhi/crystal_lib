@@ -99,13 +99,19 @@ macro static_modint(name, mod)
       res
     end
 
-    def ==(v)
-      value == v
-    end
-
     def ==(m : self)
       value == m.value
     end
+
+    def ==(m : Int)
+      raise NotImplementedError.new("==")
+    end
+
+    {% for op in %w[< <= > >=] %}
+      def {{op.id}}(other)
+        raise NotImplementedError.new({{op}})
+      end
+    {% end %}
 
     def succ
       self.class.raw(value != MOD &- 1 ? value &+ 1 : 0i64)
@@ -128,6 +134,18 @@ macro static_modint(name, mod)
   end
 
   struct Int
+    {% for op in %w[+ - * / //] %}
+      def {{op.id}}(value : {{name}})
+        to_m {{op.id}} value
+      end
+    {% end %}
+
+    {% for op in %w[== != < <= > >=] %}
+      def {{op.id}}(m : {{name}})
+        raise NotImplementedError.new({{op}})
+      end
+    {% end %}
+
     def to_m : {{name}}
       {{name}}.new(self)
     end

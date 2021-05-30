@@ -55,7 +55,6 @@ describe "Mint" do
     (a - 3i8).value.should eq 0
     (a - 4).value.should eq mod - 1
     (a - mod).value.should eq 3
-    (a + mod * 2).value.should eq 3
     (Mint.zero - x).value.should eq 1
   end
 
@@ -104,18 +103,14 @@ describe "Mint" do
   it "==(other)" do
     a = Mint.new(3)
     (a == a).should be_true
-    (a == 3).should be_true
-    (a == 2).should be_false
-    (a == mod + 3).should be_false
+    expect_raises(NotImplementedError) { a == 3 }
     (a == Mint.new(mod + 3)).should be_true
   end
 
   it "!=(other)" do
     a = Mint.new(3)
     (a != a).should be_false
-    (a != 3).should be_false
-    (a != 2).should be_true
-    (a != mod + 3).should be_true
+    expect_raises(NotImplementedError) { a != 3 }
     (a != Mint.new(mod + 3)).should be_false
   end
 
@@ -161,6 +156,50 @@ describe "Mint" do
     x.inspect.should eq (mod - 1).to_s
   end
 
+  it "Int#+" do
+    a = Mint.new(1)
+    (3 + a).value.should eq 4
+    (3i64 + a).value.should eq 4
+    (3i8 + a).value.should eq 4
+    (mod + a).value.should eq 1
+    (mod * 2 + a).value.should eq 1
+  end
+
+  it "Int#-" do
+    a = Mint.new(3)
+    (3 - a).value.should eq 0
+    (3i64 - a).value.should eq 0
+    (3i8 - a).value.should eq 0
+    (4 - a).value.should eq 1
+    (mod - a).value.should eq mod - 3
+    (0 - x).value.should eq 1
+  end
+
+  it "Int#*" do
+    a = Mint.new(3)
+    (3 * a).value.should eq 9
+    (mod * a).value.should eq 0
+    (Int64::MAX * x).value.should eq mod.pred * max % mod
+  end
+
+  it "Int#/" do
+    a = Mint.new(3)
+    (3 / Mint.new(1)).value.should eq 3
+    (3 / Mint.new(2)).value.should eq mod // 2 + 2
+    (3 / Mint.new(3)).value.should eq 1
+    expect_raises(DivisionByZeroError) { 0 / Mint.zero }
+    expect_raises(DivisionByZeroError) { mod / Mint.new mod }
+  end
+
+  it "Int#//" do
+    a = Mint.new(3)
+    (3 // Mint.new(1)).value.should eq 3
+    (3 // Mint.new(2)).value.should eq mod // 2 + 2
+    (3 // Mint.new(3)).value.should eq 1
+    expect_raises(DivisionByZeroError) { 0 // Mint.zero }
+    expect_raises(DivisionByZeroError) { mod // Mint.new mod }
+  end
+
   it "Int#to_m" do
     (-1).to_m.value.should eq mod - 1
     (-1i8).to_m.value.should eq mod - 1
@@ -175,5 +214,19 @@ describe "Mint" do
     "1".to_m.value.should eq 1
     (mod - 1).to_s.to_m.value.should eq mod - 1
     mod.to_s.to_m.value.should eq 0
+  end
+
+  it "compare" do
+    a = Mint.new(3)
+    expect_raises(NotImplementedError) { a < 1 }
+    expect_raises(NotImplementedError) { a <= 1 }
+    expect_raises(NotImplementedError) { a > 1 }
+    expect_raises(NotImplementedError) { a >= 1 }
+    expect_raises(NotImplementedError) { 1 == a }
+    expect_raises(NotImplementedError) { 1 != a }
+    expect_raises(NotImplementedError) { 1 < a }
+    expect_raises(NotImplementedError) { 1 <= a }
+    expect_raises(NotImplementedError) { 1 > a }
+    expect_raises(NotImplementedError) { 1 >= a }
   end
 end
