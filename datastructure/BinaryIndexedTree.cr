@@ -7,7 +7,7 @@ class BinaryIndexedTree(T)
 
   def initialize(a : Array(T))
     @a = [T.zero]
-		@a.concat a
+    @a.concat a
     @size = a.size
     (1...size).each do |i|
       j = i + (i & -i)
@@ -42,5 +42,9 @@ class BinaryIndexedTree(T)
 
   def [](range : Range)
     self[*Indexable.range_to_index_and_count(range, size) || raise IndexError.new]
+  end
+
+  def to_a
+    (0...size).map { |i| self[i..i] }
   end
 end
