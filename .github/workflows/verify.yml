@@ -33,6 +33,12 @@ jobs:
                   rm -rf cr-bundle
                   echo "/home/runner/work/crystal_lib/crystal_lib/bin" >> $GITHUB_PATH
 
+            - name: Install ac-library
+              run: |
+                  git clone https://github.com/google/ac-library.cr.git
+                  cp -r ac-library.cr/atcoder atcoder
+                  rm -rf ac-library.cr
+
             - name: Run tests
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
