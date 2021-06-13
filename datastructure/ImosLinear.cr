@@ -17,9 +17,9 @@ class ImosLinear(T)
     @b[start] -= b
   end
 
-  def add(range : Range, val : T)
+  def add(range : Range, val_a : T, val_b : T)
     start, count = Indexable.range_to_index_and_count(range, size) || raise IndexError.new
-    add(start, count, val)
+    add(start, count, val_a, val_b)
   end
 
   def build : Array(T)

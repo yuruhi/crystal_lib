@@ -2,4 +2,4 @@
 require "../DP/knapsack"
 n, limit = read_line.split.map(&.to_i)
 v, w = (1..n).map { read_line.split.map(&.to_i) }.transpose
-puts knapsack(n, limit, v, w)[limit]
+puts knapsack(limit, v, w)[limit]
