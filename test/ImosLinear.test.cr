@@ -3,8 +3,8 @@ require "../datastructure/ImosLinear"
 n, m = read_line.split.map(&.to_i)
 a = read_line.split.map(&.to_i64)
 xw = (1..m).map {
-  x, w = read_line.split.map(&.to_i)
-  {x - 1, w}
+  x, w = read_line.split
+  {x.to_i - 1, w.to_i64}
 }
 
 if xw.sum(&.[0]) < a.min
@@ -12,7 +12,7 @@ if xw.sum(&.[0]) < a.min
   exit
 end
 
-puts (0i64..10i64**9).bsearch { |x|
+puts (0i64..10i64**9).bsearch { |c|
   imos = ImosLinear(Int64).new(n)
   xw.each do |x, w|
     imos.add(x..x, w, 0)

@@ -11,10 +11,10 @@ class ImosLinear(T)
   def add(start : Int, count : Int, val_a : T, val_b : T) : Nil
     raise "self had been called `#build`" if @builded
     raise ArgumentError.new "Negative count: #{count}" if count < 0
-    @a[start] += a - b * start
-    @b[start] += b
-    @a[start + count] -= a - b * start
-    @b[start] -= b
+    @a[start] += val_a - val_b * start
+    @b[start] += val_b
+    @a[start + count] -= val_a - val_b * start
+    @b[start] -= val_b
   end
 
   def add(range : Range, val_a : T, val_b : T)
