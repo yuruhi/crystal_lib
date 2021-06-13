@@ -1,4 +1,4 @@
-def enumrate_combination(n)
+def enumerate_combination(n)
   res = Array.new(n + 1) { Array.new(n + 1, 0i64) }
   (0..n).each do |i|
     res[i][0] = res[i][i] = 1
