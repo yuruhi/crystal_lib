@@ -1,18 +1,13 @@
 class Imos(T)
-  @builded = false
-
   getter size : Int32
+  @builded = false
 
   def initialize(@size : Int32)
     @a = Array(T).new(@size + 1, T.zero)
   end
 
-  def initialize(@size : Int32, init_val : T)
-    @a = Array(T).new(@size + 1, init_val)
-  end
-
-  def add(start : Int, count : Int, val : T)
-    raise "self had been called `build`" if @builded
+  def add(start : Int, count : Int, val : T) : Nil
+    raise "self had been called `#build`" if @builded
     raise ArgumentError.new "Negative count: #{count}" if count < 0
     start += size if start < 0
     if 0 <= start <= size
@@ -20,7 +15,6 @@ class Imos(T)
       @a[start] += val
       @a[start + count] -= val
     end
-    nil
   end
 
   def add(range : Range, val : T)
@@ -28,12 +22,11 @@ class Imos(T)
     add(start, count, val)
   end
 
-  def build
-    raise "self had been called `build`" if @builded
+  def build : Array(T)
+    raise "self had been called `#build`" if @builded
     @builded = true
-    (1..size).each do |i|
-      @a[i] += @a[i - 1]
+    (0...size).map do |i|
+      @a[i].tap { |x| @a[i + 1] += x }
     end
-    @a[0, size]
   end
 end

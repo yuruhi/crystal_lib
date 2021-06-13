@@ -1,16 +1,15 @@
 class Imos2D(T)
-  @builded = false
-
   getter height : Int32
   getter width : Int32
+  @builded = false
 
   def initialize(@height, @width, init_val : T = T.zero)
-    @table = Array(Array(T)).new(@height + 1) {
+    @table = Array(Array(T)).new(@height + 1) do
       Array(T).new(@width + 1, init_val)
-    }
+    end
   end
 
-  def add(ys : Int32, yc : Int32, xs : Int32, xc : Int32, val : T)
+  def add(ys : Int32, yc : Int32, xs : Int32, xc : Int32, val : T) : Nil
     raise "self had been called `build`" if @builded
     raise ArgumentError.new "Negative count: #{yc}" if yc < 0
     raise ArgumentError.new "Negative count: #{xc}" if xc < 0
