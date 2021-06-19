@@ -29,7 +29,7 @@ class UnionFind
 
   def groups
     groups = Hash(Int32, Set(Int32)).new { |h, k| h[k] = Set(Int32).new }
-    @n.times do |i|
+    @d.size.times do |i|
       groups[root(i)] << i
     end
     groups.values.to_set
