@@ -2,7 +2,7 @@
 require "../utility/Point"
 h, w = read_line.split.map(&.to_i)
 s = (1..h).map { read_line }
-d = Point.to_direction(read_line, "EWSN")
+d = Point.to_direction?(read_line, "EWSN").not_nil!
 Point.set_range(h, w)
 puts Point.select { |p| s[p] == '#' }.max_of { |p|
   cnt = 0
