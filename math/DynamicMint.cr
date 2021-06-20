@@ -1,5 +1,5 @@
 require "./Barrett"
-require "../atcoder/Math"
+require "../atcoder/src/Math"
 
 struct DynamicMint
   @@bt : Barrett = Barrett.new(998244353u32)
