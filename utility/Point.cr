@@ -105,7 +105,7 @@ struct Point
 
   def succ
     raise IndexError.new unless in_range?
-    raise IndexError.new unless self == Point.last
+    raise IndexError.new unless self != Point.last
     if x < Point.width - 1
       Point.new(y, x + 1)
     else
@@ -115,8 +115,8 @@ struct Point
 
   def pred
     raise IndexError.new unless in_range?
-    raise IndexError.new unless self == Point.zero
-    if x > Point.width
+    raise IndexError.new unless self != Point.first
+    if x > 0
       Point.new(y, x - 1)
     else
       Point.new(y - 1, Point.width - 1)
@@ -137,7 +137,7 @@ struct Point
   end
 
   def distance(other : Point)
-    Math.sqrt(distance_square)
+    Math.sqrt(distance_square(other))
   end
 
   def manhattan(other : Point)
@@ -149,7 +149,7 @@ struct Point
   end
 
   def adjacent4
-    @@Direction4.each.map { |p| self + p }
+    Direction4.each.map { |p| self + p }
   end
 
   def adj4_in_range
@@ -157,7 +157,7 @@ struct Point
   end
 
   def adjacent8
-    @@Direction8.each.map { |p| self + p }
+    Direction8.each.map { |p| self + p }
   end
 
   def adj8_in_range
@@ -194,13 +194,9 @@ struct Point
     when 2
       p1 = to_direction?(s[0], lrud) || return nil
       p2 = to_direction?(s[1], lrud) || return nil
-      raise ArgumentError.new unless p1.x ^ p2.x != 0 && p1.y ^ p2.y != 0
+      return nil unless p1.x ^ p2.x != 0 && p1.y ^ p2.y != 0
       p1 + p2
     end
-  end
-
-  def self.to_direction(c, lrud = "LRUD")
-    to_direction?(c, lrud) || raise ArgumentError.new
   end
 end
 
