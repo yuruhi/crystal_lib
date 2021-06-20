@@ -14,7 +14,7 @@ class ImosLinear(T)
     @a[start] += val_a - val_b * start
     @b[start] += val_b
     @a[start + count] -= val_a - val_b * start
-    @b[start] -= val_b
+    @b[start + count] -= val_b
   end
 
   def add(range : Range, val_a : T, val_b : T)
@@ -26,7 +26,9 @@ class ImosLinear(T)
     raise "self had been called `#build`" if @builded
     @builded = true
     (0...size).map do |i|
-      (@a[i] + @b[i] * i).tap { @a[i + 1] += @a[i]; @b[i + 1] += @b[i] }
+      @a[i + 1] += @a[i]
+      @b[i + 1] += @b[i]
+      @a[i] + @b[i] * i
     end
   end
 end
