@@ -61,18 +61,18 @@ struct DynamicMint
   end
 
   def -
-    Mint.raw value == 0 ? 0 : Mint.mod - value
+    Mint.raw value == 0 ? 0 : Mint.mod &- value
   end
 
   def +(v)
-    x = value + Mint.new(v).value
-    x -= Mint.mod if x >= Mint.mod
+    x = value &+ Mint.new(v).value
+    x &-= Mint.mod if x >= Mint.mod
     Mint.raw x
   end
 
   def -(v)
-    x = value - Mint.new(v).value
-    x += Mint.mod if x < 0
+    x = value &- Mint.new(v).value
+    x &+= Mint.mod if x < 0
     Mint.raw x
   end
 
@@ -103,11 +103,11 @@ struct DynamicMint
   end
 
   def succ
-    Mint.raw value == Mint.mod - 1 ? 0 : value + 1
+    Mint.raw value == Mint.mod &- 1 ? 0 : value &+ 1
   end
 
   def pred
-    Mint.raw value == 0 ? Mint.mod - 1 : value - 1
+    Mint.raw value == 0 ? Mint.mod &- 1 : value &- 1
   end
 
   def abs
