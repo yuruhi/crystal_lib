@@ -14,11 +14,18 @@ macro check_binary_operator(mod, op)
 end
 
 macro check_method(mod, method)
-  {1, 60, 1009, 1000003}.each do |mod|
-    M.mod = mod
-    (0...mod).each do |x|
-      M.new(x).{{method}}.should eq x.{{method}} % mod
-    end
+  %mod = {{mod}}
+  M.mod = %mod
+  (0...%mod).each do |x|
+    M.new(x).{{method}}.should eq x.{{method}}
+  end
+end
+
+macro check_method_mod(mod, method)
+  %mod = {{mod}}
+  M.mod = %mod
+  (0...%mod).each do |x|
+    M.new(x).{{method}}.should eq x.{{method}} % %mod
   end
 end
 
@@ -131,31 +138,45 @@ describe "DynamicModint" do
   end
 
   it "#succ" do
-    check_method(1, succ)
-    check_method(60, succ)
-    check_method(1009, succ)
-    check_method(1000003, succ)
+    check_method_mod(1, succ)
+    check_method_mod(60, succ)
+    check_method_mod(1009, succ)
+    check_method_mod(1000003, succ)
   end
 
   it "#pred" do
-    check_method(1, pred)
-    check_method(60, pred)
-    check_method(1009, pred)
-    check_method(1000003, pred)
+    check_method_mod(1, pred)
+    check_method_mod(60, pred)
+    check_method_mod(1009, pred)
+    check_method_mod(1000003, pred)
   end
 
   it "#abs" do
-    check_method(1, abs)
-    check_method(60, abs)
-    check_method(1009, abs)
-    check_method(1000003, abs)
+    check_method_mod(1, abs)
+    check_method_mod(60, abs)
+    check_method_mod(1009, abs)
+    check_method_mod(1000003, abs)
   end
 
   it "#to_i64" do
-    check_method(1, to_i64)
-    check_method(60, to_i64)
-    check_method(1009, to_i64)
-    check_method(1000003, to_i64)
+    check_method_mod(1, to_i64)
+    check_method_mod(60, to_i64)
+    check_method_mod(1009, to_i64)
+    check_method_mod(1000003, to_i64)
+  end
+
+  it "#to_s" do
+    check_method(1, to_s)
+    check_method(60, to_s)
+    check_method(1009, to_s)
+    check_method(1000003, to_s)
+  end
+
+  it "#inspect" do
+    check_method(1, inspect)
+    check_method(60, inspect)
+    check_method(1009, inspect)
+    check_method(1000003, inspect)
   end
 
   it "compare" do

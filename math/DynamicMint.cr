@@ -118,6 +118,9 @@ struct DynamicMint
     value.to_i64
   end
 
+  delegate to_s, to: @value
+  delegate inspect, to: @value
+
   {% for op in %w[< <= > >=] %}
     def {{op.id}}(other)
       raise NotImplementedError.new({{op}})
