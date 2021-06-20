@@ -11,5 +11,5 @@ loop do
     }
     imos.add(s...t, 1)
   end
-	puts imos.build.max
+  puts imos.build.max
 end

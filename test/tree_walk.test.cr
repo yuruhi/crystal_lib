@@ -5,7 +5,7 @@ def in_order(graph, v, result)
   if left = graph[v][0]
     in_order(graph, left, result)
   end
-	result << v
+  result << v
   if right = graph[v][1]
     in_order(graph, right, result)
   end
