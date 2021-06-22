@@ -57,6 +57,11 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2.3.1
 
+            - name: Set up Crystal
+              uses: oprypin/install-crystal@v1
+              with:
+                  crystal: 0.33.0
+
             - name: Install and Build
               run: |
                   crystal docs --project-name=crystal_lib --project-version=1.0.0 ./{datastructure,DP,Geometric,graph,math,string,template,utility}/
