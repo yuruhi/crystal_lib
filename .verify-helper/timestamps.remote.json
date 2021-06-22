@@ -32,9 +32,11 @@
 "test/bfs.test.cr": "2021-05-19 19:30:36 +0900",
 "test/bipartite_graph.test.cr": "2021-05-19 19:30:36 +0900",
 "test/diameter.test.cr": "2021-05-23 13:29:18 +0900",
+"test/dijkstra.test.cr": "2021-06-22 18:04:14 +0900",
 "test/each_subset.test.cr": "2021-05-27 22:21:55 +0900",
 "test/kruskal.test.cr": "2021-05-26 14:02:49 +0900",
 "test/lca.test.cr": "2021-05-19 19:30:36 +0900",
 "test/powmod.test.cr": "2021-05-30 13:38:48 +0900",
-"test/topological_sort.test.cr": "2021-05-19 19:30:36 +0900"
+"test/topological_sort.test.cr": "2021-05-19 19:30:36 +0900",
+"test/tree_walk.test.cr": "2021-06-20 21:15:01 +0900"
 }
