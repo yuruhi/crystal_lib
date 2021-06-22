@@ -63,8 +63,10 @@ jobs:
                   crystal: 0.33.0
 
             - name: Install and Build
-              run: |
-                  crystal docs ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*
+              run: crystal docs ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*
+
+            - name: Install ac-library.cr
+              run: git clone https://github.com/google/ac-library.cr.git atcoder
 
             - name: Deploy
               uses: JamesIves/github-pages-deploy-action@4.1.4
