@@ -64,7 +64,7 @@ jobs:
 
             - name: Install and Build
               run: |
-                  crystal docs --project-name=crystal_lib --project-version=1.0.0 ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*
+                  crystal docs ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*
 
             - name: Deploy
               uses: JamesIves/github-pages-deploy-action@4.1.4
