@@ -75,7 +75,7 @@ abstract class Graph(T)
     @graph = Array.new(size) { Array(Edge(T)).new }
   end
 
-  abstract def add_edge(edge : Edge2(T))
+  # abstract def add_edge(edge : Edge2(T))
 
   def add_edge(i : Int32, j : Int32, cost : T)
     add_edge(Edge2.new(i, j, cost))
@@ -151,7 +151,7 @@ abstract class UnweightedGraph
     @graph = Array.new(size) { Array(Int32).new }
   end
 
-  abstract def add_edge(edge : UnweightedEdge2)
+  # abstract def add_edge(edge : UnweightedEdge2)
 
   def add_edge(i : Int32, j : Int32)
     add_edge(UnweightedEdge2.new(i, j))
