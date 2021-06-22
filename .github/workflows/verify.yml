@@ -59,8 +59,6 @@ jobs:
 
             - name: Install and Build
               run: |
-                  npm install
-                  npm run build
                   crystal docs --project-name=crystal_lib --project-version=1.0.0 ./{datastructure,DP,Geometric,graph,math,string,template,utility}/
 
             - name: Deploy
