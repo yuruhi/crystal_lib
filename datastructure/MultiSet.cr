@@ -89,7 +89,7 @@ class MultiSet(T)
     other.subset_of?(self)
   end
 
-  class MultiSetIterator(T)
+  private class MultiSetIterator(T)
     include Iterator(T)
     include IteratorWrapper
 
