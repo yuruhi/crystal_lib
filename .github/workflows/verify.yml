@@ -5,7 +5,6 @@ on: push
 jobs:
     verify:
         runs-on: ubuntu-latest
-
         steps:
             - uses: actions/checkout@v1
 
@@ -62,11 +61,11 @@ jobs:
               with:
                   crystal: 0.33.0
 
-            - name: Install and Build
-              run: crystal docs ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*
-
             - name: Install ac-library.cr
               run: git clone https://github.com/google/ac-library.cr.git atcoder
+
+            - name: Install and Build
+              run: crystal docs ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*
 
             - name: Deploy
               uses: JamesIves/github-pages-deploy-action@4.1.4
