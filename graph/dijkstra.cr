@@ -1,4 +1,4 @@
-require "../atcoder/PriorityQueue"
+require "../atcoder/src/PriorityQueue"
 require "./graph"
 
 class Graph(T)
