@@ -25,9 +25,13 @@ describe Point do
   it ".set_range and .height and .width" do
     expect_raises(NilAssertionError) { Point.height }
     expect_raises(NilAssertionError) { Point.width }
+    Point.height?.should be_nil
+    Point.width?.should be_nil
     Point.set_range(H, W)
     Point.height.should eq H
     Point.width.should eq W
+    Point.height?.should eq H
+    Point.width?.should eq W
   end
 
   it ".size" do
@@ -52,6 +56,10 @@ describe Point do
       Point.from [0]
       Point.from [0, 1, 2]
     end
+  end
+
+  it ".[](y, x)" do
+    Point[1, 1].should eq Point.new(1, 1)
   end
 
   check_direction(zero, 0, 0)
@@ -92,6 +100,10 @@ describe Point do
         (p1 <=> p2).should eq ({p1.y, p1.x} <=> {p2.y, p2.x})
       end
     end
+  end
+
+  it "include Comparable(Point)" do
+    Point.new(2, 2).clamp(Point.new(0, 0), Point.new(1, 1)).should eq Point.new(1, 1)
   end
 
   it "#[]" do
@@ -166,7 +178,12 @@ describe Point do
   it "#adjacent4" do
     a = Point.new(3, 4)
     a.adjacent4.should be_a(Iterator(Point))
-    a.adjacent4.to_a.should eq [a.up, a.left, a.down, a.right]
+    expect = [a.up, a.left, a.down, a.right]
+    a.adjacent4.to_a.should eq expect
+
+    res = [] of Point
+    a.adjacent4 { |p| res << p }
+    res.should eq expect
   end
 
   it "#adj4_in_range" do
@@ -175,12 +192,21 @@ describe Point do
     a.adj4_in_range.to_a.should eq [a.up, a.left]
     a = Point.new(0, 0)
     a.adj4_in_range.to_a.should eq [a.down, a.right]
+
+    res = [] of Point
+    a.adj4_in_range { |p| res << p }
+    res.should eq [a.down, a.right]
   end
 
   it "#adjacent8" do
     a = Point.new(3, 4)
     a.adjacent8.should be_a(Iterator(Point))
-    a.adjacent8.to_a.should eq [a.up, a.left, a.down, a.right, a.ul, a.ur, a.dl, a.dr]
+    expect = [a.up, a.left, a.down, a.right, a.ul, a.ur, a.dl, a.dr]
+    a.adjacent8.to_a.should eq expect
+
+    res = [] of Point
+    a.adjacent8 { |p| res << p }
+    res.should eq expect
   end
 
   it "#adj8_in_range" do
@@ -189,6 +215,10 @@ describe Point do
     a.adj8_in_range.to_a.should eq [a.up, a.left, a.ul]
     a = Point.new(0, 0)
     a.adj8_in_range.to_a.should eq [a.down, a.right, a.dr]
+
+    res = [] of Point
+    a.adj8_in_range { |p| res << p }
+    res.should eq [a.down, a.right, a.dr]
   end
 
   it "#to_s" do

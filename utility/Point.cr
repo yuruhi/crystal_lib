@@ -8,22 +8,14 @@ struct Point
   Direction4 = [Point.up, Point.left, Point.down, Point.right]
   Direction8 = Direction4 + [Point.ul, Point.ur, Point.dl, Point.dr]
 
-  @@height : Int32?
-  @@width : Int32?
+  class_getter! height : Int32
+  class_getter! width : Int32
 
   def self.set_range(height : Int32, width : Int32)
     raise ArgumentError.new unless 0 < height
     raise ArgumentError.new unless 0 < width
     @@height = height
     @@width = width
-  end
-
-  def self.height
-    @@height.not_nil!
-  end
-
-  def self.width
-    @@width.not_nil!
   end
 
   def self.size
@@ -51,7 +43,11 @@ struct Point
     Point.new(array.unsafe_fetch(0), array.unsafe_fetch(1))
   end
 
-  macro define_direction(name, dy, dx)
+  def self.[](y : Int32, x : Int32) : self
+    Point.new(y, x)
+  end
+
+  private macro define_direction(name, dy, dx)
     def self.{{name}}
       Point.new({{dy}}, {{dx}})
     end
@@ -148,27 +144,34 @@ struct Point
     {(y - other.y).abs, (x - other.x).abs}.max
   end
 
-  def adjacent4
-    Direction4.each.map { |p| self + p }
-  end
+  {% for i in [4, 8] %}
+    def adjacent{{i}}(&block) : Nil
+      Direction{{i}}.each do |d|
+        yield self + d
+      end
+    end
 
-  def adj4_in_range
-    adjacent4.select(&.in_range?)
-  end
+    def adjacent{{i}}
+      Direction{{i}}.each.map { |p| self + p }
+    end
 
-  def adjacent8
-    Direction8.each.map { |p| self + p }
-  end
+    def adj{{i}}_in_range(&block) : Nil
+      Direction{{i}}.each do |d|
+        point = self + d
+        yield point if point.in_range?
+      end
+    end
 
-  def adj8_in_range
-    adjacent8.select(&.in_range?)
-  end
+    def adj{{i}}_in_range
+      adjacent{{i}}.select(&.in_range?)
+    end
+  {% end %}
 
-  def to_s(io : IO)
+  def to_s(io : IO) : Nil
     io << '(' << y << ", " << x << ')'
   end
 
-  def inspect(io : IO)
+  def inspect(io : IO) : Nil
     to_s(io)
   end
 
@@ -177,8 +180,6 @@ struct Point
       x < 0 ? lrud[0] : lrud[1]
     elsif x == 0 && y != 0
       y < 0 ? lrud[2] : lrud[3]
-    else
-      nil
     end
   end
 
