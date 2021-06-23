@@ -72,3 +72,4 @@ jobs:
               with:
                   branch: docs
                   folder: docs
+                  git-config-name: api
