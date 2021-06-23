@@ -148,7 +148,7 @@ data:
   path: utility/Point.cr
   requiredBy:
   - spec/Point_spec.cr
-  timestamp: '2021-06-23 22:18:21+09:00'
+  timestamp: '2021-06-23 22:32:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Point_to_direction.test.cr
