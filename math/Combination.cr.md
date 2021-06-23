@@ -40,7 +40,7 @@ data:
   isVerificationFile: false
   path: math/Combination.cr
   requiredBy: []
-  timestamp: '2021-06-23 22:32:57+09:00'
+  timestamp: '2021-06-23 22:45:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Combination.test.cr

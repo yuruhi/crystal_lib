@@ -165,7 +165,7 @@ data:
   - graph/tree.cr
   - graph/topological_sort.cr
   - graph/BipartiteMatching.cr
-  timestamp: '2021-06-23 22:32:57+09:00'
+  timestamp: '2021-06-23 22:45:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/graph.cr
