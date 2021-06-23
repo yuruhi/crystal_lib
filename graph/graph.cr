@@ -75,8 +75,6 @@ abstract class Graph(T)
     @graph = Array.new(size) { Array(Edge(T)).new }
   end
 
-  # abstract def add_edge(edge : Edge2(T))
-
   def add_edge(i : Int32, j : Int32, cost : T)
     add_edge(Edge2.new(i, j, cost))
   end
@@ -151,8 +149,6 @@ abstract class UnweightedGraph
     @graph = Array.new(size) { Array(Int32).new }
   end
 
-  # abstract def add_edge(edge : UnweightedEdge2)
-
   def add_edge(i : Int32, j : Int32)
     add_edge(UnweightedEdge2.new(i, j))
   end
@@ -216,5 +212,11 @@ class UnweightedUndirectedGraph < UnweightedGraph
     @graph[edge.from] << edge.to
     @graph[edge.to] << edge.from
     self
+  end
+
+  def each_child(vertex : Int, parent)
+    graph[vertex].each do |u|
+      yield u if u != parent
+    end
   end
 end
