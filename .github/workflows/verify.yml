@@ -52,7 +52,7 @@ jobs:
 
             - name: Gerarate API docs
               run: |
-                  git branch master
+                  git checkout master
                   crystal docs ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*
 
             - name: Deploy
