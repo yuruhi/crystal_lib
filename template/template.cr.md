@@ -15,7 +15,7 @@ data:
   isVerificationFile: false
   path: template/template.cr
   requiredBy: []
-  timestamp: '2021-06-23 20:53:22+09:00'
+  timestamp: '2021-06-23 21:16:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/template.cr
