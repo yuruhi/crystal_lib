@@ -51,7 +51,9 @@ jobs:
               run: crystal tool format --check
 
             - name: Gerarate API docs
-              run: crystal docs ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*
+              run: |
+                  git branch master
+                  crystal docs ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*
 
             - name: Deploy
               uses: JamesIves/github-pages-deploy-action@4.1.4
