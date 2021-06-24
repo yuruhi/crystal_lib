@@ -31,7 +31,7 @@ jobs:
               run: git clone https://github.com/google/ac-library.cr.git atcoder
 
             - name: Run format check
-              run: crystal tool format --check crystal tool format {datastructure,DP,graph,math,spec,template,utility,Geometric,string,test}/
+              run: crystal tool format --check {datastructure,DP,graph,math,spec,template,utility,Geometric,string,test}/
 
             - name: Run spec
               run: crystal spec
@@ -45,6 +45,9 @@ jobs:
                   branch: gh-pages
                   folder: docs
                   target-folder: api
+
+            - name: Remove ./docs
+              run: rm -rf ./docs
 
             - name: Run tests
               env:
