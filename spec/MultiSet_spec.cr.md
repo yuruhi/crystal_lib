@@ -49,7 +49,7 @@ data:
     \    each_count { |(elem, cnt)| result.add elem, cnt }\n    other.each_count {\
     \ |(elem, cnt)| result.add elem, cnt }\n    result\n  end\n\n  def +(other : MultiSet(U))\
     \ forall U\n    self | other\n  end\n\n  def to_s(io : IO)\n    io << @count\n\
-    \  end\n\n  def inspect(io : IO)\n    io << '['\n    each.join(io, \", \")\n \
+    \  end\n\n  def inspect(io : IO)\n    io << '['\n    each.join(\", \", io)\n \
     \   io << ']'\n  end\nend\n\ndescribe \"MultiSet\" do\n  it \"initialize\" do\n\
     \    MultiSet(Int32).new.to_s.should eq \"{}\"\n    MultiSet.new([0, 1, 2, 2]).to_s.should\
     \ eq \"{0 => 1, 1 => 1, 2 => 2}\"\n    MultiSet{0, 1, 2, 2}.to_s.should eq \"\
@@ -167,7 +167,7 @@ data:
   isVerificationFile: false
   path: spec/MultiSet_spec.cr
   requiredBy: []
-  timestamp: '2021-06-22 18:24:24+09:00'
+  timestamp: '2021-06-24 10:02:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: spec/MultiSet_spec.cr

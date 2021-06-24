@@ -78,9 +78,9 @@ data:
     \ { a // Mint.zero }\n  end\n\n  it \"**(other)\" do\n    a = Mint.new(3)\n  \
     \  (a ** 0).value.should eq 1\n    (a ** 1).value.should eq 3\n    (a ** 2).value.should\
     \ eq 9\n    (a ** 20).value.should eq 486784380\n    (a ** (10i64**18)).value.should\
-    \ eq 246336683\n    (x.pred ** 10i64**18).value.should eq 719476260\n  end\n\n\
-    \  it \"==(other)\" do\n    a = Mint.new(3)\n    (a == a).should be_true\n   \
-    \ expect_raises(NotImplementedError) { a == 3 }\n    (a == Mint.new(mod + 3)).should\
+    \ eq 246336683\n    (a.pred ** (10i64**18)).value.should eq 719476260\n  end\n\
+    \n  it \"==(other)\" do\n    a = Mint.new(3)\n    (a == a).should be_true\n  \
+    \  expect_raises(NotImplementedError) { a == 3 }\n    (a == Mint.new(mod + 3)).should\
     \ be_true\n  end\n\n  it \"!=(other)\" do\n    a = Mint.new(3)\n    (a != a).should\
     \ be_false\n    expect_raises(NotImplementedError) { a != 3 }\n    (a != Mint.new(mod\
     \ + 3)).should be_false\n  end\n\n  it \"succ\" do\n    Mint.new(0).succ.value.should\
@@ -156,9 +156,9 @@ data:
     \ { a // Mint.zero }\n  end\n\n  it \"**(other)\" do\n    a = Mint.new(3)\n  \
     \  (a ** 0).value.should eq 1\n    (a ** 1).value.should eq 3\n    (a ** 2).value.should\
     \ eq 9\n    (a ** 20).value.should eq 486784380\n    (a ** (10i64**18)).value.should\
-    \ eq 246336683\n    (x.pred ** 10i64**18).value.should eq 719476260\n  end\n\n\
-    \  it \"==(other)\" do\n    a = Mint.new(3)\n    (a == a).should be_true\n   \
-    \ expect_raises(NotImplementedError) { a == 3 }\n    (a == Mint.new(mod + 3)).should\
+    \ eq 246336683\n    (a.pred ** (10i64**18)).value.should eq 719476260\n  end\n\
+    \n  it \"==(other)\" do\n    a = Mint.new(3)\n    (a == a).should be_true\n  \
+    \  expect_raises(NotImplementedError) { a == 3 }\n    (a == Mint.new(mod + 3)).should\
     \ be_true\n  end\n\n  it \"!=(other)\" do\n    a = Mint.new(3)\n    (a != a).should\
     \ be_false\n    expect_raises(NotImplementedError) { a != 3 }\n    (a != Mint.new(mod\
     \ + 3)).should be_false\n  end\n\n  it \"succ\" do\n    Mint.new(0).succ.value.should\
@@ -206,7 +206,7 @@ data:
   isVerificationFile: false
   path: spec/Mint_spec.cr
   requiredBy: []
-  timestamp: '2021-05-30 13:38:48+09:00'
+  timestamp: '2021-06-24 10:02:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: spec/Mint_spec.cr

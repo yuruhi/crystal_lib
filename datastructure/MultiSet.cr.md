@@ -48,7 +48,7 @@ data:
     \    each_count { |(elem, cnt)| result.add elem, cnt }\n    other.each_count {\
     \ |(elem, cnt)| result.add elem, cnt }\n    result\n  end\n\n  def +(other : MultiSet(U))\
     \ forall U\n    self | other\n  end\n\n  def to_s(io : IO)\n    io << @count\n\
-    \  end\n\n  def inspect(io : IO)\n    io << '['\n    each.join(io, \", \")\n \
+    \  end\n\n  def inspect(io : IO)\n    io << '['\n    each.join(\", \", io)\n \
     \   io << ']'\n  end\nend\n"
   code: "class MultiSet(T)\n  include Iterable(T)\n  include Enumerable(T)\n\n  @count\
     \ = Hash(T, Int32).new(0)\n  getter size = 0\n\n  def initialize\n  end\n\n  def\
@@ -88,14 +88,14 @@ data:
     \    each_count { |(elem, cnt)| result.add elem, cnt }\n    other.each_count {\
     \ |(elem, cnt)| result.add elem, cnt }\n    result\n  end\n\n  def +(other : MultiSet(U))\
     \ forall U\n    self | other\n  end\n\n  def to_s(io : IO)\n    io << @count\n\
-    \  end\n\n  def inspect(io : IO)\n    io << '['\n    each.join(io, \", \")\n \
+    \  end\n\n  def inspect(io : IO)\n    io << '['\n    each.join(\", \", io)\n \
     \   io << ']'\n  end\nend\n"
   dependsOn: []
   isVerificationFile: false
   path: datastructure/MultiSet.cr
   requiredBy:
   - spec/MultiSet_spec.cr
-  timestamp: '2021-06-24 09:33:06+09:00'
+  timestamp: '2021-06-24 10:11:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: datastructure/MultiSet.cr
