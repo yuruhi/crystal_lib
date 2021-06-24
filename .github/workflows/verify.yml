@@ -44,7 +44,9 @@ jobs:
               run: oj-verify all --jobs 4
 
             - name: Gerarate API docs
-              run: crystal docs ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*
+              run: |
+                  git checkout master
+                  crystal docs ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*
 
             - name: Deploy
               uses: JamesIves/github-pages-deploy-action@4.1.4
