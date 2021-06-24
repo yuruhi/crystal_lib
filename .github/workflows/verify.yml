@@ -30,11 +30,11 @@ jobs:
             - name: Install ac-library
               run: git clone https://github.com/google/ac-library.cr.git atcoder
 
-            - name: Run spec
-              run: crystal spec
-
             - name: Run format check
               run: crystal tool format --check
+
+            - name: Run spec
+              run: crystal spec
 
             - name: Gerarate API docs
               run: crystal docs ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*
