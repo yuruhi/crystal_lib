@@ -14,7 +14,7 @@ macro static_modint(name, mod)
       result
     end
 
-    @value : Int64
+    getter value : Int64
 
     def initialize
       @value = 0i64
@@ -32,7 +32,13 @@ macro static_modint(name, mod)
       @value = value
     end
 
-    getter value : Int64
+    def ==(m : self)
+      value == m.value
+    end
+
+    def ==(m)
+      value == m
+    end
 
     def + : self
       self
@@ -43,7 +49,7 @@ macro static_modint(name, mod)
     end
 
     def +(v)
-      self + v.to_m
+      self + Mint.new(v)
     end
 
     def +(m : self)
@@ -53,7 +59,7 @@ macro static_modint(name, mod)
     end
 
     def -(v)
-      self - v.to_m
+      self - Mint.new(v)
     end
 
     def -(m : self)
@@ -63,7 +69,7 @@ macro static_modint(name, mod)
     end
 
     def *(v)
-      self * v.to_m
+      self * Mint.new(v)
     end
 
     def *(m : self)
@@ -71,7 +77,7 @@ macro static_modint(name, mod)
     end
 
     def /(v)
-      self / v.to_m
+      self / Mint.new(v)
     end
 
     def /(m : self)
@@ -101,14 +107,6 @@ macro static_modint(name, mod)
       res
     end
 
-    def ==(m : self)
-      value == m.value
-    end
-
-    def ==(m : Int)
-      raise NotImplementedError.new("==")
-    end
-
     {% for op in %w[< <= > >=] %}
       def {{op.id}}(other)
         raise NotImplementedError.new({{op}})
@@ -116,7 +114,7 @@ macro static_modint(name, mod)
     {% end %}
 
     def inv
-      Mint.raw AtCoder::Math.inv_mod(value, Mint::MOD)
+      self.class.raw AtCoder::Math.inv_mod(value, MOD)
     end
 
     def succ
@@ -139,26 +137,28 @@ macro static_modint(name, mod)
     delegate inspect, to: @value
   end
 
+  {% to = ("to_" + name.stringify.downcase.gsub(/mint|modint/, "m")).id %}
+
   struct Int
     {% for op in %w[+ - * / //] %}
       def {{op.id}}(value : {{name}})
-        to_m {{op.id}} value
+        {{to}} {{op.id}} value
       end
     {% end %}
 
-    {% for op in %w[== != < <= > >=] %}
+    {% for op in %w[< <= > >=] %}
       def {{op.id}}(m : {{name}})
         raise NotImplementedError.new({{op}})
       end
     {% end %}
 
-    def to_m : {{name}}
+    def {{to}} : {{name}}
       {{name}}.new(self)
     end
   end
 
   class String
-    def to_m : {{name}}
+    def {{to}} : {{name}}
       {{name}}.new(self)
     end
   end
