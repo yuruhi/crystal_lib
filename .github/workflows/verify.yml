@@ -11,13 +11,6 @@ jobs:
             - name: Set up Python
               uses: actions/setup-python@v1
 
-            - name: Set up Rust (1.42.0)
-              uses: actions-rs/toolchain@v1
-              with:
-                  toolchain: 1.42.0-x86_64-unknown-linux-gnu
-                  default: true
-                  profile: minimal
-
             - name: Set up Crystal
               uses: oprypin/install-crystal@v1
               with:
@@ -37,6 +30,9 @@ jobs:
             - name: Install ac-library
               run: git clone https://github.com/google/ac-library.cr.git atcoder
 
+            - name: Gerarate API docs
+              run: crystal docs ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*
+
             - name: Run tests
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -49,11 +45,6 @@ jobs:
 
             - name: Run format check
               run: crystal tool format --check
-
-            - name: Gerarate API docs
-              run: |
-                  git checkout master
-                  crystal docs ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*
 
             - name: Deploy
               uses: JamesIves/github-pages-deploy-action@4.1.4
