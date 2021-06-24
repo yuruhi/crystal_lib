@@ -41,12 +41,11 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
                   GH_PAT: ${{ secrets.GH_PAT }}
-              run: oj-verify all --jobs 4
+              run: oj-verify run --jobs 4
 
             - name: Install ac-library
               run: |
                   git checkout master
-                  git clone https://github.com/google/ac-library.cr.git atcoder
 
             - name: Gerarate API docs
               run: crystal docs ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*

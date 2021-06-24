@@ -113,6 +113,10 @@ macro static_modint(name, mod)
       end
     {% end %}
 
+    def inv
+      Mint.raw AtCoder::Math.inv_mod(value, Mint.mod)
+    end
+
     def succ
       self.class.raw(value != MOD &- 1 ? value &+ 1 : 0i64)
     end
