@@ -95,7 +95,7 @@ data:
   path: datastructure/MultiSet.cr
   requiredBy:
   - spec/MultiSet_spec.cr
-  timestamp: '2021-06-24 10:11:13+09:00'
+  timestamp: '2021-06-24 10:22:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: datastructure/MultiSet.cr
