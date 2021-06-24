@@ -25,6 +25,7 @@
 "test/Knapsack.test.cr": "2021-06-20 15:20:58 +0900",
 "test/Knapsack01.test.cr": "2021-06-20 15:20:58 +0900",
 "test/Matrix.test.cr": "2021-06-24 12:09:18 +0900",
+"test/NTT.test.cr": "2021-06-24 12:09:18 +0900",
 "test/Point_to_direction.test.cr": "2021-06-22 17:33:08 +0900",
 "test/ReRooting.test.cr": "2021-05-19 19:30:36 +0900",
 "test/RollingHash.test.cr": "2021-06-05 22:29:02 +0900",
@@ -36,6 +37,7 @@
 "test/each_subset.test.cr": "2021-05-27 22:21:55 +0900",
 "test/kruskal.test.cr": "2021-05-26 14:02:49 +0900",
 "test/lca.test.cr": "2021-05-19 19:30:36 +0900",
+"test/powmod.test.cr": "2021-06-24 12:09:18 +0900",
 "test/topological_sort.test.cr": "2021-05-19 19:30:36 +0900",
 "test/tree_walk.test.cr": "2021-06-20 21:15:01 +0900"
 }
