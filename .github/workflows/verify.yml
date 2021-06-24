@@ -43,12 +43,10 @@ jobs:
                   GH_PAT: ${{ secrets.GH_PAT }}
               run: oj-verify run --jobs 4
 
-            - name: Install ac-library
+            - name: Gerarate API docs
               run: |
                   git checkout master
-
-            - name: Gerarate API docs
-              run: crystal docs ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*
+                  crystal docs ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*
 
             - name: Deploy
               uses: JamesIves/github-pages-deploy-action@4.1.4
