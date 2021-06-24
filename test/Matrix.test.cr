@@ -2,7 +2,6 @@
 require "../math/Mint"
 require "../math/Matrix"
 
-static_modint(Mint, 1000000007)
 n, w, k = read_line.split.try { |(n, w, k)|
   {n.to_i, w.to_i, k.to_i64}
 }

@@ -7,8 +7,8 @@ class NTT
     b = Array.new(a.size, T.zero)
     r = T::MOD.pred // a.size
     r = T::MOD.pred - r if rev
-    s = ROOT.to_m ** r
-    kp = Array.new(a.size // 2 + 1, 1.to_m)
+    s = T.new(ROOT) ** r
+    kp = Array.new(a.size // 2 + 1, T.new(1))
     (1...kp.size).each { |i| kp[i] = kp[i - 1] * s }
 
     i, l = 1, a.size // 2
@@ -27,7 +27,7 @@ class NTT
       i <<= 1; l >>= 1
     end
     if rev
-      s = a.size.to_m.inv
+      s = T.new(a.size).inv
       a.map! { |x| x * s }
     end
     a

@@ -1,7 +1,6 @@
 # verification-helper: PROBLEM https://yukicoder.me/problems/no/117
 require "../math/Mint"
 require "../math/Combination"
-static_modint(Mint, 10**9 + 7)
 
 C = Combination(Mint).new
 
