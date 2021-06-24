@@ -236,7 +236,7 @@ describe "Mint" do
     check_method(Mint, to_s)
     check_method(Mint2, to_s)
   end
-  
+
   it "inspect" do
     Mint.new(0).inspect.should eq "0"
     Mint.new(3).inspect.should eq "3"
