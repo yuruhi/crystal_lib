@@ -38,7 +38,7 @@ data:
   isVerificationFile: false
   path: datastructure/CulSum.cr
   requiredBy: []
-  timestamp: '2021-06-24 10:22:55+09:00'
+  timestamp: '2021-06-24 10:34:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/CulSum.test.cr

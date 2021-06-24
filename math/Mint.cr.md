@@ -94,7 +94,7 @@ data:
   path: math/Mint.cr
   requiredBy:
   - spec/Mint_spec.cr
-  timestamp: '2021-06-24 10:22:55+09:00'
+  timestamp: '2021-06-24 10:34:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Matrix.test.cr
