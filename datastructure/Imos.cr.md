@@ -37,7 +37,7 @@ data:
   isVerificationFile: false
   path: datastructure/Imos.cr
   requiredBy: []
-  timestamp: '2021-06-24 10:46:20+09:00'
+  timestamp: '2021-06-24 08:54:39+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Imos.test.cr

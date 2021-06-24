@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/Combination.test.cr
     title: test/Combination.test.cr
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cr
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes: {}
   bundledCode: "class Combination(T)\n  def initialize\n    @size = 2\n    @factorial\
     \ = [T.new(1), T.new(1)]\n    @inv = [T.zero, T.new(1)]\n    @finv = [T.new(1),\
@@ -40,8 +40,8 @@ data:
   isVerificationFile: false
   path: math/Combination.cr
   requiredBy: []
-  timestamp: '2021-06-24 10:46:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-06-24 08:54:39+00:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/Combination.test.cr
 documentation_of: math/Combination.cr

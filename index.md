@@ -170,18 +170,21 @@ data:
     - icon: ':warning:'
       path: math/Barrett.cr
       title: math/Barrett.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/Combination.cr
       title: math/Combination.cr
     - icon: ':warning:'
       path: math/DynamicMint.cr
       title: math/DynamicMint.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/Matrix.cr
       title: math/Matrix.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/Mint.cr
       title: math/Mint.cr
+    - icon: ':x:'
+      path: math/NTT.cr
+      title: math/NTT.cr
     - icon: ':warning:'
       path: math/Sieve.cr
       title: math/Sieve.cr
@@ -294,7 +297,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/BipartiteMatching.test.cr
       title: test/BipartiteMatching.test.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/Combination.test.cr
       title: test/Combination.test.cr
     - icon: ':heavy_check_mark:'
@@ -315,9 +318,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Knapsack01.test.cr
       title: test/Knapsack01.test.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/Matrix.test.cr
       title: test/Matrix.test.cr
+    - icon: ':x:'
+      path: test/NTT.test.cr
+      title: test/NTT.test.cr
     - icon: ':heavy_check_mark:'
       path: test/Point_to_direction.test.cr
       title: test/Point_to_direction.test.cr
@@ -351,7 +357,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/lca.test.cr
       title: test/lca.test.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/powmod.test.cr
       title: test/powmod.test.cr
     - icon: ':heavy_check_mark:'
@@ -362,3 +368,7 @@ data:
       title: test/tree_walk.test.cr
 layout: toppage
 ---
+[![yuruhiya](https://img.shields.io/endpoint?url=https%3A%2F%2Fatcoder-badges.now.sh%2Fapi%2Fatcoder%2Fjson%2Fyuruhiya)](https://atcoder.jp/users/yuruhiya)
+[![yuruhiya](https://img.shields.io/endpoint?url=https%3A%2F%2Fatcoder-badges.now.sh%2Fapi%2Fcodeforces%2Fjson%2Fyuruhiya)](https://codeforces.com/profile/yuruhiya)
+
+[API document](https://yuruhi.github.io/crystal_lib/api)

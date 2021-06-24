@@ -156,16 +156,16 @@ data:
   path: graph/graph.cr
   requiredBy:
   - graph/tree_walk.cr
+  - graph/bipartite_graph.cr
+  - graph/tree.cr
   - graph/dijkstra.cr
+  - graph/lca.cr
+  - graph/BipartiteMatching.cr
+  - graph/topological_sort.cr
+  - graph/ReRooting.cr
   - graph/bfs.cr
   - graph/kruskal.cr
-  - graph/bipartite_graph.cr
-  - graph/ReRooting.cr
-  - graph/lca.cr
-  - graph/tree.cr
-  - graph/topological_sort.cr
-  - graph/BipartiteMatching.cr
-  timestamp: '2021-06-24 10:46:20+09:00'
+  timestamp: '2021-06-24 08:54:39+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/graph.cr
