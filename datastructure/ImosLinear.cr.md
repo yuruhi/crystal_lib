@@ -39,7 +39,7 @@ data:
   isVerificationFile: false
   path: datastructure/ImosLinear.cr
   requiredBy: []
-  timestamp: '2021-06-24 10:34:19+09:00'
+  timestamp: '2021-06-24 10:46:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/ImosLinear.test.cr
