@@ -15,7 +15,7 @@
 </svg>
 
   <meta id="repository-name" content="github.com/yuruhi/crystal_lib">
-  <title>Imos2D(T) - github.com/yuruhi/crystal_lib</title>
+  <title>NTT - github.com/yuruhi/crystal_lib</title>
   <script type="text/javascript">
     CrystalDoc.base_path = "";
   </script>
@@ -165,7 +165,7 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/yuruhi/crystal_lib/Imos2D" data-name="imos2d(t)">
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Imos2D" data-name="imos2d(t)">
       <a href="Imos2D.html">Imos2D</a>
       
     </li>
@@ -200,7 +200,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/NTT" data-name="ntt">
+  <li class=" current" data-id="github.com/yuruhi/crystal_lib/NTT" data-name="ntt">
       <a href="NTT.html">NTT</a>
       
     </li>
@@ -269,15 +269,26 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Imos2D(T)
+  <span class="kind">class</span> NTT
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="Imos2D.html">Imos2D(T)</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="NTT.html">NTT</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>reference : https://kopricky.github.io/code/FFTs/ntt.html</p>
 
 
 
@@ -302,8 +313,8 @@
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/4221030f97f2bf8d0fadf33f487d9df232d5b660/datastructure/Imos2D.cr#L1" target="_blank">
-        datastructure/Imos2D.cr
+      <a href="https://github.com/yuruhi/crystal_lib/blob/4221030f97f2bf8d0fadf33f487d9df232d5b660/math/NTT.cr#L2" target="_blank">
+        math/NTT.cr
       </a>
     
     <br/>
@@ -311,70 +322,47 @@
 
 
 
-
-
-  <h2>
-    <a id="constructors" class="anchor" href="#constructors">
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Constructors
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="ROOT">
+        <strong>ROOT</strong> = <code><span class="n">3</span></code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+
+
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
   </h2>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(height,width,init_val:T=T.zero)-class-method" class="signature"><strong>.new</strong>(height, width, init_val : T = <span class="t">T</span>.zero)</a>
+        <a href="#multiple(a:Array(T),b:Array(T))forallT-class-method" class="signature"><strong>.multiple</strong>(a : Array(T), b : Array(T)) forall T</a>
         
       </li>
     
   </ul>
 
 
-
-
-
-  <h2>
-    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Instance Method Summary
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#[](y:Int32,x:Int32):T-instance-method" class="signature"><strong>#[]</strong>(y : Int32, x : Int32) : T</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#add(ys:Int32,yc:Int32,xs:Int32,xc:Int32,val:T):Nil-instance-method" class="signature"><strong>#add</strong>(ys : Int32, yc : Int32, xs : Int32, xc : Int32, val : T) : Nil</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#add(y:Range,x:Range,val:T)-instance-method" class="signature"><strong>#add</strong>(y : Range, x : Range, val : T)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#build:Array(Array(T))-instance-method" class="signature"><strong>#build</strong> : Array(Array(T))</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#height:Int32-instance-method" class="signature"><strong>#height</strong> : Int32</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#width:Int32-instance-method" class="signature"><strong>#width</strong> : Int32</a>
-        
-      </li>
-    
-  </ul>
 
 
 
@@ -405,141 +393,35 @@
 </div>
 
 
+
+
   <h2>
-    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Constructor Detail
+    Class Method Detail
   </h2>
   
-    <div class="entry-detail" id="new(height,width,init_val:T=T.zero)-class-method">
+    <div class="entry-detail" id="multiple(a:Array(T),b:Array(T))forallT-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(height, width, init_val : T = <span class="t">T</span>.zero)
+        def self.<strong>multiple</strong>(a : <a href="Array.html">Array</a>(T), b : <a href="Array.html">Array</a>(T)) forall T
 
-        <a class="method-permalink" href="#new(height,width,init_val:T=T.zero)-class-method">#</a>
+        <a class="method-permalink" href="#multiple(a:Array(T),b:Array(T))forallT-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/4221030f97f2bf8d0fadf33f487d9df232d5b660/datastructure/Imos2D.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/4221030f97f2bf8d0fadf33f487d9df232d5b660/math/NTT.cr#L36" target="_blank">View source</a>]
         
       </div>
     </div>
   
 
 
-
-
-
-  <h2>
-    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Instance Method Detail
-  </h2>
-  
-    <div class="entry-detail" id="[](y:Int32,x:Int32):T-instance-method">
-      <div class="signature">
-        
-        def <strong>[]</strong>(y : Int32, x : Int32) : T
-
-        <a class="method-permalink" href="#[](y:Int32,x:Int32):T-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/4221030f97f2bf8d0fadf33f487d9df232d5b660/datastructure/Imos2D.cr#L44" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="add(ys:Int32,yc:Int32,xs:Int32,xc:Int32,val:T):Nil-instance-method">
-      <div class="signature">
-        
-        def <strong>add</strong>(ys : Int32, yc : Int32, xs : Int32, xc : Int32, val : T) : Nil
-
-        <a class="method-permalink" href="#add(ys:Int32,yc:Int32,xs:Int32,xc:Int32,val:T):Nil-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/4221030f97f2bf8d0fadf33f487d9df232d5b660/datastructure/Imos2D.cr#L12" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="add(y:Range,x:Range,val:T)-instance-method">
-      <div class="signature">
-        
-        def <strong>add</strong>(y : Range, x : Range, val : T)
-
-        <a class="method-permalink" href="#add(y:Range,x:Range,val:T)-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/4221030f97f2bf8d0fadf33f487d9df232d5b660/datastructure/Imos2D.cr#L22" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="build:Array(Array(T))-instance-method">
-      <div class="signature">
-        
-        def <strong>build</strong> : <a href="Array.html">Array</a>(<a href="Array.html">Array</a>(T))
-
-        <a class="method-permalink" href="#build:Array(Array(T))-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/4221030f97f2bf8d0fadf33f487d9df232d5b660/datastructure/Imos2D.cr#L28" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="height:Int32-instance-method">
-      <div class="signature">
-        
-        def <strong>height</strong> : Int32
-
-        <a class="method-permalink" href="#height:Int32-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/4221030f97f2bf8d0fadf33f487d9df232d5b660/datastructure/Imos2D.cr#L2" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="width:Int32-instance-method">
-      <div class="signature">
-        
-        def <strong>width</strong> : Int32
-
-        <a class="method-permalink" href="#width:Int32-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/4221030f97f2bf8d0fadf33f487d9df232d5b660/datastructure/Imos2D.cr#L3" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
 
 
 
