@@ -1,8 +1,6 @@
 require "spec"
 require "../math/Mint"
 require "../atcoder/src/Math"
-static_modint(Mint, 1000000007)
-static_modint(Mint2, 998244353)
 mod = 10i64**9 + 7
 x = Mint.new(mod - 1)
 max = Int64::MAX % mod
