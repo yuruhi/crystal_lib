@@ -1,3 +1,5 @@
+require "../atcoder/src/Math"
+
 macro static_modint(name, mod)
   struct {{name}}
     MOD = Int64.new({{mod}})
@@ -114,7 +116,7 @@ macro static_modint(name, mod)
     {% end %}
 
     def inv
-      Mint.raw AtCoder::Math.inv_mod(value, Mint.mod)
+      Mint.raw AtCoder::Math.inv_mod(value, Mint::MOD)
     end
 
     def succ
