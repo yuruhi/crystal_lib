@@ -25,7 +25,7 @@ data:
   isVerificationFile: false
   path: graph/EulerTourForVertex.cr
   requiredBy: []
-  timestamp: '2021-06-23 22:45:28+09:00'
+  timestamp: '2021-06-24 09:33:06+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/EulerTourForVertex.cr

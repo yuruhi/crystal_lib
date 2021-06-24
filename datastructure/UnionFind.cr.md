@@ -36,7 +36,7 @@ data:
   path: datastructure/UnionFind.cr
   requiredBy:
   - graph/kruskal.cr
-  timestamp: '2021-06-23 22:45:28+09:00'
+  timestamp: '2021-06-24 09:33:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/UnionFind.test.cr
