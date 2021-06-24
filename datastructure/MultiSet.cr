@@ -160,7 +160,7 @@ class MultiSet(T)
 
   def inspect(io : IO)
     io << '['
-    each.join(io, ", ")
+    each.join(", ", io)
     io << ']'
   end
 end

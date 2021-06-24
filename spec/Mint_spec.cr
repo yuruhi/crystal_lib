@@ -97,7 +97,7 @@ describe "Mint" do
     (a ** 2).value.should eq 9
     (a ** 20).value.should eq 486784380
     (a ** (10i64**18)).value.should eq 246336683
-    (x.pred ** 10i64**18).value.should eq 719476260
+    (a.pred ** (10i64**18)).value.should eq 719476260
   end
 
   it "==(other)" do
