@@ -163,3 +163,6 @@ macro static_modint(name, mod)
     end
   end
 end
+
+static_modint(Mint, 10**9 + 7)
+static_modint(Mint2, 998244353)
