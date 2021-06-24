@@ -195,6 +195,16 @@
       
     </li>
   
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Mint" data-name="mint">
+      <a href="Mint.html">Mint</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Mint2" data-name="mint2">
+      <a href="Mint2.html">Mint2</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/yuruhi/crystal_lib/MultiSet" data-name="multiset(t)">
       <a href="MultiSet.html">MultiSet</a>
       
@@ -294,7 +304,7 @@
 being able to represent numbers of 8, 16, 32 and 64 bits respectively.
 There are four unsigned integer types: <code>UInt8</code>, <code>UInt16</code>, <code>UInt32</code> and <code>UInt64</code>.</p>
 
-<p>An integer literal is an optional <code>+</code> or <code>-</code> sign, followed by
+<p>An integer literal is an optional <code><a href="Int.html#+(value:Mint)-instance-method">#+</a></code> or <code><a href="Int.html#-(value:Mint)-instance-method">#-</a></code> sign, followed by
 a sequence of digits and underscores, optionally followed by a suffix.
 If no suffix is present, the literal's type is the lowest between <code>Int32</code>, <code>Int64</code> and <code>UInt64</code>
 in which the number fits:</p>
@@ -359,21 +369,35 @@ in which the number fits:</p>
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/282943579562041944111ebc000e815b96ab881b/math/powmod.cr#L1" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L167" target="_blank">
+        math/Mint.cr:167
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">
+        math/Mint.cr:168
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/powmod.cr#L1" target="_blank">
         math/powmod.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/282943579562041944111ebc000e815b96ab881b/math/prime_factor.cr#L1" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/prime_factor.cr#L1" target="_blank">
         math/prime_factor.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/282943579562041944111ebc000e815b96ab881b/utility/each_subset.cr#L1" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/utility/each_subset.cr#L1" target="_blank">
         utility/each_subset.cr
       </a>
     
@@ -397,6 +421,96 @@ in which the number fits:</p>
     Instance Method Summary
   </h2>
   <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#*(value:Mint)-instance-method" class="signature"><strong>#*</strong>(value : Mint)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#*(value:Mint2)-instance-method" class="signature"><strong>#*</strong>(value : Mint2)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#+(value:Mint)-instance-method" class="signature"><strong>#+</strong>(value : Mint)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#+(value:Mint2)-instance-method" class="signature"><strong>#+</strong>(value : Mint2)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#-(value:Mint)-instance-method" class="signature"><strong>#-</strong>(value : Mint)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#-(value:Mint2)-instance-method" class="signature"><strong>#-</strong>(value : Mint2)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#/(value:Mint)-instance-method" class="signature"><strong>#/</strong>(value : Mint)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#/(value:Mint2)-instance-method" class="signature"><strong>#/</strong>(value : Mint2)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#//(value:Mint)-instance-method" class="signature"><strong>#//</strong>(value : Mint)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#//(value:Mint2)-instance-method" class="signature"><strong>#//</strong>(value : Mint2)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3C(m:Mint)-instance-method" class="signature"><strong>#<</strong>(m : Mint)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3C(m:Mint2)-instance-method" class="signature"><strong>#<</strong>(m : Mint2)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3C=(m:Mint2)-instance-method" class="signature"><strong>#<=</strong>(m : Mint2)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3C=(m:Mint)-instance-method" class="signature"><strong>#<=</strong>(m : Mint)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3E(m:Mint)-instance-method" class="signature"><strong>#></strong>(m : Mint)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3E(m:Mint2)-instance-method" class="signature"><strong>#></strong>(m : Mint2)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3E=(m:Mint)-instance-method" class="signature"><strong>#>=</strong>(m : Mint)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%3E=(m:Mint2)-instance-method" class="signature"><strong>#>=</strong>(m : Mint2)</a>
+        
+      </li>
     
       <li class="entry-summary">
         <a href="#divisors:Array(self)-instance-method" class="signature"><strong>#divisors</strong> : Array(<span class="k">self</span>)</a>
@@ -425,6 +539,16 @@ in which the number fits:</p>
     
       <li class="entry-summary">
         <a href="#prime_factor:Array(Tuple(self,Int32))-instance-method" class="signature"><strong>#prime_factor</strong> : Array(Tuple(<span class="k">self</span>, Int32))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_m:Mint-instance-method" class="signature"><strong>#to_m</strong> : Mint</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_m2:Mint2-instance-method" class="signature"><strong>#to_m2</strong> : Mint2</a>
         
       </li>
     
@@ -492,6 +616,294 @@ in which the number fits:</p>
     Instance Method Detail
   </h2>
   
+    <div class="entry-detail" id="*(value:Mint)-instance-method">
+      <div class="signature">
+        
+        def <strong>*</strong>(value : <a href="Mint.html">Mint</a>)
+
+        <a class="method-permalink" href="#*(value:Mint)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L167" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="*(value:Mint2)-instance-method">
+      <div class="signature">
+        
+        def <strong>*</strong>(value : <a href="Mint2.html">Mint2</a>)
+
+        <a class="method-permalink" href="#*(value:Mint2)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="+(value:Mint)-instance-method">
+      <div class="signature">
+        
+        def <strong>+</strong>(value : <a href="Mint.html">Mint</a>)
+
+        <a class="method-permalink" href="#+(value:Mint)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L167" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="+(value:Mint2)-instance-method">
+      <div class="signature">
+        
+        def <strong>+</strong>(value : <a href="Mint2.html">Mint2</a>)
+
+        <a class="method-permalink" href="#+(value:Mint2)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="-(value:Mint)-instance-method">
+      <div class="signature">
+        
+        def <strong>-</strong>(value : <a href="Mint.html">Mint</a>)
+
+        <a class="method-permalink" href="#-(value:Mint)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L167" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="-(value:Mint2)-instance-method">
+      <div class="signature">
+        
+        def <strong>-</strong>(value : <a href="Mint2.html">Mint2</a>)
+
+        <a class="method-permalink" href="#-(value:Mint2)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="/(value:Mint)-instance-method">
+      <div class="signature">
+        
+        def <strong>/</strong>(value : <a href="Mint.html">Mint</a>)
+
+        <a class="method-permalink" href="#/(value:Mint)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L167" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="/(value:Mint2)-instance-method">
+      <div class="signature">
+        
+        def <strong>/</strong>(value : <a href="Mint2.html">Mint2</a>)
+
+        <a class="method-permalink" href="#/(value:Mint2)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="//(value:Mint)-instance-method">
+      <div class="signature">
+        
+        def <strong>//</strong>(value : <a href="Mint.html">Mint</a>)
+
+        <a class="method-permalink" href="#//(value:Mint)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L167" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="//(value:Mint2)-instance-method">
+      <div class="signature">
+        
+        def <strong>//</strong>(value : <a href="Mint2.html">Mint2</a>)
+
+        <a class="method-permalink" href="#//(value:Mint2)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&lt;(m:Mint)-instance-method">
+      <div class="signature">
+        
+        def <strong><</strong>(m : <a href="Mint.html">Mint</a>)
+
+        <a class="method-permalink" href="#%3C(m:Mint)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L167" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&lt;(m:Mint2)-instance-method">
+      <div class="signature">
+        
+        def <strong><</strong>(m : <a href="Mint2.html">Mint2</a>)
+
+        <a class="method-permalink" href="#%3C(m:Mint2)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&lt;=(m:Mint2)-instance-method">
+      <div class="signature">
+        
+        def <strong><=</strong>(m : <a href="Mint2.html">Mint2</a>)
+
+        <a class="method-permalink" href="#%3C=(m:Mint2)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&lt;=(m:Mint)-instance-method">
+      <div class="signature">
+        
+        def <strong><=</strong>(m : <a href="Mint.html">Mint</a>)
+
+        <a class="method-permalink" href="#%3C=(m:Mint)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L167" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&gt;(m:Mint)-instance-method">
+      <div class="signature">
+        
+        def <strong>></strong>(m : <a href="Mint.html">Mint</a>)
+
+        <a class="method-permalink" href="#%3E(m:Mint)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L167" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&gt;(m:Mint2)-instance-method">
+      <div class="signature">
+        
+        def <strong>></strong>(m : <a href="Mint2.html">Mint2</a>)
+
+        <a class="method-permalink" href="#%3E(m:Mint2)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&gt;=(m:Mint)-instance-method">
+      <div class="signature">
+        
+        def <strong>>=</strong>(m : <a href="Mint.html">Mint</a>)
+
+        <a class="method-permalink" href="#%3E=(m:Mint)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L167" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="&gt;=(m:Mint2)-instance-method">
+      <div class="signature">
+        
+        def <strong>>=</strong>(m : <a href="Mint2.html">Mint2</a>)
+
+        <a class="method-permalink" href="#%3E=(m:Mint2)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
     <div class="entry-detail" id="divisors:Array(self)-instance-method">
       <div class="signature">
         
@@ -503,7 +915,7 @@ in which the number fits:</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/282943579562041944111ebc000e815b96ab881b/math/prime_factor.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/prime_factor.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -519,7 +931,7 @@ in which the number fits:</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/282943579562041944111ebc000e815b96ab881b/math/prime_factor.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/prime_factor.cr#L25" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -535,7 +947,7 @@ in which the number fits:</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/282943579562041944111ebc000e815b96ab881b/utility/each_subset.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/utility/each_subset.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -551,7 +963,7 @@ in which the number fits:</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/282943579562041944111ebc000e815b96ab881b/utility/each_subset.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/utility/each_subset.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -567,7 +979,7 @@ in which the number fits:</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/282943579562041944111ebc000e815b96ab881b/math/powmod.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/powmod.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -583,7 +995,39 @@ in which the number fits:</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/282943579562041944111ebc000e815b96ab881b/math/prime_factor.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/prime_factor.cr#L2" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_m:Mint-instance-method">
+      <div class="signature">
+        
+        def <strong>to_m</strong> : <a href="Mint.html">Mint</a>
+
+        <a class="method-permalink" href="#to_m:Mint-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L167" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_m2:Mint2-instance-method">
+      <div class="signature">
+        
+        def <strong>to_m2</strong> : <a href="Mint2.html">Mint2</a>
+
+        <a class="method-permalink" href="#to_m2:Mint2-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>

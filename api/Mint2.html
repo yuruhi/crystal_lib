@@ -15,7 +15,7 @@
 </svg>
 
   <meta id="repository-name" content="github.com/yuruhi/crystal_lib">
-  <title>DynamicMint - github.com/yuruhi/crystal_lib</title>
+  <title>Mint2 - github.com/yuruhi/crystal_lib</title>
   <script type="text/javascript">
     CrystalDoc.base_path = "";
   </script>
@@ -85,7 +85,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="github.com/yuruhi/crystal_lib/DynamicMint" data-name="dynamicmint">
+  <li class="parent " data-id="github.com/yuruhi/crystal_lib/DynamicMint" data-name="dynamicmint">
       <a href="DynamicMint.html">DynamicMint</a>
       
         <ul>
@@ -200,7 +200,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/Mint2" data-name="mint2">
+  <li class=" current" data-id="github.com/yuruhi/crystal_lib/Mint2" data-name="mint2">
       <a href="Mint2.html">Mint2</a>
       
     </li>
@@ -279,12 +279,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">struct</span> DynamicMint
+  <span class="kind">struct</span> Mint2
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="DynamicMint.html">DynamicMint</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="Mint2.html">Mint2</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
 
 
 
@@ -312,14 +312,33 @@
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L4" target="_blank">
-        math/DynamicMint.cr
+      <a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">
+        math/Mint.cr
       </a>
     
     <br/>
   
 
 
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="MOD">
+        <strong>MOD</strong> = <code><span class="t">Int64</span>.<span class="k">new</span>(<span class="n">998244353</span>)</code>
+      </dt>
+      
+    
+  </dl>
 
 
 
@@ -334,12 +353,12 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(x:self)-class-method" class="signature"><strong>.new</strong>(x : <span class="k">self</span>)</a>
+        <a href="#new(m:self)-class-method" class="signature"><strong>.new</strong>(m : <span class="k">self</span>)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#new(x:Int)-class-method" class="signature"><strong>.new</strong>(x : Int)</a>
+        <a href="#new(value)-class-method" class="signature"><strong>.new</strong>(value)</a>
         
       </li>
     
@@ -363,22 +382,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#mod:Int32-class-method" class="signature"><strong>.mod</strong> : Int32</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#mod=(m:Int32)-class-method" class="signature"><strong>.mod=</strong>(m : Int32)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#raw(v:Int32)-class-method" class="signature"><strong>.raw</strong>(v : Int32)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#raw(v)-class-method" class="signature"><strong>.raw</strong>(v)</a>
+        <a href="#raw(value:Int64)-class-method" class="signature"><strong>.raw</strong>(value : Int64)</a>
         
       </li>
     
@@ -407,7 +411,17 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#*(m:self)-instance-method" class="signature"><strong>#*</strong>(m : <span class="k">self</span>)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#**(exponent:Int)-instance-method" class="signature"><strong>#**</strong>(exponent : Int)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#+(m:self)-instance-method" class="signature"><strong>#+</strong>(m : <span class="k">self</span>)</a>
         
       </li>
     
@@ -417,7 +431,12 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#+-instance-method" class="signature"><strong>#+</strong></a>
+        <a href="#+:self-instance-method" class="signature"><strong>#+</strong> : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#-(m:self)-instance-method" class="signature"><strong>#-</strong>(m : <span class="k">self</span>)</a>
         
       </li>
     
@@ -427,12 +446,17 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#--instance-method" class="signature"><strong>#-</strong></a>
+        <a href="#-:self-instance-method" class="signature"><strong>#-</strong> : <span class="k">self</span></a>
         
       </li>
     
       <li class="entry-summary">
         <a href="#/(v)-instance-method" class="signature"><strong>#/</strong>(v)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#/(m:self)-instance-method" class="signature"><strong>#/</strong>(m : <span class="k">self</span>)</a>
         
       </li>
     
@@ -452,12 +476,12 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#==(v:self)-instance-method" class="signature"><strong>#==</strong>(v : <span class="k">self</span>)</a>
+        <a href="#==(m:self)-instance-method" class="signature"><strong>#==</strong>(m : <span class="k">self</span>)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#==(v)-instance-method" class="signature"><strong>#==</strong>(v)</a>
+        <a href="#==(m)-instance-method" class="signature"><strong>#==</strong>(m)</a>
         
           <div class="summary"><p>Returns <code>true</code> if this struct is equal to <em>other</em>.</p></div>
         
@@ -479,12 +503,12 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#inspect(*args,**options,&)-instance-method" class="signature"><strong>#inspect</strong>(*args, **options, &)</a>
+        <a href="#inspect(*args,**options)-instance-method" class="signature"><strong>#inspect</strong>(*args, **options)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#inspect(*args,**options)-instance-method" class="signature"><strong>#inspect</strong>(*args, **options)</a>
+        <a href="#inspect(*args,**options,&)-instance-method" class="signature"><strong>#inspect</strong>(*args, **options, &)</a>
         
       </li>
     
@@ -509,17 +533,17 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#to_s(*args,**options,&)-instance-method" class="signature"><strong>#to_s</strong>(*args, **options, &)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
         <a href="#to_s(*args,**options)-instance-method" class="signature"><strong>#to_s</strong>(*args, **options)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#value:Int32-instance-method" class="signature"><strong>#value</strong> : Int32</a>
+        <a href="#to_s(*args,**options,&)-instance-method" class="signature"><strong>#to_s</strong>(*args, **options, &)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#value:Int64-instance-method" class="signature"><strong>#value</strong> : Int64</a>
         
       </li>
     
@@ -573,34 +597,34 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(x:self)-class-method">
+    <div class="entry-detail" id="new(m:self)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(x : <span class="k">self</span>)
+        def self.<strong>new</strong>(m : <span class="k">self</span>)
 
-        <a class="method-permalink" href="#new(x:self)-class-method">#</a>
+        <a class="method-permalink" href="#new(m:self)-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L43" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="new(x:Int)-class-method">
+    <div class="entry-detail" id="new(value)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(x : <a href="Int.html">Int</a>)
+        def self.<strong>new</strong>(value)
 
-        <a class="method-permalink" href="#new(x:Int)-class-method">#</a>
+        <a class="method-permalink" href="#new(value)-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L47" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -616,7 +640,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L39" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -633,66 +657,18 @@
     Class Method Detail
   </h2>
   
-    <div class="entry-detail" id="mod:Int32-class-method">
+    <div class="entry-detail" id="raw(value:Int64)-class-method">
       <div class="signature">
         
-        def self.<strong>mod</strong> : Int32
+        def self.<strong>raw</strong>(value : Int64)
 
-        <a class="method-permalink" href="#mod:Int32-class-method">#</a>
+        <a class="method-permalink" href="#raw(value:Int64)-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L8" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="mod=(m:Int32)-class-method">
-      <div class="signature">
-        
-        def self.<strong>mod=</strong>(m : Int32)
-
-        <a class="method-permalink" href="#mod=(m:Int32)-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L12" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="raw(v:Int32)-class-method">
-      <div class="signature">
-        
-        def self.<strong>raw</strong>(v : Int32)
-
-        <a class="method-permalink" href="#raw(v:Int32)-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L17" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="raw(v)-class-method">
-      <div class="signature">
-        
-        def self.<strong>raw</strong>(v)
-
-        <a class="method-permalink" href="#raw(v)-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -708,7 +684,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L29" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -736,7 +712,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L79" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="*(m:self)-instance-method">
+      <div class="signature">
+        
+        def <strong>*</strong>(m : <span class="k">self</span>)
+
+        <a class="method-permalink" href="#*(m:self)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -752,7 +744,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L91" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="+(m:self)-instance-method">
+      <div class="signature">
+        
+        def <strong>+</strong>(m : <span class="k">self</span>)
+
+        <a class="method-permalink" href="#+(m:self)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -768,23 +776,39 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L67" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="+-instance-method">
+    <div class="entry-detail" id="+:self-instance-method">
       <div class="signature">
         
-        def <strong>+</strong>
+        def <strong>+</strong> : <span class="k">self</span>
 
-        <a class="method-permalink" href="#+-instance-method">#</a>
+        <a class="method-permalink" href="#+:self-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L59" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="-(m:self)-instance-method">
+      <div class="signature">
+        
+        def <strong>-</strong>(m : <span class="k">self</span>)
+
+        <a class="method-permalink" href="#-(m:self)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -800,23 +824,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L73" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="--instance-method">
+    <div class="entry-detail" id="-:self-instance-method">
       <div class="signature">
         
-        def <strong>-</strong>
+        def <strong>-</strong> : <span class="k">self</span>
 
-        <a class="method-permalink" href="#--instance-method">#</a>
+        <a class="method-permalink" href="#-:self-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L63" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -832,7 +856,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L83" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="/(m:self)-instance-method">
+      <div class="signature">
+        
+        def <strong>/</strong>(m : <span class="k">self</span>)
+
+        <a class="method-permalink" href="#/(m:self)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -848,7 +888,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L87" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -864,7 +904,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L124" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -880,33 +920,33 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L124" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="==(v:self)-instance-method">
+    <div class="entry-detail" id="==(m:self)-instance-method">
       <div class="signature">
         
-        def <strong>==</strong>(v : <span class="k">self</span>)
+        def <strong>==</strong>(m : <span class="k">self</span>)
 
-        <a class="method-permalink" href="#==(v:self)-instance-method">#</a>
+        <a class="method-permalink" href="#==(m:self)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L51" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="==(v)-instance-method">
+    <div class="entry-detail" id="==(m)-instance-method">
       <div class="signature">
         
-        def <strong>==</strong>(v)
+        def <strong>==</strong>(m)
 
-        <a class="method-permalink" href="#==(v)-instance-method">#</a>
+        <a class="method-permalink" href="#==(m)-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -938,7 +978,7 @@ p1 <span class="o">==</span> p3 <span class="c"># =&gt; false</span></code></pre
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L55" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -954,7 +994,7 @@ p1 <span class="o">==</span> p3 <span class="c"># =&gt; false</span></code></pre
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L124" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -970,7 +1010,7 @@ p1 <span class="o">==</span> p3 <span class="c"># =&gt; false</span></code></pre
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L124" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -986,23 +1026,7 @@ p1 <span class="o">==</span> p3 <span class="c"># =&gt; false</span></code></pre
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L113" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="inspect(*args,**options,&amp;)-instance-method">
-      <div class="signature">
-        
-        def <strong>inspect</strong>(*args, **options, &)
-
-        <a class="method-permalink" href="#inspect(*args,**options,&)-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L122" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1018,7 +1042,19 @@ p1 <span class="o">==</span> p3 <span class="c"># =&gt; false</span></code></pre
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L122" target="_blank">View source</a>]
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect(*args,**options,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong>(*args, **options, &)
+
+        <a class="method-permalink" href="#inspect(*args,**options,&)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
         
       </div>
     </div>
@@ -1034,7 +1070,7 @@ p1 <span class="o">==</span> p3 <span class="c"># =&gt; false</span></code></pre
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L101" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1050,7 +1086,7 @@ p1 <span class="o">==</span> p3 <span class="c"># =&gt; false</span></code></pre
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L109" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1066,7 +1102,7 @@ p1 <span class="o">==</span> p3 <span class="c"># =&gt; false</span></code></pre
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L105" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1082,23 +1118,7 @@ p1 <span class="o">==</span> p3 <span class="c"># =&gt; false</span></code></pre
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L117" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="to_s(*args,**options,&amp;)-instance-method">
-      <div class="signature">
-        
-        def <strong>to_s</strong>(*args, **options, &)
-
-        <a class="method-permalink" href="#to_s(*args,**options,&)-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L121" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/Mint.cr#L168" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1114,23 +1134,33 @@ p1 <span class="o">==</span> p3 <span class="c"># =&gt; false</span></code></pre
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L121" target="_blank">View source</a>]
-        
       </div>
     </div>
   
-    <div class="entry-detail" id="value:Int32-instance-method">
+    <div class="entry-detail" id="to_s(*args,**options,&amp;)-instance-method">
       <div class="signature">
         
-        def <strong>value</strong> : Int32
+        def <strong>to_s</strong>(*args, **options, &)
 
-        <a class="method-permalink" href="#value:Int32-instance-method">#</a>
+        <a class="method-permalink" href="#to_s(*args,**options,&)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/44cbb21fba0cb70158b2652ecfef90a07cf2478c/math/DynamicMint.cr#L33" target="_blank">View source</a>]
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="value:Int64-instance-method">
+      <div class="signature">
+        
+        def <strong>value</strong> : Int64
+
+        <a class="method-permalink" href="#value:Int64-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
         
       </div>
     </div>
