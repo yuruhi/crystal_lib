@@ -44,12 +44,12 @@ jobs:
               run: oj-verify all --jobs 4
 
             - name: Install ac-library
-              run: git clone https://github.com/google/ac-library.cr.git atcoder
-
-            - name: Gerarate API docs
               run: |
                   git checkout master
-                  crystal docs ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*
+                  git clone https://github.com/google/ac-library.cr.git atcoder
+
+            - name: Gerarate API docs
+              run: crystal docs ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*
 
             - name: Deploy
               uses: JamesIves/github-pages-deploy-action@4.1.4
