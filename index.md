@@ -170,19 +170,19 @@ data:
     - icon: ':warning:'
       path: math/Barrett.cr
       title: math/Barrett.cr
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/Combination.cr
       title: math/Combination.cr
     - icon: ':warning:'
       path: math/DynamicMint.cr
       title: math/DynamicMint.cr
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/Matrix.cr
       title: math/Matrix.cr
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/Mint.cr
       title: math/Mint.cr
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/NTT.cr
       title: math/NTT.cr
     - icon: ':warning:'
@@ -297,7 +297,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/BipartiteMatching.test.cr
       title: test/BipartiteMatching.test.cr
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
+      path: test/BipartiteMatchingEdges.test.cr
+      title: test/BipartiteMatchingEdges.test.cr
+    - icon: ':heavy_check_mark:'
       path: test/Combination.test.cr
       title: test/Combination.test.cr
     - icon: ':heavy_check_mark:'
@@ -318,10 +321,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/Knapsack01.test.cr
       title: test/Knapsack01.test.cr
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/Matrix.test.cr
       title: test/Matrix.test.cr
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/NTT.test.cr
       title: test/NTT.test.cr
     - icon: ':heavy_check_mark:'
@@ -357,7 +360,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/lca.test.cr
       title: test/lca.test.cr
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/powmod.test.cr
       title: test/powmod.test.cr
     - icon: ':heavy_check_mark:'

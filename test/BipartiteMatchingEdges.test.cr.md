@@ -10,8 +10,8 @@ data:
   _pathExtension: cr
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    PROBLEM: https://yukicoder.me/problems/no/1479
-  bundledCode: "# verification-helper: PROBLEM https://yukicoder.me/problems/no/1479\n\
+    PROBLEM: https://judge.yosupo.jp/problem/bipartitematching
+  bundledCode: "# verification-helper: PROBLEM https://judge.yosupo.jp/problem/bipartitematching\n\
     # require \"../graph/BipartiteMatching\"\n# require \"./graph\"\nstruct Edge(T)\n\
     \  include Comparable(Edge(T))\n\n  property to : Int32\n  property cost : T\n\
     \n  def initialize(@to : Int32, @cost : T)\n  end\n\n  def <=>(other : Edge(T))\n\
@@ -93,33 +93,27 @@ data:
     \ }.map { |i|\n      UnweightedEdge2.new i, @left_match[i].not_nil!\n    }\n \
     \ end\n\n  def edges\n    result = [] of UnweightedEdge2\n    (0...left).each\
     \ do |i|\n      if l = @left_match[i]\n        result << UnweightedEdge2.new(i,\
-    \ l)\n      end\n    end\n    result\n  end\nend\n\nh, w = read_line.split.map(&.to_i)\n\
-    a = (1..h).map { read_line.split.map(&.to_i) }\n\nl, r = 0, 0\nedges = Array.product((0...h).to_a,\
-    \ (0...w).to_a).group_by { |(i, j)|\n  a[i][j]\n}.flat_map { |val, points|\n \
-    \ next [] of UnweightedEdge2 if val == 0\n  row = {} of Int32 => Int32\n  column\
-    \ = {} of Int32 => Int32\n  points.map do |(y, x)|\n    ll = row[y]? || (row[y]\
-    \ = (l += 1) - 1)\n    rr = column[x]? || (column[x] = (r += 1) - 1)\n    UnweightedEdge2.new(ll,\
-    \ rr)\n  end\n}\n\nputs BipartiteMatching.new(l, r).add_edges(edges).solve\n"
-  code: "# verification-helper: PROBLEM https://yukicoder.me/problems/no/1479\nrequire\
-    \ \"../graph/BipartiteMatching\"\n\nh, w = read_line.split.map(&.to_i)\na = (1..h).map\
-    \ { read_line.split.map(&.to_i) }\n\nl, r = 0, 0\nedges = Array.product((0...h).to_a,\
-    \ (0...w).to_a).group_by { |(i, j)|\n  a[i][j]\n}.flat_map { |val, points|\n \
-    \ next [] of UnweightedEdge2 if val == 0\n  row = {} of Int32 => Int32\n  column\
-    \ = {} of Int32 => Int32\n  points.map do |(y, x)|\n    ll = row[y]? || (row[y]\
-    \ = (l += 1) - 1)\n    rr = column[x]? || (column[x] = (r += 1) - 1)\n    UnweightedEdge2.new(ll,\
-    \ rr)\n  end\n}\n\nputs BipartiteMatching.new(l, r).add_edges(edges).solve\n"
+    \ l)\n      end\n    end\n    result\n  end\nend\n\nl, r, m = read_line.split.map(&.to_i)\n\
+    graph = BipartiteMatching.new(l, r)\nm.times do\n  a, b = read_line.split.map(&.to_i)\n\
+    \  graph.add_edge(a, b)\nend\nputs graph.solve\ngraph.each_edge do |edge|\n  puts\
+    \ \"#{edge.from} #{edge.to}\"\nend\n"
+  code: "# verification-helper: PROBLEM https://judge.yosupo.jp/problem/bipartitematching\n\
+    require \"../graph/BipartiteMatching\"\nl, r, m = read_line.split.map(&.to_i)\n\
+    graph = BipartiteMatching.new(l, r)\nm.times do\n  a, b = read_line.split.map(&.to_i)\n\
+    \  graph.add_edge(a, b)\nend\nputs graph.solve\ngraph.each_edge do |edge|\n  puts\
+    \ \"#{edge.from} #{edge.to}\"\nend\n"
   dependsOn:
   - graph/BipartiteMatching.cr
   isVerificationFile: true
-  path: test/BipartiteMatching.test.cr
+  path: test/BipartiteMatchingEdges.test.cr
   requiredBy: []
   timestamp: '2021-06-26 20:26:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/BipartiteMatching.test.cr
+documentation_of: test/BipartiteMatchingEdges.test.cr
 layout: document
 redirect_from:
-- /verify/test/BipartiteMatching.test.cr
-- /verify/test/BipartiteMatching.test.cr.html
-title: test/BipartiteMatching.test.cr
+- /verify/test/BipartiteMatchingEdges.test.cr
+- /verify/test/BipartiteMatchingEdges.test.cr.html
+title: test/BipartiteMatchingEdges.test.cr
 ---

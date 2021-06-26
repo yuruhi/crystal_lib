@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/src/Math.cr
     title: atcoder/src/Math.cr
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/Mint.cr
     title: math/Mint.cr
   _extendedRequiredBy: []
@@ -81,14 +81,14 @@ data:
     \ Int64)\n      @value = value\n    end\n\n    def ==(m : self)\n      value ==\
     \ m.value\n    end\n\n    def ==(m)\n      value == m\n    end\n\n    def + :\
     \ self\n      self\n    end\n\n    def - : self\n      self.class.raw(value !=\
-    \ 0 ? MOD &- value : 0i64)\n    end\n\n    def +(v)\n      self + Mint.new(v)\n\
+    \ 0 ? MOD &- value : 0i64)\n    end\n\n    def +(v)\n      self + self.class.new(v)\n\
     \    end\n\n    def +(m : self)\n      x = value &+ m.value\n      x &-= MOD if\
-    \ x >= MOD\n      self.class.raw(x)\n    end\n\n    def -(v)\n      self - Mint.new(v)\n\
+    \ x >= MOD\n      self.class.raw(x)\n    end\n\n    def -(v)\n      self - self.class.new(v)\n\
     \    end\n\n    def -(m : self)\n      x = value &- m.value\n      x &+= MOD if\
-    \ x < 0\n      self.class.raw(x)\n    end\n\n    def *(v)\n      self * Mint.new(v)\n\
+    \ x < 0\n      self.class.raw(x)\n    end\n\n    def *(v)\n      self * self.class.new(v)\n\
     \    end\n\n    def *(m : self)\n      self.class.new(value &* m.value)\n    end\n\
-    \n    def /(v)\n      self / Mint.new(v)\n    end\n\n    def /(m : self)\n   \
-    \   raise DivisionByZeroError.new if m.value == 0\n      a, b, u, v = m.to_i64,\
+    \n    def /(v)\n      self / self.class.new(v)\n    end\n\n    def /(m : self)\n\
+    \      raise DivisionByZeroError.new if m.value == 0\n      a, b, u, v = m.to_i64,\
     \ MOD, 1i64, 0i64\n      while b != 0\n        t = a // b\n        a &-= t &*\
     \ b\n        a, b = b, a\n        u &-= t &* v\n        u, v = v, u\n      end\n\
     \      self.class.new(value &* u)\n    end\n\n    def //(v)\n      self / v\n\
@@ -319,7 +319,7 @@ data:
   isVerificationFile: false
   path: spec/Mint_spec.cr
   requiredBy: []
-  timestamp: '2021-06-24 17:03:55+09:00'
+  timestamp: '2021-06-26 20:26:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: spec/Mint_spec.cr

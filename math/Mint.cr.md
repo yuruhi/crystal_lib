@@ -9,21 +9,21 @@ data:
     path: spec/Mint_spec.cr
     title: spec/Mint_spec.cr
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/Combination.test.cr
     title: test/Combination.test.cr
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/Matrix.test.cr
     title: test/Matrix.test.cr
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/NTT.test.cr
     title: test/NTT.test.cr
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/powmod.test.cr
     title: test/powmod.test.cr
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cr
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes: {}
   bundledCode: "# require \"../atcoder/src/Math\"\n# ac-library.cr by hakatashi https://github.com/google/ac-library.cr\n\
     #\n# Copyright 2021 Google LLC\n#\n# Licensed under the Apache License, Version\
@@ -92,14 +92,14 @@ data:
     \ Int64)\n      @value = value\n    end\n\n    def ==(m : self)\n      value ==\
     \ m.value\n    end\n\n    def ==(m)\n      value == m\n    end\n\n    def + :\
     \ self\n      self\n    end\n\n    def - : self\n      self.class.raw(value !=\
-    \ 0 ? MOD &- value : 0i64)\n    end\n\n    def +(v)\n      self + Mint.new(v)\n\
+    \ 0 ? MOD &- value : 0i64)\n    end\n\n    def +(v)\n      self + self.class.new(v)\n\
     \    end\n\n    def +(m : self)\n      x = value &+ m.value\n      x &-= MOD if\
-    \ x >= MOD\n      self.class.raw(x)\n    end\n\n    def -(v)\n      self - Mint.new(v)\n\
+    \ x >= MOD\n      self.class.raw(x)\n    end\n\n    def -(v)\n      self - self.class.new(v)\n\
     \    end\n\n    def -(m : self)\n      x = value &- m.value\n      x &+= MOD if\
-    \ x < 0\n      self.class.raw(x)\n    end\n\n    def *(v)\n      self * Mint.new(v)\n\
+    \ x < 0\n      self.class.raw(x)\n    end\n\n    def *(v)\n      self * self.class.new(v)\n\
     \    end\n\n    def *(m : self)\n      self.class.new(value &* m.value)\n    end\n\
-    \n    def /(v)\n      self / Mint.new(v)\n    end\n\n    def /(m : self)\n   \
-    \   raise DivisionByZeroError.new if m.value == 0\n      a, b, u, v = m.to_i64,\
+    \n    def /(v)\n      self / self.class.new(v)\n    end\n\n    def /(m : self)\n\
+    \      raise DivisionByZeroError.new if m.value == 0\n      a, b, u, v = m.to_i64,\
     \ MOD, 1i64, 0i64\n      while b != 0\n        t = a // b\n        a &-= t &*\
     \ b\n        a, b = b, a\n        u &-= t &* v\n        u, v = v, u\n      end\n\
     \      self.class.new(value &* u)\n    end\n\n    def //(v)\n      self / v\n\
@@ -130,13 +130,13 @@ data:
     \n    def ==(m : self)\n      value == m.value\n    end\n\n    def ==(m)\n   \
     \   value == m\n    end\n\n    def + : self\n      self\n    end\n\n    def -\
     \ : self\n      self.class.raw(value != 0 ? MOD &- value : 0i64)\n    end\n\n\
-    \    def +(v)\n      self + Mint.new(v)\n    end\n\n    def +(m : self)\n    \
-    \  x = value &+ m.value\n      x &-= MOD if x >= MOD\n      self.class.raw(x)\n\
-    \    end\n\n    def -(v)\n      self - Mint.new(v)\n    end\n\n    def -(m : self)\n\
-    \      x = value &- m.value\n      x &+= MOD if x < 0\n      self.class.raw(x)\n\
-    \    end\n\n    def *(v)\n      self * Mint.new(v)\n    end\n\n    def *(m : self)\n\
-    \      self.class.new(value &* m.value)\n    end\n\n    def /(v)\n      self /\
-    \ Mint.new(v)\n    end\n\n    def /(m : self)\n      raise DivisionByZeroError.new\
+    \    def +(v)\n      self + self.class.new(v)\n    end\n\n    def +(m : self)\n\
+    \      x = value &+ m.value\n      x &-= MOD if x >= MOD\n      self.class.raw(x)\n\
+    \    end\n\n    def -(v)\n      self - self.class.new(v)\n    end\n\n    def -(m\
+    \ : self)\n      x = value &- m.value\n      x &+= MOD if x < 0\n      self.class.raw(x)\n\
+    \    end\n\n    def *(v)\n      self * self.class.new(v)\n    end\n\n    def *(m\
+    \ : self)\n      self.class.new(value &* m.value)\n    end\n\n    def /(v)\n \
+    \     self / self.class.new(v)\n    end\n\n    def /(m : self)\n      raise DivisionByZeroError.new\
     \ if m.value == 0\n      a, b, u, v = m.to_i64, MOD, 1i64, 0i64\n      while b\
     \ != 0\n        t = a // b\n        a &-= t &* b\n        a, b = b, a\n      \
     \  u &-= t &* v\n        u, v = v, u\n      end\n      self.class.new(value &*\
@@ -164,13 +164,13 @@ data:
   path: math/Mint.cr
   requiredBy:
   - spec/Mint_spec.cr
-  timestamp: '2021-06-24 15:11:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-06-26 20:26:24+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/powmod.test.cr
-  - test/NTT.test.cr
   - test/Matrix.test.cr
+  - test/powmod.test.cr
   - test/Combination.test.cr
+  - test/NTT.test.cr
 documentation_of: math/Mint.cr
 layout: document
 redirect_from:

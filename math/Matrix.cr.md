@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/Matrix.test.cr
     title: test/Matrix.test.cr
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cr
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes: {}
   bundledCode: "class Matrix(T)\n  include Indexable(Array(T))\n\n  getter height\
     \ : Int32\n  getter width : Int32\n  getter data : Array(Array(T))\n\n  def Matrix.identity(size\
@@ -62,8 +62,8 @@ data:
   isVerificationFile: false
   path: math/Matrix.cr
   requiredBy: []
-  timestamp: '2021-06-24 08:54:39+00:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-06-26 13:24:24+00:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/Matrix.test.cr
 documentation_of: math/Matrix.cr

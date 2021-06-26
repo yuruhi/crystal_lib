@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/BipartiteMatching.test.cr
     title: test/BipartiteMatching.test.cr
+  - icon: ':heavy_check_mark:'
+    path: test/BipartiteMatchingEdges.test.cr
+    title: test/BipartiteMatchingEdges.test.cr
   _isVerificationFailed: false
   _pathExtension: cr
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -87,8 +90,14 @@ data:
     \        @left_match[v], @right_match[edge] = edge, v\n        return true\n \
     \     end\n    end\n    return false\n  end\n\n  def solve : Int32\n    while\
     \ (0...left).reduce(false) { |update, i|\n            update | (@left_match[i].nil?\
-    \ ? dfs(i) : false)\n          }\n      @used.fill(false)\n    end\n    left -\
-    \ @left_match.count(&.nil?)\n  end\nend\n"
+    \ && dfs(i))\n          }\n      @used.fill(false)\n    end\n    left - @left_match.count(&.nil?)\n\
+    \  end\n\n  def each_edge(&block) : Nil\n    (0...left).each do |i|\n      if\
+    \ l = @left_match[i]\n        yield UnweightedEdge2.new(i, l)\n      end\n   \
+    \ end\n  end\n\n  def each_edge\n    (0...left).each.select { |i| @left_match[i]\
+    \ }.map { |i|\n      UnweightedEdge2.new i, @left_match[i].not_nil!\n    }\n \
+    \ end\n\n  def edges\n    result = [] of UnweightedEdge2\n    (0...left).each\
+    \ do |i|\n      if l = @left_match[i]\n        result << UnweightedEdge2.new(i,\
+    \ l)\n      end\n    end\n    result\n  end\nend\n"
   code: "require \"./graph\"\n\nclass BipartiteMatching\n  getter left : Int32\n \
     \ getter right : Int32\n  getter graph : UnweightedDirectedGraph\n\n  def initialize(@left,\
     \ @right)\n    raise ArgumentError.new \"Negative left vertexes size: #{left}\"\
@@ -106,17 +115,24 @@ data:
     \        @left_match[v], @right_match[edge] = edge, v\n        return true\n \
     \     end\n    end\n    return false\n  end\n\n  def solve : Int32\n    while\
     \ (0...left).reduce(false) { |update, i|\n            update | (@left_match[i].nil?\
-    \ ? dfs(i) : false)\n          }\n      @used.fill(false)\n    end\n    left -\
-    \ @left_match.count(&.nil?)\n  end\nend\n"
+    \ && dfs(i))\n          }\n      @used.fill(false)\n    end\n    left - @left_match.count(&.nil?)\n\
+    \  end\n\n  def each_edge(&block) : Nil\n    (0...left).each do |i|\n      if\
+    \ l = @left_match[i]\n        yield UnweightedEdge2.new(i, l)\n      end\n   \
+    \ end\n  end\n\n  def each_edge\n    (0...left).each.select { |i| @left_match[i]\
+    \ }.map { |i|\n      UnweightedEdge2.new i, @left_match[i].not_nil!\n    }\n \
+    \ end\n\n  def edges\n    result = [] of UnweightedEdge2\n    (0...left).each\
+    \ do |i|\n      if l = @left_match[i]\n        result << UnweightedEdge2.new(i,\
+    \ l)\n      end\n    end\n    result\n  end\nend\n"
   dependsOn:
   - graph/graph.cr
   isVerificationFile: false
   path: graph/BipartiteMatching.cr
   requiredBy: []
-  timestamp: '2021-06-23 20:36:51+09:00'
+  timestamp: '2021-06-26 20:26:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/BipartiteMatching.test.cr
+  - test/BipartiteMatchingEdges.test.cr
 documentation_of: graph/BipartiteMatching.cr
 layout: document
 redirect_from:
