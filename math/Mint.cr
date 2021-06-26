@@ -49,7 +49,7 @@ macro static_modint(name, mod)
     end
 
     def +(v)
-      self + Mint.new(v)
+      self + self.class.new(v)
     end
 
     def +(m : self)
@@ -59,7 +59,7 @@ macro static_modint(name, mod)
     end
 
     def -(v)
-      self - Mint.new(v)
+      self - self.class.new(v)
     end
 
     def -(m : self)
@@ -69,7 +69,7 @@ macro static_modint(name, mod)
     end
 
     def *(v)
-      self * Mint.new(v)
+      self * self.class.new(v)
     end
 
     def *(m : self)
@@ -77,7 +77,7 @@ macro static_modint(name, mod)
     end
 
     def /(v)
-      self / Mint.new(v)
+      self / self.class.new(v)
     end
 
     def /(m : self)
