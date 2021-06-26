@@ -44,10 +44,34 @@ class BipartiteMatching
 
   def solve : Int32
     while (0...left).reduce(false) { |update, i|
-            update | (@left_match[i].nil? ? dfs(i) : false)
+            update | (@left_match[i].nil? && dfs(i))
           }
       @used.fill(false)
     end
     left - @left_match.count(&.nil?)
+  end
+
+  def each_edge(&block) : Nil
+    (0...left).each do |i|
+      if l = @left_match[i]
+        yield UnweightedEdge2.new(i, l)
+      end
+    end
+  end
+
+  def each_edge
+    (0...left).each.select { |i| @left_match[i] }.map { |i|
+      UnweightedEdge2.new i, @left_match[i].not_nil!
+    }
+  end
+
+  def edges
+    result = [] of UnweightedEdge2
+    (0...left).each do |i|
+      if l = @left_match[i]
+        result << UnweightedEdge2.new(i, l)
+      end
+    end
+    result
   end
 end
