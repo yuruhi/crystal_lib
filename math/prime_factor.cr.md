@@ -31,7 +31,7 @@ data:
   isVerificationFile: false
   path: math/prime_factor.cr
   requiredBy: []
-  timestamp: '2021-06-26 13:24:24+00:00'
+  timestamp: '2021-06-28 21:15:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/prime_factor.cr
