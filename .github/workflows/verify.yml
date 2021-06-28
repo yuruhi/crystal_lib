@@ -41,11 +41,13 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
                   GH_PAT: ${{ secrets.GH_PAT }}
-              run: oj-verify all --jobs 4
+              # run: oj-verify all --jobs 4
+              run: oj-verify run test/bfs.test.cr
 
             - name: Gerarate API docs
               run: |
                   git checkout master
+                  ls atcoder
                   git clone https://github.com/google/ac-library.cr.git atcoder
                   crystal docs ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*
 
