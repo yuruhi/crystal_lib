@@ -1,20 +1,49 @@
-module Geometric
-  alias Real = Float64
-  EPS = Real.new(1e-12)
+require "big"
 
-  extend self
+alias Real = BigFloat
+EPS = Real.new(1e-12)
 
-  struct Real
-    def sgn : Int32
-      self < -Geometric::EPS ? -1 : self > Geometric::EPS ? 1 : 0
-    end
+struct Real
+  def <=>(other : Real)
+    {% if Real == BigFloat %}
+      if previous_def(other - EPS) < 0
+        -1
+      elsif previous_def(other + EPS) > 0
+        1
+      else
+        0
+      end
+    {% else %}
+      if self < other - EPS
+        -1
+      elsif self > other + EPS
+        1
+      else
+        0
+      end
+    {% end %}
   end
+
+  def sgn : Int32
+    self < -EPS ? -1 : self > EPS ? 1 : 0
+  end
+
+  def to_radian
+    self * Math::PI / 180
+  end
+
+  def to_degree
+    self * 180 / Math::PI
+  end
+end
+
+module Geometric
+  extend self
 
   struct Vec2
     include Comparable(Vec2)
 
-    property x : Real
-    property y : Real
+    property x : Real, y : Real
 
     def self.zero
       Vec2.new(Real.zero, Real.zero)
@@ -37,13 +66,18 @@ module Geometric
         Vec2.new(x {{op.id}} other.x, y {{op.id}} other.y)
       end
 
-      def {{op.id}}(other : Real)
+      def {{op.id}}(other)
         Vec2.new(x {{op.id}} other, y {{op.id}} other)
       end
     {% end %}
 
     def <=>(other : Vec2)
-      {x, y} <=> {other.x, other.y}
+      x_cmp = x <=> other.x
+      if x_cmp != 0
+        x_cmp
+      else
+        y <=> other.y
+      end
     end
 
     def [](index : Int)
@@ -60,14 +94,22 @@ module Geometric
       x * other.y - y * other.x
     end
 
+    def angle : Real
+      Real.new Math.atan2(y, x)
+    end
+
+    def rotate(rad : Real) : Vec2
+      c, s = Math.cos(rad), Math.sin(rad)
+      Vec2.new(x * c - y * s, x * s + y * c)
+    end
+
     def inspect(io : IO)
       io << '(' << x << ", " << y << ')'
     end
   end
 
   struct Circle
-    property center : Vec2
-    property radious : Real
+    property center : Vec2, radious : Real
 
     def initialize(center : Vec2, radious)
       @center, @radious = center, Real.new(radious)
@@ -109,8 +151,11 @@ module Geometric
       super
     end
 
-    def initialize(size : Int, &block : Int32 -> T)
-      super
+    def initialize(size : Int, &block : Int32 -> Vec2)
+      initialize(size)
+      size.to_i.times do |i|
+        self << yield i
+      end
     end
 
     def after(i : Int32) : Vec2
@@ -121,6 +166,10 @@ module Geometric
       (0...size).sum { |i|
         self[i].cross after(i)
       }.abs / 2
+    end
+
+    def centroid : Vec2
+      sum / size
     end
 
     def convex_hull : Polygon
@@ -164,6 +213,11 @@ module Geometric
     else
       0
     end
+  end
+
+  # calculate ∠ABC
+  def angle(a : Vec2, b : Vec2, c : Vec2)
+    (c - b).rotate(-(a - b).angle).angle
   end
 
   def distance(v1 : Vec2, v2 : Vec2)
