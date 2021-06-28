@@ -5,7 +5,7 @@ module Enumerable(T)
 
   def scan(init : U, &) forall U
     result = [init]
-    each { |v| result << yield(result[-1], v) }
+    each { |v| result << yield(result.last, v) }
     result
   end
 
