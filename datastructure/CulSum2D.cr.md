@@ -50,7 +50,7 @@ data:
   isVerificationFile: false
   path: datastructure/CulSum2D.cr
   requiredBy: []
-  timestamp: '2021-06-28 21:15:31+09:00'
+  timestamp: '2021-06-28 21:31:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/CulSum2D_Imos2D.test.cr

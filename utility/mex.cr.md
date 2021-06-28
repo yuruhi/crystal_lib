@@ -17,7 +17,7 @@ data:
   isVerificationFile: false
   path: utility/mex.cr
   requiredBy: []
-  timestamp: '2021-06-28 21:15:31+09:00'
+  timestamp: '2021-06-28 21:31:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: utility/mex.cr
