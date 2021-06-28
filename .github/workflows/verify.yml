@@ -48,7 +48,6 @@ jobs:
               run: |
                   git checkout master
                   ls atcoder
-                  git clone https://github.com/google/ac-library.cr.git atcoder
                   crystal docs ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*
 
             - name: Deploy
