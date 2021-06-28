@@ -8,4 +8,8 @@ module Enumerable(T)
     each { |v| result << yield(result[-1], v) }
     result
   end
+
+  def scan
+    scan(T.zero)
+  end
 end
