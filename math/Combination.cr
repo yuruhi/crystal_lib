@@ -1,9 +1,14 @@
 class Combination(T)
-  def initialize
+  def initialize(initial_capacity : Int = 2)
+    initial_capacity += 1
     @size = 2
-    @factorial = [T.new(1), T.new(1)]
-    @inv = [T.zero, T.new(1)]
-    @finv = [T.new(1), T.new(1)]
+    @factorial = Array(T).new(initial_capacity)
+    @factorial << T.new(1) << T.new(1)
+    @inv = Array(T).new(initial_capacity)
+    @inv << T.zero << T.new(1)
+    @finv = Array(T).new(initial_capacity)
+    @finv << T.new(1) << T.new(1)
+    expand_until(intiial_capacity)
   end
 
   private def expand_until(n : Int)
