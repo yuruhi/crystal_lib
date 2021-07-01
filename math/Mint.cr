@@ -2,7 +2,7 @@ require "../atcoder/src/Math"
 
 macro static_modint(name, mod)
   struct {{name}}
-    MOD = Int64.new({{mod}})
+    MOD = {{mod}}i64
 
     def self.zero
       new
@@ -164,5 +164,5 @@ macro static_modint(name, mod)
   end
 end
 
-static_modint(Mint, 10**9 + 7)
+static_modint(Mint, 1000000007)
 static_modint(Mint2, 998244353)
