@@ -33,7 +33,7 @@ class NTT
     a
   end
 
-  def self.multiple(a : Array(T), b : Array(T)) forall T
+  def self.convolution(a : Array(T), b : Array(T)) forall T
     size = a.size + b.size - 1
     t = Math.pw2ceil(size)
     aa = a + Array.new(t - a.size, T.zero)
