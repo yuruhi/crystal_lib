@@ -82,7 +82,7 @@ macro static_modint(name, mod)
 
     def /(m : self)
       raise DivisionByZeroError.new if m.value == 0
-      a, b, u, v = m.to_i64, MOD, 1i64, 0i64
+      a, b, u, v = m.value, MOD, 1i64, 0i64
       while b != 0
         t = a // b
         a &-= t &* b
