@@ -35,7 +35,7 @@ class CulSum2D(T)
 
     if 0 <= y_start <= height && 0 <= x_start <= width
       y_count = Math.min(y_count, height - y_start)
-      x_count = Math.min(x_count, height - x_start)
+      x_count = Math.min(x_count, width - x_start)
 
       @s[y_start + y_count][x_start + x_count] - @s[y_start + y_count][x_start] -
         @s[y_start][x_start + x_count] + @s[y_start][x_start]
