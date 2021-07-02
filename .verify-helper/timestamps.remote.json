@@ -18,6 +18,7 @@
 "test/BinaryIndexedTree.test.cr": "2021-06-01 18:35:28 +0900",
 "test/BipartiteMatching.test.cr": "2021-06-26 20:26:18 +0900",
 "test/BipartiteMatchingEdges.test.cr": "2021-06-26 20:26:18 +0900",
+"test/Combination.test.cr": "2021-07-02 18:14:50 +0900",
 "test/CulSum.test.cr": "2021-05-27 16:12:36 +0900",
 "test/CulSum2D2.test.cr": "2021-07-02 18:01:41 +0900",
 "test/CulSum2D_Imos2D.test.cr": "2021-07-02 18:01:41 +0900",
