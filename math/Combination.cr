@@ -8,7 +8,7 @@ class Combination(T)
     @inv << T.zero << T.new(1)
     @finv = Array(T).new(initial_capacity)
     @finv << T.new(1) << T.new(1)
-    expand_until(intiial_capacity)
+    expand_until(initial_capacity)
   end
 
   private def expand_until(n : Int)
