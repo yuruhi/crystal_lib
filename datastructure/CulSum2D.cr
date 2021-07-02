@@ -8,21 +8,38 @@ class CulSum2D(T)
     @width = a[0].size
     raise ArgumentError.new unless a.all? { |b| b.size == width }
 
-    @s = Array(Array(T)).new(height + 1) { Array.new(width + 1, T.zero) }
-    (0...height).each do |i|
-      (0...width).each do |j|
-        @s[i + 1][j + 1] = @s[i][j + 1] + @s[i + 1][j] - @s[i][j] + a[i][j]
+    @sum = Array(Array(T)).new(height + 1) { |i|
+      i == 0 ? Array.new(width + 1, T.zero) : [T.zero] + a[i - 1]
+    }
+    height.times do |i|
+      width.succ.times do |j|
+        @sum[i + 1][j] += @sum[i][j]
+      end
+    end
+    height.succ.times do |i|
+      width.times do |j|
+        @sum[i][j + 1] += @sum[i][j]
       end
     end
   end
 
-  def initialize(@height : Int32, @width : Int32, &f : Int32, Int32 -> T)
+  def initialize(@height : Int32, @width : Int32, &block : Int32, Int32 -> T)
     raise ArgumentError.new unless height > 0
     raise ArgumentError.new unless width > 0
-    @s = Array(Array(T)).new(height + 1) { Array.new(width + 1, T.zero) }
-    (0...height).each do |i|
-      (0...width).each do |j|
-        @s[i + 1][j + 1] = @s[i][j + 1] + @s[i + 1][j] - @s[i][j] + yield(i, j)
+    @sum = Array(Array(T)).new(height + 1) { Array.new(width + 1, T.zero) }
+    height.times do |i|
+      width.times do |j|
+        @sum[i + 1][j + 1] = yield(i, j)
+      end
+    end
+    height.times do |i|
+      width.succ.times do |j|
+        @sum[i + 1][j] += @sum[i][j]
+      end
+    end
+    height.succ.times do |i|
+      width.times do |j|
+        @sum[i][j + 1] += @sum[i][j]
       end
     end
   end
@@ -37,14 +54,14 @@ class CulSum2D(T)
       y_count = Math.min(y_count, height - y_start)
       x_count = Math.min(x_count, width - x_start)
 
-      @s[y_start + y_count][x_start + x_count] - @s[y_start + y_count][x_start] -
-        @s[y_start][x_start + x_count] + @s[y_start][x_start]
+      @sum[y_start + y_count][x_start + x_count] - @sum[y_start + y_count][x_start] -
+        @sum[y_start][x_start + x_count] + @sum[y_start][x_start]
     end
   end
 
   def []?(y_range : Range, x_range : Range)
-    ys, yc = Indexable.range_to_index_and_count(y_range, height) || raise IndexError.new
-    xs, xc = Indexable.range_to_index_and_count(x_range, width) || raise IndexError.new
+    ys, yc = Indexable.range_to_index_and_count(y_range, height) || return nil
+    xs, xc = Indexable.range_to_index_and_count(x_range, width) || return nil
     self[ys, yc, xs, xc]?
   end
 
