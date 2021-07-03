@@ -49,14 +49,8 @@ end
 macro input(type)
   {% if type.is_a?(Path) %}
     {{type}}.new(Scanner.s)
-  {% elsif type.is_a?(Var) %}
+  {% elsif type.is_a?(Var) || (type.is_a?(Call) && type.args.size == 0) %}
     {% if Scanner.methods.includes?(type.id) %}
-      Scanner.{{type.id}}
-    {% else %}
-      Scanner.s.to_{{type.id}}
-    {% end %}
-  {% elsif type.is_a?(Call) && type.args.size == 0 %}
-    {% if Scanner.methods.includes?(type) %}
       Scanner.{{type.id}}
     {% else %}
       Scanner.s.to_{{type.id}}
