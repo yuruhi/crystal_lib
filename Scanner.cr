@@ -3,23 +3,36 @@ require "io/error"
 class Scanner
   def self.s
     peek = STDIN.peek
-    if not_space = peek.index { |x| x != 32 && x != 10 }
-      if index = peek.index(not_space) { |x| x == 32 || x == 10 }
-        result = String.new(peek[not_space...index])
-        STDIN.skip(index + 1)
-        result
-      else
-        result = String.new(peek[not_space..])
-        STDIN.skip_to_end
-        result
+    not_space = peek.index { |x| x != 32 && x != 10 } || peek.size
+    STDIN.skip(not_space)
+    peek += not_space
+
+    if index = peek.index { |x| x == 32 || x == 10 }
+      STDIN.skip(index + 1)
+      return String.new(peek[0, index])
+    end
+
+    String.build do |buffer|
+      loop do
+        buffer.write peek
+        STDIN.skip(peek.size)
+        peek = STDIN.peek
+        break if peek.empty?
+        if index = peek.index { |x| x == 32 || x == 10 }
+          buffer.write peek[0, index]
+          STDIN.skip(index)
+          break
+        end
       end
-    else
-      raise IO::EOFError.new
     end
   end
 
   def self.i
     s.to_i
+  end
+
+  def self.i64
+    s.to_i64
   end
 end
 
