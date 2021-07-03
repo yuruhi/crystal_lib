@@ -1,12 +1,16 @@
 require "io/error"
 
 class Scanner
-  def self.s
+  private def self.skip_to_not_space
     peek = STDIN.peek
     not_space = peek.index { |x| x != 32 && x != 10 } || peek.size
     STDIN.skip(not_space)
-    peek += not_space
+  end
 
+  def self.s
+    skip_to_not_space
+
+    peek = STDIN.peek
     if index = peek.index { |x| x == 32 || x == 10 }
       STDIN.skip(index + 1)
       return String.new(peek[0, index])
@@ -25,14 +29,6 @@ class Scanner
         end
       end
     end
-  end
-
-  def self.i
-    s.to_i
-  end
-
-  def self.i64
-    s.to_i64
   end
 end
 
