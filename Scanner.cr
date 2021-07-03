@@ -36,7 +36,7 @@ class Scanner
   end
 end
 
-private macro input_array(type, args)
+macro input_array(type, args)
   Array.new({{args.first}}) do
     {% if args.size == 1 %}
       input({{type.id}})
