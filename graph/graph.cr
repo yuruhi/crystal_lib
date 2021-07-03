@@ -214,9 +214,13 @@ class UnweightedUndirectedGraph < UnweightedGraph
     self
   end
 
-  def each_child(vertex : Int, parent)
+  def each_child(vertex : Int, parent, &block) : Nil
     graph[vertex].each do |u|
       yield u if u != parent
     end
+  end
+
+  def each_child(vertex : Int, parent)
+    graph[vertex].each.select { |u| u != parent }
   end
 end
