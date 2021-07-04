@@ -1,5 +1,3 @@
-require "io/error"
-
 class Scanner
   private def self.skip_to_not_space
     peek = STDIN.peek
