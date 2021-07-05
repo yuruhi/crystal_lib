@@ -15,7 +15,7 @@ n = read_line.to_i
 graph = UnweightedUndirectedGraph.new(n)
 graph2 = Array({Int32?, Int32?}).new(n, {nil, nil})
 in_degree = [0] * n
-n.times do |i|
+n.times do
   v, left, right = read_line.split.map(&.to_i)
   if left != -1
     graph.add_edge(v, left)

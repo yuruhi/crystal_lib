@@ -9,7 +9,7 @@ loop do
     UnweightedEdge2.new(u, v)
   }
   if color = graph.bipartite_graph
-    ans = {false, true}.map { |c| color.count(c) }.select(&.even?).map(&.//(2)).uniq.sort
+    ans = {false, true}.map { |c| color.count(c) }.select(&.even?).map(&.//(2)).uniq!.sort!
     puts ans.size
     puts ans.join('\n') unless ans.empty?
   else

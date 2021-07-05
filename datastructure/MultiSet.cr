@@ -48,6 +48,7 @@ class MultiSet(T)
       @count[object] = {0, @count[object] - count}.max
       @count.delete(object) if @count[object] == 0
     end
+    flag
   end
 
   def concat(elems)

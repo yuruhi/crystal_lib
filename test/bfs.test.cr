@@ -5,7 +5,7 @@ graph = UnweightedDirectedGraph.new(n)
 n.times do
   a = read_line.split.map(&.to_i)
   u = a.shift
-  k = a.shift
+  a.shift
   a.each do |v|
     graph.add_edge(u - 1, v - 1)
   end
