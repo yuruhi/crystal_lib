@@ -33,13 +33,13 @@ jobs:
             - name: Install cr-bundle
               run: |
                   git clone https://github.com/yuruhi/cr-bundle.git
-                  crystal build cr-bundle/src/cli.cr -o bin/cr-bundle --release
+                  crystal build cr-bundle/src/cli.cr -o bin/cr-bundle
                   rm -rf cr-bundle
 
             - name: Install Ameba
               run: |
                   git clone https://github.com/crystal-ameba/ameba
-                  crystal-latest build ameba/src/cli.cr -o bin/ameba --release
+                  crystal-latest build ameba/src/cli.cr -o bin/ameba
                   rm -rf ameba
 
             - name: Install ac-library
