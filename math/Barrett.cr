@@ -1,6 +1,5 @@
 struct Barrett
-  getter mod : UInt32
-  getter inv : UInt64
+  getter mod : UInt32, inv : UInt64
 
   def initialize(@mod)
     @inv = UInt64::MAX // @mod &+ 1

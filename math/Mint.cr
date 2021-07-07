@@ -129,6 +129,10 @@ macro static_modint(name, mod)
       self
     end
 
+    def abs2
+      self * self
+    end
+
     def to_i64 : Int64
       value
     end

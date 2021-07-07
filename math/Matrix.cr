@@ -1,8 +1,7 @@
 class Matrix(T)
   include Indexable(Array(T))
 
-  getter height : Int32
-  getter width : Int32
+  getter height : Int32, width : Int32
   getter data : Array(Array(T))
 
   def Matrix.identity(size : Int32)

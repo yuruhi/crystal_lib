@@ -2,20 +2,16 @@ struct Point
   include Comparable(Point)
   extend Indexable(Point)
 
-  property y : Int32
-  property x : Int32
+  property y : Int32, x : Int32
 
   Direction4 = [Point.up, Point.left, Point.down, Point.right]
   Direction8 = Direction4 + [Point.ul, Point.ur, Point.dl, Point.dr]
 
-  class_getter! height : Int32
-  class_getter! width : Int32
+  class_getter! height : Int32, width : Int32
 
   def self.set_range(height : Int32, width : Int32)
-    raise ArgumentError.new unless 0 < height
-    raise ArgumentError.new unless 0 < width
-    @@height = height
-    @@width = width
+    raise ArgumentError.new unless 0 < height && 0 < width
+    @@height, @@width = height, width
   end
 
   def self.size
@@ -100,8 +96,7 @@ struct Point
   end
 
   def succ
-    raise IndexError.new unless in_range?
-    raise IndexError.new unless self != Point.last
+    raise IndexError.new unless in_range? && self != Point.last
     if x < Point.width - 1
       Point.new(y, x + 1)
     else
@@ -110,8 +105,7 @@ struct Point
   end
 
   def pred
-    raise IndexError.new unless in_range?
-    raise IndexError.new unless self != Point.first
+    raise IndexError.new unless in_range? && self != Point.first
     if x > 0
       Point.new(y, x - 1)
     else
@@ -141,7 +135,7 @@ struct Point
   end
 
   def chebyshev(other : Point)
-    {(y - other.y).abs, (x - other.x).abs}.max
+    Math.max((y - other.y).abs, (x - other.x).abs)
   end
 
   {% for i in [4, 8] %}

@@ -22,17 +22,17 @@ class Combination(T)
 
   def factorial(n : Int)
     expand_until(n)
-    @factorial[n]
+    @factorial.unsafe_fetch(n)
   end
 
   def inv(n : Int)
     expand_until(n)
-    @inv[n]
+    @inv.unsafe_fetch(n)
   end
 
   def finv(n : Int)
     expand_until(n)
-    @finv[n]
+    @finv.unsafe_fetch(n)
   end
 
   def permutation(n : Int, r : Int)

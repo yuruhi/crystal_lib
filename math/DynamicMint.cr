@@ -114,6 +114,10 @@ struct DynamicMint
     self
   end
 
+  def abs2
+    self * self
+  end
+
   def to_i64 : Int64
     value.to_i64
   end
