@@ -176,14 +176,14 @@ module Geometric
       result = Polygon.new
       points = sort
       points.each do |point|
-        while result.size >= 2 && Geometric.iSP(result[-2], result[-1], point) != -1
+        while result.size >= 2 && Geometric.ccw(result[-2], result[-1], point) != -1
           result.pop
         end
         result << point
       end
       t = result.size + 1
       (0...points.size - 1).reverse_each do |i|
-        while result.size >= t && Geometric.iSP(result[-2], result[-1], points[i]) != -1
+        while result.size >= t && Geometric.ccw(result[-2], result[-1], points[i]) != -1
           result.pop
         end
         result << points[i]
@@ -202,7 +202,7 @@ module Geometric
   # ABC, CBA の順に一直線上に並ぶ : +2
   # ACB, BCA の順に一直線上に並ぶ :  0
   # BAC, CAB の順に一直線上に並ぶ : -2
-  def iSP(a : Vec2, b : Vec2, c : Vec2) : Int32
+  def ccw(a : Vec2, b : Vec2, c : Vec2) : Int32
     x = (b - a).cross(c - a).sgn
     if x != 0
       x
