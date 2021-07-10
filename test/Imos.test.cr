@@ -1,5 +1,5 @@
 # verification-helper: PROBLEM https://onlinejudge.u-aizu.ac.jp/problems/2013
-require "../datastructure/Imos"
+require "../src/datastructure/Imos"
 loop do
   n = read_line.to_i
   break if n == 0

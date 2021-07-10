@@ -1,5 +1,5 @@
 # verification-helper: PROBLEM https://yukicoder.me/problems/no/1008
-require "../datastructure/ImosLinear"
+require "../src/datastructure/ImosLinear"
 n, m = read_line.split.map(&.to_i)
 a = read_line.split.map(&.to_i64)
 xw = (1..m).map {

@@ -1,4 +1,4 @@
-require "../atcoder/src/Math"
+require "../../atcoder/src/Math"
 
 macro static_modint(name, mod)
   struct {{name}}

@@ -1,6 +1,6 @@
 # verification-helper: PROBLEM https://yukicoder.me/problems/no/275
 # verification-helper: ERROR 0
-require "../Scanner"
+require "../src/Scanner"
 n = input(Int32)
 a = input(Int32[n])
 a.sort!

@@ -1,5 +1,5 @@
 # verification-helper: PROBLEM https://onlinejudge.u-aizu.ac.jp/problems/2885
-require "../graph/bipartite_graph"
+require "../src/graph/bipartite_graph"
 
 loop do
   n, m = read_line.split.map(&.to_i)

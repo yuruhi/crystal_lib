@@ -1,5 +1,5 @@
 # verification-helper: PROBLEM https://onlinejudge.u-aizu.ac.jp/problems/GRL_5_C
-require "../graph/lca"
+require "../src/graph/lca"
 n = read_line.to_i
 graph = UnweightedUndirectedGraph.new(n)
 n.times do |u|

@@ -1,6 +1,6 @@
 # verification-helper: PROBLEM https://yukicoder.me/problems/no/886
-require "../math/GCD"
-require "../math/Mint"
+require "../src/math/GCD"
+require "../src/math/Mint"
 
 h, w = read_line.split.map(&.to_i)
 hh = (0...h).map { |i| (h - i).to_m }

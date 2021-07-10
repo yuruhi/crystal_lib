@@ -1,4 +1,4 @@
-require "../atcoder/src/Prime"
+require "../../atcoder/src/Prime"
 
 class Array(T)
   # result[i] = Sum_{n | i} a[i]

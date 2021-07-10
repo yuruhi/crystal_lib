@@ -1,5 +1,5 @@
 # verification-helper: PROBLEM https://judge.yosupo.jp/problem/point_add_range_sum
-require "../datastructure/BinaryIndexedTree"
+require "../src/datastructure/BinaryIndexedTree"
 _, q = read_line.split.map(&.to_i)
 a = read_line.split.map(&.to_i64)
 seg = BinaryIndexedTree.new(a)

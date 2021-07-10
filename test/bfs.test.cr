@@ -1,5 +1,5 @@
 # verification-helper: PROBLEM https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_C
-require "../graph/bfs"
+require "../src/graph/bfs"
 n = read_line.to_i
 graph = UnweightedDirectedGraph.new(n)
 n.times do

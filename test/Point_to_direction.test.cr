@@ -1,5 +1,5 @@
 # verification-helper: PROBLEM https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/HUPC/3185
-require "../utility/Point"
+require "../src/utility/Point"
 h, w = read_line.split.map(&.to_i)
 s = (1..h).map { read_line }
 d = Point.to_direction?(read_line, "EWSN").not_nil!

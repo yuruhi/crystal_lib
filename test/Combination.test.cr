@@ -1,6 +1,6 @@
 # verification-helper: PROBLEM https://yukicoder.me/problems/no/117
-require "../math/Mint"
-require "../math/Combination"
+require "../src/math/Mint"
+require "../src/math/Combination"
 
 C = Combination(Mint).new
 

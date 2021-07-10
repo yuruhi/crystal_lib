@@ -1,5 +1,5 @@
 # verification-helper: PROBLEM https://yukicoder.me/problems/no/21
-require "../Scanner"
+require "../src/Scanner"
 i = read_line.to_i
 input(i)
 a = input(i(i))

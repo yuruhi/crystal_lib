@@ -1,5 +1,5 @@
 # verification-helper: PROBLEM https://judge.yosupo.jp/problem/unionfind
-require "../datastructure/UnionFind"
+require "../src/datastructure/UnionFind"
 n, q = read_line.split.map(&.to_i)
 uf = UnionFind.new(n)
 q.times do

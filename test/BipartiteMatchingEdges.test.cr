@@ -1,5 +1,5 @@
 # verification-helper: PROBLEM https://judge.yosupo.jp/problem/bipartitematching
-require "../graph/BipartiteMatching"
+require "../src/graph/BipartiteMatching"
 l, r, m = read_line.split.map(&.to_i)
 graph = BipartiteMatching.new(l, r)
 m.times do

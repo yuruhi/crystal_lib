@@ -1,5 +1,5 @@
 # verification-helper: PROBLEM https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/WUPC/3163
-require "../graph/ReRooting"
+require "../src/graph/ReRooting"
 
 struct DP
   getter sum : Int64

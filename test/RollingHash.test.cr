@@ -1,5 +1,5 @@
 # verification-helper: PROBLEM https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_14_B
-require "../string/RollingHash"
+require "../src/string/RollingHash"
 s = RollingHash.new read_line
 t = RollingHash.new read_line
 (0..s.size - t.size).each { |i|

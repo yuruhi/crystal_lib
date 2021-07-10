@@ -1,6 +1,6 @@
 # verification-helper: PROBLEM https://yukicoder.me/problems/no/1490
-require "../datastructure/Imos2D"
-require "../datastructure/CulSum2D"
+require "../src/datastructure/Imos2D"
+require "../src/datastructure/CulSum2D"
 h, w, n, m = read_line.split.map(&.to_i)
 tulra = (1..n).map { read_line.split.map(&.to_i) }
 imos = Imos2D(Int64).new(h, w)
