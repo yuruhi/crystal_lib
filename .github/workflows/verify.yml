@@ -36,12 +36,6 @@ jobs:
                   crystal build cr-bundle/src/cli.cr -o bin/cr-bundle
                   rm -rf cr-bundle
 
-            - name: Install Ameba
-              run: |
-                  git clone https://github.com/crystal-ameba/ameba
-                  crystal-latest build ameba/src/cli.cr -o bin/ameba
-                  rm -rf ameba
-
             - name: Install ac-library
               run: git clone https://github.com/google/ac-library.cr.git atcoder
 
@@ -51,17 +45,14 @@ jobs:
             - name: Run spec
               run: crystal spec
 
-            - name: Run Ameba
-              run: ameba
-
             - name: Run tests
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
                   GH_PAT: ${{ secrets.GH_PAT }}
-              # run: oj-verify run --jobs 4
-              run: oj-verify run test/bfs.test.cr
+              run: oj-verify run --jobs 4
 
+              # run: oj-verify run test/bfs.test.cr
             - name: Gerarate API docs
               run: |
                   git checkout master
@@ -73,3 +64,22 @@ jobs:
                   branch: gh-pages
                   folder: docs
                   target-folder: api
+
+    linter:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v1
+
+            - name: Set up Crystal
+              uses: oprypin/install-crystal@v1
+              with:
+                  crystal: latest
+
+            - name: Install Ameba
+              run: |
+                  git clone https://github.com/crystal-ameba/ameba
+                  crystal-latest build ameba/src/cli.cr -o bin/ameba
+                  rm -rf ameba
+
+            - name: Run linter
+              run: bin/ameba
