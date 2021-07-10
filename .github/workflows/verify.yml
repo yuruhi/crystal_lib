@@ -78,7 +78,7 @@ jobs:
             - name: Install Ameba
               run: |
                   git clone https://github.com/crystal-ameba/ameba
-                  crystal-latest build ameba/src/cli.cr -o bin/ameba
+                  crystal build ameba/src/cli.cr -o bin/ameba
                   rm -rf ameba
 
             - name: Run linter
