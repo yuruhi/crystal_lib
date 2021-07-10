@@ -15,7 +15,7 @@
 </svg>
 
   <meta id="repository-name" content="github.com/yuruhi/crystal_lib">
-  <title>Indexable(T) - github.com/yuruhi/crystal_lib</title>
+  <title>GCD - github.com/yuruhi/crystal_lib</title>
   <script type="text/javascript">
     CrystalDoc.base_path = "";
   </script>
@@ -130,7 +130,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/GCD" data-name="gcd">
+  <li class=" current" data-id="github.com/yuruhi/crystal_lib/GCD" data-name="gcd">
       <a href="GCD.html">GCD</a>
       
     </li>
@@ -180,7 +180,7 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/yuruhi/crystal_lib/Indexable" data-name="indexable(t)">
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Indexable" data-name="indexable(t)">
       <a href="Indexable.html">Indexable</a>
       
     </li>
@@ -284,7 +284,7 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">module</span> Indexable(T)
+  <span class="kind">module</span> GCD
 
 </h1>
 
@@ -292,64 +292,29 @@
 
 
 
-  <h2>
-    <a id="overview" class="anchor" href="#overview">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Overview
-  </h2>
 
-  <p>A container that allows accessing elements via a numeric index.</p>
-
-<p>Indexing starts at <code>0</code>. A negative index is assumed to be
-relative to the end of the container: <code>-1</code> indicates the last element,
-<code>-2</code> is the next to last element, and so on.</p>
-
-<p>Types including this module are typically <code><a href="Array.html">Array</a></code>-like types.</p>
 
 
 
 
 
   <h2>
-    <a id="included-modules" class="anchor" href="#included-modules">
+    <a id="extended-modules" class="anchor" href="#extended-modules">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Included Modules
+    Extended Modules
   </h2>
   <ul class="other-types-list">
     
-      <li class="other-type"><a href="Enumerable.html">Enumerable(T)</a></li>
-    
-      <li class="other-type">Iterable(T)</li>
+      <li class="other-type"><a href="GCD.html">GCD</a></li>
     
   </ul>
 
 
 
 
-
-
-
-  <h2>
-    <a id="direct-including-types" class="anchor" href="#direct-including-types">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Direct including types
-  </h2>
-  <ul class="other-types-list">
-    
-      <li class="other-type"><a href="Array.html">Array(T)</a></li>
-    
-      <li class="other-type"><a href="Matrix.html">Matrix(T)</a></li>
-    
-  </ul>
 
 
 
@@ -364,8 +329,8 @@ relative to the end of the container: <code>-1</code> indicates the last element
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/utility/Point.cr#L198" target="_blank">
-        utility/Point.cr
+      <a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/math/GCD.cr#L41" target="_blank">
+        math/GCD.cr
       </a>
     
     <br/>
@@ -390,17 +355,9 @@ relative to the end of the container: <code>-1</code> indicates the last element
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#[](point:Point)-instance-method" class="signature"><strong>#[]</strong>(point : Point)</a>
+        <a href="#convolution(f:Array(T),g:Array(T))forallT-instance-method" class="signature"><strong>#convolution</strong>(f : Array(T), g : Array(T)) forall T</a>
         
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#[]?(point:Point)-instance-method" class="signature"><strong>#[]?</strong>(point : Point)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#fetch(point:Point,&)-instance-method" class="signature"><strong>#fetch</strong>(point : Point, &)</a>
+          <div class="summary"><p>result[n] = Sum_{gcd(i, j) = n} f[i] * g[j]</p></div>
         
       </li>
     
@@ -411,35 +368,6 @@ relative to the end of the container: <code>-1</code> indicates the last element
 
 
 <div class="methods-inherited">
-  
-    
-
-  <h3>Instance methods inherited from module <code><a href="Enumerable.html">Enumerable(T)</a></code></h3>
-  
-  
-    <a href="Enumerable.html#scan(init:U)forallU-instance-method" class="tooltip">
-      <span>scan(init : U) forall U<br/>scan(init : U, &) forall U<br/>scan</span>
-    scan</a>
-    
-  
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
   
 </div>
 
@@ -457,50 +385,23 @@ relative to the end of the container: <code>-1</code> indicates the last element
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="[](point:Point)-instance-method">
+    <div class="entry-detail" id="convolution(f:Array(T),g:Array(T))forallT-instance-method">
       <div class="signature">
         
-        def <strong>[]</strong>(point : <a href="Point.html">Point</a>)
+        def <strong>convolution</strong>(f : <a href="Array.html">Array</a>(T), g : <a href="Array.html">Array</a>(T)) forall T
 
-        <a class="method-permalink" href="#[](point:Point)-instance-method">#</a>
+        <a class="method-permalink" href="#convolution(f:Array(T),g:Array(T))forallT-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>result[n] = Sum_{gcd(i, j) = n} f[i] * g[j]</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/utility/Point.cr#L218" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="[]?(point:Point)-instance-method">
-      <div class="signature">
-        
-        def <strong>[]?</strong>(point : <a href="Point.html">Point</a>)
-
-        <a class="method-permalink" href="#[]?(point:Point)-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/utility/Point.cr#L222" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="fetch(point:Point,&amp;)-instance-method">
-      <div class="signature">
-        
-        def <strong>fetch</strong>(point : <a href="Point.html">Point</a>, &)
-
-        <a class="method-permalink" href="#fetch(point:Point,&)-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/utility/Point.cr#L211" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/math/GCD.cr#L45" target="_blank">View source</a>]
         
       </div>
     </div>

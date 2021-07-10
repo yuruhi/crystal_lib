@@ -130,6 +130,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/GCD" data-name="gcd">
+      <a href="GCD.html">GCD</a>
+      
+    </li>
+  
   <li class="parent open current" data-id="github.com/yuruhi/crystal_lib/Geometric" data-name="geometric">
       <a href="Geometric.html">Geometric</a>
       
@@ -324,7 +329,7 @@
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/adc45b7405d8e9f76244317a5a991bbc45ac0b62/Geometric/Geometric.cr#L40" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/Geometric/Geometric.cr#L40" target="_blank">
         Geometric/Geometric.cr
       </a>
     
@@ -357,6 +362,13 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#ccw(a:Vec2,b:Vec2,c:Vec2):Int32-instance-method" class="signature"><strong>#ccw</strong>(a : Vec2, b : Vec2, c : Vec2) : Int32</a>
+        
+          <div class="summary"><p>AB から見て BC が左に曲がる   : +1 AB から見て BC が右に曲がる   : -1 ABC, CBA の順に一直線上に並ぶ : +2 ACB, BCA の順に一直線上に並ぶ :  0 BAC, CAB の順に一直線上に並ぶ : -2</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#distance(v1:Vec2,v2:Vec2)-instance-method" class="signature"><strong>#distance</strong>(v1 : Vec2, v2 : Vec2)</a>
         
       </li>
@@ -373,13 +385,6 @@
     
       <li class="entry-summary">
         <a href="#distance(object1:Circle,object2:Vec2)-instance-method" class="signature"><strong>#distance</strong>(object1 : Circle, object2 : Vec2)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#iSP(a:Vec2,b:Vec2,c:Vec2):Int32-instance-method" class="signature"><strong>#iSP</strong>(a : Vec2, b : Vec2, c : Vec2) : Int32</a>
-        
-          <div class="summary"><p>AB から見て BC が左に曲がる   : +1 AB から見て BC が右に曲がる   : -1 ABC, CBA の順に一直線上に並ぶ : +2 ACB, BCA の順に一直線上に並ぶ :  0 BAC, CAB の順に一直線上に並ぶ : -2</p></div>
         
       </li>
     
@@ -440,7 +445,32 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/adc45b7405d8e9f76244317a5a991bbc45ac0b62/Geometric/Geometric.cr#L219" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/Geometric/Geometric.cr#L219" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ccw(a:Vec2,b:Vec2,c:Vec2):Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>ccw</strong>(a : <a href="Geometric/Vec2.html">Vec2</a>, b : <a href="Geometric/Vec2.html">Vec2</a>, c : <a href="Geometric/Vec2.html">Vec2</a>) : Int32
+
+        <a class="method-permalink" href="#ccw(a:Vec2,b:Vec2,c:Vec2):Int32-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>AB から見て BC が左に曲がる   : +1
+AB から見て BC が右に曲がる   : -1
+ABC, CBA の順に一直線上に並ぶ : +2
+ACB, BCA の順に一直線上に並ぶ :  0
+BAC, CAB の順に一直線上に並ぶ : -2</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/Geometric/Geometric.cr#L205" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -456,7 +486,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/adc45b7405d8e9f76244317a5a991bbc45ac0b62/Geometric/Geometric.cr#L223" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/Geometric/Geometric.cr#L223" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -472,7 +502,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/adc45b7405d8e9f76244317a5a991bbc45ac0b62/Geometric/Geometric.cr#L227" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/Geometric/Geometric.cr#L227" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -488,7 +518,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/adc45b7405d8e9f76244317a5a991bbc45ac0b62/Geometric/Geometric.cr#L231" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/Geometric/Geometric.cr#L231" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -504,32 +534,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/adc45b7405d8e9f76244317a5a991bbc45ac0b62/Geometric/Geometric.cr#L251" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="iSP(a:Vec2,b:Vec2,c:Vec2):Int32-instance-method">
-      <div class="signature">
-        
-        def <strong>iSP</strong>(a : <a href="Geometric/Vec2.html">Vec2</a>, b : <a href="Geometric/Vec2.html">Vec2</a>, c : <a href="Geometric/Vec2.html">Vec2</a>) : Int32
-
-        <a class="method-permalink" href="#iSP(a:Vec2,b:Vec2,c:Vec2):Int32-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>AB から見て BC が左に曲がる   : +1
-AB から見て BC が右に曲がる   : -1
-ABC, CBA の順に一直線上に並ぶ : +2
-ACB, BCA の順に一直線上に並ぶ :  0
-BAC, CAB の順に一直線上に並ぶ : -2</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/adc45b7405d8e9f76244317a5a991bbc45ac0b62/Geometric/Geometric.cr#L205" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/Geometric/Geometric.cr#L251" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -557,7 +562,7 @@ BAC, CAB の順に一直線上に並ぶ : -2</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/adc45b7405d8e9f76244317a5a991bbc45ac0b62/Geometric/Geometric.cr#L245" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/Geometric/Geometric.cr#L245" target="_blank">View source</a>]
         
       </div>
     </div>

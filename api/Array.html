@@ -130,6 +130,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/GCD" data-name="gcd">
+      <a href="GCD.html">GCD</a>
+      
+    </li>
+  
   <li class="parent " data-id="github.com/yuruhi/crystal_lib/Geometric" data-name="geometric">
       <a href="Geometric.html">Geometric</a>
       
@@ -389,14 +394,21 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/adc45b7405d8e9f76244317a5a991bbc45ac0b62/utility/Point.cr#L233" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/math/GCD.cr#L3" target="_blank">
+        math/GCD.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/utility/Point.cr#L227" target="_blank">
         utility/Point.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/adc45b7405d8e9f76244317a5a991bbc45ac0b62/utility/mex.cr#L1" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/utility/mex.cr#L1" target="_blank">
         utility/mex.cr
       </a>
     
@@ -423,6 +435,34 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
     
       <li class="entry-summary">
         <a href="#[]=(point:Point,value)-instance-method" class="signature"><strong>#[]=</strong>(point : Point, value)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#gcd_mobius-instance-method" class="signature"><strong>#gcd_mobius</strong></a>
+        
+          <div class="summary"><p>a[i] = Sum_{n | i} result[i]</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#gcd_mobius!-instance-method" class="signature"><strong>#gcd_mobius!</strong></a>
+        
+          <div class="summary"><p>a[i] = Sum_{n | i} result[i]</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#gcd_zeta-instance-method" class="signature"><strong>#gcd_zeta</strong></a>
+        
+          <div class="summary"><p>result[i] = Sum_{n | i} a[i]</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#gcd_zeta!-instance-method" class="signature"><strong>#gcd_zeta!</strong></a>
+        
+          <div class="summary"><p>result[i] = Sum_{n | i} a[i]</p></div>
         
       </li>
     
@@ -554,7 +594,91 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/adc45b7405d8e9f76244317a5a991bbc45ac0b62/utility/Point.cr#L234" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/utility/Point.cr#L228" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="gcd_mobius-instance-method">
+      <div class="signature">
+        
+        def <strong>gcd_mobius</strong>
+
+        <a class="method-permalink" href="#gcd_mobius-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>a[i] = Sum_{n | i} result[i]</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/math/GCD.cr#L36" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="gcd_mobius!-instance-method">
+      <div class="signature">
+        
+        def <strong>gcd_mobius!</strong>
+
+        <a class="method-permalink" href="#gcd_mobius!-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>a[i] = Sum_{n | i} result[i]</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/math/GCD.cr#L23" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="gcd_zeta-instance-method">
+      <div class="signature">
+        
+        def <strong>gcd_zeta</strong>
+
+        <a class="method-permalink" href="#gcd_zeta-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>result[i] = Sum_{n | i} a[i]</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/math/GCD.cr#L18" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="gcd_zeta!-instance-method">
+      <div class="signature">
+        
+        def <strong>gcd_zeta!</strong>
+
+        <a class="method-permalink" href="#gcd_zeta!-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>result[i] = Sum_{n | i} a[i]</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/math/GCD.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -570,7 +694,7 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/adc45b7405d8e9f76244317a5a991bbc45ac0b62/utility/mex.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/ef0d4194a67413c70ae70cfd6e6f1d3728799e51/utility/mex.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
