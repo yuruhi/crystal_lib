@@ -11,9 +11,9 @@ class Sieve
       @factor[x] = x
       @primes << x
       next if sqrt_size < x
-      (x * x).step(to: size, by: x) { |y|
+      (x * x).step(to: size, by: x) do |y|
         @factor[y] = x if @factor[y] == 0
-      }
+      end
     end
   end
 
