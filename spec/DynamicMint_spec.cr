@@ -1,3 +1,4 @@
+require "spec"
 require "../math/DynamicMint"
 
 alias M = DynamicMint
