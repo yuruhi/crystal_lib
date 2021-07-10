@@ -198,9 +198,13 @@ module Geometric
   end
 
   # AB から見て BC が左に曲がる   : +1
+  #
   # AB から見て BC が右に曲がる   : -1
+  #
   # ABC, CBA の順に一直線上に並ぶ : +2
+  #
   # ACB, BCA の順に一直線上に並ぶ :  0
+  #
   # BAC, CAB の順に一直線上に並ぶ : -2
   def ccw(a : Vec2, b : Vec2, c : Vec2) : Int32
     x = (b - a).cross(c - a).sgn
@@ -215,7 +219,7 @@ module Geometric
     end
   end
 
-  # calculate ∠ABC
+  # calculate `∠ABC`
   def angle(a : Vec2, b : Vec2, c : Vec2)
     (c - b).rotate(-(a - b).angle).angle
   end
