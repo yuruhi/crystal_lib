@@ -1,0 +1,48 @@
+require "../atcoder/src/Prime"
+
+class Array(T)
+  # result[i] = Sum_{n | i} a[i]
+  def gcd_zeta!
+    AtCoder::Prime.each do |p|
+      break if p >= size
+      i, k = size.pred // p, size.pred // p * p
+      while k > 0
+        self[i] += self[i * p]
+        i -= 1; k -= p
+      end
+    end
+    self
+  end
+
+  # :ditto:
+  def gcd_zeta
+    dup.gcd_zeta!
+  end
+
+  # a[i] = Sum_{n | i} result[i]
+  def gcd_mobius!
+    AtCoder::Prime.each do |p|
+      break if p >= size
+      i, k = 1, p
+      while k < size
+        self[i] -= self[k]
+        i += 1; k += p
+      end
+    end
+    self
+  end
+
+  # :ditto:
+  def gcd_mobius
+    dup.gcd_mobius!
+  end
+end
+
+module GCD
+  extend self
+
+  # result[n] = Sum_{gcd(i, j) = n} f[i] * g[j]
+  def convolution(f : Array(T), g : Array(T)) forall T
+    f.gcd_zeta.zip?(g.gcd_zeta).map { |x, y| (x || T.zero) * (y || T.zero) }.gcd_mobius!
+  end
+end
