@@ -56,7 +56,7 @@ jobs:
             - name: Gerarate API docs
               run: |
                   git checkout master
-                  crystal docs ./{datastructure,DP,Geometric,graph,math,string,template,utility}/*
+                  crystal docs
 
             - name: Deploy
               uses: JamesIves/github-pages-deploy-action@4.1.4
