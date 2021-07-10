@@ -1,0 +1,15 @@
+name: cp-library
+version: 1.0.0
+
+authors:
+    - yuruhiya
+
+description: |
+    Library for competitive programming
+
+dependencies:
+    ameba:
+        github: crystal-ameba/ameba
+        version: ~> 0.13.0
+
+license: Apache License 2.0
