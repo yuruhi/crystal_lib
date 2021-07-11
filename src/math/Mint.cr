@@ -14,6 +14,17 @@ macro static_modint(name, mod)
       result
     end
 
+    macro [](*nums)
+      {% verbatim do %}
+        Array({{@type}}).build({{nums.size}}) do |%buffer|
+          {% for num, i in nums %}
+            %buffer[{{i}}] = {{@type}}.new({{num}})
+          {% end %}
+          {{nums.size}}
+        end
+      {% end %}
+    end
+
     getter value : Int64
 
     def initialize

@@ -31,6 +31,11 @@ macro check_method_mod(type, method)
 end
 
 describe "Mint" do
+  it ".[]" do
+    Mint[0, 1, 2, 3].should eq [0.to_m, 1.to_m, 2.to_m, 3.to_m]
+    Mint[0, 1, mod, mod + 1, mod * 2].map(&.value).should eq [0, 1, 0, 1, 0]
+  end
+
   it "mod" do
     Mint::MOD.should eq mod
   end
