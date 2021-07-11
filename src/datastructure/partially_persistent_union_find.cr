@@ -32,7 +32,7 @@ class PartiallyPersistentUnionFind
 
   def size(x : Int, time : Int) : Int
     x = root(x, time)
-    pos = @num[x].bsearch_index { |(t, s), i| t > time } || @num[x].size
+    pos = @num[x].bsearch_index { |(t, s), _| t > time } || @num[x].size
     @num[x][pos - 1][1]
   end
 end
