@@ -1,5 +1,5 @@
 require "spec"
-require "../src/utility/Point"
+require "../src/point"
 
 macro check_direction(name, dy, dx)
 	it ".{{name}}" do
