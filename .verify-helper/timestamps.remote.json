@@ -20,9 +20,8 @@
 "test/BipartiteMatchingEdges.test.cr": "2021-07-10 20:00:54 +0900",
 "test/Combination.test.cr": "2021-07-10 20:00:54 +0900",
 "test/CulSum.test.cr": "2021-07-10 20:00:54 +0900",
-"test/CulSum2D2.test.cr": "2021-07-10 20:00:54 +0900",
-"test/CulSum2D_Imos2D.test.cr": "2021-07-10 20:00:54 +0900",
-"test/GCDConvolution.test.cr": "2021-07-10 20:00:54 +0900",
-"test/Imos.test.cr": "2021-07-10 20:00:54 +0900",
-"test/ImosLinear.test.cr": "2021-07-10 20:00:54 +0900"
+"test/CulSum2D2.test.cr": "2021-07-11 12:28:51 +0900",
+"test/CulSum2D_Imos2D.test.cr": "2021-07-11 12:28:51 +0900",
+"test/GCDConvolution.test.cr": "2021-07-10 20:51:06 +0900",
+"test/Imos.test.cr": "2021-07-10 20:00:54 +0900"
 }
