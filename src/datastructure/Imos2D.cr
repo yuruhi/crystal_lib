@@ -25,7 +25,7 @@ class Imos2D(T)
   end
 
   def build : Array(Array(T))
-    raise "self had been called `build`" if @builded
+    raise "self had been called `#build`" if @builded
     @builded = true
     (0..height).each do |y|
       (1..width).each do |x|
@@ -41,7 +41,7 @@ class Imos2D(T)
   end
 
   def [](y : Int32, x : Int32) : T
-    raise "self had been called `build`" if @builded
+    raise "self had not been called `#build`" unless @builded
     @table[y][x]
   end
 end
