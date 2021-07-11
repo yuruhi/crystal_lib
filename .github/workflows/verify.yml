@@ -40,7 +40,7 @@ jobs:
               run: git clone https://github.com/google/ac-library.cr.git atcoder
 
             - name: Run format check
-              run: crystal tool format --check {datastructure,DP,graph,math,spec,template,utility,Geometric,string,test}/
+              run: crystal tool format --check
 
             - name: Run spec
               run: crystal spec
