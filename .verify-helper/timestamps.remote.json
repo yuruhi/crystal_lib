@@ -16,5 +16,13 @@
 "atcoder/verify/two_sat.test.cr": "1970-01-01 00:00:00 +0000",
 "atcoder/verify/unionfind.test.cr": "1970-01-01 00:00:00 +0000",
 "test/BinaryIndexedTree.test.cr": "2021-07-10 20:00:54 +0900",
-"test/BipartiteMatching.test.cr": "2021-07-10 20:00:54 +0900"
+"test/BipartiteMatching.test.cr": "2021-07-10 20:00:54 +0900",
+"test/BipartiteMatchingEdges.test.cr": "2021-07-10 20:00:54 +0900",
+"test/Combination.test.cr": "2021-07-10 20:00:54 +0900",
+"test/CulSum.test.cr": "2021-07-10 20:00:54 +0900",
+"test/CulSum2D2.test.cr": "2021-07-10 20:00:54 +0900",
+"test/CulSum2D_Imos2D.test.cr": "2021-07-10 20:00:54 +0900",
+"test/GCDConvolution.test.cr": "2021-07-10 20:00:54 +0900",
+"test/Imos.test.cr": "2021-07-10 20:00:54 +0900",
+"test/ImosLinear.test.cr": "2021-07-10 20:00:54 +0900"
 }
