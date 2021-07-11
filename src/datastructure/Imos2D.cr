@@ -41,6 +41,7 @@ class Imos2D(T)
   end
 
   def [](y : Int32, x : Int32) : T
+    raise "self had been called `build`" if @builded
     @table[y][x]
   end
 end
