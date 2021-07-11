@@ -95,6 +95,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/DP" data-name="dp">
+      <a href="DP.html">DP</a>
+      
+    </li>
+  
   <li class="parent " data-id="github.com/yuruhi/crystal_lib/DynamicMint" data-name="dynamicmint">
       <a href="DynamicMint.html">DynamicMint</a>
       
@@ -399,22 +404,22 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/f1df0123e2f02f929c419f7a9d1b044e46203077/src/math/GCD.cr#L3" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/point.cr#L227" target="_blank">
+        point.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/array/compress.cr#L1" target="_blank">
+        array/compress.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/math/GCD.cr#L3" target="_blank">
         math/GCD.cr
-      </a>
-    
-    <br/>
-  
-    
-      <a href="https://github.com/yuruhi/crystal_lib/blob/f1df0123e2f02f929c419f7a9d1b044e46203077/src/utility/Point.cr#L227" target="_blank">
-        utility/Point.cr
-      </a>
-    
-    <br/>
-  
-    
-      <a href="https://github.com/yuruhi/crystal_lib/blob/f1df0123e2f02f929c419f7a9d1b044e46203077/src/utility/mex.cr#L1" target="_blank">
-        utility/mex.cr
       </a>
     
     <br/>
@@ -444,35 +449,40 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       </li>
     
       <li class="entry-summary">
+        <a href="#compress(values:Array(T))-instance-method" class="signature"><strong>#compress</strong>(values : Array(T))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#compress:Array(Int32)-instance-method" class="signature"><strong>#compress</strong> : Array(Int32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#gcd_mobius-instance-method" class="signature"><strong>#gcd_mobius</strong></a>
         
-          <div class="summary"><p>a[i] = Sum_{n | i} result[i]</p></div>
+          <div class="summary"><p><code>a[i] = Sum_{n | i} result[i]</code></p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#gcd_mobius!-instance-method" class="signature"><strong>#gcd_mobius!</strong></a>
         
-          <div class="summary"><p>a[i] = Sum_{n | i} result[i]</p></div>
+          <div class="summary"><p><code>a[i] = Sum_{n | i} result[i]</code> (inplace)</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#gcd_zeta-instance-method" class="signature"><strong>#gcd_zeta</strong></a>
         
-          <div class="summary"><p>result[i] = Sum_{n | i} a[i]</p></div>
+          <div class="summary"><p><code>result[i] = Sum_{n | i} a[i]</code></p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#gcd_zeta!-instance-method" class="signature"><strong>#gcd_zeta!</strong></a>
         
-          <div class="summary"><p>result[i] = Sum_{n | i} a[i]</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#mex-instance-method" class="signature"><strong>#mex</strong></a>
+          <div class="summary"><p><code>result[i] = Sum_{n | i} a[i]</code> (inplace)</p></div>
         
       </li>
     
@@ -527,6 +537,16 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
 
   <h3>Instance methods inherited from module <code><a href="Enumerable.html">Enumerable(T)</a></code></h3>
   
+  
+    <a href="Enumerable.html#mex-instance-method" class="tooltip">
+      <span>mex</span>
+    mex</a>, 
+    
+  
+    <a href="Enumerable.html#mex_sorted-instance-method" class="tooltip">
+      <span>mex_sorted</span>
+    mex_sorted</a>, 
+    
   
     <a href="Enumerable.html#scan(init:U)forallU-instance-method" class="tooltip">
       <span>scan(init : U) forall U<br/>scan(init : U, &) forall U<br/>scan</span>
@@ -599,7 +619,39 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/f1df0123e2f02f929c419f7a9d1b044e46203077/src/utility/Point.cr#L228" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/point.cr#L228" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="compress(values:Array(T))-instance-method">
+      <div class="signature">
+        
+        def <strong>compress</strong>(values : <a href="Array.html">Array</a>(T))
+
+        <a class="method-permalink" href="#compress(values:Array(T))-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/array/compress.cr#L2" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="compress:Array(Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>compress</strong> : <a href="Array.html">Array</a>(Int32)
+
+        <a class="method-permalink" href="#compress:Array(Int32)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/array/compress.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -614,13 +666,13 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       
         <div class="doc">
           
-          <p>a[i] = Sum_{n | i} result[i]</p>
+          <p><code>a[i] = Sum_{n | i} result[i]</code></p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/f1df0123e2f02f929c419f7a9d1b044e46203077/src/math/GCD.cr#L36" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/math/GCD.cr#L36" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -635,13 +687,13 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       
         <div class="doc">
           
-          <p>a[i] = Sum_{n | i} result[i]</p>
+          <p><code>a[i] = Sum_{n | i} result[i]</code> (inplace)</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/f1df0123e2f02f929c419f7a9d1b044e46203077/src/math/GCD.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/math/GCD.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -656,13 +708,13 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       
         <div class="doc">
           
-          <p>result[i] = Sum_{n | i} a[i]</p>
+          <p><code>result[i] = Sum_{n | i} a[i]</code></p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/f1df0123e2f02f929c419f7a9d1b044e46203077/src/math/GCD.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/math/GCD.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -677,29 +729,13 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       
         <div class="doc">
           
-          <p>result[i] = Sum_{n | i} a[i]</p>
+          <p><code>result[i] = Sum_{n | i} a[i]</code> (inplace)</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/f1df0123e2f02f929c419f7a9d1b044e46203077/src/math/GCD.cr#L5" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="mex-instance-method">
-      <div class="signature">
-        
-        def <strong>mex</strong>
-
-        <a class="method-permalink" href="#mex-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/f1df0123e2f02f929c419f7a9d1b044e46203077/src/utility/mex.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/math/GCD.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>

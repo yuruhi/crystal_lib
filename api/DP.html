@@ -15,7 +15,7 @@
 </svg>
 
   <meta id="repository-name" content="github.com/yuruhi/crystal_lib">
-  <title>UnweightedEdge2 - github.com/yuruhi/crystal_lib</title>
+  <title>DP - github.com/yuruhi/crystal_lib</title>
   <script type="text/javascript">
     CrystalDoc.base_path = "";
   </script>
@@ -95,7 +95,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/DP" data-name="dp">
+  <li class=" current" data-id="github.com/yuruhi/crystal_lib/DP" data-name="dp">
       <a href="DP.html">DP</a>
       
     </li>
@@ -270,7 +270,7 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/yuruhi/crystal_lib/UnweightedEdge2" data-name="unweightededge2">
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedEdge2" data-name="unweightededge2">
       <a href="UnweightedEdge2.html">UnweightedEdge2</a>
       
     </li>
@@ -294,12 +294,11 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">struct</span> UnweightedEdge2
+  <span class="kind">module</span> DP
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="UnweightedEdge2.html">UnweightedEdge2</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
 
 
 
@@ -309,6 +308,19 @@
 
 
 
+  <h2>
+    <a id="extended-modules" class="anchor" href="#extended-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Extended Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="DP.html">DP</a></li>
+    
+  </ul>
 
 
 
@@ -327,8 +339,15 @@
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/graph/graph.cr#L50" target="_blank">
-        graph/graph.cr
+      <a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/DP/inversion.cr#L3" target="_blank">
+        DP/inversion.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/DP/knapsack.cr#L1" target="_blank">
+        DP/knapsack.cr
       </a>
     
     <br/>
@@ -337,23 +356,6 @@
 
 
 
-
-  <h2>
-    <a id="constructors" class="anchor" href="#constructors">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructors
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#new(from,to)-class-method" class="signature"><strong>.new</strong>(from, to)</a>
-        
-      </li>
-    
-  </ul>
 
 
 
@@ -370,37 +372,17 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#from:Int32-instance-method" class="signature"><strong>#from</strong> : Int32</a>
+        <a href="#inversion(a:Array(T)):Int64forallT-instance-method" class="signature"><strong>#inversion</strong>(a : Array(T)) : Int64 forall T</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#from=(from:Int32)-instance-method" class="signature"><strong>#from=</strong>(from : Int32)</a>
+        <a href="#knapsack(weight_limit:Int32,value:Array(Int),weight:Array(Int32))-instance-method" class="signature"><strong>#knapsack</strong>(weight_limit : Int32, value : Array(Int), weight : Array(Int32))</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#inspect(io):Nil-instance-method" class="signature"><strong>#inspect</strong>(io) : Nil</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#reverse-instance-method" class="signature"><strong>#reverse</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#to:Int32-instance-method" class="signature"><strong>#to</strong> : Int32</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#to=(to:Int32)-instance-method" class="signature"><strong>#to=</strong>(to : Int32)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#to_s(io):Nil-instance-method" class="signature"><strong>#to_s</strong>(io) : Nil</a>
+        <a href="#knapsack01(weight_limit:Int32,value:Array(Int),weight:Array(Int32))-instance-method" class="signature"><strong>#knapsack01</strong>(weight_limit : Int32, value : Array(Int), weight : Array(Int32))</a>
         
       </li>
     
@@ -412,64 +394,8 @@
 
 <div class="methods-inherited">
   
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
 </div>
 
-
-  <h2>
-    <a id="constructor-detail" class="anchor" href="#constructor-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructor Detail
-  </h2>
-  
-    <div class="entry-detail" id="new(from,to)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(from, to)
-
-        <a class="method-permalink" href="#new(from,to)-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/graph/graph.cr#L54" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
 
 
 
@@ -484,114 +410,50 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="from:Int32-instance-method">
+    <div class="entry-detail" id="inversion(a:Array(T)):Int64forallT-instance-method">
       <div class="signature">
         
-        def <strong>from</strong> : Int32
+        def <strong>inversion</strong>(a : <a href="Array.html">Array</a>(T)) : Int64 forall T
 
-        <a class="method-permalink" href="#from:Int32-instance-method">#</a>
+        <a class="method-permalink" href="#inversion(a:Array(T)):Int64forallT-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/graph/graph.cr#L51" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/DP/inversion.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="from=(from:Int32)-instance-method">
+    <div class="entry-detail" id="knapsack(weight_limit:Int32,value:Array(Int),weight:Array(Int32))-instance-method">
       <div class="signature">
         
-        def <strong>from=</strong>(from : Int32)
+        def <strong>knapsack</strong>(weight_limit : Int32, value : <a href="Array.html">Array</a>(<a href="Int.html">Int</a>), weight : <a href="Array.html">Array</a>(Int32))
 
-        <a class="method-permalink" href="#from=(from:Int32)-instance-method">#</a>
+        <a class="method-permalink" href="#knapsack(weight_limit:Int32,value:Array(Int),weight:Array(Int32))-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/graph/graph.cr#L51" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/DP/knapsack.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="inspect(io):Nil-instance-method">
+    <div class="entry-detail" id="knapsack01(weight_limit:Int32,value:Array(Int),weight:Array(Int32))-instance-method">
       <div class="signature">
         
-        def <strong>inspect</strong>(io) : Nil
+        def <strong>knapsack01</strong>(weight_limit : Int32, value : <a href="Array.html">Array</a>(<a href="Int.html">Int</a>), weight : <a href="Array.html">Array</a>(Int32))
 
-        <a class="method-permalink" href="#inspect(io):Nil-instance-method">#</a>
+        <a class="method-permalink" href="#knapsack01(weight_limit:Int32,value:Array(Int),weight:Array(Int32))-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/graph/graph.cr#L65" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="reverse-instance-method">
-      <div class="signature">
-        
-        def <strong>reverse</strong>
-
-        <a class="method-permalink" href="#reverse-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/graph/graph.cr#L57" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="to:Int32-instance-method">
-      <div class="signature">
-        
-        def <strong>to</strong> : Int32
-
-        <a class="method-permalink" href="#to:Int32-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/graph/graph.cr#L52" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="to=(to:Int32)-instance-method">
-      <div class="signature">
-        
-        def <strong>to=</strong>(to : Int32)
-
-        <a class="method-permalink" href="#to=(to:Int32)-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/graph/graph.cr#L52" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="to_s(io):Nil-instance-method">
-      <div class="signature">
-        
-        def <strong>to_s</strong>(io) : Nil
-
-        <a class="method-permalink" href="#to_s(io):Nil-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/graph/graph.cr#L61" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/78d2a213916f4edc629a967dd490e767e89169e3/src/DP/knapsack.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
