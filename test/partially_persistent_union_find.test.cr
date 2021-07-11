@@ -21,11 +21,11 @@ end_time = uf.now
 
 (1...n).each do |i|
   t = (begin_time..end_time).bsearch { |t| uf.same?(0, i, t) }
-	if t.nil?
-		puts 0
-	elsif t == begin_time
-		puts -1
-	else
-		puts end_time - t + 1
-	end
+  if t.nil?
+    puts 0
+  elsif t == begin_time
+    puts -1
+  else
+    puts end_time - t + 1
+  end
 end
