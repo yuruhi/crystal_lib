@@ -15,7 +15,7 @@
 </svg>
 
   <meta id="repository-name" content="github.com/yuruhi/crystal_lib">
-  <title>UnweightedEdge2 - github.com/yuruhi/crystal_lib</title>
+  <title>PartiallyPersistentUnionFind - github.com/yuruhi/crystal_lib</title>
   <script type="text/javascript">
     CrystalDoc.base_path = "";
   </script>
@@ -225,7 +225,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/PartiallyPersistentUnionFind" data-name="partiallypersistentunionfind">
+  <li class=" current" data-id="github.com/yuruhi/crystal_lib/PartiallyPersistentUnionFind" data-name="partiallypersistentunionfind">
       <a href="PartiallyPersistentUnionFind.html">PartiallyPersistentUnionFind</a>
       
     </li>
@@ -275,7 +275,7 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/yuruhi/crystal_lib/UnweightedEdge2" data-name="unweightededge2">
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedEdge2" data-name="unweightededge2">
       <a href="UnweightedEdge2.html">UnweightedEdge2</a>
       
     </li>
@@ -299,12 +299,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">struct</span> UnweightedEdge2
+  <span class="kind">class</span> PartiallyPersistentUnionFind
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="UnweightedEdge2.html">UnweightedEdge2</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="PartiallyPersistentUnionFind.html">PartiallyPersistentUnionFind</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -332,8 +332,8 @@
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/9e1ddeca8ed0dc5cd3485d0c0b71aeb52776677d/src/graph/graph.cr#L50" target="_blank">
-        graph/graph.cr
+      <a href="https://github.com/yuruhi/crystal_lib/blob/9e1ddeca8ed0dc5cd3485d0c0b71aeb52776677d/src/datastructure/partially_persistent_union_find.cr#L1" target="_blank">
+        datastructure/partially_persistent_union_find.cr
       </a>
     
     <br/>
@@ -354,7 +354,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(from,to)-class-method" class="signature"><strong>.new</strong>(from, to)</a>
+        <a href="#new(size:Int)-class-method" class="signature"><strong>.new</strong>(size : Int)</a>
         
       </li>
     
@@ -375,37 +375,32 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#from:Int32-instance-method" class="signature"><strong>#from</strong> : Int32</a>
+        <a href="#now:Int32-instance-method" class="signature"><strong>#now</strong> : Int32</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#from=(from:Int32)-instance-method" class="signature"><strong>#from=</strong>(from : Int32)</a>
+        <a href="#root(x:Int,time:Int):Int32-instance-method" class="signature"><strong>#root</strong>(x : Int, time : Int) : Int32</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#inspect(io):Nil-instance-method" class="signature"><strong>#inspect</strong>(io) : Nil</a>
+        <a href="#same?(x:Int,y:Int,time:Int):Bool-instance-method" class="signature"><strong>#same?</strong>(x : Int, y : Int, time : Int) : Bool</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#reverse-instance-method" class="signature"><strong>#reverse</strong></a>
+        <a href="#size(x:Int,time:Int):Int-instance-method" class="signature"><strong>#size</strong>(x : Int, time : Int) : Int</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to:Int32-instance-method" class="signature"><strong>#to</strong> : Int32</a>
+        <a href="#size:Int32-instance-method" class="signature"><strong>#size</strong> : Int32</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to=(to:Int32)-instance-method" class="signature"><strong>#to=</strong>(to : Int32)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#to_s(io):Nil-instance-method" class="signature"><strong>#to_s</strong>(io) : Nil</a>
+        <a href="#unite(x:Int,y:Int):Bool-instance-method" class="signature"><strong>#unite</strong>(x : Int, y : Int) : Bool</a>
         
       </li>
     
@@ -416,16 +411,6 @@
 
 
 <div class="methods-inherited">
-  
-    
-
-
-    
-
-
-    
-
-
   
     
 
@@ -459,18 +444,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(from,to)-class-method">
+    <div class="entry-detail" id="new(size:Int)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(from, to)
+        def self.<strong>new</strong>(size : <a href="Int.html">Int</a>)
 
-        <a class="method-permalink" href="#new(from,to)-class-method">#</a>
+        <a class="method-permalink" href="#new(size:Int)-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9e1ddeca8ed0dc5cd3485d0c0b71aeb52776677d/src/graph/graph.cr#L54" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9e1ddeca8ed0dc5cd3485d0c0b71aeb52776677d/src/datastructure/partially_persistent_union_find.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -489,114 +474,98 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="from:Int32-instance-method">
+    <div class="entry-detail" id="now:Int32-instance-method">
       <div class="signature">
         
-        def <strong>from</strong> : Int32
+        def <strong>now</strong> : Int32
 
-        <a class="method-permalink" href="#from:Int32-instance-method">#</a>
+        <a class="method-permalink" href="#now:Int32-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9e1ddeca8ed0dc5cd3485d0c0b71aeb52776677d/src/graph/graph.cr#L51" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9e1ddeca8ed0dc5cd3485d0c0b71aeb52776677d/src/datastructure/partially_persistent_union_find.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="from=(from:Int32)-instance-method">
+    <div class="entry-detail" id="root(x:Int,time:Int):Int32-instance-method">
       <div class="signature">
         
-        def <strong>from=</strong>(from : Int32)
+        def <strong>root</strong>(x : <a href="Int.html">Int</a>, time : <a href="Int.html">Int</a>) : Int32
 
-        <a class="method-permalink" href="#from=(from:Int32)-instance-method">#</a>
+        <a class="method-permalink" href="#root(x:Int,time:Int):Int32-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9e1ddeca8ed0dc5cd3485d0c0b71aeb52776677d/src/graph/graph.cr#L51" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9e1ddeca8ed0dc5cd3485d0c0b71aeb52776677d/src/datastructure/partially_persistent_union_find.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="inspect(io):Nil-instance-method">
+    <div class="entry-detail" id="same?(x:Int,y:Int,time:Int):Bool-instance-method">
       <div class="signature">
         
-        def <strong>inspect</strong>(io) : Nil
+        def <strong>same?</strong>(x : <a href="Int.html">Int</a>, y : <a href="Int.html">Int</a>, time : <a href="Int.html">Int</a>) : Bool
 
-        <a class="method-permalink" href="#inspect(io):Nil-instance-method">#</a>
+        <a class="method-permalink" href="#same?(x:Int,y:Int,time:Int):Bool-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9e1ddeca8ed0dc5cd3485d0c0b71aeb52776677d/src/graph/graph.cr#L65" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9e1ddeca8ed0dc5cd3485d0c0b71aeb52776677d/src/datastructure/partially_persistent_union_find.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="reverse-instance-method">
+    <div class="entry-detail" id="size(x:Int,time:Int):Int-instance-method">
       <div class="signature">
         
-        def <strong>reverse</strong>
+        def <strong>size</strong>(x : <a href="Int.html">Int</a>, time : <a href="Int.html">Int</a>) : <a href="Int.html">Int</a>
 
-        <a class="method-permalink" href="#reverse-instance-method">#</a>
+        <a class="method-permalink" href="#size(x:Int,time:Int):Int-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9e1ddeca8ed0dc5cd3485d0c0b71aeb52776677d/src/graph/graph.cr#L57" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9e1ddeca8ed0dc5cd3485d0c0b71aeb52776677d/src/datastructure/partially_persistent_union_find.cr#L33" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="to:Int32-instance-method">
+    <div class="entry-detail" id="size:Int32-instance-method">
       <div class="signature">
         
-        def <strong>to</strong> : Int32
+        def <strong>size</strong> : Int32
 
-        <a class="method-permalink" href="#to:Int32-instance-method">#</a>
+        <a class="method-permalink" href="#size:Int32-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9e1ddeca8ed0dc5cd3485d0c0b71aeb52776677d/src/graph/graph.cr#L52" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9e1ddeca8ed0dc5cd3485d0c0b71aeb52776677d/src/datastructure/partially_persistent_union_find.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="to=(to:Int32)-instance-method">
+    <div class="entry-detail" id="unite(x:Int,y:Int):Bool-instance-method">
       <div class="signature">
         
-        def <strong>to=</strong>(to : Int32)
+        def <strong>unite</strong>(x : <a href="Int.html">Int</a>, y : <a href="Int.html">Int</a>) : Bool
 
-        <a class="method-permalink" href="#to=(to:Int32)-instance-method">#</a>
+        <a class="method-permalink" href="#unite(x:Int,y:Int):Bool-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9e1ddeca8ed0dc5cd3485d0c0b71aeb52776677d/src/graph/graph.cr#L52" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="to_s(io):Nil-instance-method">
-      <div class="signature">
-        
-        def <strong>to_s</strong>(io) : Nil
-
-        <a class="method-permalink" href="#to_s(io):Nil-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9e1ddeca8ed0dc5cd3485d0c0b71aeb52776677d/src/graph/graph.cr#L61" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9e1ddeca8ed0dc5cd3485d0c0b71aeb52776677d/src/datastructure/partially_persistent_union_find.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
