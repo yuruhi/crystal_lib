@@ -219,7 +219,7 @@ module Geometric
     end
   end
 
-  # calculate `∠ABC`
+  # Calclates the angle of `∠abc`
   def angle(a : Vec2, b : Vec2, c : Vec2)
     (c - b).rotate(-(a - b).angle).angle
   end

@@ -1,4 +1,5 @@
 struct Int
+  # Caluclates `self * exp % mod`
   def powmod(exp : T, mod : self) forall T
     n = self % mod
     res = typeof(self).new(1)
