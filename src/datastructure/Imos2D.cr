@@ -1,6 +1,5 @@
 class Imos2D(T)
-  getter height : Int32
-  getter width : Int32
+  getter height : Int32, width : Int32
   @builded = false
 
   def initialize(@height, @width, init_val : T = T.zero)
@@ -9,7 +8,7 @@ class Imos2D(T)
     end
   end
 
-  def add(ys : Int32, yc : Int32, xs : Int32, xc : Int32, val : T) : Nil
+  def add(ys : Int, yc : Int, xs : Int, xc : Int, val : T) : Nil
     raise "self had been called `build`" if @builded
     raise ArgumentError.new "Negative count: #{yc}" if yc < 0
     raise ArgumentError.new "Negative count: #{xc}" if xc < 0
@@ -42,8 +41,6 @@ class Imos2D(T)
   end
 
   def [](y : Int32, x : Int32) : T
-    raise IndexError.new unless 0 <= y < height
-    raise IndexError.new unless 0 <= x < width
     @table[y][x]
   end
 end
