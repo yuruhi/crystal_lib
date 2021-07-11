@@ -1,6 +1,6 @@
 # verification-helper: PROBLEM https://yukicoder.me/problems/no/997
-require "../src/math/Mint"
-require "../src/math/Matrix"
+require "../src/math/mint"
+require "../src/math/matrix"
 
 n, w, k = read_line.split.try { |(n, w, k)|
   {n.to_i, w.to_i, k.to_i64}

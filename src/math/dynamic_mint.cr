@@ -1,4 +1,4 @@
-require "./Barrett"
+require "./barrett"
 require "../../atcoder/src/Math"
 
 struct DynamicMint

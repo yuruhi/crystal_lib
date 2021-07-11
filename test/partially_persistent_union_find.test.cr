@@ -1,5 +1,5 @@
 # verification-helper: PROBLEM https://yukicoder.me/problems/no/416
-require "../src/datastructure/PartiallyPersistentUnionFind"
+require "../src/datastructure/partially_persistent_union_find"
 n, m, q = read_line.split.map(&.to_i)
 ab = Array.new(m) {
   {Int32, Int32}.from read_line.split.map(&.to_i.pred)

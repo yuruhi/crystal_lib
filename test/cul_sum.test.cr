@@ -1,5 +1,5 @@
 # verification-helper: PROBLEM https://judge.yosupo.jp/problem/static_range_sum
-require "../src/datastructure/CulSum"
+require "../src/datastructure/cul_sum"
 _, q = read_line.split.map(&.to_i)
 a = read_line.split.map(&.to_i64)
 sum = CulSum.new(a)

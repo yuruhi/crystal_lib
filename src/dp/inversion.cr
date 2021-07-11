@@ -1,4 +1,4 @@
-require "../datastructure/BinaryIndexedTree"
+require "../datastructure/binary_indexed_tree"
 
 module DP
   extend self

@@ -1,6 +1,6 @@
 # verification-helper: PROBLEM https://onlinejudge.u-aizu.ac.jp/problems/DSL_4_A
 require "../src/array/compress"
-require "../src/datastructure/Imos2D"
+require "../src/datastructure/imos_2d"
 n = read_line.to_i
 x1, y1, x2, y2 = Array.new(n) {
   read_line.split.map(&.to_i64)

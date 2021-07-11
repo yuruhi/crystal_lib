@@ -1,5 +1,5 @@
 # verification-helper: PROBLEM https://yukicoder.me/problems/no/1479
-require "../src/graph/BipartiteMatching"
+require "../src/graph/bipartite_matching"
 
 h, w = read_line.split.map(&.to_i)
 a = (1..h).map { read_line.split.map(&.to_i) }

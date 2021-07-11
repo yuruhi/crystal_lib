@@ -1,5 +1,5 @@
 require "./graph"
-require "../datastructure/UnionFind"
+require "../datastructure/union_find"
 
 def kruskal(n : Int32, edges : Array(Edge2(T))) : T? forall T
   uf = UnionFind.new(n)

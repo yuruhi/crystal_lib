@@ -1,5 +1,5 @@
 require "spec"
-require "../src/math/Mint"
+require "../src/math/mint"
 require "../atcoder/src/Math"
 mod = 10i64**9 + 7
 x = Mint.new(mod - 1)
