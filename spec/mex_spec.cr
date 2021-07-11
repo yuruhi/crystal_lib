@@ -16,6 +16,6 @@ describe Enumerable do
     a.mex.should eq 100
     a.shuffle.mex.should eq 100
     (a * 2).shuffle.mex.should eq 100
-		Set{3, 4, 0, 7, 1, 2, 6, 3}.mex.should eq 5
+    Set{3, 4, 0, 7, 1, 2, 6, 3}.mex.should eq 5
   end
 end
