@@ -118,7 +118,12 @@ class DirectedGraph(T) < Graph(T)
     super
   end
 
-  def initialize(size : Int, edges)
+  def initialize(size : Int, edges : Array(Edge2(T)))
+    super(size)
+    add_edges(edges)
+  end
+
+  def initialize(size : Int, edges : Array({Int, Int, T}))
     super(size)
     add_edges(edges)
   end
@@ -135,7 +140,12 @@ class UndirectedGraph(T) < Graph(T)
     super
   end
 
-  def initialize(size : Int, edges)
+  def initialize(size : Int, edges : Array(Edge2(T)))
+    super(size)
+    add_edges(edges)
+  end
+
+  def initialize(size : Int, edges : Array({Int, Int, T}))
     super(size)
     add_edges(edges)
   end
