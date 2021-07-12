@@ -1,4 +1,4 @@
-require "./graph"
+require "../graph"
 
 class LCA
   getter graph : UnweightedUndirectedGraph

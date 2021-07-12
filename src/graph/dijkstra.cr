@@ -1,5 +1,5 @@
 require "../../atcoder/src/PriorityQueue"
-require "./graph"
+require "../graph"
 
 class Graph(T)
   def dijkstra(start : Int32, unreachable : U = nil) forall U

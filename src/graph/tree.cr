@@ -1,4 +1,4 @@
-require "./graph"
+require "../graph"
 
 class UnweightedGraph
   # TODO: verify

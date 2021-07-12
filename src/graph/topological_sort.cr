@@ -1,4 +1,4 @@
-require "./graph"
+require "../graph"
 
 class UnweightedGraph
   private def topological_sort_dfs(result, visited, v)

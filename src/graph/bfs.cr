@@ -1,4 +1,4 @@
-require "./graph"
+require "../graph"
 
 class UnweightedGraph
   def bfs(start : Int32, unreachable : U = nil) forall U

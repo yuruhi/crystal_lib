@@ -1,4 +1,4 @@
-require "./graph"
+require "../graph"
 
 class UnweightedGraph
   def pre_order(root : Int32)

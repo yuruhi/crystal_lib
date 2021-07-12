@@ -1,4 +1,4 @@
-require "./graph"
+require "../graph"
 
 class UnweightedGraph
   def bipartite_graph : Array(Bool)?

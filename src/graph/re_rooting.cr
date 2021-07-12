@@ -1,4 +1,4 @@
-require "./graph"
+require "../graph"
 
 class ReRooting(T, GraphType)
   getter graph : UnweightedGraph
