@@ -1,8 +1,7 @@
 struct Edge(T)
   include Comparable(Edge(T))
 
-  property to : Int32
-  property cost : T
+  property to : Int32, cost : T
 
   def initialize(@to : Int32, @cost : T)
   end
@@ -23,9 +22,7 @@ end
 struct Edge2(T)
   include Comparable(Edge2(T))
 
-  property from : Int32
-  property to : Int32
-  property cost : T
+  property from : Int32, to : Int32, cost : T
 
   def initialize(@from : Int32, @to : Int32, @cost : T)
   end
@@ -38,12 +35,16 @@ struct Edge2(T)
     Edge2(T).new(to, from, cost)
   end
 
+  def sort
+    Edge2(T).new(*{to, from}.minmax, cost)
+  end
+
   def to_s(io) : Nil
     io << '(' << from << ", " << to << ", " << cost << ')'
   end
 
   def inspect(io) : Nil
-    io << "#{from}->#{to}(#{cost})"
+    io << from << "->" << to << '(' << cost << ')'
   end
 end
 
@@ -58,12 +59,16 @@ struct UnweightedEdge2
     UnweightedEdge2.new(to, from)
   end
 
+  def sort
+    UnweightedEdge2.new(*{to, from}.minmax)
+  end
+
   def to_s(io) : Nil
     io << '(' << from << ", " << to << ')'
   end
 
   def inspect(io) : Nil
-    io << "#{from}->#{to}"
+    io << from << "->" << to
   end
 end
 
@@ -75,11 +80,15 @@ abstract class Graph(T)
     @graph = Array.new(size) { Array(Edge(T)).new }
   end
 
-  def add_edge(i : Int32, j : Int32, cost : T)
-    add_edge(Edge2.new(i, j, cost))
+  def add_edge(from : Int, to : Int, cost : T)
+    add_edge(Edge2.new(from, to, cost))
   end
 
-  def add_edges(edges : Array(Edge2(T)))
+  def add_edge(from_to_cost : {Int, Int, T})
+    add_edge(Edge2.new(*from_to_cost))
+  end
+
+  def add_edges(edges)
     edges.each { |edge| add_edge(edge) }
     self
   end
@@ -109,14 +118,13 @@ class DirectedGraph(T) < Graph(T)
     super
   end
 
-  def initialize(size : Int, edges : Array(Edge2(T)))
+  def initialize(size : Int, edges)
     super(size)
     add_edges(edges)
   end
 
   def add_edge(edge : Edge2(T))
-    raise IndexError.new unless 0 <= edge.from < size
-    raise IndexError.new unless 0 <= edge.to < size
+    raise IndexError.new unless 0 <= edge.from < size && 0 <= edge.to < size
     @graph[edge.from] << Edge.new(edge.to, edge.cost)
     self
   end
@@ -127,14 +135,13 @@ class UndirectedGraph(T) < Graph(T)
     super
   end
 
-  def initialize(size : Int, edges : Array(Edge2(T)))
+  def initialize(size : Int, edges)
     super(size)
     add_edges(edges)
   end
 
   def add_edge(edge : Edge2(T))
-    raise IndexError.new unless 0 <= edge.from < size
-    raise IndexError.new unless 0 <= edge.to < size
+    raise IndexError.new unless 0 <= edge.from < size && 0 <= edge.to < size
     @graph[edge.from] << Edge.new(edge.to, edge.cost)
     @graph[edge.to] << Edge.new(edge.from, edge.cost)
     self
@@ -149,11 +156,15 @@ abstract class UnweightedGraph
     @graph = Array.new(size) { Array(Int32).new }
   end
 
-  def add_edge(i : Int32, j : Int32)
-    add_edge(UnweightedEdge2.new(i, j))
+  def add_edge(from : Int, to : Int)
+    add_edge(UnweightedEdge2.new(from, to))
   end
 
-  def add_edges(edges : Array(UnweightedEdge2))
+  def add_edge(from_to : {Int, Int})
+    add_edge(*from_to)
+  end
+
+  def add_edges(edges : Array)
     edges.each { |edge| add_edge(edge) }
     self
   end
@@ -183,14 +194,13 @@ class UnweightedDirectedGraph < UnweightedGraph
     super
   end
 
-  def initialize(size : Int, edges : Array(UnweightedEdge2))
+  def initialize(size : Int, edges : Array)
     super(size)
     add_edges(edges)
   end
 
   def add_edge(edge : UnweightedEdge2)
-    raise IndexError.new unless 0 <= edge.from < size
-    raise IndexError.new unless 0 <= edge.to < size
+    raise IndexError.new unless 0 <= edge.from < size && 0 <= edge.to < size
     @graph[edge.from] << edge.to
     self
   end
@@ -201,14 +211,13 @@ class UnweightedUndirectedGraph < UnweightedGraph
     super
   end
 
-  def initialize(size : Int, edges : Array(UnweightedEdge2))
+  def initialize(size : Int, edges : Array)
     super(size)
     add_edges(edges)
   end
 
   def add_edge(edge : UnweightedEdge2)
-    raise IndexError.new unless 0 <= edge.from < size
-    raise IndexError.new unless 0 <= edge.to < size
+    raise IndexError.new unless 0 <= edge.from < size && 0 <= edge.to < size
     @graph[edge.from] << edge.to
     @graph[edge.to] << edge.from
     self
