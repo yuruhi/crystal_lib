@@ -15,7 +15,7 @@
 </svg>
 
   <meta id="repository-name" content="github.com/yuruhi/crystal_lib">
-  <title>Imos(T) - github.com/yuruhi/crystal_lib</title>
+  <title>PersistentArray(T) - github.com/yuruhi/crystal_lib</title>
   <script type="text/javascript">
     CrystalDoc.base_path = "";
   </script>
@@ -170,7 +170,7 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/yuruhi/crystal_lib/Imos" data-name="imos(t)">
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Imos" data-name="imos(t)">
       <a href="Imos.html">Imos</a>
       
     </li>
@@ -230,7 +230,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/PersistentArray" data-name="persistentarray(t)">
+  <li class=" current" data-id="github.com/yuruhi/crystal_lib/PersistentArray" data-name="persistentarray(t)">
       <a href="PersistentArray.html">PersistentArray</a>
       
     </li>
@@ -309,12 +309,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Imos(T)
+  <span class="kind">class</span> PersistentArray(T)
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="Imos.html">Imos(T)</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="PersistentArray.html">PersistentArray(T)</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -342,14 +342,33 @@
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/imos.cr#L1" target="_blank">
-        datastructure/imos.cr
+      <a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/persistent_array.cr#L1" target="_blank">
+        datastructure/persistent_array.cr
       </a>
     
     <br/>
   
 
 
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="CHILD_SIZE">
+        <strong>CHILD_SIZE</strong> = <code><span class="n">32</span></code>
+      </dt>
+      
+    
+  </dl>
 
 
 
@@ -364,7 +383,12 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(size:Int32)-class-method" class="signature"><strong>.new</strong>(size : Int32)</a>
+        <a href="#new(array:Array(T))-class-method" class="signature"><strong>.new</strong>(array : Array(T))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new-class-method" class="signature"><strong>.new</strong></a>
         
       </li>
     
@@ -385,22 +409,27 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#add(start:Int,count:Int,val:T):Nil-instance-method" class="signature"><strong>#add</strong>(start : Int, count : Int, val : T) : Nil</a>
+        <a href="#[](i:Int):T-instance-method" class="signature"><strong>#[]</strong>(i : Int) : T</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#add(range:Range,val:T)-instance-method" class="signature"><strong>#add</strong>(range : Range, val : T)</a>
+        <a href="#destractive_set(i:Int,val:T):T-instance-method" class="signature"><strong>#destractive_set</strong>(i : Int, val : T) : T</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#build:Array(T)-instance-method" class="signature"><strong>#build</strong> : Array(T)</a>
+        <a href="#get(i:Int):T-instance-method" class="signature"><strong>#get</strong>(i : Int) : T</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#size:Int32-instance-method" class="signature"><strong>#size</strong> : Int32</a>
+        <a href="#set(i:Int,val:T):self-instance-method" class="signature"><strong>#set</strong>(i : Int, val : T) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_a(size:Int):Array(T)-instance-method" class="signature"><strong>#to_a</strong>(size : Int) : Array(T)</a>
         
       </li>
     
@@ -444,18 +473,34 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(size:Int32)-class-method">
+    <div class="entry-detail" id="new(array:Array(T))-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(size : Int32)
+        def self.<strong>new</strong>(array : <a href="Array.html">Array</a>(T))
 
-        <a class="method-permalink" href="#new(size:Int32)-class-method">#</a>
+        <a class="method-permalink" href="#new(array:Array(T))-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/imos.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/persistent_array.cr#L35" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>
+
+        <a class="method-permalink" href="#new-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/persistent_array.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -474,66 +519,82 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="add(start:Int,count:Int,val:T):Nil-instance-method">
+    <div class="entry-detail" id="[](i:Int):T-instance-method">
       <div class="signature">
         
-        def <strong>add</strong>(start : <a href="Int.html">Int</a>, count : <a href="Int.html">Int</a>, val : T) : Nil
+        def <strong>[]</strong>(i : <a href="Int.html">Int</a>) : T
 
-        <a class="method-permalink" href="#add(start:Int,count:Int,val:T):Nil-instance-method">#</a>
+        <a class="method-permalink" href="#[](i:Int):T-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/imos.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/persistent_array.cr#L42" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="add(range:Range,val:T)-instance-method">
+    <div class="entry-detail" id="destractive_set(i:Int,val:T):T-instance-method">
       <div class="signature">
         
-        def <strong>add</strong>(range : Range, val : T)
+        def <strong>destractive_set</strong>(i : <a href="Int.html">Int</a>, val : T) : T
 
-        <a class="method-permalink" href="#add(range:Range,val:T)-instance-method">#</a>
+        <a class="method-permalink" href="#destractive_set(i:Int,val:T):T-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/imos.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/persistent_array.cr#L64" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="build:Array(T)-instance-method">
+    <div class="entry-detail" id="get(i:Int):T-instance-method">
       <div class="signature">
         
-        def <strong>build</strong> : <a href="Array.html">Array</a>(T)
+        def <strong>get</strong>(i : <a href="Int.html">Int</a>) : T
 
-        <a class="method-permalink" href="#build:Array(T)-instance-method">#</a>
+        <a class="method-permalink" href="#get(i:Int):T-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/imos.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/persistent_array.cr#L46" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="size:Int32-instance-method">
+    <div class="entry-detail" id="set(i:Int,val:T):self-instance-method">
       <div class="signature">
         
-        def <strong>size</strong> : Int32
+        def <strong>set</strong>(i : <a href="Int.html">Int</a>, val : T) : <span class="k">self</span>
 
-        <a class="method-permalink" href="#size:Int32-instance-method">#</a>
+        <a class="method-permalink" href="#set(i:Int,val:T):self-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/imos.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/persistent_array.cr#L60" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_a(size:Int):Array(T)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_a</strong>(size : <a href="Int.html">Int</a>) : <a href="Array.html">Array</a>(T)
+
+        <a class="method-permalink" href="#to_a(size:Int):Array(T)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/persistent_array.cr#L81" target="_blank">View source</a>]
         
       </div>
     </div>

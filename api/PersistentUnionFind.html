@@ -15,7 +15,7 @@
 </svg>
 
   <meta id="repository-name" content="github.com/yuruhi/crystal_lib">
-  <title>Imos(T) - github.com/yuruhi/crystal_lib</title>
+  <title>PersistentUnionFind - github.com/yuruhi/crystal_lib</title>
   <script type="text/javascript">
     CrystalDoc.base_path = "";
   </script>
@@ -170,7 +170,7 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/yuruhi/crystal_lib/Imos" data-name="imos(t)">
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Imos" data-name="imos(t)">
       <a href="Imos.html">Imos</a>
       
     </li>
@@ -235,7 +235,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/PersistentUnionFind" data-name="persistentunionfind">
+  <li class=" current" data-id="github.com/yuruhi/crystal_lib/PersistentUnionFind" data-name="persistentunionfind">
       <a href="PersistentUnionFind.html">PersistentUnionFind</a>
       
     </li>
@@ -309,12 +309,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Imos(T)
+  <span class="kind">class</span> PersistentUnionFind
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="Imos.html">Imos(T)</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="PersistentUnionFind.html">PersistentUnionFind</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -342,8 +342,8 @@
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/imos.cr#L1" target="_blank">
-        datastructure/imos.cr
+      <a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/persistent_union_find.cr#L3" target="_blank">
+        datastructure/persistent_union_find.cr
       </a>
     
     <br/>
@@ -364,7 +364,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(size:Int32)-class-method" class="signature"><strong>.new</strong>(size : Int32)</a>
+        <a href="#new(size:Int)-class-method" class="signature"><strong>.new</strong>(size : Int)</a>
         
       </li>
     
@@ -385,22 +385,22 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#add(start:Int,count:Int,val:T):Nil-instance-method" class="signature"><strong>#add</strong>(start : Int, count : Int, val : T) : Nil</a>
+        <a href="#root(x:Int)-instance-method" class="signature"><strong>#root</strong>(x : Int)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#add(range:Range,val:T)-instance-method" class="signature"><strong>#add</strong>(range : Range, val : T)</a>
+        <a href="#same?(x:Int,y:Int)-instance-method" class="signature"><strong>#same?</strong>(x : Int, y : Int)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#build:Array(T)-instance-method" class="signature"><strong>#build</strong> : Array(T)</a>
+        <a href="#size(x:Int)-instance-method" class="signature"><strong>#size</strong>(x : Int)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#size:Int32-instance-method" class="signature"><strong>#size</strong> : Int32</a>
+        <a href="#unite(x:Int,y:Int):::Tuple(Bool,PersistentUnionFind)-instance-method" class="signature"><strong>#unite</strong>(x : Int, y : Int) : ::Tuple(Bool, PersistentUnionFind)</a>
         
       </li>
     
@@ -444,18 +444,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(size:Int32)-class-method">
+    <div class="entry-detail" id="new(size:Int)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(size : Int32)
+        def self.<strong>new</strong>(size : <a href="Int.html">Int</a>)
 
-        <a class="method-permalink" href="#new(size:Int32)-class-method">#</a>
+        <a class="method-permalink" href="#new(size:Int)-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/imos.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/persistent_union_find.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -474,66 +474,66 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="add(start:Int,count:Int,val:T):Nil-instance-method">
+    <div class="entry-detail" id="root(x:Int)-instance-method">
       <div class="signature">
         
-        def <strong>add</strong>(start : <a href="Int.html">Int</a>, count : <a href="Int.html">Int</a>, val : T) : Nil
+        def <strong>root</strong>(x : <a href="Int.html">Int</a>)
 
-        <a class="method-permalink" href="#add(start:Int,count:Int,val:T):Nil-instance-method">#</a>
+        <a class="method-permalink" href="#root(x:Int)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/imos.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/persistent_union_find.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="add(range:Range,val:T)-instance-method">
+    <div class="entry-detail" id="same?(x:Int,y:Int)-instance-method">
       <div class="signature">
         
-        def <strong>add</strong>(range : Range, val : T)
+        def <strong>same?</strong>(x : <a href="Int.html">Int</a>, y : <a href="Int.html">Int</a>)
 
-        <a class="method-permalink" href="#add(range:Range,val:T)-instance-method">#</a>
+        <a class="method-permalink" href="#same?(x:Int,y:Int)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/imos.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/persistent_union_find.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="build:Array(T)-instance-method">
+    <div class="entry-detail" id="size(x:Int)-instance-method">
       <div class="signature">
         
-        def <strong>build</strong> : <a href="Array.html">Array</a>(T)
+        def <strong>size</strong>(x : <a href="Int.html">Int</a>)
 
-        <a class="method-permalink" href="#build:Array(T)-instance-method">#</a>
+        <a class="method-permalink" href="#size(x:Int)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/imos.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/persistent_union_find.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="size:Int32-instance-method">
+    <div class="entry-detail" id="unite(x:Int,y:Int):::Tuple(Bool,PersistentUnionFind)-instance-method">
       <div class="signature">
         
-        def <strong>size</strong> : Int32
+        def <strong>unite</strong>(x : <a href="Int.html">Int</a>, y : <a href="Int.html">Int</a>) : ::Tuple(Bool, <a href="PersistentUnionFind.html">PersistentUnionFind</a>)
 
-        <a class="method-permalink" href="#size:Int32-instance-method">#</a>
+        <a class="method-permalink" href="#unite(x:Int,y:Int):::Tuple(Bool,PersistentUnionFind)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/imos.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/datastructure/persistent_union_find.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
