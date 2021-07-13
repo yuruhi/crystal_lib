@@ -49,8 +49,7 @@ struct Edge2(T)
 end
 
 struct UnweightedEdge2
-  property from : Int32
-  property to : Int32
+  property from : Int32, to : Int32
 
   def initialize(@from, @to)
   end
@@ -84,7 +83,7 @@ abstract class Graph(T)
     add_edge(Edge2.new(from, to, cost))
   end
 
-  def add_edge(from_to_cost : {Int, Int, T})
+  def add_edge(from_to_cost : {Int32, Int32, T})
     add_edge(Edge2.new(*from_to_cost))
   end
 
@@ -118,12 +117,12 @@ class DirectedGraph(T) < Graph(T)
     super
   end
 
-  def initialize(size : Int, edges : Array(Edge2(T)))
+  def initialize(size : Int, edges : Enumerable(Edge2(T)))
     super(size)
     add_edges(edges)
   end
 
-  def initialize(size : Int, edges : Array({Int, Int, T}))
+  def initialize(size : Int, edges : Enumerable({Int32, Int32, T}))
     super(size)
     add_edges(edges)
   end
@@ -140,12 +139,12 @@ class UndirectedGraph(T) < Graph(T)
     super
   end
 
-  def initialize(size : Int, edges : Array(Edge2(T)))
+  def initialize(size : Int, edges : Enumerable(Edge2(T)))
     super(size)
     add_edges(edges)
   end
 
-  def initialize(size : Int, edges : Array({Int, Int, T}))
+  def initialize(size : Int, edges : Enumerable({Int32, Int32, T}))
     super(size)
     add_edges(edges)
   end
@@ -170,11 +169,11 @@ abstract class UnweightedGraph
     add_edge(UnweightedEdge2.new(from, to))
   end
 
-  def add_edge(from_to : {Int, Int})
+  def add_edge(from_to : {Int32, Int32})
     add_edge(*from_to)
   end
 
-  def add_edges(edges : Array)
+  def add_edges(edges)
     edges.each { |edge| add_edge(edge) }
     self
   end
@@ -204,7 +203,7 @@ class UnweightedDirectedGraph < UnweightedGraph
     super
   end
 
-  def initialize(size : Int, edges : Array)
+  def initialize(size : Int, edges)
     super(size)
     add_edges(edges)
   end
@@ -221,7 +220,7 @@ class UnweightedUndirectedGraph < UnweightedGraph
     super
   end
 
-  def initialize(size : Int, edges : Array)
+  def initialize(size : Int, edges)
     super(size)
     add_edges(edges)
   end
