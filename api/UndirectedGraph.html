@@ -342,8 +342,8 @@
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/graph/graph.cr#L125" target="_blank">
-        graph/graph.cr
+      <a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph.cr#L137" target="_blank">
+        graph.cr
       </a>
     
     <br/>
@@ -364,7 +364,12 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(size:Int,edges:Array(Edge2(T)))-class-method" class="signature"><strong>.new</strong>(size : Int, edges : Array(Edge2(T)))</a>
+        <a href="#new(size:Int,edges:Enumerable(Edge2(T)))-class-method" class="signature"><strong>.new</strong>(size : Int, edges : Enumerable(Edge2(T)))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new(size:Int,edges:Enumerable(::Tuple(Int32,Int32,T)))-class-method" class="signature"><strong>.new</strong>(size : Int, edges : Enumerable(::Tuple(Int32, Int32, T)))</a>
         
       </li>
     
@@ -412,13 +417,13 @@
     []</a>, 
     
   
-    <a href="Graph.html#add_edge(i:Int32,j:Int32,cost:T)-instance-method" class="tooltip">
-      <span>add_edge(i : Int32, j : Int32, cost : T)</span>
+    <a href="Graph.html#add_edge(from:Int,to:Int,cost:T)-instance-method" class="tooltip">
+      <span>add_edge(from : Int, to : Int, cost : T)<br/>add_edge(from_to_cost : ::Tuple(Int32, Int32, T))</span>
     add_edge</a>, 
     
   
-    <a href="Graph.html#add_edges(edges:Array(Edge2(T)))-instance-method" class="tooltip">
-      <span>add_edges(edges : Array(Edge2(T)))</span>
+    <a href="Graph.html#add_edges(edges)-instance-method" class="tooltip">
+      <span>add_edges(edges)</span>
     add_edges</a>, 
     
   
@@ -512,18 +517,34 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(size:Int,edges:Array(Edge2(T)))-class-method">
+    <div class="entry-detail" id="new(size:Int,edges:Enumerable(Edge2(T)))-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(size : <a href="Int.html">Int</a>, edges : <a href="Array.html">Array</a>(<a href="Edge2.html">Edge2</a>(T)))
+        def self.<strong>new</strong>(size : <a href="Int.html">Int</a>, edges : <a href="Enumerable.html">Enumerable</a>(<a href="Edge2.html">Edge2</a>(T)))
 
-        <a class="method-permalink" href="#new(size:Int,edges:Array(Edge2(T)))-class-method">#</a>
+        <a class="method-permalink" href="#new(size:Int,edges:Enumerable(Edge2(T)))-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/graph/graph.cr#L130" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph.cr#L142" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(size:Int,edges:Enumerable(::Tuple(Int32,Int32,T)))-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(size : <a href="Int.html">Int</a>, edges : <a href="Enumerable.html">Enumerable</a>(::Tuple(Int32, Int32, T)))
+
+        <a class="method-permalink" href="#new(size:Int,edges:Enumerable(::Tuple(Int32,Int32,T)))-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph.cr#L147" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -539,7 +560,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/graph/graph.cr#L126" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph.cr#L138" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -569,7 +590,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/graph/graph.cr#L135" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph.cr#L152" target="_blank">View source</a>]
         
       </div>
     </div>

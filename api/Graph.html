@@ -358,21 +358,21 @@
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/graph/graph.cr#L70" target="_blank">
-        graph/graph.cr
+      <a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph.cr#L74" target="_blank">
+        graph.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/graph/dijkstra.cr#L4" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph/dijkstra.cr#L4" target="_blank">
         graph/dijkstra.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/graph/tree.cr#L31" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph/tree.cr#L31" target="_blank">
         graph/tree.cr
       </a>
     
@@ -425,12 +425,17 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#add_edge(i:Int32,j:Int32,cost:T)-instance-method" class="signature"><strong>#add_edge</strong>(i : Int32, j : Int32, cost : T)</a>
+        <a href="#add_edge(from:Int,to:Int,cost:T)-instance-method" class="signature"><strong>#add_edge</strong>(from : Int, to : Int, cost : T)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#add_edges(edges:Array(Edge2(T)))-instance-method" class="signature"><strong>#add_edges</strong>(edges : Array(Edge2(T)))</a>
+        <a href="#add_edge(from_to_cost:::Tuple(Int32,Int32,T))-instance-method" class="signature"><strong>#add_edge</strong>(from_to_cost : ::Tuple(Int32, Int32, T))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#add_edges(edges)-instance-method" class="signature"><strong>#add_edges</strong>(edges)</a>
         
       </li>
     
@@ -530,7 +535,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/graph/graph.cr#L73" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph.cr#L77" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -560,7 +565,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/graph/graph.cr#L88" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph.cr#L96" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -576,39 +581,55 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/graph/graph.cr#L88" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph.cr#L96" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="add_edge(i:Int32,j:Int32,cost:T)-instance-method">
+    <div class="entry-detail" id="add_edge(from:Int,to:Int,cost:T)-instance-method">
       <div class="signature">
         
-        def <strong>add_edge</strong>(i : Int32, j : Int32, cost : T)
+        def <strong>add_edge</strong>(from : <a href="Int.html">Int</a>, to : <a href="Int.html">Int</a>, cost : T)
 
-        <a class="method-permalink" href="#add_edge(i:Int32,j:Int32,cost:T)-instance-method">#</a>
+        <a class="method-permalink" href="#add_edge(from:Int,to:Int,cost:T)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/graph/graph.cr#L78" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph.cr#L82" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="add_edges(edges:Array(Edge2(T)))-instance-method">
+    <div class="entry-detail" id="add_edge(from_to_cost:::Tuple(Int32,Int32,T))-instance-method">
       <div class="signature">
         
-        def <strong>add_edges</strong>(edges : <a href="Array.html">Array</a>(<a href="Edge2.html">Edge2</a>(T)))
+        def <strong>add_edge</strong>(from_to_cost : ::Tuple(Int32, Int32, T))
 
-        <a class="method-permalink" href="#add_edges(edges:Array(Edge2(T)))-instance-method">#</a>
+        <a class="method-permalink" href="#add_edge(from_to_cost:::Tuple(Int32,Int32,T))-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/graph/graph.cr#L82" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph.cr#L86" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="add_edges(edges)-instance-method">
+      <div class="signature">
+        
+        def <strong>add_edges</strong>(edges)
+
+        <a class="method-permalink" href="#add_edges(edges)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph.cr#L90" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -624,7 +645,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/graph/tree.cr#L45" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph/tree.cr#L45" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -640,7 +661,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/graph/dijkstra.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph/dijkstra.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -656,7 +677,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/graph/dijkstra.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph/dijkstra.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -672,7 +693,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/graph/graph.cr#L90" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph.cr#L98" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -688,7 +709,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/graph/graph.cr#L98" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph.cr#L106" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -704,7 +725,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/graph/graph.cr#L71" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph.cr#L75" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -720,7 +741,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/graph/graph.cr#L87" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph.cr#L95" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -736,7 +757,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/graph/graph.cr#L87" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph.cr#L95" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -752,7 +773,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/27c3f1c244942b175dc34873a161309399dc9ddc/src/graph/tree.cr#L39" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/e98f764ea026284ad002112b11e7be674979380f/src/graph/tree.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
