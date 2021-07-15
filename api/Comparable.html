@@ -15,7 +15,7 @@
 </svg>
 
   <meta id="repository-name" content="github.com/yuruhi/crystal_lib">
-  <title>Imos(T) - github.com/yuruhi/crystal_lib</title>
+  <title>Comparable(T) - github.com/yuruhi/crystal_lib</title>
   <script type="text/javascript">
     CrystalDoc.base_path = "";
   </script>
@@ -80,7 +80,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/Comparable" data-name="comparable(t)">
+  <li class=" current" data-id="github.com/yuruhi/crystal_lib/Comparable" data-name="comparable(t)">
       <a href="Comparable.html">Comparable</a>
       
     </li>
@@ -175,7 +175,7 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/yuruhi/crystal_lib/Imos" data-name="imos(t)">
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Imos" data-name="imos(t)">
       <a href="Imos.html">Imos</a>
       
     </li>
@@ -314,12 +314,41 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Imos(T)
+  <span class="kind">module</span> Comparable(T)
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="Imos.html">Imos(T)</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>The <code><a href="Comparable.html">Comparable</a></code> mixin is used by classes whose objects may be ordered.</p>
+
+<p>Including types must provide an <code><=></code> method, which compares the receiver against
+another object, returning:</p>
+
+<ul><li>a negative number if <code>self</code> is less than the other object</li><li>a positive number if <code>self</code> is greater than the other object</li><li><code>0</code> if <code>self</code> is equal to the other object</li><li><code>nil</code> if <code>self</code> and the other object are not comparable</li></ul>
+
+<p><code><a href="Comparable.html">Comparable</a></code> uses <code><=></code> to implement the conventional comparison operators
+(<code><</code>, <code><=</code>, <code>==</code>, <code>>=</code>, and <code>></code>). All of these return <code>false</code> when <code><=></code>
+returns <code>nil</code>.</p>
+
+<p>Note that returning <code>nil</code> is only useful when defining a partial comparable
+relationship. One such example is float values: they are generally comparable,
+except for <code>NaN</code>. If none of the values of a type are comparable between each
+other, <code><a href="Comparable.html">Comparable</a></code> shouldn't be included.</p>
+
+<p><span class="flag purple">NOTE</span>  When <code>nil</code> is returned from <code><=></code>, <code>Array#sort</code> and related sorting
+methods will perform slightly slower.</p>
 
 
 
@@ -331,8 +360,33 @@
 
 
 
-
-
+  <h2>
+    <a id="direct-including-types" class="anchor" href="#direct-including-types">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Direct including types
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Array.html">Array(T)</a></li>
+    
+      <li class="other-type"><a href="BigFloat.html">BigFloat</a></li>
+    
+      <li class="other-type"><a href="Edge.html">Edge(T)</a></li>
+    
+      <li class="other-type"><a href="Edge2.html">Edge2(T)</a></li>
+    
+      <li class="other-type"><a href="Geometric/Vec2.html">Geometric::Vec2</a></li>
+    
+      <li class="other-type"><a href="Int.html">Int</a></li>
+    
+      <li class="other-type"><a href="Point.html">Point</a></li>
+    
+      <li class="other-type"><a href="String.html">String</a></li>
+    
+  </ul>
 
 
 
@@ -347,8 +401,8 @@
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/e61c87f44bdc9da39afe67a30bb185c8b68d8fc7/src/datastructure/imos.cr#L1" target="_blank">
-        datastructure/imos.cr
+      <a href="https://github.com/yuruhi/crystal_lib/blob/e61c87f44bdc9da39afe67a30bb185c8b68d8fc7/src/comparable/min_max.cr#L1" target="_blank">
+        comparable/min_max.cr
       </a>
     
     <br/>
@@ -357,23 +411,6 @@
 
 
 
-
-  <h2>
-    <a id="constructors" class="anchor" href="#constructors">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructors
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#new(size:Int32)-class-method" class="signature"><strong>.new</strong>(size : Int32)</a>
-        
-      </li>
-    
-  </ul>
 
 
 
@@ -390,22 +427,12 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#add(start:Int,count:Int,val:T):Nil-instance-method" class="signature"><strong>#add</strong>(start : Int, count : Int, val : T) : Nil</a>
+        <a href="#max(x:T)-instance-method" class="signature"><strong>#max</strong>(x : T)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#add(range:Range,val:T)-instance-method" class="signature"><strong>#add</strong>(range : Range, val : T)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#build:Array(T)-instance-method" class="signature"><strong>#build</strong> : Array(T)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#size:Int32-instance-method" class="signature"><strong>#size</strong> : Int32</a>
+        <a href="#min(x:T)-instance-method" class="signature"><strong>#min</strong>(x : T)</a>
         
       </li>
     
@@ -417,54 +444,8 @@
 
 <div class="methods-inherited">
   
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
 </div>
 
-
-  <h2>
-    <a id="constructor-detail" class="anchor" href="#constructor-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructor Detail
-  </h2>
-  
-    <div class="entry-detail" id="new(size:Int32)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(size : Int32)
-
-        <a class="method-permalink" href="#new(size:Int32)-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/e61c87f44bdc9da39afe67a30bb185c8b68d8fc7/src/datastructure/imos.cr#L5" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
 
 
 
@@ -479,66 +460,34 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="add(start:Int,count:Int,val:T):Nil-instance-method">
+    <div class="entry-detail" id="max(x:T)-instance-method">
       <div class="signature">
         
-        def <strong>add</strong>(start : <a href="Int.html">Int</a>, count : <a href="Int.html">Int</a>, val : T) : Nil
+        def <strong>max</strong>(x : T)
 
-        <a class="method-permalink" href="#add(start:Int,count:Int,val:T):Nil-instance-method">#</a>
+        <a class="method-permalink" href="#max(x:T)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/e61c87f44bdc9da39afe67a30bb185c8b68d8fc7/src/datastructure/imos.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/e61c87f44bdc9da39afe67a30bb185c8b68d8fc7/src/comparable/min_max.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="add(range:Range,val:T)-instance-method">
+    <div class="entry-detail" id="min(x:T)-instance-method">
       <div class="signature">
         
-        def <strong>add</strong>(range : Range, val : T)
+        def <strong>min</strong>(x : T)
 
-        <a class="method-permalink" href="#add(range:Range,val:T)-instance-method">#</a>
+        <a class="method-permalink" href="#min(x:T)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/e61c87f44bdc9da39afe67a30bb185c8b68d8fc7/src/datastructure/imos.cr#L20" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="build:Array(T)-instance-method">
-      <div class="signature">
-        
-        def <strong>build</strong> : <a href="Array.html">Array</a>(T)
-
-        <a class="method-permalink" href="#build:Array(T)-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/e61c87f44bdc9da39afe67a30bb185c8b68d8fc7/src/datastructure/imos.cr#L25" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="size:Int32-instance-method">
-      <div class="signature">
-        
-        def <strong>size</strong> : Int32
-
-        <a class="method-permalink" href="#size:Int32-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/e61c87f44bdc9da39afe67a30bb185c8b68d8fc7/src/datastructure/imos.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/e61c87f44bdc9da39afe67a30bb185c8b68d8fc7/src/comparable/min_max.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
