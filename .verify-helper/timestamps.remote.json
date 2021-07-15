@@ -22,5 +22,7 @@
 "test/bipartite_matching_edges.test.cr": "2021-07-12 21:16:13 +0900",
 "test/combination.test.cr": "2021-07-15 17:35:49 +0900",
 "test/compress.test.cr": "2021-07-11 19:42:16 +0900",
-"test/cul_sum.test.cr": "2021-07-11 19:42:16 +0900"
+"test/cul_sum.test.cr": "2021-07-11 19:42:16 +0900",
+"test/cul_sum_2d_2.test.cr": "2021-07-11 19:42:16 +0900",
+"test/cul_sum_2d_imos_2d.test.cr": "2021-07-11 19:42:16 +0900"
 }
