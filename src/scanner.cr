@@ -62,7 +62,7 @@ macro internal_input_array(s, args, else_ast)
         internal_input_array({{s}}, {{args[1...args.size]}}, else_ast)
       {% end %}
     end
-  {% else %}    
+  {% else %}
     {{else_ast}}
   {% end %}
 end
