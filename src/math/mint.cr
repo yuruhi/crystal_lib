@@ -1,5 +1,3 @@
-require "../../atcoder/src/Math"
-
 macro static_modint(name, mod)
   struct {{name}}
     MOD = {{mod}}i64
@@ -125,7 +123,7 @@ macro static_modint(name, mod)
     {% end %}
 
     def inv
-      self.class.raw AtCoder::Math.inv_mod(value, MOD)
+      self.class.raw(1) // self
     end
 
     def succ
