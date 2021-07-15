@@ -77,23 +77,20 @@ macro input(s)
           {% end %}
         )
       )
-    {% else %}
-      {% if s.name.stringify == "[]" %}
-        internal_input_array(
-          {{s.receiver}}, {{s.args}},
-          {{s.receiver}}[
-            {% for argument in s.args %}
-              input({{argument}}),
-            {% end %}
-          ] {{s.block}}
-        )
-      {% else %}
-        input({{s.receiver}}).{{s.name.id}}(
+    {% elsif s.name.stringify == "[]" %}
+      internal_input_array(
+        {{s.receiver}}, {{s.args}}, {{s.receiver}}[
           {% for argument in s.args %}
             input({{argument}}),
           {% end %}
-        ) {{s.block}}
-      {% end %}
+        ] {{s.block}}
+      )
+    {% else %}
+      input({{s.receiver}}).{{s.name.id}}(
+        {% for argument in s.args %}
+          input({{argument}}),
+        {% end %}
+      ) {{s.block}}
     {% end %}
   {% else %}
     internal_input({{s.id}}, {{s.id}})

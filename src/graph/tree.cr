@@ -1,10 +1,9 @@
 require "../graph"
 
 class UnweightedGraph
-  # TODO: verify
   private def subtree_size_dfs(v : Int32, p : Int32, result : Array(Int32)) : Int32
     result[v] = 1 + self[v].sum do |u|
-      subtree_size_dfs(u, v, result) if u != p
+      u != p ? subtree_size_dfs(u, v, result) : 0
     end
   end
 
