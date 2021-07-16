@@ -424,21 +424,28 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/01a137685f1e9086fe303d2efddfbb73dc6fdf72/src/point.cr#L227" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/3e929804356d6680bc162ae8fb5c346362e7b090/src/point.cr#L227" target="_blank">
         point.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/01a137685f1e9086fe303d2efddfbb73dc6fdf72/src/array/compress.cr#L1" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/3e929804356d6680bc162ae8fb5c346362e7b090/src/array/change.cr#L1" target="_blank">
+        array/change.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/yuruhi/crystal_lib/blob/3e929804356d6680bc162ae8fb5c346362e7b090/src/array/compress.cr#L1" target="_blank">
         array/compress.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/01a137685f1e9086fe303d2efddfbb73dc6fdf72/src/math/gcd.cr#L3" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/3e929804356d6680bc162ae8fb5c346362e7b090/src/math/gcd.cr#L3" target="_blank">
         math/gcd.cr
       </a>
     
@@ -465,6 +472,16 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
     
       <li class="entry-summary">
         <a href="#[]=(point:Point,value)-instance-method" class="signature"><strong>#[]=</strong>(point : Point, value)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#chmax(i:Int,value:T)-instance-method" class="signature"><strong>#chmax</strong>(i : Int, value : T)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#chmin(i:Int,value:T)-instance-method" class="signature"><strong>#chmin</strong>(i : Int, value : T)</a>
         
       </li>
     
@@ -572,6 +589,11 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
   <h3>Instance methods inherited from module <code><a href="Enumerable.html">Enumerable(T)</a></code></h3>
   
   
+    <a href="Enumerable.html#inclusive_scan(&)-instance-method" class="tooltip">
+      <span>inclusive_scan(&)<br/>inclusive_scan</span>
+    inclusive_scan</a>, 
+    
+  
     <a href="Enumerable.html#mex-instance-method" class="tooltip">
       <span>mex</span>
     mex</a>, 
@@ -583,7 +605,7 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
     
   
     <a href="Enumerable.html#scan(init:U)forallU-instance-method" class="tooltip">
-      <span>scan(init : U) forall U<br/>scan(init : U, &) forall U<br/>scan</span>
+      <span>scan(init : U) forall U<br/>scan<br/>scan(init : U, &) forall U</span>
     scan</a>
     
   
@@ -653,7 +675,39 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/01a137685f1e9086fe303d2efddfbb73dc6fdf72/src/point.cr#L228" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/3e929804356d6680bc162ae8fb5c346362e7b090/src/point.cr#L228" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="chmax(i:Int,value:T)-instance-method">
+      <div class="signature">
+        
+        def <strong>chmax</strong>(i : <a href="Int.html">Int</a>, value : T)
+
+        <a class="method-permalink" href="#chmax(i:Int,value:T)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/3e929804356d6680bc162ae8fb5c346362e7b090/src/array/change.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="chmin(i:Int,value:T)-instance-method">
+      <div class="signature">
+        
+        def <strong>chmin</strong>(i : <a href="Int.html">Int</a>, value : T)
+
+        <a class="method-permalink" href="#chmin(i:Int,value:T)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/3e929804356d6680bc162ae8fb5c346362e7b090/src/array/change.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -669,7 +723,7 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/01a137685f1e9086fe303d2efddfbb73dc6fdf72/src/array/compress.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/3e929804356d6680bc162ae8fb5c346362e7b090/src/array/compress.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -685,7 +739,7 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/01a137685f1e9086fe303d2efddfbb73dc6fdf72/src/array/compress.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/3e929804356d6680bc162ae8fb5c346362e7b090/src/array/compress.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -706,7 +760,7 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/01a137685f1e9086fe303d2efddfbb73dc6fdf72/src/math/gcd.cr#L36" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/3e929804356d6680bc162ae8fb5c346362e7b090/src/math/gcd.cr#L36" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -727,7 +781,7 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/01a137685f1e9086fe303d2efddfbb73dc6fdf72/src/math/gcd.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/3e929804356d6680bc162ae8fb5c346362e7b090/src/math/gcd.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -748,7 +802,7 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/01a137685f1e9086fe303d2efddfbb73dc6fdf72/src/math/gcd.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/3e929804356d6680bc162ae8fb5c346362e7b090/src/math/gcd.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -769,7 +823,7 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/01a137685f1e9086fe303d2efddfbb73dc6fdf72/src/math/gcd.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/3e929804356d6680bc162ae8fb5c346362e7b090/src/math/gcd.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
