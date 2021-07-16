@@ -17,4 +17,13 @@ describe Enumerable do
     [0, 1, 2, 3].scan.should eq [0, 0, 1, 3, 6]
     (0..3).scan.should eq [0, 0, 1, 3, 6]
   end
+
+  it "#inclusive_scan(&block)" do
+    [3, 1, 4, 1, 5].inclusive_scan { |x, y| Math.max(x, y) }.should eq [3, 3, 4, 4, 5]
+    [3, 1, 4, 1, 5].inclusive_scan { |x, y| x - y }.should eq [3, 2, -2, -3, -8]
+  end
+
+  it "#inclusive_scan" do
+    [3, 1, 4, 1, 5].inclusive_scan.should eq [3, 4, 8, 9, 14]
+  end
 end
