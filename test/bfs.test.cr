@@ -7,7 +7,7 @@ n.times do
   u = a.shift
   a.shift
   a.each do |v|
-    graph.add_edge(u - 1, v - 1)
+    graph << {u - 1, v - 1}
   end
 end
 

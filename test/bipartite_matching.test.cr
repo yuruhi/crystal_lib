@@ -18,4 +18,7 @@ edges = Array.product((0...h).to_a, (0...w).to_a).group_by { |(i, j)|
   end
 }
 
-puts BipartiteMatching.new(l, r).add_edges(edges).solve
+ans1 = BipartiteMatching.new(l, r).add_edges(edges).solve
+ans2 = BipartiteMatching.new(l, r, edges).solve
+raise "" unless ans1 == ans2
+puts ans1

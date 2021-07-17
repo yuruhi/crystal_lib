@@ -1,14 +1,12 @@
 require "../graph"
 require "../datastructure/union_find"
 
-def kruskal(n : Int32, edges : Array(Edge2(T))) : T? forall T
-  uf = UnionFind.new(n)
-  result = edges.sort.sum do |edge|
-    if uf.unite(edge.from, edge.to)
-      edge.cost
-    else
-      T.zero
+module Graph(Edge, Edge2)
+  def kruskal
+    uf = UnionFind.new(size)
+    result = to_a.sort.sum do |edge|
+      uf.unite(edge.from, edge.to) ? edge.cost : typeof(first.cost).zero
     end
+    uf.size(0) == size ? result : nil
   end
-  uf.size(0) == n ? result : nil
 end

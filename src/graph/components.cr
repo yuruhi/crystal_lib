@@ -1,9 +1,9 @@
 require "../graph"
 
-class UnweightedGraph
+module Graph(Edge, Edge2)
   # Returns {components size, index, groups}
   def components
-    graph = to_undirected
+    undirected = to_undirected
     index = Array(Int32?).new(size, nil)
     groups = [] of Set(Int32)
     id = 0
@@ -12,12 +12,11 @@ class UnweightedGraph
       que = Deque{v}
       groups << Set(Int32).new
       while u = que.shift?
+        next if index[u]
         index[u] = id
         groups[id] << u
-        graph[u].each do |edge|
-          if index[edge].nil?
-            que << edge
-          end
+        undirected[u].each do |edge|
+          que << edge.to if index[edge.to].nil?
         end
       end
       id += 1

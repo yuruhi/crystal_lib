@@ -18,11 +18,11 @@ in_degree = [0] * n
 n.times do
   v, left, right = read_line.split.map(&.to_i)
   if left != -1
-    graph.add_edge(v, left)
+    graph << {v, left}
     in_degree[left] += 1
   end
   if right != -1
-    graph.add_edge(v, right)
+    graph << {v, right}
     in_degree[right] += 1
   end
   graph2[v] = {left >= 0 ? left : nil, right >= 0 ? right : nil}

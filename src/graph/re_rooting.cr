@@ -1,27 +1,27 @@
 require "../graph"
 
 class ReRooting(T, GraphType)
-  getter graph : UnweightedGraph
+  getter graph : GraphType
 
-  def initialize(size : Int32)
+  def initialize(size : Int)
     @graph = GraphType.new(size)
     @dp = Array(Array(T)).new
     @result = Array(T).new
   end
 
   delegate size, to: @graph
-  delegate add_edge, to: @graph
+  delegate :<<, to: @graph
   delegate add_edges, to: @graph
 
   private def dfs(v : Int32, p : Int32) : T
-    graph[v].each_with_index.select { |(u, i)| u != p }.reduce(T.new) { |acc, (u, i)|
-      acc + (@dp[v][i] = dfs(u, v))
+    graph[v].each_with_index.select { |(edge, i)| edge.to != p }.reduce(T.new) { |acc, (edge, i)|
+      acc + (@dp[v][i] = dfs(edge.to, v))
     }.add_root(v)
   end
 
   private def bfs(v : Int32, p : Int32, dp_par : T) : Nil
-    graph[v].each_with_index do |u, i|
-      @dp[v][i] = dp_par if u == p
+    graph[v].each_with_index do |edge, i|
+      @dp[v][i] = dp_par if edge.to == p
     end
 
     n = graph[v].size
@@ -35,8 +35,8 @@ class ReRooting(T, GraphType)
     end
     @result[v] = dp_left.last.add_root(v)
 
-    graph[v].each_with_index do |u, i|
-      bfs(u, v, (dp_left[i] + dp_right[i + 1]).add_root(v)) if u != p
+    graph[v].each_with_index do |edge, i|
+      bfs(edge.to, v, (dp_left[i] + dp_right[i + 1]).add_root(v)) if edge.to != p
     end
   end
 

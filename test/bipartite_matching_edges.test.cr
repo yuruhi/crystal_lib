@@ -4,9 +4,10 @@ l, r, m = read_line.split.map(&.to_i)
 graph = BipartiteMatching.new(l, r)
 m.times do
   a, b = read_line.split.map(&.to_i)
-  graph.add_edge(a, b)
+  graph << {a, b}
 end
 puts graph.solve
-graph.each_edge do |edge|
+raise "" unless graph.to_a == graph.each.to_a
+graph.each do |edge|
   puts "#{edge.from} #{edge.to}"
 end

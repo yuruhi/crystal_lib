@@ -1,11 +1,11 @@
 require "../graph"
 
-class UnweightedGraph
-  private def topological_sort_dfs(result, visited, v)
+module Graph(Edge, Edge2)
+  private def topological_sort_dfs(result : Array(Int32), visited : Array(Bool), v : Int32)
     unless visited[v]
       visited[v] = true
-      graph[v].each do |u|
-        topological_sort_dfs(result, visited, u)
+      graph[v].each do |edge|
+        topological_sort_dfs(result, visited, edge.to)
       end
       result << v
     end
@@ -14,7 +14,7 @@ class UnweightedGraph
   def topological_sort : Array(Int32)
     result = [] of Int32
     visited = [false] * size
-    (0...size).each do |v|
+    size.times do |v|
       topological_sort_dfs(result, visited, v)
     end
     result.reverse

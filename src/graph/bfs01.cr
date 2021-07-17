@@ -1,6 +1,6 @@
 require "../graph"
 
-class Graph(T)
+module Graph(Edge, Edge2)
   def bfs01(start : Int, &block)
     raise ArgumentError.new unless 0 <= start < size
     queue = Deque{start}

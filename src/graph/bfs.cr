@@ -1,6 +1,6 @@
 require "../graph"
 
-class UnweightedGraph
+module Graph(Edge, Edge2)
   def bfs(start : Int) : Array(Int32?)
     raise ArgumentError.new unless 0 <= start < size
     queue = Deque{start}
@@ -8,9 +8,9 @@ class UnweightedGraph
     dist[start] = 0
     while v = queue.pop?
       graph[v].each do |edge|
-        if dist[edge].nil?
-          dist[edge] = dist[v].not_nil! + 1
-          queue.unshift edge
+        if dist[edge.to].nil?
+          dist[edge.to] = dist[v].not_nil! + 1
+          queue.unshift edge.to
         end
       end
     end
@@ -30,9 +30,9 @@ class UnweightedGraph
       d = dist[v].not_nil!
       return d if v == goal
       graph[v].each do |edge|
-        if dist[edge].nil?
-          dist[edge] = d + 1
-          queue.unshift edge
+        if dist[edge.to].nil?
+          dist[edge.to] = d + 1
+          queue.unshift edge.to
         end
       end
     end

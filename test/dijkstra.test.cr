@@ -3,6 +3,6 @@ require "../src/graph/dijkstra"
 n, m, s = read_line.split.map(&.to_i)
 g = DirectedGraph.new n, (1..m).map {
   a, b, c = read_line.split.map(&.to_i)
-  Edge2.new(a, b, c)
+  {a, b, c}
 }
-puts g.dijkstra(s, "INF").join('\n')
+puts g.dijkstra(s).join('\n') { |d| d || "INF" }

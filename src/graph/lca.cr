@@ -1,23 +1,21 @@
 require "../graph"
 
-class LCA
-  getter graph : UnweightedUndirectedGraph
-  getter size : Int32
+class LCA(Edge, Edge2)
+  getter graph : Graph(Edge, Edge2)
   getter depth : Array(Int32)
 
-  private def dfs(vertex : Int32, par : Int32, dep : Int32) : Nil
+  private def dfs(vertex : Int, par : Int, dep : Int) : Nil
     @parent[0][vertex] = par
     @depth[vertex] = dep
     @graph[vertex].each do |edge|
-      dfs(edge, vertex, dep + 1) if edge != par
+      dfs(edge.to, vertex, dep + 1) if edge.to != par
     end
   end
 
-  def initialize(@graph : UnweightedUndirectedGraph, root : Int32)
-    @size = @graph.size
-    @log2 = Math.log2(@size).to_i.succ.as(Int32)
-    @depth = Array(Int32).new(@size, -1)
-    @parent = Array(Array(Int32)).new(@log2) { Array.new(@size, 0) }
+  def initialize(@graph : Graph(Edge, Edge2), root : Int)
+    @log2 = Math.log2(size).to_i.succ.as(Int32)
+    @depth = Array(Int32).new(size, -1)
+    @parent = Array(Array(Int32)).new(@log2) { Array.new(size, 0) }
     dfs(root, -1, 0)
     (0...@log2 - 1).each do |k|
       (0...size).each do |v|
@@ -30,7 +28,9 @@ class LCA
     end
   end
 
-  def lca(u : Int32, v : Int32) : Int32
+  delegate size, to: @graph
+
+  def lca(u : Int, v : Int) : Int32
     raise IndexError.new unless 0 <= u < size
     raise IndexError.new unless 0 <= v < size
     u, v = v, u if @depth[u] > @depth[v]
@@ -46,7 +46,7 @@ class LCA
     @parent[0][u]
   end
 
-  def dist(u : Int32, v : Int32) : Int32
+  def dist(u : Int, v : Int)
     @depth[u] + @depth[v] - @depth[lca(u, v)] * 2
   end
 end

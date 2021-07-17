@@ -2,8 +2,7 @@
 require "../src/graph/re_rooting"
 
 struct DP
-  getter sum : Int64
-  getter val : Int64
+  getter sum : Int64, val : Int64
 
   @@a = [] of Int64
 
@@ -32,6 +31,6 @@ DP.a = read_line.split.map(&.to_i64)
 dp = ReRooting(DP, UnweightedUndirectedGraph).new(n)
 (n - 1).times do
   a, b = read_line.split.map(&.to_i.pred)
-  dp.add_edge(a, b)
+  dp << {a, b}
 end
 puts dp.solve.join('\n', &.val)
