@@ -55,7 +55,7 @@ macro internal_input_array(s, args, else_ast)
   {% if Scanner.class.has_method?(s.id) ||
           s.stringify =~ /[A-Z][a-z0-9_]*/ ||
           String.has_method?("to_#{s}".id) %}
-    Array.new({{args.first}}) do
+    Array.new(input({{args.first}})) do
       {% if args.size == 1 %}
         input({{s.id}})
       {% else %}
