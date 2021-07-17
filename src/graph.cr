@@ -229,6 +229,15 @@ class UnweightedDirectedGraph < UnweightedGraph
     @graph[edge.from] << edge.to
     self
   end
+
+  def to_undirected : self
+    result = UnweightedDirectedGraph.new(size)
+    each_edge do |edge|
+      result.add_edge(edge)
+      result.add_edge(edge.reverse)
+    end
+    result
+  end
 end
 
 class UnweightedUndirectedGraph < UnweightedGraph
@@ -256,5 +265,9 @@ class UnweightedUndirectedGraph < UnweightedGraph
 
   def each_child(vertex : Int, parent)
     graph[vertex].each.select { |u| u != parent }
+  end
+
+  def to_undirected : self
+    self
   end
 end
