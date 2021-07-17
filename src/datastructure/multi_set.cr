@@ -176,8 +176,8 @@ class MultiSet(T)
   # Union
   def |(other : MultiSet(U)) forall U
     result = MultiSet(T | U).new
-    each_count { |(elem, cnt)| result.add elem, cnt }
-    other.each_count { |(elem, cnt)| result.add elem, cnt }
+    each_count { |elem, cnt| result.add elem, cnt }
+    other.each_count { |elem, cnt| result.add elem, cnt }
     result
   end
 

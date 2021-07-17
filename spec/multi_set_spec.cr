@@ -119,7 +119,7 @@ describe "MultiSet" do
 
   it "each_count(&)" do
     a = [] of {Int32, Int32}
-    MultiSet{0, 0, 0, 1, 1, 2}.each_count do |(elem, cnt)|
+    MultiSet{0, 0, 0, 1, 1, 2}.each_count do |elem, cnt|
       a << {elem, cnt}
     end
     a.should eq [{0, 3}, {1, 2}, {2, 1}]
