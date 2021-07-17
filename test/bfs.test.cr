@@ -11,7 +11,6 @@ n.times do
   end
 end
 
-dist = graph.bfs(0)
 graph.bfs(0).each_with_index do |d, i|
   puts "#{i + 1} #{d || -1}"
 end
