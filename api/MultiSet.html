@@ -363,7 +363,7 @@
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L1" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L1" target="_blank">
         datastructure/multi_set.cr
       </a>
     
@@ -411,86 +411,121 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#&(other:MultiSet(T))-instance-method" class="signature"><strong>#&</strong>(other : MultiSet(T))</a>
+        <a href="#&(other:MultiSet(T)):self-instance-method" class="signature"><strong>#&</strong>(other : MultiSet(T)) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Intersection</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#+(other:MultiSet(U))forallU-instance-method" class="signature"><strong>#+</strong>(other : MultiSet(U)) forall U</a>
         
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#%3C%3C(object:T)-instance-method" class="signature"><strong>#<<</strong>(object : T)</a>
+          <div class="summary"><p>Addition</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#add(object:T,count:Int32)-instance-method" class="signature"><strong>#add</strong>(object : T, count : Int32)</a>
+        <a href="#self-instance-method" class="signature"><strong>#<<</strong>(object : T) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Alias for #add.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#add(object:T)-instance-method" class="signature"><strong>#add</strong>(object : T)</a>
+        <a href="#===(object:T):Bool-instance-method" class="signature"><strong>#===</strong>(object : T) : Bool</a>
+        
+          <div class="summary"><p>Same as #includes?</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#add(object:T):self-instance-method" class="signature"><strong>#add</strong>(object : T) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Adds <em>object</em> to the multiset and returns self.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#add(object:T,count:Int32):self-instance-method" class="signature"><strong>#add</strong>(object : T, count : Int32) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Adds <em>object</em> to the multiset <em>count</em> times and returns self.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#clear-instance-method" class="signature"><strong>#clear</strong></a>
         
+          <div class="summary"><p>Removes all elements in the multiset and returns <code>self</code>.</p></div>
+        
       </li>
     
       <li class="entry-summary">
-        <a href="#concat(elems)-instance-method" class="signature"><strong>#concat</strong>(elems)</a>
+        <a href="#concat(elems):self-instance-method" class="signature"><strong>#concat</strong>(elems) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Adds #each element of <em>elems</em> to the multisetset and returns self.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#count(object:T)-instance-method" class="signature"><strong>#count</strong>(object : T)</a>
         
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#delete(object:T,count:Int32)-instance-method" class="signature"><strong>#delete</strong>(object : T, count : Int32)</a>
+          <div class="summary"><p>Returns the number of times that the <em>object</em> is present in the multiset.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#delete(object:T)-instance-method" class="signature"><strong>#delete</strong>(object : T)</a>
+        <a href="#delete(object:T,count:Int32):Bool-instance-method" class="signature"><strong>#delete</strong>(object : T, count : Int32) : Bool</a>
+        
+          <div class="summary"><p>Removes the <em>object</em> from the multiset at most <em>count</em> times and returns <code>true</code> if it was present, otherwise returns <code>false</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#delete(object:T):Bool-instance-method" class="signature"><strong>#delete</strong>(object : T) : Bool</a>
+        
+          <div class="summary"><p>Removes the <em>object</em> from the multiset and returns <code>true</code> if it was present, otherwise returns <code>false</code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#each-instance-method" class="signature"><strong>#each</strong></a>
         
-          <div class="summary"><p>Must return an <code>Iterator</code> over the elements in this collection.</p></div>
+          <div class="summary"><p>Returns an iterator for each element of the multiset.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#each(&):Nil-instance-method" class="signature"><strong>#each</strong>(&) : Nil</a>
         
-          <div class="summary"><p>Must yield this collection's elements to the block.</p></div>
+          <div class="summary"><p>Yields each element of the multiset, and returns <code>nil</code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#each_count(&):Nil-instance-method" class="signature"><strong>#each_count</strong>(&) : Nil</a>
         
+          <div class="summary"><p>Yields each pair of element and count of the multiset, and returns <code>nil</code>.</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#each_count-instance-method" class="signature"><strong>#each_count</strong></a>
         
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#empty?-instance-method" class="signature"><strong>#empty?</strong></a>
+          <div class="summary"><p>Returns an iterator for each tuple of element and count of the multiset</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#includes?(object:T)-instance-method" class="signature"><strong>#includes?</strong>(object : T)</a>
+        <a href="#empty?:Bool-instance-method" class="signature"><strong>#empty?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if the multiset is empty.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#includes?(object:T):Bool-instance-method" class="signature"><strong>#includes?</strong>(object : T) : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <em>object</em> exists in the multiset.</p></div>
         
       </li>
     
@@ -502,29 +537,37 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#intersects?(other:MultiSet(T))-instance-method" class="signature"><strong>#intersects?</strong>(other : MultiSet(T))</a>
+        <a href="#intersects?(other:self)-instance-method" class="signature"><strong>#intersects?</strong>(other : <span class="k">self</span>)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if the multiset and the given multiset have at least one element in common.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#kind_count-instance-method" class="signature"><strong>#kind_count</strong></a>
+        <a href="#kind_count:Int32-instance-method" class="signature"><strong>#kind_count</strong> : Int32</a>
+        
+          <div class="summary"><p>Returns the number of kinds in the multiset.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#size-instance-method" class="signature"><strong>#size</strong></a>
+        <a href="#size:Int32-instance-method" class="signature"><strong>#size</strong> : Int32</a>
         
-          <div class="summary"><p>Returns the number of elements in the collection.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#subset_of?(other:MultiSet(T))-instance-method" class="signature"><strong>#subset_of?</strong>(other : MultiSet(T))</a>
+          <div class="summary"><p>Returns the number of elements in the set.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#superset_of?(other:MultiSet(T))-instance-method" class="signature"><strong>#superset_of?</strong>(other : MultiSet(T))</a>
+        <a href="#subset_of?(other:self)-instance-method" class="signature"><strong>#subset_of?</strong>(other : <span class="k">self</span>)</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if the multiset is a subset of the given multiset.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#superset_of?(other:self)-instance-method" class="signature"><strong>#superset_of?</strong>(other : <span class="k">self</span>)</a>
+        
+          <div class="summary"><p>Returns true if the multiset is a superset of the given multiset.</p></div>
         
       </li>
     
@@ -537,6 +580,8 @@
     
       <li class="entry-summary">
         <a href="#%7C(other:MultiSet(U))forallU-instance-method" class="signature"><strong>#|</strong>(other : MultiSet(U)) forall U</a>
+        
+          <div class="summary"><p>Union</p></div>
         
       </li>
     
@@ -558,13 +603,13 @@
     inclusive_scan</a>, 
     
   
-    <a href="Enumerable.html#mex-instance-method" class="tooltip">
-      <span>mex</span>
+    <a href="Enumerable.html#mex:T-instance-method" class="tooltip">
+      <span>mex : T</span>
     mex</a>, 
     
   
-    <a href="Enumerable.html#mex_sorted-instance-method" class="tooltip">
-      <span>mex_sorted</span>
+    <a href="Enumerable.html#mex_sorted:T-instance-method" class="tooltip">
+      <span>mex_sorted : T</span>
     mex_sorted</a>, 
     
   
@@ -635,7 +680,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -651,7 +696,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -670,18 +715,23 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="&amp;(other:MultiSet(T))-instance-method">
+    <div class="entry-detail" id="&amp;(other:MultiSet(T)):self-instance-method">
       <div class="signature">
         
-        def <strong>&</strong>(other : <a href="MultiSet.html">MultiSet</a>(T))
+        def <strong>&</strong>(other : <a href="MultiSet.html">MultiSet</a>(T)) : <span class="k">self</span>
 
-        <a class="method-permalink" href="#&(other:MultiSet(T))-instance-method">#</a>
+        <a class="method-permalink" href="#&(other:MultiSet(T)):self-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Intersection</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L134" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L163" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -694,58 +744,99 @@
         <a class="method-permalink" href="#+(other:MultiSet(U))forallU-instance-method">#</a>
       </div>
       
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L154" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="&lt;&lt;(object:T)-instance-method">
-      <div class="signature">
-        
-        def <strong><<</strong>(object : T)
-
-        <a class="method-permalink" href="#%3C%3C(object:T)-instance-method">#</a>
-      </div>
+        <div class="doc">
+          
+          <p>Addition</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L33" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L185" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="add(object:T,count:Int32)-instance-method">
+    <div class="entry-detail" id="self-instance-method">
       <div class="signature">
         
-        def <strong>add</strong>(object : T, count : Int32)
+        def <strong><<</strong>(object : T) : <span class="k">self</span>
 
-        <a class="method-permalink" href="#add(object:T,count:Int32)-instance-method">#</a>
+        <a class="method-permalink" href="#self-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Alias for #add.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L61" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="add(object:T)-instance-method">
+    <div class="entry-detail" id="===(object:T):Bool-instance-method">
       <div class="signature">
         
-        def <strong>add</strong>(object : T)
+        def <strong>===</strong>(object : T) : Bool
 
-        <a class="method-permalink" href="#add(object:T)-instance-method">#</a>
+        <a class="method-permalink" href="#===(object:T):Bool-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Same as #includes?</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L36" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="add(object:T):self-instance-method">
+      <div class="signature">
+        
+        def <strong>add</strong>(object : T) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#add(object:T):self-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Adds <em>object</em> to the multiset and returns self.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L46" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="add(object:T,count:Int32):self-instance-method">
+      <div class="signature">
+        
+        def <strong>add</strong>(object : T, count : Int32) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#add(object:T,count:Int32):self-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Adds <em>object</em> to the multiset <em>count</em> times and returns self.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -758,26 +849,36 @@
         <a class="method-permalink" href="#clear-instance-method">#</a>
       </div>
       
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L59" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="concat(elems)-instance-method">
-      <div class="signature">
-        
-        def <strong>concat</strong>(elems)
-
-        <a class="method-permalink" href="#concat(elems)-instance-method">#</a>
-      </div>
+        <div class="doc">
+          
+          <p>Removes all elements in the multiset and returns <code>self</code>.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L54" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L91" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="concat(elems):self-instance-method">
+      <div class="signature">
+        
+        def <strong>concat</strong>(elems) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#concat(elems):self-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Adds #each element of <em>elems</em> to the multisetset and returns self.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L85" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -790,42 +891,57 @@
         <a class="method-permalink" href="#count(object:T)-instance-method">#</a>
       </div>
       
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L64" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="delete(object:T,count:Int32)-instance-method">
-      <div class="signature">
-        
-        def <strong>delete</strong>(object : T, count : Int32)
-
-        <a class="method-permalink" href="#delete(object:T,count:Int32)-instance-method">#</a>
-      </div>
+        <div class="doc">
+          
+          <p>Returns the number of times that the <em>object</em> is present in the multiset.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L45" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="delete(object:T)-instance-method">
+    <div class="entry-detail" id="delete(object:T,count:Int32):Bool-instance-method">
       <div class="signature">
         
-        def <strong>delete</strong>(object : T)
+        def <strong>delete</strong>(object : T, count : Int32) : Bool
 
-        <a class="method-permalink" href="#delete(object:T)-instance-method">#</a>
+        <a class="method-permalink" href="#delete(object:T,count:Int32):Bool-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Removes the <em>object</em> from the multiset at most <em>count</em> times and returns <code>true</code> if it was present, otherwise returns <code>false</code>.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L75" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="delete(object:T):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>delete</strong>(object : T) : Bool
+
+        <a class="method-permalink" href="#delete(object:T):Bool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Removes the <em>object</em> from the multiset and returns <code>true</code> if it was present, otherwise returns <code>false</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L66" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -840,17 +956,13 @@
       
         <div class="doc">
           
-            <div class="doc-inherited">
-              Description copied from module Iterable(T)
-            </div>
-          
-          <p>Must return an <code>Iterator</code> over the elements in this collection.</p>
+          <p>Returns an iterator for each element of the multiset.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L114" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L119" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -865,17 +977,13 @@
       
         <div class="doc">
           
-            <div class="doc-inherited">
-              Description copied from module <a href="Enumerable.html">Enumerable(T)</a>
-            </div>
-          
-          <p>Must yield this collection's elements to the block.</p>
+          <p>Yields each element of the multiset, and returns <code>nil</code>.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L118" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L124" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -888,10 +996,15 @@
         <a class="method-permalink" href="#each_count(&):Nil-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Yields each pair of element and count of the multiset, and returns <code>nil</code>.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L128" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L156" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -904,42 +1017,57 @@
         <a class="method-permalink" href="#each_count-instance-method">#</a>
       </div>
       
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L124" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="empty?-instance-method">
-      <div class="signature">
-        
-        def <strong>empty?</strong>
-
-        <a class="method-permalink" href="#empty?-instance-method">#</a>
-      </div>
+        <div class="doc">
+          
+          <p>Returns an iterator for each tuple of element and count of the multiset</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L68" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L151" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="includes?(object:T)-instance-method">
+    <div class="entry-detail" id="empty?:Bool-instance-method">
       <div class="signature">
         
-        def <strong>includes?</strong>(object : T)
+        def <strong>empty?</strong> : Bool
 
-        <a class="method-permalink" href="#includes?(object:T)-instance-method">#</a>
+        <a class="method-permalink" href="#empty?:Bool-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if the multiset is empty.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L72" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L26" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="includes?(object:T):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>includes?</strong>(object : T) : Bool
+
+        <a class="method-permalink" href="#includes?(object:T):Bool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if <em>object</em> exists in the multiset.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -973,98 +1101,112 @@ and the values of all instance variables.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L162" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L193" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="intersects?(other:MultiSet(T))-instance-method">
+    <div class="entry-detail" id="intersects?(other:self)-instance-method">
       <div class="signature">
         
-        def <strong>intersects?</strong>(other : <a href="MultiSet.html">MultiSet</a>(T))
+        def <strong>intersects?</strong>(other : <span class="k">self</span>)
 
-        <a class="method-permalink" href="#intersects?(other:MultiSet(T))-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L76" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="kind_count-instance-method">
-      <div class="signature">
-        
-        def <strong>kind_count</strong>
-
-        <a class="method-permalink" href="#kind_count-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L15" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="size-instance-method">
-      <div class="signature">
-        
-        def <strong>size</strong>
-
-        <a class="method-permalink" href="#size-instance-method">#</a>
+        <a class="method-permalink" href="#intersects?(other:self)-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-            <div class="doc-inherited">
-              Description copied from module <a href="Enumerable.html">Enumerable(T)</a>
-            </div>
-          
-          <p>Returns the number of elements in the collection.</p>
-
-<pre><code>[<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>].size <span class="c"># =&gt; 4</span></code></pre>
+          <p>Returns <code>true</code> if the multiset and the given multiset have at least one element in common.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L131" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="subset_of?(other:MultiSet(T))-instance-method">
+    <div class="entry-detail" id="kind_count:Int32-instance-method">
       <div class="signature">
         
-        def <strong>subset_of?</strong>(other : <a href="MultiSet.html">MultiSet</a>(T))
+        def <strong>kind_count</strong> : Int32
 
-        <a class="method-permalink" href="#subset_of?(other:MultiSet(T))-instance-method">#</a>
+        <a class="method-permalink" href="#kind_count:Int32-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Returns the number of kinds in the multiset.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L84" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="superset_of?(other:MultiSet(T))-instance-method">
+    <div class="entry-detail" id="size:Int32-instance-method">
       <div class="signature">
         
-        def <strong>superset_of?</strong>(other : <a href="MultiSet.html">MultiSet</a>(T))
+        def <strong>size</strong> : Int32
 
-        <a class="method-permalink" href="#superset_of?(other:MultiSet(T))-instance-method">#</a>
+        <a class="method-permalink" href="#size:Int32-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Returns the number of elements in the set.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L89" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L16" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="subset_of?(other:self)-instance-method">
+      <div class="signature">
+        
+        def <strong>subset_of?</strong>(other : <span class="k">self</span>)
+
+        <a class="method-permalink" href="#subset_of?(other:self)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if the multiset is a subset of the given multiset.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L140" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="superset_of?(other:self)-instance-method">
+      <div class="signature">
+        
+        def <strong>superset_of?</strong>(other : <span class="k">self</span>)
+
+        <a class="method-permalink" href="#superset_of?(other:self)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns true if the multiset is a superset of the given multiset.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L146" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1097,7 +1239,7 @@ which includes its class name and its object address.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L158" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L189" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -1110,10 +1252,15 @@ which includes its class name and its object address.</p>
         <a class="method-permalink" href="#%7C(other:MultiSet(U))forallU-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Union</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/multi_set.cr#L147" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/cb5f22338c35fd25b63088ac65c5515ae70de2e7/src/datastructure/multi_set.cr#L177" target="_blank">View source</a>]
         
       </div>
     </div>
