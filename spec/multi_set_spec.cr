@@ -3,9 +3,9 @@ require "../src/datastructure/multi_set"
 
 describe "MultiSet" do
   it "initialize" do
-    MultiSet(Int32).new.to_s.should eq "{}"
-    MultiSet.new([0, 1, 2, 2]).to_s.should eq "{0 => 1, 1 => 1, 2 => 2}"
-    MultiSet{0, 1, 2, 2}.to_s.should eq "{0 => 1, 1 => 1, 2 => 2}"
+    MultiSet(Int32).new.to_s.should eq "MultiSet{}"
+    MultiSet.new([0, 1, 2, 2]).to_s.should eq "MultiSet{0, 1, 2, 2}"
+    MultiSet{0, 1, 2, 2}.to_s.should eq "MultiSet{0, 1, 2, 2}"
   end
 
   it "size" do
@@ -23,27 +23,29 @@ describe "MultiSet" do
     a.add 1
     a.add 2
     a << 1
-    a.to_s.should eq "{1 => 2, 2 => 1}"
+    a.inspect.should eq "{1(2), 2(1)}"
 
     a.add 3, 5
     a.add 2, 3
-    a.to_s.should eq "{1 => 2, 2 => 4, 3 => 5}"
+    a.inspect.should eq "{1(2), 2(4), 3(5)}"
   end
 
   it "delete" do
     a = MultiSet{1, 1, 1, 1, 1, 2, 2, 3}
     a.delete 2
-    a.to_s.should eq "{1 => 5, 2 => 1, 3 => 1}"
+    a.inspect.should eq "{1(5), 2(1), 3(1)}"
     a.delete 1, 3
-    a.to_s.should eq "{1 => 2, 2 => 1, 3 => 1}"
+    a.inspect.should eq "{1(2), 2(1), 3(1)}"
+    a.delete 3, 128
+    a.inspect.should eq "{1(2), 2(1)}"
   end
 
   it "concat" do
     a = MultiSet{1, 1, 1, 1, 1, 2, 2, 3}
     a.concat a
-    a.to_s.should eq "{1 => 10, 2 => 4, 3 => 2}"
+    a.inspect.should eq "{1(10), 2(4), 3(2)}"
     a.concat({0, 0, 0, 1, 2, 3})
-    a.to_s.should eq "{1 => 11, 2 => 5, 3 => 3, 0 => 3}"
+    a.inspect.should eq "{1(11), 2(5), 3(3), 0(3)}"
   end
 
   it "clear" do
@@ -128,24 +130,24 @@ describe "MultiSet" do
   it "&" do
     a = MultiSet{0, 0, 0, 1, 1, 2, 3}
     b = MultiSet{0, 1, 1, 2, 2, 2}
-    (a & b).to_s.should eq "{0 => 1, 1 => 2, 2 => 1}"
+    (a & b).inspect.should eq "{0(1), 1(2), 2(1)}"
   end
 
   it "|" do
     a = MultiSet{0, 0, 0, 1, 1, 2, 3}
     b = MultiSet{0, 1, 1, 2, 2, 2}
-    (a | b).to_s.should eq "{0 => 4, 1 => 4, 2 => 4, 3 => 1}"
-    (a + b).to_s.should eq "{0 => 4, 1 => 4, 2 => 4, 3 => 1}"
+    (a | b).inspect.should eq "{0(4), 1(4), 2(4), 3(1)}"
+    (a + b).inspect.should eq "{0(4), 1(4), 2(4), 3(1)}"
   end
 
   it "to_s" do
-    MultiSet{0, 0, 0, 1, 1, 2}.to_s.should eq "{0 => 3, 1 => 2, 2 => 1}"
+    MultiSet{0, 0, 0, 1, 1, 2}.to_s.should eq "MultiSet{0, 0, 0, 1, 1, 2}"
   end
 
   it "inspect" do
     io = IO::Memory.new
     MultiSet{0, 0, 0, 1, 1, 2}.inspect(io)
-    io.to_s.should eq "[0, 0, 0, 1, 1, 2]"
+    io.to_s.should eq "{0(3), 1(2), 2(1)}"
   end
 
   it "Iterable" do

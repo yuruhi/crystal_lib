@@ -186,13 +186,29 @@ class MultiSet(T)
     self | other
   end
 
+  # Writes a string representation of the multiset to *io*.
+  #
+  # ```
+  # set = MultiSet{3, 1, 4, 1, 5}
+  # set.to_s # => "MultiSet{3, 1, 1, 4, 5}"
+  # ```
   def to_s(io : IO)
-    io << @count
+    io << "MultiSet{"
+    each.join(", ", io)
+    io << '}'
   end
 
+  # Writes a string representation of the multiset to *io*.
+  #
+  # ```
+  # set = MultiSet{3, 1, 4, 1, 5}
+  # set.to_s # => "{3(1), 1(2), 4(1), 5(1)}"
+  # ```
   def inspect(io : IO)
-    io << '['
-    each.join(", ", io)
-    io << ']'
+    io << '{'
+    each_count.join(", ", io) do |(elem, count), io|
+      io << elem << '(' << count << ')'
+    end
+    io << '}'
   end
 end
