@@ -1,7 +1,7 @@
 require "../graph"
 
 class UnweightedGraph
-  def bfs(start : Int32, unreachable : U = nil) forall U
+  def bfs(start : Int) : Array(Int32?)
     raise ArgumentError.new unless 0 <= start < size
     queue = Deque{start}
     dist = Array(Int32?).new(size, nil)
@@ -14,15 +14,15 @@ class UnweightedGraph
         end
       end
     end
-    dist.map { |i| i || unreachable }
+    dist
   end
 
-  def bfs!(start : Int32)
+  def bfs!(start : Int) : Array(Int32)
     bfs(start).map(&.not_nil!)
   end
 
-  def bfs_st(start : Int32, goal : Int32, unreachable : U = nil) forall U
-    raise ArgumentError.new unless 0 <= start < size
+  def bfs_st(start : Int, goal : Int) : Int32?
+    raise ArgumentError.new unless 0 <= start < size && 0 <= goal < size
     queue = Deque{start}
     dist = Array(Int32?).new(size, nil)
     dist[start] = 0
@@ -36,6 +36,6 @@ class UnweightedGraph
         end
       end
     end
-    unreachable
+    nil
   end
 end

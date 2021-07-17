@@ -11,7 +11,7 @@ n.times do
   end
 end
 
-dist = graph.bfs(0, -1)
-(0...n).each do |i|
-  puts({i + 1, dist[i]}.join(' '))
+dist = graph.bfs(0)
+graph.bfs(0).each_with_index do |d, i|
+  puts "#{i + 1} #{d || -1}"
 end
