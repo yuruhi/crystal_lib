@@ -5,7 +5,7 @@ graph = UnweightedUndirectedGraph.new n, Array.new(m) {
   a, b = read_line.split.map(&.to_i)
   {a, b}
 }
-m, id, groups = graph.components
+_, _, groups = graph.components
 
 read_line.to_i.times do
   a, b = read_line.split.map(&.to_i)
