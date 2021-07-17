@@ -3,7 +3,7 @@ name: verify
 on: push
 
 jobs:
-    linter:
+    api:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v1
@@ -12,6 +12,9 @@ jobs:
               uses: oprypin/install-crystal@v1
               with:
                   crystal: 0.33.0
+
+            - name: Install ac-library
+              run: git clone https://github.com/google/ac-library.cr.git atcoder
 
             - name: Gerarate API docs
               run: |
