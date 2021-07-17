@@ -110,6 +110,14 @@ abstract class Graph(T)
     end
     result
   end
+
+  def reverse
+    result = self.class.new(size)
+    each_edge do |edge|
+      result.add_edge(edge.reverse)
+    end
+    result
+  end
 end
 
 class DirectedGraph(T) < Graph(T)
@@ -193,6 +201,14 @@ abstract class UnweightedGraph
     result = [] of UnweightedEdge2
     each_edge do |edge|
       result << edge
+    end
+    result
+  end
+
+  def reverse
+    result = self.class.new(size)
+    each_edge do |edge|
+      result.add_edge(edge.reverse)
     end
     result
   end
