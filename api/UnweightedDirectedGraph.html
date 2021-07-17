@@ -120,16 +120,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/Edge" data-name="edge(t)">
-      <a href="Edge.html">Edge</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/Edge2" data-name="edge2(t)">
-      <a href="Edge2.html">Edge2</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/yuruhi/crystal_lib/Enumerable" data-name="enumerable(t)">
       <a href="Enumerable.html">Enumerable</a>
       
@@ -170,7 +160,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/Graph" data-name="graph(t)">
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Graph" data-name="graph(edge, edge2)">
       <a href="Graph.html">Graph</a>
       
     </li>
@@ -200,7 +190,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/LCA" data-name="lca">
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/LCA" data-name="lca(edge, edge2)">
       <a href="LCA.html">LCA</a>
       
     </li>
@@ -290,18 +280,28 @@
       
     </li>
   
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedEdge" data-name="unweightededge">
+      <a href="UnweightedEdge.html">UnweightedEdge</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedEdge2" data-name="unweightededge2">
       <a href="UnweightedEdge2.html">UnweightedEdge2</a>
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedGraph" data-name="unweightedgraph">
-      <a href="UnweightedGraph.html">UnweightedGraph</a>
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedUndirectedGraph" data-name="unweightedundirectedgraph">
+      <a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a>
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedUndirectedGraph" data-name="unweightedundirectedgraph">
-      <a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a>
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/WeightedEdge" data-name="weightededge(t)">
+      <a href="WeightedEdge.html">WeightedEdge</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/WeightedEdge2" data-name="weightededge2(t)">
+      <a href="WeightedEdge2.html">WeightedEdge2</a>
       
     </li>
   
@@ -319,7 +319,7 @@
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="UnweightedDirectedGraph.html">UnweightedDirectedGraph</a></li><li class="superclass"><a href="UnweightedGraph.html">UnweightedGraph</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="UnweightedDirectedGraph.html">UnweightedDirectedGraph</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -327,6 +327,20 @@
 
 
 
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Graph.html">Graph</a>(<a href="UnweightedEdge.html">UnweightedEdge</a>, <a href="UnweightedEdge2.html">UnweightedEdge2</a>)</li>
+    
+  </ul>
 
 
 
@@ -347,7 +361,7 @@
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph.cr#L217" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph.cr#L123" target="_blank">
         graph.cr
       </a>
     
@@ -369,7 +383,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(size:Int,edges)-class-method" class="signature"><strong>.new</strong>(size : Int, edges)</a>
+        <a href="#new(size:Int,edges:Enumerable)-class-method" class="signature"><strong>.new</strong>(size : Int, edges : Enumerable)</a>
         
       </li>
     
@@ -381,6 +395,28 @@
   </ul>
 
 
+
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#directed?-class-method" class="signature"><strong>.directed?</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#weighted?-class-method" class="signature"><strong>.weighted?</strong></a>
+        
+      </li>
+    
+  </ul>
 
 
 
@@ -395,12 +431,9 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#add_edge(edge:UnweightedEdge2)-instance-method" class="signature"><strong>#add_edge</strong>(edge : UnweightedEdge2)</a>
+        <a href="#%3C%3C(edge:UnweightedEdge2)-instance-method" class="signature"><strong>#<<</strong>(edge : UnweightedEdge2)</a>
         
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#to_undirected:self-instance-method" class="signature"><strong>#to_undirected</strong> : <span class="k">self</span></a>
+          <div class="summary"><p>add <em>edge</em></p></div>
         
       </li>
     
@@ -414,121 +447,195 @@
   
     
 
-  <h3>Instance methods inherited from class <code><a href="UnweightedGraph.html">UnweightedGraph</a></code></h3>
+  <h3>Instance methods inherited from module <code><a href="Graph.html">Graph</a>(<a href="UnweightedEdge.html">UnweightedEdge</a>, <a href="UnweightedEdge2.html">UnweightedEdge2</a>)</code></h3>
   
   
-    <a href="UnweightedGraph.html#[](*args,**options)-instance-method" class="tooltip">
+    <a href="Graph.html#%3C%3C(edge:Tuple)-instance-method" class="tooltip">
+      <span><<(edge : Tuple)<br/><<(edge : Edge2)</span>
+    <<</a>, 
+    
+  
+    <a href="Graph.html#[](*args,**options)-instance-method" class="tooltip">
       <span>[](*args, **options)<br/>[](*args, **options, &)</span>
     []</a>, 
     
   
-    <a href="UnweightedGraph.html#add_edge(from:Int,to:Int)-instance-method" class="tooltip">
-      <span>add_edge(from : Int, to : Int)<br/>add_edge(from_to : ::Tuple(Int32, Int32))</span>
-    add_edge</a>, 
-    
-  
-    <a href="UnweightedGraph.html#add_edges(edges)-instance-method" class="tooltip">
-      <span>add_edges(edges)</span>
+    <a href="Graph.html#add_edges(edges:Enumerable)-instance-method" class="tooltip">
+      <span>add_edges(edges : Enumerable)</span>
     add_edges</a>, 
     
   
-    <a href="UnweightedGraph.html#bfs(start:Int):Array(Int32?)-instance-method" class="tooltip">
+    <a href="Graph.html#bfs(start:Int):Array(Int32?)-instance-method" class="tooltip">
       <span>bfs(start : Int) : Array(Int32?)</span>
     bfs</a>, 
     
   
-    <a href="UnweightedGraph.html#bfs!(start:Int):Array(Int32)-instance-method" class="tooltip">
+    <a href="Graph.html#bfs!(start:Int):Array(Int32)-instance-method" class="tooltip">
       <span>bfs!(start : Int) : Array(Int32)</span>
     bfs!</a>, 
     
   
-    <a href="UnweightedGraph.html#bfs_st(start:Int,goal:Int):Int32?-instance-method" class="tooltip">
+    <a href="Graph.html#bfs01(start:Int)-instance-method" class="tooltip">
+      <span>bfs01(start : Int)<br/>bfs01(start : Int, &)</span>
+    bfs01</a>, 
+    
+  
+    <a href="Graph.html#bfs01!(start:Int32,&)-instance-method" class="tooltip">
+      <span>bfs01!(start : Int32, &)<br/>bfs01!(start : Int)</span>
+    bfs01!</a>, 
+    
+  
+    <a href="Graph.html#bfs01_st(start:Int,goal:Int,&):Int32?-instance-method" class="tooltip">
+      <span>bfs01_st(start : Int, goal : Int, &) : Int32?</span>
+    bfs01_st</a>, 
+    
+  
+    <a href="Graph.html#bfs_st(start:Int,goal:Int):Int32?-instance-method" class="tooltip">
       <span>bfs_st(start : Int, goal : Int) : Int32?</span>
     bfs_st</a>, 
     
   
-    <a href="UnweightedGraph.html#bipartite_graph:Array(Bool)?-instance-method" class="tooltip">
+    <a href="Graph.html#bipartite_graph:Array(Bool)?-instance-method" class="tooltip">
       <span>bipartite_graph : Array(Bool)?</span>
     bipartite_graph</a>, 
     
   
-    <a href="UnweightedGraph.html#components-instance-method" class="tooltip">
+    <a href="Graph.html#components-instance-method" class="tooltip">
       <span>components</span>
     components</a>, 
     
   
-    <a href="UnweightedGraph.html#each_edge(&):Nil-instance-method" class="tooltip">
-      <span>each_edge(&) : Nil</span>
-    each_edge</a>, 
+    <a href="Graph.html#compress:self-instance-method" class="tooltip">
+      <span>compress : <span class="k">self</span></span>
+    compress</a>, 
     
   
-    <a href="UnweightedGraph.html#edges-instance-method" class="tooltip">
-      <span>edges</span>
-    edges</a>, 
+    <a href="Graph.html#diameter-instance-method" class="tooltip">
+      <span>diameter</span>
+    diameter</a>, 
     
   
-    <a href="UnweightedGraph.html#graph:Array(Array(Int32))-instance-method" class="tooltip">
-      <span>graph : Array(Array(Int32))</span>
+    <a href="Graph.html#dijkstra(start:Int32)-instance-method" class="tooltip">
+      <span>dijkstra(start : Int32)</span>
+    dijkstra</a>, 
+    
+  
+    <a href="Graph.html#dijkstra!(start:Int32)-instance-method" class="tooltip">
+      <span>dijkstra!(start : Int32)</span>
+    dijkstra!</a>, 
+    
+  
+    <a href="Graph.html#each(&):Nil-instance-method" class="tooltip">
+      <span>each(&) : Nil</span>
+    each</a>, 
+    
+  
+    <a href="Graph.html#graph:Array(Array(Edge))-instance-method" class="tooltip">
+      <span>graph : Array(Array(Edge))</span>
     graph</a>, 
     
   
-    <a href="UnweightedGraph.html#indegree-instance-method" class="tooltip">
+    <a href="Graph.html#indegree-instance-method" class="tooltip">
       <span>indegree</span>
     indegree</a>, 
     
   
-    <a href="UnweightedGraph.html#outdegree-instance-method" class="tooltip">
+    <a href="Graph.html#kruskal-instance-method" class="tooltip">
+      <span>kruskal</span>
+    kruskal</a>, 
+    
+  
+    <a href="Graph.html#outdegree-instance-method" class="tooltip">
       <span>outdegree</span>
     outdegree</a>, 
     
   
-    <a href="UnweightedGraph.html#post_order(root:Int32)-instance-method" class="tooltip">
-      <span>post_order(root : Int32)</span>
+    <a href="Graph.html#post_order(root:Int)-instance-method" class="tooltip">
+      <span>post_order(root : Int)</span>
     post_order</a>, 
     
   
-    <a href="UnweightedGraph.html#pre_order(root:Int32)-instance-method" class="tooltip">
-      <span>pre_order(root : Int32)</span>
+    <a href="Graph.html#pre_order(root:Int)-instance-method" class="tooltip">
+      <span>pre_order(root : Int)</span>
     pre_order</a>, 
     
   
-    <a href="UnweightedGraph.html#reverse-instance-method" class="tooltip">
+    <a href="Graph.html#reverse-instance-method" class="tooltip">
       <span>reverse</span>
     reverse</a>, 
     
   
-    <a href="UnweightedGraph.html#size(*args,**options,&)-instance-method" class="tooltip">
+    <a href="Graph.html#size(*args,**options,&)-instance-method" class="tooltip">
       <span>size(*args, **options, &)<br/>size(*args, **options)</span>
     size</a>, 
     
   
-    <a href="UnweightedGraph.html#subtree_size(root:Int32)-instance-method" class="tooltip">
-      <span>subtree_size(root : Int32)</span>
+    <a href="Graph.html#subtree_size(root:Int)-instance-method" class="tooltip">
+      <span>subtree_size(root : Int)</span>
     subtree_size</a>, 
     
   
-    <a href="UnweightedGraph.html#topological_sort:Array(Int32)-instance-method" class="tooltip">
+    <a href="Graph.html#to_undirected-instance-method" class="tooltip">
+      <span>to_undirected</span>
+    to_undirected</a>, 
+    
+  
+    <a href="Graph.html#topological_sort:Array(Int32)-instance-method" class="tooltip">
       <span>topological_sort : Array(Int32)</span>
     topological_sort</a>, 
     
   
-    <a href="UnweightedGraph.html#tree_depth(root:Int32)-instance-method" class="tooltip">
-      <span>tree_depth(root : Int32)</span>
-    tree_depth</a>
+    <a href="Graph.html#tree_distance(root:Int)-instance-method" class="tooltip">
+      <span>tree_distance(root : Int)</span>
+    tree_distance</a>
     
   
 
 
     
 
-  <h3>Constructor methods inherited from class <code><a href="UnweightedGraph.html">UnweightedGraph</a></code></h3>
+  <h3>Constructor methods inherited from module <code><a href="Graph.html">Graph</a>(<a href="UnweightedEdge.html">UnweightedEdge</a>, <a href="UnweightedEdge2.html">UnweightedEdge2</a>)</code></h3>
   
   
-    <a href="UnweightedGraph.html#new(size:Int)-class-method" class="tooltip">
-      <span>new(size : Int)</span>
+    <a href="Graph.html#new(size:Int,edges:Enumerable)-class-method" class="tooltip">
+      <span>new(size : Int, edges : Enumerable)<br/>new(size : Int)</span>
     new</a>
     
   
+
+
+    
+
+
+  
+    
+
+  <h3>Instance methods inherited from module <code><a href="Enumerable.html">Enumerable</a>(<a href="UnweightedEdge2.html">UnweightedEdge2</a>)</code></h3>
+  
+  
+    <a href="Enumerable.html#inclusive_scan(&)-instance-method" class="tooltip">
+      <span>inclusive_scan(&)<br/>inclusive_scan</span>
+    inclusive_scan</a>, 
+    
+  
+    <a href="Enumerable.html#mex-instance-method" class="tooltip">
+      <span>mex</span>
+    mex</a>, 
+    
+  
+    <a href="Enumerable.html#mex_sorted-instance-method" class="tooltip">
+      <span>mex_sorted</span>
+    mex_sorted</a>, 
+    
+  
+    <a href="Enumerable.html#scan(init:U)forallU-instance-method" class="tooltip">
+      <span>scan(init : U) forall U<br/>scan<br/>scan(init : U, &) forall U</span>
+    scan</a>
+    
+  
+
+
+    
 
 
     
@@ -567,18 +674,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(size:Int,edges)-class-method">
+    <div class="entry-detail" id="new(size:Int,edges:Enumerable)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(size : <a href="Int.html">Int</a>, edges)
+        def self.<strong>new</strong>(size : <a href="Int.html">Int</a>, edges : <a href="Enumerable.html">Enumerable</a>)
 
-        <a class="method-permalink" href="#new(size:Int,edges)-class-method">#</a>
+        <a class="method-permalink" href="#new(size:Int,edges:Enumerable)-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph.cr#L222" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph.cr#L130" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -594,13 +701,55 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph.cr#L218" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph.cr#L126" target="_blank">View source</a>]
         
       </div>
     </div>
   
 
 
+
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="directed?-class-method">
+      <div class="signature">
+        
+        def self.<strong>directed?</strong>
+
+        <a class="method-permalink" href="#directed?-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph.cr#L144" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="weighted?-class-method">
+      <div class="signature">
+        
+        def self.<strong>weighted?</strong>
+
+        <a class="method-permalink" href="#weighted?-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph.cr#L140" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
 
 
 
@@ -613,34 +762,27 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="add_edge(edge:UnweightedEdge2)-instance-method">
+    <div class="entry-detail" id="&lt;&lt;(edge:UnweightedEdge2)-instance-method">
       <div class="signature">
         
-        def <strong>add_edge</strong>(edge : <a href="UnweightedEdge2.html">UnweightedEdge2</a>)
+        def <strong><<</strong>(edge : <a href="UnweightedEdge2.html">UnweightedEdge2</a>)
 
-        <a class="method-permalink" href="#add_edge(edge:UnweightedEdge2)-instance-method">#</a>
+        <a class="method-permalink" href="#%3C%3C(edge:UnweightedEdge2)-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="Graph.html">Graph</a>(<a href="UnweightedEdge.html">UnweightedEdge</a>, <a href="UnweightedEdge2.html">UnweightedEdge2</a>)
+            </div>
+          
+          <p>add <em>edge</em></p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph.cr#L227" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="to_undirected:self-instance-method">
-      <div class="signature">
-        
-        def <strong>to_undirected</strong> : <span class="k">self</span>
-
-        <a class="method-permalink" href="#to_undirected:self-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph.cr#L233" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph.cr#L134" target="_blank">View source</a>]
         
       </div>
     </div>

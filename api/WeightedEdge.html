@@ -15,7 +15,7 @@
 </svg>
 
   <meta id="repository-name" content="github.com/yuruhi/crystal_lib">
-  <title>Edge(T) - github.com/yuruhi/crystal_lib</title>
+  <title>WeightedEdge(T) - github.com/yuruhi/crystal_lib</title>
   <script type="text/javascript">
     CrystalDoc.base_path = "";
   </script>
@@ -120,16 +120,6 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/yuruhi/crystal_lib/Edge" data-name="edge(t)">
-      <a href="Edge.html">Edge</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/Edge2" data-name="edge2(t)">
-      <a href="Edge2.html">Edge2</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/yuruhi/crystal_lib/Enumerable" data-name="enumerable(t)">
       <a href="Enumerable.html">Enumerable</a>
       
@@ -170,7 +160,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/Graph" data-name="graph(t)">
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Graph" data-name="graph(edge, edge2)">
       <a href="Graph.html">Graph</a>
       
     </li>
@@ -200,7 +190,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/LCA" data-name="lca">
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/LCA" data-name="lca(edge, edge2)">
       <a href="LCA.html">LCA</a>
       
     </li>
@@ -290,18 +280,28 @@
       
     </li>
   
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedEdge" data-name="unweightededge">
+      <a href="UnweightedEdge.html">UnweightedEdge</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedEdge2" data-name="unweightededge2">
       <a href="UnweightedEdge2.html">UnweightedEdge2</a>
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedGraph" data-name="unweightedgraph">
-      <a href="UnweightedGraph.html">UnweightedGraph</a>
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedUndirectedGraph" data-name="unweightedundirectedgraph">
+      <a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a>
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedUndirectedGraph" data-name="unweightedundirectedgraph">
-      <a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a>
+  <li class=" current" data-id="github.com/yuruhi/crystal_lib/WeightedEdge" data-name="weightededge(t)">
+      <a href="WeightedEdge.html">WeightedEdge</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/WeightedEdge2" data-name="weightededge2(t)">
+      <a href="WeightedEdge2.html">WeightedEdge2</a>
       
     </li>
   
@@ -314,12 +314,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">struct</span> Edge(T)
+  <span class="kind">struct</span> WeightedEdge(T)
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="Edge.html">Edge(T)</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="WeightedEdge.html">WeightedEdge(T)</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
 
 
 
@@ -338,7 +338,7 @@
   </h2>
   <ul class="other-types-list">
     
-      <li class="other-type"><a href="Comparable.html">Comparable</a>(<a href="Edge.html">Edge(T)</a>)</li>
+      <li class="other-type"><a href="Comparable.html">Comparable</a>(<a href="WeightedEdge.html">WeightedEdge(T)</a>)</li>
     
   </ul>
 
@@ -361,8 +361,8 @@
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph.cr#L1" target="_blank">
-        graph.cr
+      <a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/edge.cr#L1" target="_blank">
+        graph/edge.cr
       </a>
     
     <br/>
@@ -383,7 +383,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(to:Int32,cost:T)-class-method" class="signature"><strong>.new</strong>(to : Int32, cost : T)</a>
+        <a href="#new(to,cost:T)-class-method" class="signature"><strong>.new</strong>(to, cost : T)</a>
         
       </li>
     
@@ -404,7 +404,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#(other:Edge(T))-instance-method" class="signature"><strong>#<=></strong>(other : Edge(T))</a>
+        <a href="#(other:WeightedEdge(T))-instance-method" class="signature"><strong>#<=></strong>(other : WeightedEdge(T))</a>
         
       </li>
     
@@ -448,7 +448,7 @@
   
     
 
-  <h3>Instance methods inherited from module <code><a href="Comparable.html">Comparable</a>(<a href="Edge.html">Edge(T)</a>)</code></h3>
+  <h3>Instance methods inherited from module <code><a href="Comparable.html">Comparable</a>(<a href="WeightedEdge.html">WeightedEdge(T)</a>)</code></h3>
   
   
     <a href="Comparable.html#max(x:T(T))-instance-method" class="tooltip">
@@ -512,18 +512,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(to:Int32,cost:T)-class-method">
+    <div class="entry-detail" id="new(to,cost:T)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(to : Int32, cost : T)
+        def self.<strong>new</strong>(to, cost : T)
 
-        <a class="method-permalink" href="#new(to:Int32,cost:T)-class-method">#</a>
+        <a class="method-permalink" href="#new(to,cost:T)-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/edge.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -542,18 +542,18 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="(other:Edge(T))-instance-method">
+    <div class="entry-detail" id="(other:WeightedEdge(T))-instance-method">
       <div class="signature">
         
-        def <strong><=></strong>(other : <a href="Edge.html">Edge</a>(T))
+        def <strong><=></strong>(other : <a href="WeightedEdge.html">WeightedEdge</a>(T))
 
-        <a class="method-permalink" href="#(other:Edge(T))-instance-method">#</a>
+        <a class="method-permalink" href="#(other:WeightedEdge(T))-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/edge.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -569,7 +569,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/edge.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -585,7 +585,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/edge.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -601,7 +601,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/edge.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -617,7 +617,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/edge.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -633,7 +633,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/edge.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -649,7 +649,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/edge.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>

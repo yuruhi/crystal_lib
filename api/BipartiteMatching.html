@@ -120,16 +120,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/Edge" data-name="edge(t)">
-      <a href="Edge.html">Edge</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/Edge2" data-name="edge2(t)">
-      <a href="Edge2.html">Edge2</a>
-      
-    </li>
-  
   <li class=" " data-id="github.com/yuruhi/crystal_lib/Enumerable" data-name="enumerable(t)">
       <a href="Enumerable.html">Enumerable</a>
       
@@ -170,7 +160,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/Graph" data-name="graph(t)">
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Graph" data-name="graph(edge, edge2)">
       <a href="Graph.html">Graph</a>
       
     </li>
@@ -200,7 +190,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/LCA" data-name="lca">
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/LCA" data-name="lca(edge, edge2)">
       <a href="LCA.html">LCA</a>
       
     </li>
@@ -290,18 +280,28 @@
       
     </li>
   
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedEdge" data-name="unweightededge">
+      <a href="UnweightedEdge.html">UnweightedEdge</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedEdge2" data-name="unweightededge2">
       <a href="UnweightedEdge2.html">UnweightedEdge2</a>
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedGraph" data-name="unweightedgraph">
-      <a href="UnweightedGraph.html">UnweightedGraph</a>
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedUndirectedGraph" data-name="unweightedundirectedgraph">
+      <a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a>
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedUndirectedGraph" data-name="unweightedundirectedgraph">
-      <a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a>
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/WeightedEdge" data-name="weightededge(t)">
+      <a href="WeightedEdge.html">WeightedEdge</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/WeightedEdge2" data-name="weightededge2(t)">
+      <a href="WeightedEdge2.html">WeightedEdge2</a>
       
     </li>
   
@@ -328,6 +328,22 @@
 
 
 
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Enumerable.html">Enumerable</a>(<a href="UnweightedEdge2.html">UnweightedEdge2</a>)</li>
+    
+      <li class="other-type">Iterable(<a href="UnweightedEdge2.html">UnweightedEdge2</a>)</li>
+    
+  </ul>
+
 
 
 
@@ -347,7 +363,7 @@
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph/bipartite_matching.cr#L3" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/bipartite_matching.cr#L3" target="_blank">
         graph/bipartite_matching.cr
       </a>
     
@@ -367,6 +383,11 @@
     Constructors
   </h2>
   <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new(left,right,edges:Enumerable)-class-method" class="signature"><strong>.new</strong>(left, right, edges : Enumerable)</a>
+        
+      </li>
     
       <li class="entry-summary">
         <a href="#new(left,right)-class-method" class="signature"><strong>.new</strong>(left, right)</a>
@@ -390,37 +411,36 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#add_edge(l:Int32,r:Int32)-instance-method" class="signature"><strong>#add_edge</strong>(l : Int32, r : Int32)</a>
+        <a href="#%3C%3C(edge:UnweightedEdge2)-instance-method" class="signature"><strong>#<<</strong>(edge : UnweightedEdge2)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#add_edge(edge:UnweightedEdge2)-instance-method" class="signature"><strong>#add_edge</strong>(edge : UnweightedEdge2)</a>
+        <a href="#%3C%3C(edge:Tuple)-instance-method" class="signature"><strong>#<<</strong>(edge : Tuple)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#add_edges(edges:Array(UnweightedEdge2))-instance-method" class="signature"><strong>#add_edges</strong>(edges : Array(UnweightedEdge2))</a>
+        <a href="#add_edges(edges:Enumerable)-instance-method" class="signature"><strong>#add_edges</strong>(edges : Enumerable)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#each_edge(&):Nil-instance-method" class="signature"><strong>#each_edge</strong>(&) : Nil</a>
+        <a href="#each(&):Nil-instance-method" class="signature"><strong>#each</strong>(&) : Nil</a>
+        
+          <div class="summary"><p>Must yield this collection's elements to the block.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#each_edge-instance-method" class="signature"><strong>#each_edge</strong></a>
+        <a href="#each-instance-method" class="signature"><strong>#each</strong></a>
+        
+          <div class="summary"><p>Must return an <code>Iterator</code> over the elements in this collection.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#edges-instance-method" class="signature"><strong>#edges</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#graph:UnweightedDirectedGraph-instance-method" class="signature"><strong>#graph</strong> : UnweightedDirectedGraph</a>
+        <a href="#graph:Array(Array(Int32))-instance-method" class="signature"><strong>#graph</strong> : Array(Array(Int32))</a>
         
       </li>
     
@@ -459,6 +479,50 @@
   
     
 
+  <h3>Instance methods inherited from module <code><a href="Enumerable.html">Enumerable</a>(<a href="UnweightedEdge2.html">UnweightedEdge2</a>)</code></h3>
+  
+  
+    <a href="Enumerable.html#inclusive_scan(&)-instance-method" class="tooltip">
+      <span>inclusive_scan(&)<br/>inclusive_scan</span>
+    inclusive_scan</a>, 
+    
+  
+    <a href="Enumerable.html#mex-instance-method" class="tooltip">
+      <span>mex</span>
+    mex</a>, 
+    
+  
+    <a href="Enumerable.html#mex_sorted-instance-method" class="tooltip">
+      <span>mex_sorted</span>
+    mex_sorted</a>, 
+    
+  
+    <a href="Enumerable.html#scan(init:U)forallU-instance-method" class="tooltip">
+      <span>scan(init : U) forall U<br/>scan<br/>scan(init : U, &) forall U</span>
+    scan</a>
+    
+  
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
 
     
 
@@ -479,6 +543,22 @@
     Constructor Detail
   </h2>
   
+    <div class="entry-detail" id="new(left,right,edges:Enumerable)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(left, right, edges : <a href="Enumerable.html">Enumerable</a>)
+
+        <a class="method-permalink" href="#new(left,right,edges:Enumerable)-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/bipartite_matching.cr#L18" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
     <div class="entry-detail" id="new(left,right)-class-method">
       <div class="signature">
         
@@ -490,7 +570,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph/bipartite_matching.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/bipartite_matching.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -509,114 +589,116 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="add_edge(l:Int32,r:Int32)-instance-method">
+    <div class="entry-detail" id="&lt;&lt;(edge:UnweightedEdge2)-instance-method">
       <div class="signature">
         
-        def <strong>add_edge</strong>(l : Int32, r : Int32)
+        def <strong><<</strong>(edge : <a href="UnweightedEdge2.html">UnweightedEdge2</a>)
 
-        <a class="method-permalink" href="#add_edge(l:Int32,r:Int32)-instance-method">#</a>
+        <a class="method-permalink" href="#%3C%3C(edge:UnweightedEdge2)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph/bipartite_matching.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/bipartite_matching.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="add_edge(edge:UnweightedEdge2)-instance-method">
+    <div class="entry-detail" id="&lt;&lt;(edge:Tuple)-instance-method">
       <div class="signature">
         
-        def <strong>add_edge</strong>(edge : <a href="UnweightedEdge2.html">UnweightedEdge2</a>)
+        def <strong><<</strong>(edge : Tuple)
 
-        <a class="method-permalink" href="#add_edge(edge:UnweightedEdge2)-instance-method">#</a>
+        <a class="method-permalink" href="#%3C%3C(edge:Tuple)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph/bipartite_matching.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/bipartite_matching.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="add_edges(edges:Array(UnweightedEdge2))-instance-method">
+    <div class="entry-detail" id="add_edges(edges:Enumerable)-instance-method">
       <div class="signature">
         
-        def <strong>add_edges</strong>(edges : <a href="Array.html">Array</a>(<a href="UnweightedEdge2.html">UnweightedEdge2</a>))
+        def <strong>add_edges</strong>(edges : <a href="Enumerable.html">Enumerable</a>)
 
-        <a class="method-permalink" href="#add_edges(edges:Array(UnweightedEdge2))-instance-method">#</a>
+        <a class="method-permalink" href="#add_edges(edges:Enumerable)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph/bipartite_matching.cr#L28" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/bipartite_matching.cr#L33" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="each_edge(&amp;):Nil-instance-method">
+    <div class="entry-detail" id="each(&amp;):Nil-instance-method">
       <div class="signature">
         
-        def <strong>each_edge</strong>(&) : Nil
+        def <strong>each</strong>(&) : Nil
 
-        <a class="method-permalink" href="#each_edge(&):Nil-instance-method">#</a>
+        <a class="method-permalink" href="#each(&):Nil-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="Enumerable.html">Enumerable</a>(<a href="UnweightedEdge2.html">UnweightedEdge2</a>)
+            </div>
+          
+          <p>Must yield this collection's elements to the block.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph/bipartite_matching.cr#L54" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/bipartite_matching.cr#L59" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="each_edge-instance-method">
+    <div class="entry-detail" id="each-instance-method">
       <div class="signature">
         
-        def <strong>each_edge</strong>
+        def <strong>each</strong>
 
-        <a class="method-permalink" href="#each_edge-instance-method">#</a>
+        <a class="method-permalink" href="#each-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module Iterable(<a href="UnweightedEdge2.html">UnweightedEdge2</a>)
+            </div>
+          
+          <p>Must return an <code>Iterator</code> over the elements in this collection.</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph/bipartite_matching.cr#L62" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/bipartite_matching.cr#L67" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="edges-instance-method">
+    <div class="entry-detail" id="graph:Array(Array(Int32))-instance-method">
       <div class="signature">
         
-        def <strong>edges</strong>
+        def <strong>graph</strong> : <a href="Array.html">Array</a>(<a href="Array.html">Array</a>(Int32))
 
-        <a class="method-permalink" href="#edges-instance-method">#</a>
+        <a class="method-permalink" href="#graph:Array(Array(Int32))-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph/bipartite_matching.cr#L68" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="graph:UnweightedDirectedGraph-instance-method">
-      <div class="signature">
-        
-        def <strong>graph</strong> : <a href="UnweightedDirectedGraph.html">UnweightedDirectedGraph</a>
-
-        <a class="method-permalink" href="#graph:UnweightedDirectedGraph-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph/bipartite_matching.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/bipartite_matching.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -632,7 +714,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph/bipartite_matching.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/bipartite_matching.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -648,7 +730,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph/bipartite_matching.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/bipartite_matching.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -664,7 +746,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/graph/bipartite_matching.cr#L45" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/bipartite_matching.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>

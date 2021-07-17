@@ -120,16 +120,6 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/Edge" data-name="edge(t)">
-      <a href="Edge.html">Edge</a>
-      
-    </li>
-  
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/Edge2" data-name="edge2(t)">
-      <a href="Edge2.html">Edge2</a>
-      
-    </li>
-  
   <li class=" current" data-id="github.com/yuruhi/crystal_lib/Enumerable" data-name="enumerable(t)">
       <a href="Enumerable.html">Enumerable</a>
       
@@ -170,7 +160,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/Graph" data-name="graph(t)">
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Graph" data-name="graph(edge, edge2)">
       <a href="Graph.html">Graph</a>
       
     </li>
@@ -200,7 +190,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/LCA" data-name="lca">
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/LCA" data-name="lca(edge, edge2)">
       <a href="LCA.html">LCA</a>
       
     </li>
@@ -290,18 +280,28 @@
       
     </li>
   
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedEdge" data-name="unweightededge">
+      <a href="UnweightedEdge.html">UnweightedEdge</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedEdge2" data-name="unweightededge2">
       <a href="UnweightedEdge2.html">UnweightedEdge2</a>
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedGraph" data-name="unweightedgraph">
-      <a href="UnweightedGraph.html">UnweightedGraph</a>
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedUndirectedGraph" data-name="unweightedundirectedgraph">
+      <a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a>
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedUndirectedGraph" data-name="unweightedundirectedgraph">
-      <a href="UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a>
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/WeightedEdge" data-name="weightededge(t)">
+      <a href="WeightedEdge.html">WeightedEdge</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/WeightedEdge2" data-name="weightededge2(t)">
+      <a href="WeightedEdge2.html">WeightedEdge2</a>
       
     </li>
   
@@ -378,6 +378,10 @@ the <code>Iterator</code> and <code>Iterable</code> modules.</p>
   </h2>
   <ul class="other-types-list">
     
+      <li class="other-type"><a href="BipartiteMatching.html">BipartiteMatching</a></li>
+    
+      <li class="other-type"><a href="Graph.html">Graph(Edge, Edge2)</a></li>
+    
       <li class="other-type"><a href="Indexable.html">Indexable(T)</a></li>
     
       <li class="other-type"><a href="MultiSet.html">MultiSet(T)</a></li>
@@ -397,14 +401,14 @@ the <code>Iterator</code> and <code>Iterable</code> modules.</p>
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/enumerable/mex.cr#L1" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/enumerable/mex.cr#L1" target="_blank">
         enumerable/mex.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/enumerable/scan.cr#L1" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/enumerable/scan.cr#L1" target="_blank">
         enumerable/scan.cr
       </a>
     
@@ -503,7 +507,7 @@ the <code>Iterator</code> and <code>Iterable</code> modules.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/enumerable/scan.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/enumerable/scan.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -519,7 +523,7 @@ the <code>Iterator</code> and <code>Iterable</code> modules.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/enumerable/scan.cr#L30" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/enumerable/scan.cr#L30" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -540,7 +544,7 @@ the <code>Iterator</code> and <code>Iterable</code> modules.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/enumerable/mex.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/enumerable/mex.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -561,7 +565,7 @@ the <code>Iterator</code> and <code>Iterable</code> modules.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/enumerable/mex.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/enumerable/mex.cr#L3" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -577,7 +581,7 @@ the <code>Iterator</code> and <code>Iterable</code> modules.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/enumerable/scan.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/enumerable/scan.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -593,7 +597,7 @@ the <code>Iterator</code> and <code>Iterable</code> modules.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/enumerable/scan.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/enumerable/scan.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -609,7 +613,7 @@ the <code>Iterator</code> and <code>Iterable</code> modules.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/80ad5f8d2084d411e0917231d09ec6890a43bf52/src/enumerable/scan.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/enumerable/scan.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>

@@ -15,7 +15,7 @@
 </svg>
 
   <meta id="repository-name" content="github.com/yuruhi/crystal_lib">
-  <title>CulSum(T) - github.com/yuruhi/crystal_lib</title>
+  <title>UnweightedEdge - github.com/yuruhi/crystal_lib</title>
   <script type="text/javascript">
     CrystalDoc.base_path = "";
   </script>
@@ -85,7 +85,7 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/yuruhi/crystal_lib/CulSum" data-name="culsum(t)">
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/CulSum" data-name="culsum(t)">
       <a href="CulSum.html">CulSum</a>
       
     </li>
@@ -280,7 +280,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedEdge" data-name="unweightededge">
+  <li class=" current" data-id="github.com/yuruhi/crystal_lib/UnweightedEdge" data-name="unweightededge">
       <a href="UnweightedEdge.html">UnweightedEdge</a>
       
     </li>
@@ -314,12 +314,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> CulSum(T)
+  <span class="kind">struct</span> UnweightedEdge
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="CulSum.html">CulSum(T)</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="UnweightedEdge.html">UnweightedEdge</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
 
 
 
@@ -347,8 +347,8 @@
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/cul_sum.cr#L1" target="_blank">
-        datastructure/cul_sum.cr
+      <a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/edge.cr#L55" target="_blank">
+        graph/edge.cr
       </a>
     
     <br/>
@@ -369,40 +369,13 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(a:Array(T))-class-method" class="signature"><strong>.new</strong>(a : Array(T))</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#new(n:Int32,&)-class-method" class="signature"><strong>.new</strong>(n : Int32, &)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#new(a,&)-class-method" class="signature"><strong>.new</strong>(a, &)</a>
+        <a href="#new(to)-class-method" class="signature"><strong>.new</strong>(to)</a>
         
       </li>
     
   </ul>
 
 
-
-  <h2>
-    <a id="class-method-summary" class="anchor" href="#class-method-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Class Method Summary
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#build(a:Enumerable(T))-class-method" class="signature"><strong>.build</strong>(a : Enumerable(T))</a>
-        
-      </li>
-    
-  </ul>
 
 
 
@@ -417,17 +390,27 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#[](left:Int32,count:Int32)-instance-method" class="signature"><strong>#[]</strong>(left : Int32, count : Int32)</a>
+        <a href="#cost-instance-method" class="signature"><strong>#cost</strong></a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#[](range:Range)-instance-method" class="signature"><strong>#[]</strong>(range : Range)</a>
+        <a href="#inspect(io):Nil-instance-method" class="signature"><strong>#inspect</strong>(io) : Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to_a-instance-method" class="signature"><strong>#to_a</strong></a>
+        <a href="#to:Int32-instance-method" class="signature"><strong>#to</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to=(to:Int32)-instance-method" class="signature"><strong>#to=</strong>(to : Int32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s(io):Nil-instance-method" class="signature"><strong>#to_s</strong>(io) : Nil</a>
         
       </li>
     
@@ -438,6 +421,16 @@
 
 
 <div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
   
     
 
@@ -471,82 +464,24 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(a:Array(T))-class-method">
+    <div class="entry-detail" id="new(to)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(a : <a href="Array.html">Array</a>(T))
+        def self.<strong>new</strong>(to)
 
-        <a class="method-permalink" href="#new(a:Array(T))-class-method">#</a>
+        <a class="method-permalink" href="#new(to)-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/cul_sum.cr#L10" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="new(n:Int32,&amp;)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(n : Int32, &)
-
-        <a class="method-permalink" href="#new(n:Int32,&)-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/cul_sum.cr#L18" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="new(a,&amp;)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(a, &)
-
-        <a class="method-permalink" href="#new(a,&)-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/cul_sum.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/edge.cr#L58" target="_blank">View source</a>]
         
       </div>
     </div>
   
 
 
-
-  <h2>
-    <a id="class-method-detail" class="anchor" href="#class-method-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Class Method Detail
-  </h2>
-  
-    <div class="entry-detail" id="build(a:Enumerable(T))-class-method">
-      <div class="signature">
-        
-        def self.<strong>build</strong>(a : <a href="Enumerable.html">Enumerable</a>(T))
-
-        <a class="method-permalink" href="#build(a:Enumerable(T))-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/cul_sum.cr#L2" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
 
 
 
@@ -559,50 +494,82 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="[](left:Int32,count:Int32)-instance-method">
+    <div class="entry-detail" id="cost-instance-method">
       <div class="signature">
         
-        def <strong>[]</strong>(left : Int32, count : Int32)
+        def <strong>cost</strong>
 
-        <a class="method-permalink" href="#[](left:Int32,count:Int32)-instance-method">#</a>
+        <a class="method-permalink" href="#cost-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/cul_sum.cr#L33" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/edge.cr#L61" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="[](range:Range)-instance-method">
+    <div class="entry-detail" id="inspect(io):Nil-instance-method">
       <div class="signature">
         
-        def <strong>[]</strong>(range : Range)
+        def <strong>inspect</strong>(io) : Nil
 
-        <a class="method-permalink" href="#[](range:Range)-instance-method">#</a>
+        <a class="method-permalink" href="#inspect(io):Nil-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/cul_sum.cr#L37" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/edge.cr#L69" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="to_a-instance-method">
+    <div class="entry-detail" id="to:Int32-instance-method">
       <div class="signature">
         
-        def <strong>to_a</strong>
+        def <strong>to</strong> : Int32
 
-        <a class="method-permalink" href="#to_a-instance-method">#</a>
+        <a class="method-permalink" href="#to:Int32-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/datastructure/cul_sum.cr#L41" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/edge.cr#L56" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to=(to:Int32)-instance-method">
+      <div class="signature">
+        
+        def <strong>to=</strong>(to : Int32)
+
+        <a class="method-permalink" href="#to=(to:Int32)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/edge.cr#L56" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io) : Nil
+
+        <a class="method-permalink" href="#to_s(io):Nil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/9b8bdaa53bc76d3086c38d6b0830d5b94ef7463e/src/graph/edge.cr#L65" target="_blank">View source</a>]
         
       </div>
     </div>
