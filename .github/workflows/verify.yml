@@ -47,30 +47,3 @@ jobs:
               run: oj-verify run --jobs 4
 
               # run: oj-verify run test/bfs.test.cr
-            - name: Gerarate API docs
-              run: |
-                  git checkout master
-                  crystal docs
-
-            - name: Deploy
-              uses: JamesIves/github-pages-deploy-action@4.1.4
-              with:
-                  branch: gh-pages
-                  folder: docs
-                  target-folder: api
-
-    linter:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v1
-
-            - name: Set up Crystal
-              uses: oprypin/install-crystal@v1
-              with:
-                  crystal: latest
-
-            - name: Install Ameba
-              run: shards install
-
-            - name: Run linter
-              run: bin/ameba
