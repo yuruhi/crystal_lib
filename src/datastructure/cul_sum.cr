@@ -30,15 +30,15 @@ class CulSum(T)
     end
   end
 
-  def [](left : Int32, count : Int32)
+  def [](left : Int32, count : Int32) : T
     @s[left + count] - @s[left]
   end
 
-  def [](range : Range)
+  def [](range : Range) : T
     self[*Indexable.range_to_index_and_count(range, @n) || raise IndexError.new]
   end
 
-  def to_a
+  def to_a : Array(T)
     (0...@n).map { |i| self[i..i] }
   end
 end

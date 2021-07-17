@@ -18,7 +18,7 @@ class Imos2D(T)
     @table[ys][xs] += val
   end
 
-  def add(y : Range, x : Range, val : T)
+  def add(y : Range, x : Range, val : T) : Nil
     ys, yc = Indexable.range_to_index_and_count(y, height) || raise IndexError.new
     xs, xc = Indexable.range_to_index_and_count(x, width) || raise IndexError.new
     add(ys, yc, xs, xc, val)

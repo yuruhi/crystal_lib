@@ -17,7 +17,7 @@ class BinaryIndexedTree(T)
   end
 
   # Add *x* to `a[i]`
-  def add(i : Int32, x)
+  def add(i : Int32, x) : Nil
     raise IndexError.new unless 0 <= i < size
     i += 1
     while i <= size
@@ -27,7 +27,7 @@ class BinaryIndexedTree(T)
   end
 
   # Culculates sum of `a[0...i]`
-  def left_sum(i : Int32)
+  def left_sum(i : Int32) : T
     raise IndexError.new unless 0 <= i <= size
     sum = T.zero
     while i > 0
@@ -37,15 +37,15 @@ class BinaryIndexedTree(T)
     sum
   end
 
-  def [](start : Int32, count : Int32)
+  def [](start : Int32, count : Int32) : T
     left_sum(start + count) - left_sum(start)
   end
 
-  def [](range : Range)
+  def [](range : Range) : T
     self[*Indexable.range_to_index_and_count(range, size) || raise IndexError.new]
   end
 
-  def to_a
+  def to_a : Array(T)
     (0...size).map { |i| self[i..i] }
   end
 end

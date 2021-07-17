@@ -44,7 +44,7 @@ class CulSum2D(T)
     end
   end
 
-  def []?(y_start : Int, y_count : Int, x_start : Int, x_count : Int)
+  def []?(y_start : Int, y_count : Int, x_start : Int, x_count : Int) : T?
     raise ArgumentError.new "Negative y_count: #{y_count}" unless y_count >= 0
     raise ArgumentError.new "Negative x_count: #{x_count}" unless x_count >= 0
     y_start += height if y_start < 0
@@ -59,21 +59,21 @@ class CulSum2D(T)
     end
   end
 
-  def []?(y_range : Range, x_range : Range)
+  def []?(y_range : Range, x_range : Range) : T?
     ys, yc = Indexable.range_to_index_and_count(y_range, height) || return nil
     xs, xc = Indexable.range_to_index_and_count(x_range, width) || return nil
     self[ys, yc, xs, xc]?
   end
 
-  def [](ys : Int, yc : Int, xs : Int, xc : Int)
+  def [](ys : Int, yc : Int, xs : Int, xc : Int) : T
     self[ys, yc, xs, xc]? || raise IndexError.new
   end
 
-  def [](y_range : Range, x_range : Range)
+  def [](y_range : Range, x_range : Range) : T
     self[y_range, x_range]? || raise IndexError.new
   end
 
-  def to_a
+  def to_a : Array(Array(T))
     Array.new(height) do |i|
       Array.new(width) do |j|
         self[i, 1, j, 1]

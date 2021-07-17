@@ -1,7 +1,7 @@
 require "../graph"
 
 module Graph(Edge, Edge2)
-  def bfs01(start : Int, &block)
+  def bfs01(start : Int, &block) : Array(Int32?)
     raise ArgumentError.new unless 0 <= start < size
     queue = Deque{start}
     dist = Array(Int32?).new(size, nil)
@@ -25,15 +25,15 @@ module Graph(Edge, Edge2)
     dist
   end
 
-  def bfs01(start : Int)
+  def bfs01(start : Int) : Array(Int32?)
     bfs01(start, &.cost)
   end
 
-  def bfs01!(start : Int32, &block)
+  def bfs01!(start : Int32, &block) : Array(Int32)
     bfs01(start) { |edge| yield edge }.map(&.not_nil!)
   end
 
-  def bfs01!(start : Int)
+  def bfs01!(start : Int) : Array(Int32)
     bfs01!(start, &.cost)
   end
 

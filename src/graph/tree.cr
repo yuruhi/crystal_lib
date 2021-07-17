@@ -7,7 +7,7 @@ module Graph(Edge, Edge2)
     }
   end
 
-  def subtree_size(root : Int)
+  def subtree_size(root : Int) : Array(Int32)
     result = Array.new(size, 0)
     subtree_size_dfs(root, -1, result)
     result

@@ -1,7 +1,7 @@
 require "../graph"
 
 module Graph(Edge, Edge2)
-  private def topological_sort_dfs(result : Array(Int32), visited : Array(Bool), v : Int32)
+  private def topological_sort_dfs(result : Array(Int32), visited : Array(Bool), v : Int32) : Nil
     unless visited[v]
       visited[v] = true
       graph[v].each do |edge|

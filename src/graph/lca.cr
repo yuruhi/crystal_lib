@@ -46,7 +46,7 @@ class LCA(Edge, Edge2)
     @parent[0][u]
   end
 
-  def dist(u : Int, v : Int)
+  def dist(u : Int, v : Int) : Int32
     @depth[u] + @depth[v] - @depth[lca(u, v)] * 2
   end
 end

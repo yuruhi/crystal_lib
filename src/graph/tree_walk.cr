@@ -1,7 +1,7 @@
 require "../graph"
 
 module Graph(Edge, Edge2)
-  def pre_order(root : Int)
+  def pre_order(root : Int) : Array(Int32)
     result = Array(Int32).new(size)
     stack = Deque{ {root, -1} }
     while vp = stack.pop?
@@ -14,7 +14,7 @@ module Graph(Edge, Edge2)
     result
   end
 
-  def post_order(root : Int)
+  def post_order(root : Int) : Array(Int32)
     result = Array(Int32).new(size)
     visited = Array(Bool).new(size, false)
     stack = Deque{ {root, -1} }

@@ -20,17 +20,17 @@ class BipartiteMatching
     edges.each { |edge| self << edge }
   end
 
-  def <<(edge : UnweightedEdge2)
+  def <<(edge : UnweightedEdge2) : self
     raise IndexError.new unless 0 <= edge.from < left && 0 <= edge.to < right
     @graph[edge.from] << edge.to
     self
   end
 
-  def <<(edge : Tuple)
+  def <<(edge : Tuple) : self
     self << UnweightedEdge2.new(*edge)
   end
 
-  def add_edges(edges : Enumerable)
+  def add_edges(edges : Enumerable) : self
     edges.each { |edge| self << edge }
     self
   end

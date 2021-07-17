@@ -17,7 +17,7 @@ class Imos(T)
     end
   end
 
-  def add(range : Range, val : T)
+  def add(range : Range, val : T) : Nil
     start, count = Indexable.range_to_index_and_count(range, size) || raise IndexError.new
     add(start, count, val)
   end
