@@ -1,7 +1,7 @@
 require "../graph"
 
 module Graph(Edge, Edge2)
-  # Returns `{components size, index, groups}`
+  # Returns `{components size, index, groups}`.
   def components
     undirected = to_undirected
     index = Array(Int32?).new(size, nil)

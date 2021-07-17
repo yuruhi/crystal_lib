@@ -1,5 +1,5 @@
 module Enumerable(T)
-  # Returns the minimum value of the complement set
+  # Returns the minimum value of the complement set.
   def mex_sorted : T
     reduce(T.zero) do |now, x|
       next now if x < T.zero

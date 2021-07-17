@@ -3,7 +3,7 @@ class MultiSet(T)
   include Enumerable(T)
 
   @count = Hash(T, Int32).new(0)
-  getter size = 0
+  @size = 0
 
   def initialize
   end
@@ -12,29 +12,58 @@ class MultiSet(T)
     concat enumerable
   end
 
-  def kind_count
+  # Returns the number of elements in the set.
+  def size : Int32
+    @size
+  end
+
+  # Returns the number of kinds in the multiset.
+  def kind_count : Int32
     @count.size
   end
 
-  def add(object : T)
+  # Returns `true` if the multiset is empty.
+  def empty? : Bool
+    size == 0
+  end
+
+  # Returns `true` if *object* exists in the multiset.
+  def includes?(object : T) : Bool
+    @count[object] > 0
+  end
+
+  # Same as #includes?
+  def ===(object : T) : Bool
+    includes?(object)
+  end
+
+  # Returns the number of times that the *object* is present in the multiset.
+  def count(object : T)
+    @count[object]
+  end
+
+  # Adds *object* to the multiset and returns self.
+  def add(object : T) : self
     @count[object] += 1
     @size += 1
     self
   end
 
-  def add(object : T, count : Int32)
+  # Adds *object* to the multiset *count* times and returns self.
+  def add(object : T, count : Int32) : self
     raise ArgumentError.new unless count >= 0
-    return self if count == 0
     @count[object] += count
     @size += count
     self
   end
 
-  def <<(object : T)
+  # Alias for #add.
+  def <<(object : T) : self
     add object
   end
 
-  def delete(object : T)
+  # Removes the *object* from the multiset and returns `true` if it was present, otherwise returns `false`.
+  def delete(object : T) : Bool
     if flag = @count[object] > 0
       @count[object] -= 1
       @count.delete(object) if @count[object] == 0
@@ -42,7 +71,8 @@ class MultiSet(T)
     flag
   end
 
-  def delete(object : T, count : Int32)
+  # Removes the *object* from the multiset at most *count* times and returns `true` if it was present, otherwise returns `false`.
+  def delete(object : T, count : Int32) : Bool
     raise ArgumentError.new unless count >= 0
     if flag = @count[object] > 0
       @count[object] = {0, @count[object] - count}.max
@@ -51,43 +81,17 @@ class MultiSet(T)
     flag
   end
 
-  def concat(elems)
+  # Adds #each element of *elems* to the multisetset and returns self.
+  def concat(elems) : self
     elems.each { |elem| self << elem }
     self
   end
 
+  # Removes all elements in the multiset and returns `self`.
   def clear
     @count.clear
     @size = 0
-  end
-
-  def count(object : T)
-    @count[object]
-  end
-
-  def empty?
-    size == 0
-  end
-
-  def includes?(object : T)
-    @count[object] > 0
-  end
-
-  def intersects?(other : MultiSet(T))
-    if kind_count < other.kind_count
-      any? { |o| other.includes?(o) }
-    else
-      other.any? { |o| includes?(o) }
-    end
-  end
-
-  def subset_of?(other : MultiSet(T))
-    return false if other.size < size
-    all? { |o| other.includes?(o) }
-  end
-
-  def superset_of?(other : MultiSet(T))
-    other.subset_of?(self)
+    self
   end
 
   private class MultiSetIterator(T)
@@ -111,27 +115,52 @@ class MultiSet(T)
     end
   end
 
+  # Returns an iterator for each element of the multiset.
   def each
     MultiSetIterator(T).new(@count)
   end
 
+  # Yields each element of the multiset, and returns `nil`.
   def each(&) : Nil
     @count.each do |(elem, cnt)|
       cnt.times { yield elem }
     end
   end
 
+  # Returns `true` if the multiset and the given multiset have at least one element in common.
+  def intersects?(other : self)
+    if kind_count < other.kind_count
+      any? { |o| other.includes?(o) }
+    else
+      other.any? { |o| includes?(o) }
+    end
+  end
+
+  # Returns `true` if the multiset is a subset of the given multiset.
+  def subset_of?(other : self)
+    return false if other.size < size
+    all? { |o| other.includes?(o) }
+  end
+
+  # Returns true if the multiset is a superset of the given multiset.
+  def superset_of?(other : self)
+    other.subset_of?(self)
+  end
+
+  # Returns an iterator for each tuple of element and count of the multiset
   def each_count
     @count.each
   end
 
+  # Yields each pair of element and count of the multiset, and returns `nil`.
   def each_count(&) : Nil
     @count.each do |(elem, cnt)|
-      yield({elem, cnt})
+      yield(elem, cnt)
     end
   end
 
-  def &(other : MultiSet(T))
+  # Intersection
+  def &(other : MultiSet(T)) : self
     small, large = self, other
     if large.kind_count < small.kind_count
       small, large = large, small
@@ -144,6 +173,7 @@ class MultiSet(T)
     result
   end
 
+  # Union
   def |(other : MultiSet(U)) forall U
     result = MultiSet(T | U).new
     each_count { |(elem, cnt)| result.add elem, cnt }
@@ -151,6 +181,7 @@ class MultiSet(T)
     result
   end
 
+  # Addition
   def +(other : MultiSet(U)) forall U
     self | other
   end

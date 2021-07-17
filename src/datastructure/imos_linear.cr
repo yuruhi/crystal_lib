@@ -7,7 +7,7 @@ class ImosLinear(T)
     @b = Array(T).new(@size + 1, T.zero)
   end
 
-  # Add `a + (i - l) * b` to `[l, r)`
+  # Add `a + (i - l) * b` to `[l, r)`.
   def add(start : Int, count : Int, val_a : T, val_b : T) : Nil
     raise "self had been called `#build`" if @builded
     raise ArgumentError.new "Negative count: #{count}" if count < 0

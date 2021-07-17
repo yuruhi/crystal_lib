@@ -14,7 +14,7 @@ module Graph(Edge, Edge2)
     add_edges(edges)
   end
 
-  # add *edge*
+  # Add *edge*.
   abstract def <<(edge : Edge2)
 
   # :ditto:
