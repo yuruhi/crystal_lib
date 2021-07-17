@@ -32,7 +32,7 @@ class MultiSet(T)
     @count[object] > 0
   end
 
-  # Same as #includes?
+  # Same as `includes?`
   def ===(object : T) : Bool
     includes?(object)
   end
@@ -57,7 +57,7 @@ class MultiSet(T)
     self
   end
 
-  # Alias for #add.
+  # Alias for `add`.
   def <<(object : T) : self
     add object
   end
@@ -81,7 +81,7 @@ class MultiSet(T)
     flag
   end
 
-  # Adds #each element of *elems* to the multisetset and returns self.
+  # Adds `each` element of *elems* to the multisetset and returns self.
   def concat(elems) : self
     elems.each { |elem| self << elem }
     self
