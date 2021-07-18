@@ -3,13 +3,14 @@
 # ```plain
 # Inside input macro                             | Expanded code
 # -----------------------------------------------+---------------------------------------
-# uppercase string (Int32, Int64, Float64, etc.) | {}.new(Scanner.s)
+# Uppercase string (Int32, Int64, Float64, etc.) | {}.new(Scanner.s)
 # s                                              | Scanner.s
 # c                                              | Scanner.c
-# other lowercase string (i, i64, f, etc.)       | Scanner.s.to_{}
-# tuple literal {t1, t2, t3}                     | {input(t1), input(t2), input(t3)}
-# array literal [t1, t2, t3]                     | [input(t1), input(t2), input(t3)]
+# Other lowercase string (i, i64, f, etc.)       | Scanner.s.to_{}
 # type[size]                                     | Array.new(input(size)) { input(type) }
+# Tuple literal {t1, t2, t3}                     | {input(t1), input(t2), input(t3)}
+# Array literal [t1, t2, t3]                     | [input(t1), input(t2), input(t3)]
+# Range literal t1..t2                           | input(t1)..input(t2)
 # ```
 #
 # ### Examples
@@ -142,6 +143,8 @@ macro input(s)
     { {% for i in 0...s.size %} input({{s[i]}}), {% end %} }
   {% elsif s.is_a?(ArrayLiteral) %}
     [ {% for i in 0...s.size %} input({{s[i]}}), {% end %} ]
+  {% elsif s.is_a?(RangeLiteral) %}
+    Range.new(input({{s.begin}}), input({{s.end}}), {{s.excludes_end?}})
   {% else %}
     internal_input({{s.id}}, {{s.id}})
   {% end %}
