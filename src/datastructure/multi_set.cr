@@ -5,9 +5,18 @@ class MultiSet(T)
   @count = Hash(T, Int32).new(0)
   @size = 0
 
+  # Returns the additive identity of this type.
+  #
+  # This is an empty multiset
+  def self.additive_identify : self
+    new
+  end
+
+  # Creates a new, empty multiset.
   def initialize
   end
 
+  # Creates a new multiset from the elements in *enumerable*.
   def initialize(enumerable : Enumerable(T))
     concat enumerable
   end
