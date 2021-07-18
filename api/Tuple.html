@@ -15,9 +15,9 @@
 </svg>
 
   <meta id="repository-name" content="github.com/yuruhi/crystal_lib">
-  <title>README - github.com/yuruhi/crystal_lib</title>
+  <title>Tuple(*T) - github.com/yuruhi/crystal_lib</title>
   <script type="text/javascript">
-  CrystalDoc.base_path = "";
+    CrystalDoc.base_path = "";
   </script>
 </head>
 <body>
@@ -265,7 +265,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/Tuple" data-name="tuple(*t)">
+  <li class=" current" data-id="github.com/yuruhi/crystal_lib/Tuple" data-name="tuple(*t)">
       <a href="Tuple.html">Tuple</a>
       
     </li>
@@ -317,11 +317,336 @@
 
 
 <div class="main-content">
-<p><a href="https://github.com/yuruhi/crystal_lib/actions" target="_blank"><img src="https://github.com/yuruhi/crystal_lib/workflows/verify/badge.svg" alt="Actions Status"/></a>
-<a href="https://github.com/yuruhi/crystal_lib/actions" target="_blank"><img src="https://github.com/yuruhi/crystal_lib/workflows/linter/badge.svg" alt="Actions Status"/></a>
-<a href="https://github.com/yuruhi/crystal_lib/actions" target="_blank"><img src="https://github.com/yuruhi/crystal_lib/workflows/api/badge.svg" alt="Actions Status"/></a></p>
+<h1 class="type-name">
 
-<p><a href="https://yuruhi.github.io/crystal_lib/" target="_blank"><img src="https://img.shields.io/static/v1?label=GitHub+Pages&message=+&color=brightgreen&logo=github" alt="GitHub Pages"/></a></p>
+  <span class="kind">struct</span> Tuple(*T)
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="Tuple.html">Tuple(*T)</a></li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>A tuple is a fixed-size, immutable, stack-allocated sequence of values
+of possibly different types.</p>
+
+<p>You can think of a <code><a href="Tuple.html">Tuple</a></code> as an immutable <code><a href="Array.html">Array</a></code> whose types for each position
+are known at compile time.</p>
+
+<p>A tuple can be created with the usual <code>new</code> method or with a tuple literal:</p>
+
+<pre><code>tuple <span class="o">=</span> {<span class="n">1</span>, <span class="s">&quot;hello&quot;</span>, <span class="s">&#39;x&#39;</span>} <span class="c"># Tuple(Int32, String, Char)</span>
+tuple[<span class="n">0</span>]                  <span class="c"># =&gt; 1</span>
+tuple[<span class="n">1</span>]                  <span class="c"># =&gt; &quot;hello&quot;</span>
+tuple[<span class="n">2</span>]                  <span class="c"># =&gt; &#39;x&#39;</span></code></pre>
+
+<p>The compiler knows what types are in each position, so when indexing
+a tuple with an integer literal the compiler will return
+the value in that index and with the expected type, like in the above
+snippet. Indexing with an integer literal outside the bounds of the tuple
+will give a compile-time error.</p>
+
+<p>Indexing with an integer value that is only known at runtime will return
+a value whose type is the union of all the types in the tuple, and might raise
+<code>IndexError</code>.</p>
+
+<p>Tuples are the preferred way to return fixed-size multiple return
+values because no memory is needed to be allocated for them:</p>
+
+<pre><code><span class="k">def</span> <span class="m">one_and_hello</span>
+  {<span class="n">1</span>, <span class="s">&quot;hello&quot;</span>}
+<span class="k">end</span>
+
+one, hello <span class="o">=</span> one_and_hello
+one   <span class="c"># =&gt; 1</span>
+hello <span class="c"># =&gt; &quot;hello&quot;</span></code></pre>
+
+<p>Good examples of the above are <code>Number#divmod</code> and <code>Enumerable#minmax</code>.</p>
+
+<p>Tuples can be splat with the <code>*</code> operator and passed to methods:</p>
+
+<pre><code><span class="k">def</span> <span class="m">multiply</span>(string, value)
+  string <span class="o">*</span> value
+<span class="k">end</span>
+
+tuple <span class="o">=</span> {<span class="s">&quot;hey&quot;</span>, <span class="n">2</span>}
+value <span class="o">=</span> multiply(<span class="o">*</span>tuple) <span class="c"># same as multiply tuple[0], tuple[1]</span>
+value                    <span class="c"># =&gt; &quot;heyhey&quot;</span></code></pre>
+
+<p>Finally, when using a splat argument in a method definition its type
+will be a tuple of the call arguments:</p>
+
+<pre><code><span class="k">def</span> <span class="m">splat_test</span>(<span class="o">*</span>args)
+  args
+<span class="k">end</span>
+
+tuple <span class="o">=</span> splat_test <span class="n">1</span>, <span class="s">&quot;hello&quot;</span>, <span class="s">&#39;x&#39;</span>
+tuple.<span class="k">class</span> <span class="c"># =&gt; Tuple(Int32, String, Char)</span>
+tuple       <span class="c"># =&gt; {1, &quot;hello&quot;, &#39;x&#39;}</span></code></pre>
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Comparable.html">Comparable</a>(<a href="Tuple.html">Tuple(*T)</a>)</li>
+    
+      <li class="other-type"><a href="Indexable.html">Indexable(Union(*T))</a></li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/yuruhi/crystal_lib/blob/a4aec0ec2353f42037d89949dbf0f444303e5c2a/src/tuple/times.cr#L1" target="_blank">
+        tuple/times.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#times(&):Nil-instance-method" class="signature"><strong>#times</strong>(&) : Nil</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#times-instance-method" class="signature"><strong>#times</strong></a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+  <h3>Instance methods inherited from module <code><a href="Comparable.html">Comparable</a>(<a href="Tuple.html">Tuple(*T)</a>)</code></h3>
+  
+  
+    <a href="Comparable.html#max(x:T)-instance-method" class="tooltip">
+      <span>max(x : T)</span>
+    max</a>, 
+    
+  
+    <a href="Comparable.html#min(x:T)-instance-method" class="tooltip">
+      <span>min(x : T)</span>
+    min</a>
+    
+  
+
+
+    
+
+
+    
+
+
+  
+    
+
+  <h3>Instance methods inherited from module <code><a href="Indexable.html">Indexable(Union(*T))</a></code></h3>
+  
+  
+    <a href="Indexable.html#[](point:Point)-instance-method" class="tooltip">
+      <span>[](point : Point)</span>
+    []</a>, 
+    
+  
+    <a href="Indexable.html#[]?(point:Point)-instance-method" class="tooltip">
+      <span>[]?(point : Point)</span>
+    []?</a>, 
+    
+  
+    <a href="Indexable.html#fetch(point:Point,&)-instance-method" class="tooltip">
+      <span>fetch(point : Point, &)</span>
+    fetch</a>
+    
+  
+
+
+    
+
+
+    
+
+
+  
+    
+
+  <h3>Instance methods inherited from module <code><a href="Enumerable.html">Enumerable(Union(*T))</a></code></h3>
+  
+  
+    <a href="Enumerable.html#inclusive_scan(&)-instance-method" class="tooltip">
+      <span>inclusive_scan(&)<br/>inclusive_scan</span>
+    inclusive_scan</a>, 
+    
+  
+    <a href="Enumerable.html#mex:Union(T)-instance-method" class="tooltip">
+      <span>mex : Union(T)</span>
+    mex</a>, 
+    
+  
+    <a href="Enumerable.html#mex_sorted:Union(T)-instance-method" class="tooltip">
+      <span>mex_sorted : Union(T)</span>
+    mex_sorted</a>, 
+    
+  
+    <a href="Enumerable.html#scan(init:U)forallU-instance-method" class="tooltip">
+      <span>scan(init : U) forall U<br/>scan<br/>scan(init : U, &) forall U</span>
+    scan</a>
+    
+  
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
 </div>
+
+
+
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="times(&amp;):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>times</strong>(&) : Nil
+
+        <a class="method-permalink" href="#times(&):Nil-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/a4aec0ec2353f42037d89949dbf0f444303e5c2a/src/tuple/times.cr#L2" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="times-instance-method">
+      <div class="signature">
+        
+        def <strong>times</strong>
+
+        <a class="method-permalink" href="#times-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/a4aec0ec2353f42037d89949dbf0f444303e5c2a/src/tuple/times.cr#L60" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
 </body>
 </html>
