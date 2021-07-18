@@ -14,17 +14,31 @@ describe Tuple do
       ]
     end
 
-    it "types of tuple are mixed" do
+    it "types of tuple are Int" do
       result = [] of {Int32, Int32, Int64}
       {1, 2, 3i64}.times do |i, j, k|
-        i.class.should eq Int32
-        j.class.should eq Int32
-        k.class.should eq Int64
+        typeof(i).should eq Int32
+        typeof(j).should eq Int32
+        typeof(k).should eq Int64
         result << {i, j, k}
       end
       result.should eq [
         {0, 0, 0}, {0, 0, 1}, {0, 0, 2},
         {0, 1, 0}, {0, 1, 1}, {0, 1, 2},
+      ]
+    end
+
+    it "types of tuple are class that has #each" do
+      result = [] of {Int32, Int32, Int64}
+      {1..2, [3, 4], {5i64, 6i64}}.times do |i, j, k|
+        typeof(i).should eq Int32
+        typeof(j).should eq Int32
+        typeof(k).should eq Int64
+        result << {i, j, k}
+      end
+      result.should eq [
+        {1, 3, 5}, {1, 3, 6}, {1, 4, 5}, {1, 4, 6},
+        {2, 3, 5}, {2, 3, 6}, {2, 4, 5}, {2, 4, 6},
       ]
     end
   end

@@ -2,16 +2,14 @@ struct Tuple
   def times(&block) : Nil
     {% begin %}
       {% for i in 0...@type.size %}
-        self[{{i}}].times do |i{{i}}|
-      {% end %}
-      yield(
-        {% for i in 0...@type.size %}
-          i{{i}},
+        {% if @type[i].has_method?(:each) %}
+          self[{{i}}].each do |%i{i}|
+        {% else %}
+          self[{{i}}].times do |%i{i}|
         {% end %}
-      )
-      {% for i in 0...@type.size %}
-        end
       {% end %}
+      yield({% for i in 0...@type.size %} %i{i}, {% end %})
+      {% for i in 0...@type.size %} end {% end %}
     {% end %}
   end
 
