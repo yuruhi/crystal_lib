@@ -329,6 +329,74 @@
 
 
 
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <h3><a id="specifications" class="anchor" href="#specifications">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Specifications</h3>
+
+<pre><code class="language-plain">Inside input macro                             | Expanded code
+-----------------------------------------------+---------------------------------------
+uppercase string (Int32, Int64, Float64, etc.) | {}.new(Scanner.s)
+s                                              | Scanner.s
+c                                              | Scanner.c
+other lowercase string (i, i64, f, etc.)       | Scanner.s.to_{}
+tuple literal {t1, t2, t3}                     | {input(t1), input(t2), input(t3)}
+array literal [t1, t2, t3]                     | [input(t1), input(t2), input(t3)]
+type[size]                                     | Array.new(input(size)) { input(type) }</code></pre>
+
+<h3><a id="examples" class="anchor" href="#examples">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Examples</h3>
+
+<p>Input:</p>
+
+<pre><code class="language-plain">5 3
+foo bar
+1 2 3 4 5</code></pre>
+
+<pre><code>n, m <span class="o">=</span> input(<span class="t">Int32</span>, <span class="t">Int64</span>) <span class="c"># =&gt; {5, 10i64}</span>
+input(<span class="t">String</span>, <span class="t">Char</span>[m])     <span class="c"># =&gt; {&quot;foo&quot;, [&#39;b&#39;, &#39;a&#39;, &#39;r&#39;]}</span>
+input(<span class="t">Int32</span>[n])            <span class="c"># =&gt; [1, 2, 3, 4, 5]</span></code></pre>
+
+<pre><code>n, m <span class="o">=</span> input(i, i64) <span class="c"># =&gt; {5, 10i64}</span>
+input(s, c[m])       <span class="c"># =&gt; {&quot;foo&quot;, [&#39;b&#39;, &#39;a&#39;, &#39;r&#39;]}</span>
+input(i[n])          <span class="c"># =&gt; [1, 2, 3, 4, 5]</span></code></pre>
+
+<p>Input:</p>
+
+<pre><code class="language-plain">2 3
+1 2 3
+4 5 6</code></pre>
+
+<pre><code>h, w <span class="o">=</span> input(i, i) <span class="c"># =&gt; {2, 3}</span>
+input(i[h, w])     <span class="c"># =&gt; [[1, 2, 3], [4, 5, 6]]</span></code></pre>
+
+<pre><code>input(i[i][i]) <span class="c"># =&gt; [[1, 2, 3], [4, 5, 6]]</span></code></pre>
+
+<p>Input:</p>
+
+<pre><code class="language-plain">5 3
+3 1 4 2 5
+1 2
+2 3
+3 1</code></pre>
+
+<pre><code>n, m <span class="o">=</span> input(i, i)       <span class="c"># =&gt; {5, 3}</span>
+input(i.pred[n])         <span class="c"># =&gt; [2, 0, 3, 1, 4]</span>
+input({i <span class="o">-</span> <span class="n">1</span>, i <span class="o">-</span> <span class="n">1</span>}[m]) <span class="c"># =&gt; [{0, 1}, {1, 2}, {2, 0}]</span></code></pre>
+
 
 
 
@@ -352,7 +420,7 @@
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/a4aec0ec2353f42037d89949dbf0f444303e5c2a/src/scanner.cr#L1" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/1aa91d866b7d3097f6f6db3b67e6b0d009484f88/src/scanner.cr#L62" target="_blank">
         scanner.cr
       </a>
     
@@ -440,7 +508,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/a4aec0ec2353f42037d89949dbf0f444303e5c2a/src/scanner.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/1aa91d866b7d3097f6f6db3b67e6b0d009484f88/src/scanner.cr#L69" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -456,7 +524,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/a4aec0ec2353f42037d89949dbf0f444303e5c2a/src/scanner.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/1aa91d866b7d3097f6f6db3b67e6b0d009484f88/src/scanner.cr#L74" target="_blank">View source</a>]
         
       </div>
     </div>
