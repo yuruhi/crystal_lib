@@ -344,7 +344,7 @@
 relative to the end of the array: -1 indicates the last element,
 -2 is the next to last element, and so on.</p>
 
-<p>An <code><a href="Array.html">Array</a></code> can be created using the usual <code>new</code> method (several are provided), or with an array literal:</p>
+<p>An <code><a href="Array.html">Array</a></code> can be created using the usual <code><a href="Array.html#new(sizes:Tuple(*T),initial_value)forallT-class-method">.new</a></code> method (several are provided), or with an array literal:</p>
 
 <pre><code><span class="t">Array</span>(<span class="t">Int32</span>).<span class="k">new</span>  <span class="c"># =&gt; []</span>
 [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>]         <span class="c"># Array(Int32)</span>
@@ -364,7 +364,7 @@ and is reallocated when elements are pushed to it when more capacity
 is needed. This is normally known as a <a href="http://en.wikipedia.org/wiki/Dynamic_array" target="_blank">dynamic array</a>.</p>
 
 <p>You can use a special array literal syntax with other types too, as long as they define an argless
-<code>new</code> method and a <code><<</code> method. <code>Set</code> is one such type:</p>
+<code><a href="Array.html#new(sizes:Tuple(*T),initial_value)forallT-class-method">.new</a></code> method and a <code><<</code> method. <code>Set</code> is one such type:</p>
 
 <pre><code>set <span class="o">=</span> <span class="t">Set</span>{<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>} <span class="c"># =&gt; Set{1, 2, 3}</span>
 set.<span class="k">class</span>          <span class="c"># =&gt; Set(Int32)</span></code></pre>
@@ -429,28 +429,35 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/c31978d1b55dc6a1f317d0d9dd2a9598da54e336/src/point.cr#L227" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/bd618c647ff7b24e653600f1d0665629bec9ccc1/src/point.cr#L227" target="_blank">
         point.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/c31978d1b55dc6a1f317d0d9dd2a9598da54e336/src/array/change.cr#L1" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/bd618c647ff7b24e653600f1d0665629bec9ccc1/src/array/change.cr#L1" target="_blank">
         array/change.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/c31978d1b55dc6a1f317d0d9dd2a9598da54e336/src/array/compress.cr#L1" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/bd618c647ff7b24e653600f1d0665629bec9ccc1/src/array/compress.cr#L1" target="_blank">
         array/compress.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/c31978d1b55dc6a1f317d0d9dd2a9598da54e336/src/math/gcd.cr#L3" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/bd618c647ff7b24e653600f1d0665629bec9ccc1/src/array/new.cr#L1" target="_blank">
+        array/new.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/yuruhi/crystal_lib/blob/bd618c647ff7b24e653600f1d0665629bec9ccc1/src/math/gcd.cr#L3" target="_blank">
         math/gcd.cr
       </a>
     
@@ -460,6 +467,28 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
 
 
 
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new(sizes:Tuple(*T),initial_value)forallT-class-method" class="signature"><strong>.new</strong>(sizes : Tuple(<span class="o">*</span><span class="t">T</span>), initial_value) forall T</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new(sizes:Tuple(*T),&)forallT-class-method" class="signature"><strong>.new</strong>(sizes : Tuple(<span class="o">*</span><span class="t">T</span>), &) forall T</a>
+        
+      </li>
+    
+  </ul>
 
 
 
@@ -486,7 +515,17 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       </li>
     
       <li class="entry-summary">
+        <a href="#chmax(indexes:Tuple,value)-instance-method" class="signature"><strong>#chmax</strong>(indexes : Tuple, value)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#chmin(i:Int,value:T)-instance-method" class="signature"><strong>#chmin</strong>(i : Int, value : T)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#chmin(indexes:Tuple,value)-instance-method" class="signature"><strong>#chmin</strong>(indexes : Tuple, value)</a>
         
       </li>
     
@@ -656,6 +695,48 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
 </div>
 
 
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(sizes:Tuple(*T),initial_value)forallT-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(sizes : <a href="Tuple.html">Tuple</a>(<span class="o">*</span><span class="t">T</span>), initial_value) forall T
+
+        <a class="method-permalink" href="#new(sizes:Tuple(*T),initial_value)forallT-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/bd618c647ff7b24e653600f1d0665629bec9ccc1/src/array/new.cr#L2" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(sizes:Tuple(*T),&amp;)forallT-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(sizes : <a href="Tuple.html">Tuple</a>(<span class="o">*</span><span class="t">T</span>), &) forall T
+
+        <a class="method-permalink" href="#new(sizes:Tuple(*T),&)forallT-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/bd618c647ff7b24e653600f1d0665629bec9ccc1/src/array/new.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
 
 
 
@@ -680,7 +761,7 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/c31978d1b55dc6a1f317d0d9dd2a9598da54e336/src/point.cr#L228" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/bd618c647ff7b24e653600f1d0665629bec9ccc1/src/point.cr#L228" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -696,7 +777,23 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/c31978d1b55dc6a1f317d0d9dd2a9598da54e336/src/array/change.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/bd618c647ff7b24e653600f1d0665629bec9ccc1/src/array/change.cr#L16" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="chmax(indexes:Tuple,value)-instance-method">
+      <div class="signature">
+        
+        def <strong>chmax</strong>(indexes : <a href="Tuple.html">Tuple</a>, value)
+
+        <a class="method-permalink" href="#chmax(indexes:Tuple,value)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/bd618c647ff7b24e653600f1d0665629bec9ccc1/src/array/change.cr#L26" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -712,7 +809,23 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/c31978d1b55dc6a1f317d0d9dd2a9598da54e336/src/array/change.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/bd618c647ff7b24e653600f1d0665629bec9ccc1/src/array/change.cr#L2" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="chmin(indexes:Tuple,value)-instance-method">
+      <div class="signature">
+        
+        def <strong>chmin</strong>(indexes : <a href="Tuple.html">Tuple</a>, value)
+
+        <a class="method-permalink" href="#chmin(indexes:Tuple,value)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/bd618c647ff7b24e653600f1d0665629bec9ccc1/src/array/change.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -728,7 +841,7 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/c31978d1b55dc6a1f317d0d9dd2a9598da54e336/src/array/compress.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/bd618c647ff7b24e653600f1d0665629bec9ccc1/src/array/compress.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -744,7 +857,7 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/c31978d1b55dc6a1f317d0d9dd2a9598da54e336/src/array/compress.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/bd618c647ff7b24e653600f1d0665629bec9ccc1/src/array/compress.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -765,7 +878,7 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/c31978d1b55dc6a1f317d0d9dd2a9598da54e336/src/math/gcd.cr#L36" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/bd618c647ff7b24e653600f1d0665629bec9ccc1/src/math/gcd.cr#L36" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -786,7 +899,7 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/c31978d1b55dc6a1f317d0d9dd2a9598da54e336/src/math/gcd.cr#L23" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/bd618c647ff7b24e653600f1d0665629bec9ccc1/src/math/gcd.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -807,7 +920,7 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/c31978d1b55dc6a1f317d0d9dd2a9598da54e336/src/math/gcd.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/bd618c647ff7b24e653600f1d0665629bec9ccc1/src/math/gcd.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -828,7 +941,7 @@ set <span class="o">&lt;&lt;</span> <span class="n">3</span></code></pre>
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/c31978d1b55dc6a1f317d0d9dd2a9598da54e336/src/math/gcd.cr#L5" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/bd618c647ff7b24e653600f1d0665629bec9ccc1/src/math/gcd.cr#L5" target="_blank">View source</a>]
         
       </div>
     </div>
