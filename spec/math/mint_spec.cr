@@ -1,6 +1,6 @@
 require "spec"
-require "../src/math/mint"
-require "../atcoder/src/Math"
+require "../../src/math/mint"
+require "../../atcoder/src/Math"
 mod = 10i64**9 + 7
 x = Mint.new(mod - 1)
 max = Int64::MAX % mod

@@ -1,5 +1,5 @@
 require "spec"
-require "../src/datastructure/multi_set"
+require "../../src/datastructure/multi_set"
 
 describe "MultiSet" do
   it "initialize" do

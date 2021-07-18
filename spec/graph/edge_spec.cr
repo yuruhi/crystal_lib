@@ -1,5 +1,5 @@
 require "spec"
-require "../src/graph/edge"
+require "../../src/graph/edge"
 
 describe WeightedEdge do
   it "#to, #cost" do

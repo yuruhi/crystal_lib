@@ -1,5 +1,5 @@
 require "spec"
-require "../src/array/change"
+require "../../src/array/change"
 
 describe Array do
   it "#chmin(i, value)" do

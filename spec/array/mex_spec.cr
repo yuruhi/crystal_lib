@@ -1,5 +1,5 @@
 require "spec"
-require "../src/enumerable/mex"
+require "../../src/enumerable/mex"
 
 describe Enumerable do
   it "#mex_sorted" do

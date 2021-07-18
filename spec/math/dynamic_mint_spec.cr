@@ -1,5 +1,5 @@
 require "spec"
-require "../src/math/dynamic_mint"
+require "../../src/math/dynamic_mint"
 
 alias M = DynamicMint
 init = 998244353

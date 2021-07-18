@@ -1,5 +1,5 @@
 require "spec"
-require "../src/enumerable/scan"
+require "../../src/enumerable/scan"
 
 describe Enumerable do
   it "#scan(init)" do
