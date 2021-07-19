@@ -21,5 +21,7 @@
 "test/datastructure/cul_sum_2d_2.test.cr": "2021-07-18 13:52:56 +0900",
 "test/datastructure/cul_sum_2d_imos_2d.test.cr": "2021-07-18 13:52:56 +0900",
 "test/datastructure/imos.test.cr": "2021-07-18 13:52:56 +0900",
-"test/datastructure/imos_linear.test.cr": "2021-07-18 13:52:56 +0900"
+"test/datastructure/imos_linear.test.cr": "2021-07-18 13:52:56 +0900",
+"test/datastructure/partially_persistent_union_find.test.cr": "2021-07-18 13:52:56 +0900",
+"test/datastructure/persistent_union_find.test.cr": "2021-07-18 13:52:56 +0900"
 }
