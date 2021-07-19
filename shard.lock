@@ -4,3 +4,7 @@ shards:
     github: crystal-ameba/ameba
     version: 0.13.4
 
+  debug:
+    github: Sija/debug.cr
+    version: 2.0.1
+
