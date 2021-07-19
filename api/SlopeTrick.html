@@ -15,7 +15,7 @@
 </svg>
 
   <meta id="repository-name" content="github.com/yuruhi/crystal_lib">
-  <title>WeightedEdge(T) - github.com/yuruhi/crystal_lib</title>
+  <title>SlopeTrick(T) - github.com/yuruhi/crystal_lib</title>
   <script type="text/javascript">
     CrystalDoc.base_path = "";
   </script>
@@ -260,7 +260,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/SlopeTrick" data-name="slopetrick(t)">
+  <li class=" current" data-id="github.com/yuruhi/crystal_lib/SlopeTrick" data-name="slopetrick(t)">
       <a href="SlopeTrick.html">SlopeTrick</a>
       
     </li>
@@ -305,7 +305,7 @@
       
     </li>
   
-  <li class=" current" data-id="github.com/yuruhi/crystal_lib/WeightedEdge" data-name="weightededge(t)">
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/WeightedEdge" data-name="weightededge(t)">
       <a href="WeightedEdge.html">WeightedEdge</a>
       
     </li>
@@ -324,33 +324,30 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">struct</span> WeightedEdge(T)
+  <span class="kind">class</span> SlopeTrick(T)
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="WeightedEdge.html">WeightedEdge(T)</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
-
-
-
-
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="SlopeTrick.html">SlopeTrick(T)</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
 
   <h2>
-    <a id="included-modules" class="anchor" href="#included-modules">
+    <a id="overview" class="anchor" href="#overview">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Included Modules
+    Overview
   </h2>
-  <ul class="other-types-list">
-    
-      <li class="other-type"><a href="Comparable.html">Comparable</a>(<a href="WeightedEdge.html">WeightedEdge(T)</a>)</li>
-    
-  </ul>
+
+  <p>reference: https://maspypy.com/slope-trick-1-%e8%a7%a3%e8%aa%ac%e7%b7%a8</p>
+
+
+
+
 
 
 
@@ -371,8 +368,8 @@
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/graph/edge.cr#L1" target="_blank">
-        graph/edge.cr
+      <a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/slope_trick.cr#L4" target="_blank">
+        datastructure/slope_trick.cr
       </a>
     
     <br/>
@@ -393,7 +390,9 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(to,cost:T)-class-method" class="signature"><strong>.new</strong>(to, cost : T)</a>
+        <a href="#new-class-method" class="signature"><strong>.new</strong></a>
+        
+          <div class="summary"><p>Lets <code>f(x) = 0</code></p></div>
         
       </li>
     
@@ -414,37 +413,88 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#(other:WeightedEdge(T))-instance-method" class="signature"><strong>#<=></strong>(other : WeightedEdge(T))</a>
+        <a href="#accumulate_min:self-instance-method" class="signature"><strong>#accumulate_min</strong> : <span class="k">self</span></a>
+        
+          <div class="summary"><p><code>g(x) := min_{y <= x} f(y)</code></p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#cost:T-instance-method" class="signature"><strong>#cost</strong> : T</a>
+        <a href="#accumulate_min_right:self-instance-method" class="signature"><strong>#accumulate_min_right</strong> : <span class="k">self</span></a>
+        
+          <div class="summary"><p><code>g(x) := min_{y >= x} f(y)</code></p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#cost=(cost:T)-instance-method" class="signature"><strong>#cost=</strong>(cost : T)</a>
+        <a href="#add(a:T):self-instance-method" class="signature"><strong>#add</strong>(a : T) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Adds constant function <code>a</code></p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#inspect(io):Nil-instance-method" class="signature"><strong>#inspect</strong>(io) : Nil</a>
+        <a href="#add_abs(a:T):self-instance-method" class="signature"><strong>#add_abs</strong>(a : T) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Adds <code>|x - a|</code></p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to:Int32-instance-method" class="signature"><strong>#to</strong> : Int32</a>
+        <a href="#add_l(a:T):self-instance-method" class="signature"><strong>#add_l</strong>(a : T) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Adds <code>max(a - x, 0)</code></p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to=(to:Int32)-instance-method" class="signature"><strong>#to=</strong>(to : Int32)</a>
+        <a href="#add_r(a:T):self-instance-method" class="signature"><strong>#add_r</strong>(a : T) : <span class="k">self</span></a>
+        
+          <div class="summary"><p>Adds <code>max(x - a, 0)</code></p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to_s(io):Nil-instance-method" class="signature"><strong>#to_s</strong>(io) : Nil</a>
+        <a href="#f(x:T):T-instance-method" class="signature"><strong>#f</strong>(x : T) : T</a>
+        
+          <div class="summary"><p>Calculates <code><a href="SlopeTrick.html#f(x:T):T-instance-method">#f(x)</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#l0-instance-method" class="signature"><strong>#l0</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#left-instance-method" class="signature"><strong>#left</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#min:T-instance-method" class="signature"><strong>#min</strong> : T</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#r0-instance-method" class="signature"><strong>#r0</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#right-instance-method" class="signature"><strong>#right</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#shift:T-instance-method" class="signature"><strong>#shift</strong> : T</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#slide(a:T):self-instance-method" class="signature"><strong>#slide</strong>(a : T) : <span class="k">self</span></a>
+        
+          <div class="summary"><p><code>g(x) := f(x - a)</code></p></div>
         
       </li>
     
@@ -455,40 +505,6 @@
 
 
 <div class="methods-inherited">
-  
-    
-
-  <h3>Instance methods inherited from module <code><a href="Comparable.html">Comparable</a>(<a href="WeightedEdge.html">WeightedEdge(T)</a>)</code></h3>
-  
-  
-    <a href="Comparable.html#max(x:T(T))-instance-method" class="tooltip">
-      <span>max(x : T(T))</span>
-    max</a>, 
-    
-  
-    <a href="Comparable.html#min(x:T(T))-instance-method" class="tooltip">
-      <span>min(x : T(T))</span>
-    min</a>
-    
-  
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
   
     
 
@@ -522,18 +538,23 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(to,cost:T)-class-method">
+    <div class="entry-detail" id="new-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(to, cost : T)
+        def self.<strong>new</strong>
 
-        <a class="method-permalink" href="#new(to,cost:T)-class-method">#</a>
+        <a class="method-permalink" href="#new-class-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Lets <code>f(x) = 0</code></p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/graph/edge.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/slope_trick.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -552,114 +573,266 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="(other:WeightedEdge(T))-instance-method">
+    <div class="entry-detail" id="accumulate_min:self-instance-method">
       <div class="signature">
         
-        def <strong><=></strong>(other : <a href="WeightedEdge.html">WeightedEdge</a>(T))
+        def <strong>accumulate_min</strong> : <span class="k">self</span>
 
-        <a class="method-permalink" href="#(other:WeightedEdge(T))-instance-method">#</a>
+        <a class="method-permalink" href="#accumulate_min:self-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p><code>g(x) := min_{y <= x} f(y)</code></p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/graph/edge.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/slope_trick.cr#L68" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="cost:T-instance-method">
+    <div class="entry-detail" id="accumulate_min_right:self-instance-method">
       <div class="signature">
         
-        def <strong>cost</strong> : T
+        def <strong>accumulate_min_right</strong> : <span class="k">self</span>
 
-        <a class="method-permalink" href="#cost:T-instance-method">#</a>
+        <a class="method-permalink" href="#accumulate_min_right:self-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p><code>g(x) := min_{y >= x} f(y)</code></p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/graph/edge.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/slope_trick.cr#L74" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="cost=(cost:T)-instance-method">
+    <div class="entry-detail" id="add(a:T):self-instance-method">
       <div class="signature">
         
-        def <strong>cost=</strong>(cost : T)
+        def <strong>add</strong>(a : T) : <span class="k">self</span>
 
-        <a class="method-permalink" href="#cost=(cost:T)-instance-method">#</a>
+        <a class="method-permalink" href="#add(a:T):self-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Adds constant function <code>a</code></p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/graph/edge.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/slope_trick.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="inspect(io):Nil-instance-method">
+    <div class="entry-detail" id="add_abs(a:T):self-instance-method">
       <div class="signature">
         
-        def <strong>inspect</strong>(io) : Nil
+        def <strong>add_abs</strong>(a : T) : <span class="k">self</span>
 
-        <a class="method-permalink" href="#inspect(io):Nil-instance-method">#</a>
+        <a class="method-permalink" href="#add_abs(a:T):self-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Adds <code>|x - a|</code></p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/graph/edge.cr#L17" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/slope_trick.cr#L62" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="to:Int32-instance-method">
+    <div class="entry-detail" id="add_l(a:T):self-instance-method">
       <div class="signature">
         
-        def <strong>to</strong> : Int32
+        def <strong>add_l</strong>(a : T) : <span class="k">self</span>
 
-        <a class="method-permalink" href="#to:Int32-instance-method">#</a>
+        <a class="method-permalink" href="#add_l(a:T):self-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Adds <code>max(a - x, 0)</code></p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/graph/edge.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/slope_trick.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="to=(to:Int32)-instance-method">
+    <div class="entry-detail" id="add_r(a:T):self-instance-method">
       <div class="signature">
         
-        def <strong>to=</strong>(to : Int32)
+        def <strong>add_r</strong>(a : T) : <span class="k">self</span>
 
-        <a class="method-permalink" href="#to=(to:Int32)-instance-method">#</a>
+        <a class="method-permalink" href="#add_r(a:T):self-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Adds <code>max(x - a, 0)</code></p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/graph/edge.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/slope_trick.cr#L38" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="to_s(io):Nil-instance-method">
+    <div class="entry-detail" id="f(x:T):T-instance-method">
       <div class="signature">
         
-        def <strong>to_s</strong>(io) : Nil
+        def <strong>f</strong>(x : T) : T
 
-        <a class="method-permalink" href="#to_s(io):Nil-instance-method">#</a>
+        <a class="method-permalink" href="#f(x:T):T-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Calculates <code><a href="SlopeTrick.html#f(x:T):T-instance-method">#f(x)</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/slope_trick.cr#L17" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="l0-instance-method">
+      <div class="signature">
+        
+        def <strong>l0</strong>
+
+        <a class="method-permalink" href="#l0-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/graph/edge.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/slope_trick.cr#L23" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="left-instance-method">
+      <div class="signature">
+        
+        def <strong>left</strong>
+
+        <a class="method-permalink" href="#left-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/slope_trick.cr#L6" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="min:T-instance-method">
+      <div class="signature">
+        
+        def <strong>min</strong> : T
+
+        <a class="method-permalink" href="#min:T-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/slope_trick.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="r0-instance-method">
+      <div class="signature">
+        
+        def <strong>r0</strong>
+
+        <a class="method-permalink" href="#r0-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/slope_trick.cr#L27" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="right-instance-method">
+      <div class="signature">
+        
+        def <strong>right</strong>
+
+        <a class="method-permalink" href="#right-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/slope_trick.cr#L6" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="shift:T-instance-method">
+      <div class="signature">
+        
+        def <strong>shift</strong> : T
+
+        <a class="method-permalink" href="#shift:T-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/slope_trick.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="slide(a:T):self-instance-method">
+      <div class="signature">
+        
+        def <strong>slide</strong>(a : T) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#slide(a:T):self-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p><code>g(x) := f(x - a)</code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/slope_trick.cr#L80" target="_blank">View source</a>]
         
       </div>
     </div>
