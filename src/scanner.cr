@@ -1,16 +1,18 @@
 # ### Specifications
 #
 # ```plain
-# Inside input macro                             | Expanded code
-# -----------------------------------------------+---------------------------------------
-# Uppercase string (Int32, Int64, Float64, etc.) | {}.new(Scanner.s)
-# s                                              | Scanner.s
-# c                                              | Scanner.c
-# Other lowercase string (i, i64, f, etc.)       | Scanner.s.to_{}
-# type[size]                                     | Array.new(input(size)) { input(type) }
-# Tuple literal {t1, t2, t3}                     | {input(t1), input(t2), input(t3)}
-# Array literal [t1, t2, t3]                     | [input(t1), input(t2), input(t3)]
-# Range literal t1..t2                           | input(t1)..input(t2)
+# Inside input macro                            | Expanded code
+# ----------------------------------------------+---------------------------------------
+# Uppercase string: Int32, Int64, Float64, etc. | {}.new(Scanner.s)
+# s                                             | Scanner.s
+# c                                             | Scanner.c
+# Other lowercase string: i, i64, f, etc.,      | Scanner.s.to_{}
+# operator[]: type[size]                        | Array.new(input(size)) { input(type) }
+# Tuple literal: {t1, t2, t3}                   | {input(t1), input(t2), input(t3)}
+# Array literal: [t1, t2, t3]                   | [input(t1), input(t2), input(t3)]
+# Range literal: t1..t2                         | input(t1)..input(t2)
+# If: cond ? t1 : t2                            | cond ? input(t1) : input(t2)
+# Assign: target = value                        | target = input(value)
 # ```
 #
 # ### Examples
@@ -59,6 +61,17 @@
 # n, m = input(i, i)       # => {5, 3}
 # input(i.pred[n])         # => [2, 0, 3, 1, 4]
 # input({i - 1, i - 1}[m]) # => [{0, 1}, {1, 2}, {2, 0}]
+# ```
+#
+# Input:
+# ```plain
+# 3
+# 1 2
+# 2 2
+# 3 2
+# ```
+# ```
+# input({tmp = i, tmp == 1 ? i : i.pred}[i]) # => [{1, 2}, {2, 1}, {3, 1}]
 # ```
 class Scanner
   private def self.skip_to_not_space
@@ -145,6 +158,10 @@ macro input(s)
     [ {% for i in 0...s.size %} input({{s[i]}}), {% end %} ]
   {% elsif s.is_a?(RangeLiteral) %}
     Range.new(input({{s.begin}}), input({{s.end}}), {{s.excludes_end?}})
+  {% elsif s.is_a?(If) %}
+    {{s.cond}} ? input({{s.then}}) : input({{s.else}})
+  {% elsif s.is_a?(Assign) %}
+    {{s.target}} = input({{s.value}})
   {% else %}
     internal_input({{s.id}}, {{s.id}})
   {% end %}
