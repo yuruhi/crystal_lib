@@ -357,7 +357,7 @@
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/a9ee19ec9f57508c52be42ed3c54f1413d764b88/src/datastructure/binary_indexed_tree.cr#L1" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/5b729780bb7b9493ab7893fdc2a09fad9662b2e0/src/datastructure/binary_indexed_tree.cr#L1" target="_blank">
         datastructure/binary_indexed_tree.cr
       </a>
     
@@ -405,7 +405,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#[](start:Int32,count:Int32):T-instance-method" class="signature"><strong>#[]</strong>(start : Int32, count : Int32) : T</a>
+        <a href="#[](start:Int,count:Int):T-instance-method" class="signature"><strong>#[]</strong>(start : Int, count : Int) : T</a>
         
       </li>
     
@@ -415,16 +415,23 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#add(i:Int32,x):Nil-instance-method" class="signature"><strong>#add</strong>(i : Int32, x) : Nil</a>
+        <a href="#add(i:Int,x):Nil-instance-method" class="signature"><strong>#add</strong>(i : Int, x) : Nil</a>
         
           <div class="summary"><p>Add <em>x</em> to <code>a[i]</code>.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#left_sum(i:Int32):T-instance-method" class="signature"><strong>#left_sum</strong>(i : Int32) : T</a>
+        <a href="#left_sum(i:Int):T-instance-method" class="signature"><strong>#left_sum</strong>(i : Int) : T</a>
         
           <div class="summary"><p>Culculates sum of <code>a[0...i]</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#set(i:Int,x):Nil-instance-method" class="signature"><strong>#set</strong>(i : Int, x) : Nil</a>
+        
+          <div class="summary"><p>Set <em>x</em> to <code>a[i]</code>.</p></div>
         
       </li>
     
@@ -489,7 +496,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/a9ee19ec9f57508c52be42ed3c54f1413d764b88/src/datastructure/binary_indexed_tree.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/5b729780bb7b9493ab7893fdc2a09fad9662b2e0/src/datastructure/binary_indexed_tree.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -505,7 +512,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/a9ee19ec9f57508c52be42ed3c54f1413d764b88/src/datastructure/binary_indexed_tree.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/5b729780bb7b9493ab7893fdc2a09fad9662b2e0/src/datastructure/binary_indexed_tree.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -524,18 +531,18 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="[](start:Int32,count:Int32):T-instance-method">
+    <div class="entry-detail" id="[](start:Int,count:Int):T-instance-method">
       <div class="signature">
         
-        def <strong>[]</strong>(start : Int32, count : Int32) : T
+        def <strong>[]</strong>(start : <a href="Int.html">Int</a>, count : <a href="Int.html">Int</a>) : T
 
-        <a class="method-permalink" href="#[](start:Int32,count:Int32):T-instance-method">#</a>
+        <a class="method-permalink" href="#[](start:Int,count:Int):T-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/a9ee19ec9f57508c52be42ed3c54f1413d764b88/src/datastructure/binary_indexed_tree.cr#L40" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/5b729780bb7b9493ab7893fdc2a09fad9662b2e0/src/datastructure/binary_indexed_tree.cr#L45" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -551,17 +558,17 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/a9ee19ec9f57508c52be42ed3c54f1413d764b88/src/datastructure/binary_indexed_tree.cr#L44" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/5b729780bb7b9493ab7893fdc2a09fad9662b2e0/src/datastructure/binary_indexed_tree.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="add(i:Int32,x):Nil-instance-method">
+    <div class="entry-detail" id="add(i:Int,x):Nil-instance-method">
       <div class="signature">
         
-        def <strong>add</strong>(i : Int32, x) : Nil
+        def <strong>add</strong>(i : <a href="Int.html">Int</a>, x) : Nil
 
-        <a class="method-permalink" href="#add(i:Int32,x):Nil-instance-method">#</a>
+        <a class="method-permalink" href="#add(i:Int,x):Nil-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -572,17 +579,17 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/a9ee19ec9f57508c52be42ed3c54f1413d764b88/src/datastructure/binary_indexed_tree.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/5b729780bb7b9493ab7893fdc2a09fad9662b2e0/src/datastructure/binary_indexed_tree.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="left_sum(i:Int32):T-instance-method">
+    <div class="entry-detail" id="left_sum(i:Int):T-instance-method">
       <div class="signature">
         
-        def <strong>left_sum</strong>(i : Int32) : T
+        def <strong>left_sum</strong>(i : <a href="Int.html">Int</a>) : T
 
-        <a class="method-permalink" href="#left_sum(i:Int32):T-instance-method">#</a>
+        <a class="method-permalink" href="#left_sum(i:Int):T-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -593,7 +600,28 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/a9ee19ec9f57508c52be42ed3c54f1413d764b88/src/datastructure/binary_indexed_tree.cr#L30" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/5b729780bb7b9493ab7893fdc2a09fad9662b2e0/src/datastructure/binary_indexed_tree.cr#L35" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="set(i:Int,x):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>set</strong>(i : <a href="Int.html">Int</a>, x) : Nil
+
+        <a class="method-permalink" href="#set(i:Int,x):Nil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Set <em>x</em> to <code>a[i]</code>.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/5b729780bb7b9493ab7893fdc2a09fad9662b2e0/src/datastructure/binary_indexed_tree.cr#L30" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -609,7 +637,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/a9ee19ec9f57508c52be42ed3c54f1413d764b88/src/datastructure/binary_indexed_tree.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/5b729780bb7b9493ab7893fdc2a09fad9662b2e0/src/datastructure/binary_indexed_tree.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -625,7 +653,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/a9ee19ec9f57508c52be42ed3c54f1413d764b88/src/datastructure/binary_indexed_tree.cr#L48" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/5b729780bb7b9493ab7893fdc2a09fad9662b2e0/src/datastructure/binary_indexed_tree.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
