@@ -6,7 +6,7 @@
 # Uppercase string: Int32, Int64, Float64, etc. | {}.new(Scanner.s)
 # s                                             | Scanner.s
 # c                                             | Scanner.c
-# Other lowercase string: i, i64, f, etc.,      | Scanner.s.to_{}
+# Other lowercase string: i, i64, f, etc.       | Scanner.s.to_{}
 # operator[]: type[size]                        | Array.new(input(size)) { input(type) }
 # Tuple literal: {t1, t2, t3}                   | {input(t1), input(t2), input(t3)}
 # Array literal: [t1, t2, t3]                   | [input(t1), input(t2), input(t3)]
