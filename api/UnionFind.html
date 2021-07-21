@@ -357,7 +357,7 @@
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/union_find.cr#L1" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/a9ee19ec9f57508c52be42ed3c54f1413d764b88/src/datastructure/union_find.cr#L1" target="_blank">
         datastructure/union_find.cr
       </a>
     
@@ -379,7 +379,12 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(n:Int32)-class-method" class="signature"><strong>.new</strong>(n : Int32)</a>
+        <a href="#new(n:Int,edges:Enumerable(Tuple(Int32,Int32)))-class-method" class="signature"><strong>.new</strong>(n : Int, edges : Enumerable(Tuple(Int32, Int32)))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new(n:Int)-class-method" class="signature"><strong>.new</strong>(n : Int)</a>
         
       </li>
     
@@ -405,22 +410,22 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#root(x:Int32)-instance-method" class="signature"><strong>#root</strong>(x : Int32)</a>
+        <a href="#root(x:Int)-instance-method" class="signature"><strong>#root</strong>(x : Int)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#same?(x:Int32,y:Int32)-instance-method" class="signature"><strong>#same?</strong>(x : Int32, y : Int32)</a>
+        <a href="#same?(x:Int,y:Int)-instance-method" class="signature"><strong>#same?</strong>(x : Int, y : Int)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#size(x:Int32)-instance-method" class="signature"><strong>#size</strong>(x : Int32)</a>
+        <a href="#size(x:Int)-instance-method" class="signature"><strong>#size</strong>(x : Int)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#unite(x:Int32,y:Int32)-instance-method" class="signature"><strong>#unite</strong>(x : Int32, y : Int32)</a>
+        <a href="#unite(x:Int,y:Int)-instance-method" class="signature"><strong>#unite</strong>(x : Int, y : Int)</a>
         
       </li>
     
@@ -464,18 +469,34 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(n:Int32)-class-method">
+    <div class="entry-detail" id="new(n:Int,edges:Enumerable(Tuple(Int32,Int32)))-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(n : Int32)
+        def self.<strong>new</strong>(n : <a href="Int.html">Int</a>, edges : <a href="Enumerable.html">Enumerable</a>(<a href="Tuple.html">Tuple</a>(Int32, Int32)))
 
-        <a class="method-permalink" href="#new(n:Int32)-class-method">#</a>
+        <a class="method-permalink" href="#new(n:Int,edges:Enumerable(Tuple(Int32,Int32)))-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/union_find.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/a9ee19ec9f57508c52be42ed3c54f1413d764b88/src/datastructure/union_find.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(n:Int)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(n : <a href="Int.html">Int</a>)
+
+        <a class="method-permalink" href="#new(n:Int)-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/a9ee19ec9f57508c52be42ed3c54f1413d764b88/src/datastructure/union_find.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -505,71 +526,71 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/union_find.cr#L30" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/a9ee19ec9f57508c52be42ed3c54f1413d764b88/src/datastructure/union_find.cr#L35" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="root(x:Int32)-instance-method">
+    <div class="entry-detail" id="root(x:Int)-instance-method">
       <div class="signature">
         
-        def <strong>root</strong>(x : Int32)
+        def <strong>root</strong>(x : <a href="Int.html">Int</a>)
 
-        <a class="method-permalink" href="#root(x:Int32)-instance-method">#</a>
+        <a class="method-permalink" href="#root(x:Int)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/union_find.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/a9ee19ec9f57508c52be42ed3c54f1413d764b88/src/datastructure/union_find.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="same?(x:Int32,y:Int32)-instance-method">
+    <div class="entry-detail" id="same?(x:Int,y:Int)-instance-method">
       <div class="signature">
         
-        def <strong>same?</strong>(x : Int32, y : Int32)
+        def <strong>same?</strong>(x : <a href="Int.html">Int</a>, y : <a href="Int.html">Int</a>)
 
-        <a class="method-permalink" href="#same?(x:Int32,y:Int32)-instance-method">#</a>
+        <a class="method-permalink" href="#same?(x:Int,y:Int)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/union_find.cr#L22" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/a9ee19ec9f57508c52be42ed3c54f1413d764b88/src/datastructure/union_find.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="size(x:Int32)-instance-method">
+    <div class="entry-detail" id="size(x:Int)-instance-method">
       <div class="signature">
         
-        def <strong>size</strong>(x : Int32)
+        def <strong>size</strong>(x : <a href="Int.html">Int</a>)
 
-        <a class="method-permalink" href="#size(x:Int32)-instance-method">#</a>
+        <a class="method-permalink" href="#size(x:Int)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/union_find.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/a9ee19ec9f57508c52be42ed3c54f1413d764b88/src/datastructure/union_find.cr#L31" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="unite(x:Int32,y:Int32)-instance-method">
+    <div class="entry-detail" id="unite(x:Int,y:Int)-instance-method">
       <div class="signature">
         
-        def <strong>unite</strong>(x : Int32, y : Int32)
+        def <strong>unite</strong>(x : <a href="Int.html">Int</a>, y : <a href="Int.html">Int</a>)
 
-        <a class="method-permalink" href="#unite(x:Int32,y:Int32)-instance-method">#</a>
+        <a class="method-permalink" href="#unite(x:Int,y:Int)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/1eddc4cf691b5dc0411ceebe78e99317cd9c0836/src/datastructure/union_find.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/a9ee19ec9f57508c52be42ed3c54f1413d764b88/src/datastructure/union_find.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
