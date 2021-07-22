@@ -1,22 +1,18 @@
 require "../graph"
+require "./degree"
 
 module Graph(Edge, Edge2)
-  private def topological_sort_dfs(result : Array(Int32), visited : Array(Bool), v : Int32) : Nil
-    unless visited[v]
-      visited[v] = true
-      graph[v].each do |edge|
-        topological_sort_dfs(result, visited, edge.to)
-      end
+  def topological_sort : Array(Int32)?
+    deg = indegree
+    que = Deque(Int32).new
+    size.times { |i| que << i if deg[i] == 0 }
+    result = Array(Int32).new(size)
+    while v = que.shift?
       result << v
+      self[v].each do |edge|
+        que << edge.to if (deg[edge.to] -= 1) == 0
+      end
     end
-  end
-
-  def topological_sort : Array(Int32)
-    result = [] of Int32
-    visited = [false] * size
-    size.times do |v|
-      topological_sort_dfs(result, visited, v)
-    end
-    result.reverse
+    deg.any? { |x| x > 0 } ? nil : result
   end
 end
