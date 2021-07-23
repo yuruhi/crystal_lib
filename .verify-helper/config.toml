@@ -1,5 +1,5 @@
 [languages.cr]
-compile = "crystal build {path} --release -o a.out"
+compile = "crystal build {path} --release -o a.out --error-trace"
 execute = "./a.out"
 verification_file_suffix = ".test.cr"
 bundle = "cr-bundle {path} -f"
