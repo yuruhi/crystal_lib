@@ -334,6 +334,36 @@
 
 
 
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Example of T:</p>
+
+<pre><code><span class="k">struct</span> <span class="t">DP</span>
+  getter val : <span class="t">Int64</span>, cnt : <span class="t">Int32</span>
+
+  <span class="k">def</span> <span class="m">initialize</span>
+    @val, @cnt <span class="o">=</span> <span class="n">0i64</span>, <span class="n">0</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="m">initialize</span>(@val, @cnt)
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="o">+</span>(other : <span class="k">self</span>) : <span class="k">self</span>
+    <span class="t">DP</span>.<span class="k">new</span>(val <span class="o">+</span> other.val, cnt <span class="o">+</span> other.cnt)
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="m">add_root</span>(v : <span class="t">Int32</span>) : <span class="k">self</span>
+    <span class="t">DP</span>.<span class="k">new</span>(val <span class="o">+</span> cnt, cnt <span class="o">+</span> <span class="n">1</span>)
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+
 
 
 
@@ -357,7 +387,7 @@
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/3ff30e6c8d4173d3c52ead763db2ccca62fc7353/src/graph/re_rooting.cr#L3" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/127638882f73c9a16bd0dfb1b85602ee1de6bf07/src/graph/re_rooting.cr#L24" target="_blank">
         graph/re_rooting.cr
       </a>
     
@@ -380,6 +410,11 @@
     
       <li class="entry-summary">
         <a href="#new(size:Int)-class-method" class="signature"><strong>.new</strong>(size : Int)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new(graph:GraphType)-class-method" class="signature"><strong>.new</strong>(graph : GraphType)</a>
         
       </li>
     
@@ -490,7 +525,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/3ff30e6c8d4173d3c52ead763db2ccca62fc7353/src/graph/re_rooting.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/127638882f73c9a16bd0dfb1b85602ee1de6bf07/src/graph/re_rooting.cr#L27" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(graph:GraphType)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(graph : GraphType)
+
+        <a class="method-permalink" href="#new(graph:GraphType)-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/127638882f73c9a16bd0dfb1b85602ee1de6bf07/src/graph/re_rooting.cr#L33" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -520,7 +571,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/3ff30e6c8d4173d3c52ead763db2ccca62fc7353/src/graph/re_rooting.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/127638882f73c9a16bd0dfb1b85602ee1de6bf07/src/graph/re_rooting.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -536,7 +587,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/3ff30e6c8d4173d3c52ead763db2ccca62fc7353/src/graph/re_rooting.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/127638882f73c9a16bd0dfb1b85602ee1de6bf07/src/graph/re_rooting.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -552,7 +603,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/3ff30e6c8d4173d3c52ead763db2ccca62fc7353/src/graph/re_rooting.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/127638882f73c9a16bd0dfb1b85602ee1de6bf07/src/graph/re_rooting.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -568,7 +619,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/3ff30e6c8d4173d3c52ead763db2ccca62fc7353/src/graph/re_rooting.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/127638882f73c9a16bd0dfb1b85602ee1de6bf07/src/graph/re_rooting.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -584,7 +635,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/3ff30e6c8d4173d3c52ead763db2ccca62fc7353/src/graph/re_rooting.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/127638882f73c9a16bd0dfb1b85602ee1de6bf07/src/graph/re_rooting.cr#L25" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -600,7 +651,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/3ff30e6c8d4173d3c52ead763db2ccca62fc7353/src/graph/re_rooting.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/127638882f73c9a16bd0dfb1b85602ee1de6bf07/src/graph/re_rooting.cr#L38" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -616,7 +667,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/3ff30e6c8d4173d3c52ead763db2ccca62fc7353/src/graph/re_rooting.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/127638882f73c9a16bd0dfb1b85602ee1de6bf07/src/graph/re_rooting.cr#L38" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -632,7 +683,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/3ff30e6c8d4173d3c52ead763db2ccca62fc7353/src/graph/re_rooting.cr#L43" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/127638882f73c9a16bd0dfb1b85602ee1de6bf07/src/graph/re_rooting.cr#L69" target="_blank">View source</a>]
         
       </div>
     </div>
