@@ -57,6 +57,18 @@ module Graph(Edge, Edge2)
       dup
     end
   end
+
+  def to_s(io : IO) : Nil
+    io << '['
+    join(", ", io) do |edge, io|
+      edge.inspect io
+    end
+    io << ']'
+  end
+
+  def inspect(io : IO) : Nil
+    to_s(io)
+  end
 end
 
 class DirectedGraph(T)
