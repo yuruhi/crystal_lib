@@ -414,6 +414,16 @@ input({i <span class="o">-</span> <span class="n">1</span>, i <span class="o">-<
 
 <pre><code>input({tmp <span class="o">=</span> i, tmp <span class="o">==</span> <span class="n">1</span> ? i : i.pred}[i]) <span class="c"># =&gt; [{1, 2}, {2, 1}, {3, 1}]</span></code></pre>
 
+<p>Input:</p>
+
+<pre><code class="language-plain">3
+1 2
+2 3
+3 1</code></pre>
+
+<pre><code>n <span class="o">=</span> input(i)
+input_column({i, i}, n) <span class="c"># =&gt; {[1, 2, 3], [2, 3, 1]}</span></code></pre>
+
 
 
 
@@ -437,7 +447,7 @@ input({i <span class="o">-</span> <span class="n">1</span>, i <span class="o">-<
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/5b729780bb7b9493ab7893fdc2a09fad9662b2e0/src/scanner.cr#L76" target="_blank">
+      <a href="https://github.com/yuruhi/crystal_lib/blob/3ff30e6c8d4173d3c52ead763db2ccca62fc7353/src/scanner.cr#L88" target="_blank">
         scanner.cr
       </a>
     
@@ -525,7 +535,7 @@ input({i <span class="o">-</span> <span class="n">1</span>, i <span class="o">-<
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/5b729780bb7b9493ab7893fdc2a09fad9662b2e0/src/scanner.cr#L83" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/3ff30e6c8d4173d3c52ead763db2ccca62fc7353/src/scanner.cr#L95" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -541,7 +551,7 @@ input({i <span class="o">-</span> <span class="n">1</span>, i <span class="o">-<
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/5b729780bb7b9493ab7893fdc2a09fad9662b2e0/src/scanner.cr#L88" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/3ff30e6c8d4173d3c52ead763db2ccca62fc7353/src/scanner.cr#L100" target="_blank">View source</a>]
         
       </div>
     </div>
