@@ -122,65 +122,65 @@ class Scanner
   end
 end
 
-macro internal_input(s, else_ast)
-  {% if Scanner.class.has_method?(s.id) %}
-    Scanner.{{s.id}}
-  {% elsif s.stringify == "String" %}
-    Scanner.s
-  {% elsif s.stringify == "Char" %}
+macro internal_input(type, else_ast)
+  {% if Scanner.class.has_method?(type.id) %}
+    Scanner.{{type.id}}
+  {% elsif type.stringify == "String" %}
+    Scanner.type
+  {% elsif type.stringify == "Char" %}
     Scanner.c
-  {% elsif s.stringify =~ /[A-Z][a-z0-9_]*/ %}
-    {{s.id}}.new(Scanner.s)
-  {% elsif String.has_method?("to_#{s}".id) %}
-    Scanner.s.to_{{s.id}}
+  {% elsif type.stringify =~ /[A-Z][a-z0-9_]*/ %}
+    {{type.id}}.new(Scanner.type)
+  {% elsif String.has_method?("to_#{type}".id) %}
+    Scanner.type.to_{{type.id}}
   {% else %}
     {{else_ast}}
   {% end %}
 end
 
-macro internal_input_array(s, args)
+macro internal_input_array(type, args)
   {% for i in 0...args.size %}
     %size{i} = input({{args[i]}})
   {% end %}
   {% begin %}
     {% for i in 0...args.size %} Array.new(%size{i}) { {% end %}
-      input({{s.id}})
+      input({{type.id}})
     {% for i in 0...args.size %} } {% end %}
   {% end %}
 end
 
-macro input(s)
-  {% if s.is_a?(Call) %}
-    {% if s.receiver.is_a?(Nop) %}
+macro input(type)
+  {% if type.is_a?(Call) %}
+    {% if type.receiver.is_a?(Nop) %}
       internal_input(
-        {{s.name}}, {{s.name}}(
-          {% for argument in s.args %} input({{argument}}), {% end %}
+        {{type.name}}, {{type.name}}(
+          {% for argument in type.args %} input({{argument}}), {% end %}
         )
       )
-    {% elsif s.name.stringify == "[]" %}
-      internal_input_array({{s.receiver}}, {{s.args}})
+    {% elsif type.name.stringify == "[]" %}
+      internal_input_array({{type.receiver}}, {{type.args}})
     {% else %}
-      input({{s.receiver}}).{{s.name.id}}(
-        {% for argument in s.args %} input({{argument}}), {% end %}
-      ) {{s.block}}
+      input({{type.receiver}}).{{type.name.id}}(
+        {% for argument in type.args %} input({{argument}}), {% end %}
+      ) {{type.block}}
     {% end %}
-  {% elsif s.is_a?(TupleLiteral) %}
-    { {% for i in 0...s.size %} input({{s[i]}}), {% end %} }
-  {% elsif s.is_a?(ArrayLiteral) %}
-    [ {% for i in 0...s.size %} input({{s[i]}}), {% end %} ]
-  {% elsif s.is_a?(RangeLiteral) %}
-    Range.new(input({{s.begin}}), input({{s.end}}), {{s.excludes_end?}})
-  {% elsif s.is_a?(If) %}
-    {{s.cond}} ? input({{s.then}}) : input({{s.else}})
-  {% elsif s.is_a?(Assign) %}
-    {{s.target}} = input({{s.value}})
+  {% elsif type.is_a?(TupleLiteral) %}
+    { {% for i in 0...type.size %} input({{type[i]}}), {% end %} }
+  {% elsif type.is_a?(ArrayLiteral) %}
+    [ {% for i in 0...type.size %} input({{type[i]}}), {% end %} ]
+  {% elsif type.is_a?(RangeLiteral) %}
+    Range.new(input({{type.begin}}), input({{type.end}}), {{type.excludes_end?}})
+  {% elsif type.is_a?(If) %}
+    {{type.cond}} ? input({{type.then}}) : input({{type.else}})
+  {% elsif type.is_a?(Assign) %}
+    {{type.target}} = input({{type.value}})
   {% else %}
-    internal_input({{s.id}}, {{s.id}})
+    internal_input({{type.id}}, {{type.id}})
   {% end %}
 end
 
-macro input(*s)
-  { {% for s in s %} input({{s}}), {% end %} }
+macro input(*types)
+  { {% for type in types %} input({{type}}), {% end %} }
 end
 
 macro input_column(types, size)
