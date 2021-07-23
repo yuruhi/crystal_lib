@@ -1,10 +1,36 @@
 require "../graph"
 
+# Example of T:
+# ```
+# struct DP
+#   getter val : Int64, cnt : Int32
+#
+#   def initialize
+#     @val, @cnt = 0i64, 0
+#   end
+#
+#   def initialize(@val, @cnt)
+#   end
+#
+#   def +(other : self) : self
+#     DP.new(val + other.val, cnt + other.cnt)
+#   end
+#
+#   def add_root(v : Int32) : self
+#     DP.new(val + cnt, cnt + 1)
+#   end
+# end
+# ```
 class ReRooting(T, GraphType)
   getter graph : GraphType
 
   def initialize(size : Int)
     @graph = GraphType.new(size)
+    @dp = Array(Array(T)).new
+    @result = Array(T).new
+  end
+
+  def initialize(@graph : GraphType)
     @dp = Array(Array(T)).new
     @result = Array(T).new
   end
