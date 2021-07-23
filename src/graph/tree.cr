@@ -20,12 +20,14 @@ module Graph(Edge, Edge2)
     end
   end
 
+  # Returns the distance of each node from *root*.
   def tree_distance(root : Int)
     a = Array.new(size, typeof(first.cost).zero)
     tree_distance_dfs(root, -1, 0, a)
     a
   end
 
+  # Calculates diameter of the tree and returns `{distance, vertex1, vertex2}`.
   def diameter
     _, v = tree_distance(0).each_with_index.max
     dist, u = tree_distance(v).each_with_index.max

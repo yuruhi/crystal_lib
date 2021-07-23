@@ -2,7 +2,7 @@ require "../graph"
 require "../datastructure/union_find"
 
 module Graph(Edge, Edge2)
-  # Returns `{components size, index, groups}`.
+  # Returns `{number of connected components, index, groups}`.
   def components : {Int32, Array(Int32), Array(Set(Int32))}
     uf = UnionFind.new(size)
     each do |edge|

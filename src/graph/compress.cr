@@ -1,6 +1,7 @@
 require "../graph"
 
 module Graph(Edge, Edge2)
+  # Returns the graph that deleted isolated vertices.
   def compress : self
     values = [] of Int32
     each { |edge| values << edge.from << edge.to }

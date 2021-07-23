@@ -2,6 +2,7 @@ require "../graph"
 require "../datastructure/union_find"
 
 module Graph(Edge, Edge2)
+  # Calculates cost of minimum spanning tree if the graph is connected, otherwise returns `nil`.
   def kruskal
     uf = UnionFind.new(size)
     result = to_a.sort.sum do |edge|

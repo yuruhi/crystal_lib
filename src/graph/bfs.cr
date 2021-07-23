@@ -1,6 +1,7 @@
 require "../graph"
 
 module Graph(Edge, Edge2)
+  # Returns the array of distance of each node from *start* or `nil`.
   def bfs(start : Int) : Array(Int32?)
     raise ArgumentError.new unless 0 <= start < size
     queue = Deque{start}
@@ -17,10 +18,12 @@ module Graph(Edge, Edge2)
     dist
   end
 
+  # Returns the array of distance of each node from *start*.
   def bfs!(start : Int) : Array(Int32)
     bfs(start).map(&.not_nil!)
   end
 
+  # Returns the distance from *start* to *goal* if path is present, otherwise returns `nil`.
   def bfs_st(start : Int, goal : Int) : Int32?
     raise ArgumentError.new unless 0 <= start < size && 0 <= goal < size
     queue = Deque{start}

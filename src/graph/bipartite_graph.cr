@@ -1,6 +1,7 @@
 require "../graph"
 
 module Graph(Edge, Edge2)
+  # Returns table of color if the graph is bipartite graph, otherwise returns `nil`
   def bipartite_graph : Array(Bool)?
     table = Array(Bool?).new(size, nil)
     queue = Deque.new (0...size).to_a

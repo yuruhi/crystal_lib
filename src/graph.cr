@@ -29,7 +29,8 @@ module Graph(Edge, Edge2)
   delegate size, to: @graph
   delegate :[], to: @graph
 
-  def each : Nil
+  # Yields each edge of the graph, ans returns `nil`.
+  def each(&) : Nil
     (0...size).each do |v|
       self[v].each do |edge|
         yield Edge2.new(v, edge)

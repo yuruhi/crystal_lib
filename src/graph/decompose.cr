@@ -2,6 +2,7 @@ require "../graph"
 require "../datastructure/union_find"
 
 module Graph(Edge, Edge2)
+  # Decomposes the graph into each conected components.
   def decompose : {Array(self), Array({Int32, Int32})}
     uf = UnionFind.new(size)
     each do |edge|

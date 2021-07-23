@@ -2,6 +2,7 @@ require "../../atcoder/src/PriorityQueue"
 require "../graph"
 
 module Graph(Edge, Edge2)
+  # Returns the array of distance of each node from *start* or `nil`.
   def dijkstra(start : Int32)
     raise ArgumentError.new unless 0 <= start < size
     que = AtCoder::PriorityQueue({Int32, typeof(first.cost)}).new { |(v1, d1), (v2, d2)| d1 > d2 }
@@ -24,6 +25,7 @@ module Graph(Edge, Edge2)
     dist
   end
 
+  # Returns the array of distance of each node from *start*.
   def dijkstra!(start : Int32)
     dijkstra(start).map(&.not_nil!)
   end
