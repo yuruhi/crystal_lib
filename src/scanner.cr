@@ -73,6 +73,18 @@
 # ```
 # input({tmp = i, tmp == 1 ? i : i.pred}[i]) # => [{1, 2}, {2, 1}, {3, 1}]
 # ```
+#
+# Input:
+# ```plain
+# 3
+# 1 2
+# 2 3
+# 3 1
+# ```
+# ```
+# n = input(i)
+# input_column({i, i}, n) # => {[1, 2, 3], [2, 3, 1]}
+# ```
 class Scanner
   private def self.skip_to_not_space
     peek = STDIN.peek
@@ -169,4 +181,22 @@ end
 
 macro input(*s)
   { {% for s in s %} input({{s}}), {% end %} }
+end
+
+macro input_column(types, size)
+  {% for type, i in types %}
+    first_value = input({{type}})
+    %array{i} = Array(typeof(first_value)).new({{size}})
+    %array{i} << first_value
+  {% end %}
+  {{size}}.pred.times do
+    {% for type, i in types %}
+      %array{i} << input({{type}})
+    {% end %}
+  end
+  {
+    {% for type, i in types %}
+      %array{i},
+    {% end %}
+  }
 end
