@@ -126,13 +126,13 @@ macro internal_input(type, else_ast)
   {% if Scanner.class.has_method?(type.id) %}
     Scanner.{{type.id}}
   {% elsif type.stringify == "String" %}
-    Scanner.type
+    Scanner.s
   {% elsif type.stringify == "Char" %}
     Scanner.c
   {% elsif type.stringify =~ /[A-Z][a-z0-9_]*/ %}
-    {{type.id}}.new(Scanner.type)
+    {{type.id}}.new(Scanner.s)
   {% elsif String.has_method?("to_#{type}".id) %}
-    Scanner.type.to_{{type.id}}
+    Scanner.s.to_{{type.id}}
   {% else %}
     {{else_ast}}
   {% end %}
