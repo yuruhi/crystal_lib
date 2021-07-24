@@ -83,7 +83,7 @@
 # ```
 # ```
 # n = input(i)
-# input_column({i, i}, n) # => {[1, 2, 3], [2, 3, 1]}
+# input_column({Int32, Int32}, n) # => {[1, 2, 3], [2, 3, 1]}
 # ```
 class Scanner
   private def self.skip_to_not_space
@@ -185,18 +185,12 @@ end
 
 macro input_column(types, size)
   {% for type, i in types %}
-    first_value = input({{type}})
-    %array{i} = Array(typeof(first_value)).new({{size}})
-    %array{i} << first_value
+    %array{i} = Array({{type}}).new({{size}})
   {% end %}
-  {{size}}.pred.times do
+  {{size}}.times do
     {% for type, i in types %}
       %array{i} << input({{type}})
     {% end %}
   end
-  {
-    {% for type, i in types %}
-      %array{i},
-    {% end %}
-  }
+  { {% for type, i in types %} %array{i}, {% end %} }
 end
