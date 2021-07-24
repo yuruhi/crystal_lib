@@ -3,12 +3,12 @@ struct Tuple
     {% begin %}
       {% for i in 0...@type.size %}
         {% if @type[i].has_method?(:each) %}
-          self[{{i}}].each do |%i{i}|
+          self[{{i}}].each do |i{{i}}|
         {% else %}
-          self[{{i}}].times do |%i{i}|
+          self[{{i}}].times do |i{{i}}|
         {% end %}
       {% end %}
-      yield({% for i in 0...@type.size %} %i{i}, {% end %})
+      yield({% for i in 0...@type.size %} i{{i}}, {% end %})
       {% for i in 0...@type.size %} end {% end %}
     {% end %}
   end
