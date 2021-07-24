@@ -12,5 +12,5 @@ ans.each do |x|
   (0...n).each do |i|
     print ' ', i if x.bit(i) == 1
   end
-	puts
+  puts
 end
