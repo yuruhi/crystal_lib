@@ -14,7 +14,6 @@
 "atcoder/verify/sum_of_floor_of_linear.test.cr": "1970-01-01 00:00:00 +0000",
 "atcoder/verify/tree_diameter.test.cr": "1970-01-01 00:00:00 +0000",
 "atcoder/verify/two_sat.test.cr": "1970-01-01 00:00:00 +0000",
-"atcoder/verify/unionfind.test.cr": "1970-01-01 00:00:00 +0000",
 "test/array/compress.test.cr": "2021-07-21 16:11:26 +0900",
 "test/datastructure/binary_indexed_tree.test.cr": "2021-07-21 16:11:15 +0900",
 "test/datastructure/cul_sum.test.cr": "2021-07-18 13:52:56 +0900",
