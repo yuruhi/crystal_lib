@@ -15,7 +15,7 @@
 </svg>
 
   <meta id="repository-name" content="github.com/yuruhi/crystal_lib">
-  <title>BinaryIndexedTree(T) - github.com/yuruhi/crystal_lib</title>
+  <title>FenwickTree(T) - github.com/yuruhi/crystal_lib</title>
   <script type="text/javascript">
     CrystalDoc.base_path = "";
   </script>
@@ -62,11 +62,6 @@
   
   <li class=" " data-id="github.com/yuruhi/crystal_lib/BigFloat" data-name="bigfloat">
       <a href="BigFloat.html">BigFloat</a>
-      
-    </li>
-  
-  <li class=" current" data-id="github.com/yuruhi/crystal_lib/BinaryIndexedTree" data-name="binaryindexedtree(t)">
-      <a href="BinaryIndexedTree.html">BinaryIndexedTree</a>
       
     </li>
   
@@ -127,6 +122,11 @@
   
   <li class=" " data-id="github.com/yuruhi/crystal_lib/EulerTourForVertex" data-name="eulertourforvertex">
       <a href="EulerTourForVertex.html">EulerTourForVertex</a>
+      
+    </li>
+  
+  <li class=" current" data-id="github.com/yuruhi/crystal_lib/FenwickTree" data-name="fenwicktree(t)">
+      <a href="FenwickTree.html">FenwickTree</a>
       
     </li>
   
@@ -324,12 +324,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> BinaryIndexedTree(T)
+  <span class="kind">class</span> FenwickTree(T)
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="BinaryIndexedTree.html">BinaryIndexedTree(T)</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="FenwickTree.html">FenwickTree(T)</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -357,8 +357,8 @@
   </h2>
   
     
-      <a href="https://github.com/yuruhi/crystal_lib/blob/da4bfa3ccd5d318f4d90efbbccef48026fde1899/src/datastructure/binary_indexed_tree.cr#L1" target="_blank">
-        datastructure/binary_indexed_tree.cr
+      <a href="https://github.com/yuruhi/crystal_lib/blob/f3d60883926eb858f435320c10ee997941781751/src/datastructure/fenwick_tree.cr#L1" target="_blank">
+        datastructure/fenwick_tree.cr
       </a>
     
     <br/>
@@ -410,7 +410,19 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#[](i:Int)-instance-method" class="signature"><strong>#[]</strong>(i : Int)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#[](range:Range):T-instance-method" class="signature"><strong>#[]</strong>(range : Range) : T</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#[]=(i:Int,x):Nil-instance-method" class="signature"><strong>#[]=</strong>(i : Int, x) : Nil</a>
+        
+          <div class="summary"><p>Alias for <code><a href="FenwickTree.html#set(i:Int,x):Nil-instance-method">#set</a></code></p></div>
         
       </li>
     
@@ -496,7 +508,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/da4bfa3ccd5d318f4d90efbbccef48026fde1899/src/datastructure/binary_indexed_tree.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/f3d60883926eb858f435320c10ee997941781751/src/datastructure/fenwick_tree.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -512,7 +524,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/da4bfa3ccd5d318f4d90efbbccef48026fde1899/src/datastructure/binary_indexed_tree.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/f3d60883926eb858f435320c10ee997941781751/src/datastructure/fenwick_tree.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -542,7 +554,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/da4bfa3ccd5d318f4d90efbbccef48026fde1899/src/datastructure/binary_indexed_tree.cr#L45" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/f3d60883926eb858f435320c10ee997941781751/src/datastructure/fenwick_tree.cr#L54" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[](i:Int)-instance-method">
+      <div class="signature">
+        
+        def <strong>[]</strong>(i : <a href="Int.html">Int</a>)
+
+        <a class="method-permalink" href="#[](i:Int)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/f3d60883926eb858f435320c10ee997941781751/src/datastructure/fenwick_tree.cr#L50" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -558,7 +586,28 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/da4bfa3ccd5d318f4d90efbbccef48026fde1899/src/datastructure/binary_indexed_tree.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/f3d60883926eb858f435320c10ee997941781751/src/datastructure/fenwick_tree.cr#L58" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="[]=(i:Int,x):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>[]=</strong>(i : <a href="Int.html">Int</a>, x) : Nil
+
+        <a class="method-permalink" href="#[]=(i:Int,x):Nil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Alias for <code><a href="FenwickTree.html#set(i:Int,x):Nil-instance-method">#set</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/f3d60883926eb858f435320c10ee997941781751/src/datastructure/fenwick_tree.cr#L35" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -579,7 +628,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/da4bfa3ccd5d318f4d90efbbccef48026fde1899/src/datastructure/binary_indexed_tree.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/f3d60883926eb858f435320c10ee997941781751/src/datastructure/fenwick_tree.cr#L20" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -600,7 +649,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/da4bfa3ccd5d318f4d90efbbccef48026fde1899/src/datastructure/binary_indexed_tree.cr#L35" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/f3d60883926eb858f435320c10ee997941781751/src/datastructure/fenwick_tree.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -621,7 +670,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/da4bfa3ccd5d318f4d90efbbccef48026fde1899/src/datastructure/binary_indexed_tree.cr#L30" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/f3d60883926eb858f435320c10ee997941781751/src/datastructure/fenwick_tree.cr#L30" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -637,7 +686,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/da4bfa3ccd5d318f4d90efbbccef48026fde1899/src/datastructure/binary_indexed_tree.cr#L2" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/f3d60883926eb858f435320c10ee997941781751/src/datastructure/fenwick_tree.cr#L2" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -653,7 +702,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/yuruhi/crystal_lib/blob/da4bfa3ccd5d318f4d90efbbccef48026fde1899/src/datastructure/binary_indexed_tree.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/f3d60883926eb858f435320c10ee997941781751/src/datastructure/fenwick_tree.cr#L62" target="_blank">View source</a>]
         
       </div>
     </div>
