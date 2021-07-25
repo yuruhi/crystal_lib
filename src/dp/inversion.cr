@@ -1,4 +1,4 @@
-require "../datastructure/binary_indexed_tree"
+require "../datastructure/fenwick_tree"
 
 module DP
   extend self
