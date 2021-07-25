@@ -1,4 +1,4 @@
-class BinaryIndexedTree(T)
+class FenwickTree(T)
   getter size : Int32
 
   def initialize(@size)
@@ -31,6 +31,11 @@ class BinaryIndexedTree(T)
     add(i, x - self[i, 1])
   end
 
+  # Alias for `set`
+  def []=(i : Int, x) : Nil
+    set(i, x)
+  end
+
   # Culculates sum of `a[0...i]`.
   def left_sum(i : Int) : T
     raise IndexError.new unless 0 <= i <= size
@@ -40,6 +45,10 @@ class BinaryIndexedTree(T)
       i -= i & -i
     end
     sum
+  end
+
+  def [](i : Int)
+    left_sum(i + 1) - left_sum(i)
   end
 
   def [](start : Int, count : Int) : T
