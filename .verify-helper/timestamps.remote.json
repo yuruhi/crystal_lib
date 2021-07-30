@@ -46,6 +46,11 @@
 "test/int/each_combination.test.cr": "2021-07-24 16:57:58 +0900",
 "test/int/each_subset.test.cr": "2021-07-18 13:52:56 +0900",
 "test/math/combination.test.cr": "2021-07-18 13:52:56 +0900",
-"test/math/gcd_convolution.test.cr": "2021-07-18 13:52:56 +0900",
-"test/math/matrix.test.cr": "2021-07-18 13:52:56 +0900"
+"test/math/gcd_convolution.test.cr": "2021-07-30 17:24:21 +0900",
+"test/math/matrix.test.cr": "2021-07-18 13:52:56 +0900",
+"test/math/ntt.test.cr": "2021-07-18 13:52:56 +0900",
+"test/math/powmod.test.cr": "2021-07-18 13:52:56 +0900",
+"test/point/point_to_direction.test.cr": "2021-07-18 13:52:56 +0900",
+"test/scanner/1.test.cr": "2021-07-24 16:55:26 +0900",
+"test/scanner/10.test.cr": "2021-07-24 16:55:26 +0900"
 }
