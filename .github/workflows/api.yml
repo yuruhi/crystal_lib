@@ -16,11 +16,19 @@ jobs:
             - name: Set up Python
               uses: actions/setup-python@v1
 
+            - name: Add path
+              run: |
+                  mkdir bin
+                  echo "/home/runner/work/crystal_lib/crystal_lib/bin" >> $GITHUB_PATH
+
             - name: Install dependencies
               run: |
                   sudo apt-get install ruby-full -y
                   pip3 install -U online-judge-verify-helper
                   git clone https://github.com/google/ac-library.cr.git atcoder
+                  git clone https://github.com/yuruhi/cr-bundle.git
+                  crystal build cr-bundle/src/cli.cr -o bin/cr-bundle
+                  rm -rf cr-bundle
 
             - name: Generate API docs
               run: |
