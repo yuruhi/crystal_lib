@@ -18,7 +18,7 @@ jobs:
 
             - name: Install dependencies
               run: |
-                  apt-get install ruby-full
+                  sudo apt-get install ruby-full -y
                   pip3 install -U online-judge-verify-helper
                   git clone https://github.com/google/ac-library.cr.git atcoder
 
