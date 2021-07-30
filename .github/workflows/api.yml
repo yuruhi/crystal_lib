@@ -40,7 +40,7 @@ jobs:
                   oj-verify docs --jobs 4
                   sudo gem install bundler
                   sudo bundle install --gemfile=.verify-helper/markdown/Gemfile --path .vendor/bundle
-                  bundle exec --gemfile=.verify-helper/markdown/Gemfile jekyll build --source .verify-helper/markdown --destination dist/docs --baseurl ac-library.cr/docs
+                  bundle exec --gemfile=.verify-helper/markdown/Gemfile jekyll build --source .verify-helper/markdown --destination dist/docs --baseurl crystal_lib/docs
 
             - name: Deploy docs to GitHub Pages
               uses: peaceiris/actions-gh-pages@v3

@@ -44,7 +44,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
                   GH_PAT: ${{ secrets.GH_PAT }}
-              # run: oj-verify run --jobs 4
               run: |
                   git checkout master
-                  oj-verify run test/graph/bfs.test.cr
+                  oj-verify run --jobs 4
+            # oj-verify run test/graph/bfs.test.cr
