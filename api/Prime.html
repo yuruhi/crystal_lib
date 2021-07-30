@@ -15,9 +15,9 @@
 </svg>
 
   <meta id="repository-name" content="github.com/yuruhi/crystal_lib">
-  <title>README - github.com/yuruhi/crystal_lib</title>
+  <title>Prime - github.com/yuruhi/crystal_lib</title>
   <script type="text/javascript">
-  CrystalDoc.base_path = "";
+    CrystalDoc.base_path = "";
   </script>
 </head>
 <body>
@@ -240,7 +240,7 @@
       
     </li>
   
-  <li class=" " data-id="github.com/yuruhi/crystal_lib/Prime" data-name="prime">
+  <li class=" current" data-id="github.com/yuruhi/crystal_lib/Prime" data-name="prime">
       <a href="Prime.html">Prime</a>
       
     </li>
@@ -327,12 +327,352 @@
 
 
 <div class="main-content">
-<p><a href="https://github.com/yuruhi/crystal_lib/actions" target="_blank"><img src="https://github.com/yuruhi/crystal_lib/workflows/verify/badge.svg" alt="Actions Status"/></a>
-<a href="https://github.com/yuruhi/crystal_lib/actions" target="_blank"><img src="https://github.com/yuruhi/crystal_lib/workflows/linter/badge.svg" alt="Actions Status"/></a>
-<a href="https://github.com/yuruhi/crystal_lib/actions" target="_blank"><img src="https://github.com/yuruhi/crystal_lib/workflows/api/badge.svg" alt="Actions Status"/></a></p>
+<h1 class="type-name">
 
-<p><a href="https://yuruhi.github.io/crystal_lib/" target="_blank"><img src="https://img.shields.io/static/v1?label=GitHub+Pages&message=+&color=brightgreen&logo=github" alt="GitHub Pages"/></a>
-<a href="https://yuruhi.github.io/crystal_lib/api/" target="_blank"><img src="https://img.shields.io/static/v1?label=API+Document&message=+&color=brightgreen&logo=crystal" alt="GitHub Pages"/></a></p>
+  <span class="kind">module</span> Prime
+
+</h1>
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Indexable.html">Indexable(Int32)</a></li>
+    
+  </ul>
+
+
+
+  <h2>
+    <a id="extended-modules" class="anchor" href="#extended-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Extended Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="Prime.html">Prime</a></li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/yuruhi/crystal_lib/blob/76a62aeb95abb2c184dadafc1ba1b784e8e59548/src/math/prime.cr#L1" target="_blank">
+        math/prime.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#each(x:Int,&)-instance-method" class="signature"><strong>#each</strong>(x : Int, &)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each(x:Int)-instance-method" class="signature"><strong>#each</strong>(x : Int)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#includes?(x:Int)-instance-method" class="signature"><strong>#includes?</strong>(x : Int)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#index(x:Int)-instance-method" class="signature"><strong>#index</strong>(x : Int)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#size-instance-method" class="signature"><strong>#size</strong></a>
+        
+          <div class="summary"><p>Returns the number of elements in this container.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unsafe_fetch(index:Int)-instance-method" class="signature"><strong>#unsafe_fetch</strong>(index : Int)</a>
+        
+          <div class="summary"><p>Returns the element at the given <em>index</em>, without doing any bounds check.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+  <h3>Instance methods inherited from module <code><a href="Indexable.html">Indexable(Int32)</a></code></h3>
+  
+  
+    <a href="Indexable.html#[](point:Point)-instance-method" class="tooltip">
+      <span>[](point : Point)</span>
+    []</a>, 
+    
+  
+    <a href="Indexable.html#[]?(point:Point)-instance-method" class="tooltip">
+      <span>[]?(point : Point)</span>
+    []?</a>, 
+    
+  
+    <a href="Indexable.html#fetch(point:Point,&)-instance-method" class="tooltip">
+      <span>fetch(point : Point, &)</span>
+    fetch</a>
+    
+  
+
+
+    
+
+
+    
+
+
+  
+    
+
+  <h3>Instance methods inherited from module <code><a href="Enumerable.html">Enumerable(Int32)</a></code></h3>
+  
+  
+    <a href="Enumerable.html#inclusive_scan(&)-instance-method" class="tooltip">
+      <span>inclusive_scan(&)<br/>inclusive_scan</span>
+    inclusive_scan</a>, 
+    
+  
+    <a href="Enumerable.html#mex:T-instance-method" class="tooltip">
+      <span>mex : T</span>
+    mex</a>, 
+    
+  
+    <a href="Enumerable.html#mex_sorted:T-instance-method" class="tooltip">
+      <span>mex_sorted : T</span>
+    mex_sorted</a>, 
+    
+  
+    <a href="Enumerable.html#scan(init:U)forallU-instance-method" class="tooltip">
+      <span>scan(init : U) forall U<br/>scan<br/>scan(init : U, &) forall U</span>
+    scan</a>
+    
+  
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
 </div>
+
+
+
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="each(x:Int,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>each</strong>(x : <a href="Int.html">Int</a>, &)
+
+        <a class="method-permalink" href="#each(x:Int,&)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/76a62aeb95abb2c184dadafc1ba1b784e8e59548/src/math/prime.cr#L82" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each(x:Int)-instance-method">
+      <div class="signature">
+        
+        def <strong>each</strong>(x : <a href="Int.html">Int</a>)
+
+        <a class="method-permalink" href="#each(x:Int)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/76a62aeb95abb2c184dadafc1ba1b784e8e59548/src/math/prime.cr#L93" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="includes?(x:Int)-instance-method">
+      <div class="signature">
+        
+        def <strong>includes?</strong>(x : <a href="Int.html">Int</a>)
+
+        <a class="method-permalink" href="#includes?(x:Int)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/76a62aeb95abb2c184dadafc1ba1b784e8e59548/src/math/prime.cr#L71" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="index(x:Int)-instance-method">
+      <div class="signature">
+        
+        def <strong>index</strong>(x : <a href="Int.html">Int</a>)
+
+        <a class="method-permalink" href="#index(x:Int)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/76a62aeb95abb2c184dadafc1ba1b784e8e59548/src/math/prime.cr#L76" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="size-instance-method">
+      <div class="signature">
+        
+        def <strong>size</strong>
+
+        <a class="method-permalink" href="#size-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="Indexable.html">Indexable(Int32)</a>
+            </div>
+          
+          <p>Returns the number of elements in this container.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/76a62aeb95abb2c184dadafc1ba1b784e8e59548/src/math/prime.cr#L67" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unsafe_fetch(index:Int)-instance-method">
+      <div class="signature">
+        
+        def <strong>unsafe_fetch</strong>(index : <a href="Int.html">Int</a>)
+
+        <a class="method-permalink" href="#unsafe_fetch(index:Int)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="Indexable.html">Indexable(Int32)</a>
+            </div>
+          
+          <p>Returns the element at the given <em>index</em>, without doing any bounds check.</p>
+
+<p><code><a href="Indexable.html">Indexable</a></code> makes sure to invoke this method with <em>index</em> in <code>0..<a href="Prime.html#size-instance-method">.size</a></code>,
+so converting negative indices to positive ones is not needed here.</p>
+
+<p>Clients never invoke this method directly. Instead, they access
+elements with <code>#[](index)</code> and <code>#[]?(index)</code>.</p>
+
+<p>This method should only be directly invoked if you are absolutely
+sure the index is in bounds, to avoid a bounds check for a small boost
+of performance.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/76a62aeb95abb2c184dadafc1ba1b784e8e59548/src/math/prime.cr#L62" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
 </body>
 </html>
