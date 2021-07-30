@@ -13,17 +13,30 @@ jobs:
               with:
                   crystal: 0.33.0
 
-            - name: Install ac-library
-              run: git clone https://github.com/google/ac-library.cr.git atcoder
+            - name: Set up Python
+              uses: actions/setup-python@v1
 
-            - name: Gerarate API docs
+            - name: Install dependencies
+              run: |
+                  apt-get install ruby-full
+                  pip3 install -U online-judge-verify-helper
+                  git clone https://github.com/google/ac-library.cr.git atcoder
+
+            - name: Generate API docs
               run: |
                   git checkout master
-                  crystal docs
+                  crystal docs -o dist/api
 
-            - name: Deploy
-              uses: JamesIves/github-pages-deploy-action@4.1.4
+            - name: Generate bundled docs
+              run: |
+                  git oj-verify docs --jobs 4
+                  gem install bundler
+                  bundle install --gemfile=.verify-helper/markdown/Gemfile --path .vendor/bundle
+                  bundle exec --gemfile=.verify-helper/markdown/Gemfile jekyll build --source .verify-helper/markdown --destination dist/docs --baseurl ac-library.cr/docs
+
+            - name: Deploy docs to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v3
+              if: ${{ github.event_name == 'push' }}
               with:
-                  branch: gh-pages
-                  folder: docs
-                  target-folder: api
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./dist
