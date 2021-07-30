@@ -1,4 +1,6 @@
-[![yuruhiya](https://img.shields.io/endpoint?url=https%3A%2F%2Fatcoder-badges.now.sh%2Fapi%2Fatcoder%2Fjson%2Fyuruhiya)](https://atcoder.jp/users/yuruhiya)
-[![yuruhiya](https://img.shields.io/endpoint?url=https%3A%2F%2Fatcoder-badges.now.sh%2Fapi%2Fcodeforces%2Fjson%2Fyuruhiya)](https://codeforces.com/profile/yuruhiya)
+[![Actions Status](https://github.com/yuruhi/crystal_lib/workflows/verify/badge.svg)](https://github.com/yuruhi/crystal_lib/actions)
+[![Actions Status](https://github.com/yuruhi/crystal_lib/workflows/linter/badge.svg)](https://github.com/yuruhi/crystal_lib/actions)
+[![Actions Status](https://github.com/yuruhi/crystal_lib/workflows/api/badge.svg)](https://github.com/yuruhi/crystal_lib/actions)
 
-[API document](https://yuruhi.github.io/crystal_lib/api)
+[![GitHub Pages](https://img.shields.io/static/v1?label=GitHub+Pages&message=+&color=brightgreen&logo=github)](https://yuruhi.github.io/crystal_lib/docs)
+[![GitHub Pages](https://img.shields.io/static/v1?label=API+Document&message=+&color=brightgreen&logo=crystal)](https://yuruhi.github.io/crystal_lib/api/)
