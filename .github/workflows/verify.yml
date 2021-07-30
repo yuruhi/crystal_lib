@@ -22,7 +22,10 @@ jobs:
                   echo "/home/runner/work/crystal_lib/crystal_lib/bin" >> $GITHUB_PATH
 
             - name: Install dependencies
-              run: pip3 install -U online-judge-verify-helper
+              run: |
+                  pip3 install -U online-judge-verify-helper
+                  sudo apt-get install ruby-full -y
+                  sudo gem install bundler
 
             - name: Install cr-bundle
               run: |
@@ -47,4 +50,19 @@ jobs:
               run: |
                   git checkout master
                   oj-verify run --jobs 4
-            # oj-verify run test/graph/bfs.test.cr
+
+            - name: Generate API docs
+              run: crystal docs -o dist/api
+
+            - name: Generate bundled docs
+              run: |
+                  oj-verify docs --jobs 4
+                  sudo bundle install --gemfile=.verify-helper/markdown/Gemfile --path .vendor/bundle
+                  bundle exec --gemfile=.verify-helper/markdown/Gemfile jekyll build --source .verify-helper/markdown --destination dist/docs --baseurl crystal_lib/docs
+
+            - name: Deploy docs to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v3
+              if: ${{ github.event_name == 'push' }}
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./dist
