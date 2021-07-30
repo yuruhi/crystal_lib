@@ -49,7 +49,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
                   GH_PAT: ${{ secrets.GH_PAT }}
-              run: oj-verify all --jobs 4
+              run: git branch && oj-verify all --jobs 4
 
             - name: Generate API docs
               run: crystal docs -o dist/api
