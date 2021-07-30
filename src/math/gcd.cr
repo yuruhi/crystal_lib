@@ -1,10 +1,9 @@
-require "../../atcoder/src/Prime"
+require "../../src/math/prime"
 
 class Array(T)
   # `result[i] = Sum_{n | i} a[i]` (inplace)
   def gcd_zeta!
-    AtCoder::Prime.each do |p|
-      break if p >= size
+    Prime.each(size - 1) do |p|
       i, k = size.pred // p, size.pred // p * p
       while k > 0
         self[i] += self[i * p]
@@ -21,8 +20,7 @@ class Array(T)
 
   # `a[i] = Sum_{n | i} result[i]` (inplace)
   def gcd_mobius!
-    AtCoder::Prime.each do |p|
-      break if p >= size
+    Prime.each(size - 1) do |p|
       i, k = 1, p
       while k < size
         self[i] -= self[k]
