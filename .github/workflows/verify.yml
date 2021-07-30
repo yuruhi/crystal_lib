@@ -47,4 +47,4 @@ jobs:
               # run: oj-verify run --jobs 4
               run: |
                   git checkout master
-                  oj-verify run test/bfs.test.cr
+                  oj-verify run test/graph/bfs.test.cr
