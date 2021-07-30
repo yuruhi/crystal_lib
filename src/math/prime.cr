@@ -73,6 +73,12 @@ module Prime
     @@primes.bsearch { |y| y >= x } == x
   end
 
+  def index(x : Int)
+    generate_until(value: x)
+    i = @@primes.bsearch_index { |y| y >= x }.not_nil!
+    @@primes[i] == x ? i : nil
+  end
+
   def each(x : Int, &)
     i = 0
     loop do

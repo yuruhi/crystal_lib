@@ -35,11 +35,31 @@ describe Prime do
   end
 
   it "#includes?(x)" do
-    Prime.includes?(-1).should be_false
     Prime.includes?(-10**9).should be_false
-    Prime.includes?(13).should be_true
+    Prime.includes?(-1).should be_false
+    Prime.includes?(0).should be_false
     Prime.includes?(57).should be_false
+    Prime.includes?(91).should be_false
+    Prime.includes?(9943081).should be_false
+
+    Prime.includes?(13).should be_true
     Prime.includes?(10**6 + 3).should be_true
     Prime.includes?(10**8 + 7).should be_true
+  end
+
+  it "#index(x)" do
+    Prime.index(2).should eq 0
+    Prime.index(3).should eq 1
+    Prime.index(5).should eq 2
+    Prime.index(7).should eq 3
+    Prime.index(10**8 + 7).should eq 5761455
+
+    Prime.index(-10**9).should be_nil
+    Prime.index(-1).should be_nil
+    Prime.index(0).should be_nil
+    Prime.index(1).should be_nil
+    Prime.index(57).should be_nil
+    Prime.index(91).should be_nil
+    Prime.index(9943081).should be_nil
   end
 end
