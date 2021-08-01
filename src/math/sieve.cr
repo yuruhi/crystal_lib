@@ -57,8 +57,8 @@ class Sieve
 
   def number_of_divisors(x : Int)
     cnt = 1
-    each_factor(x) do |elem, cnt|
-      cnt *= cnt.succ
+    each_factor(x) do |_, c|
+      cnt *= c.succ
     end
     cnt
   end
