@@ -17,7 +17,7 @@ class Sieve
     end
   end
 
-  def prime?(x)
+  def prime?(x : Int)
     factor[x] == x
   end
 
@@ -39,11 +39,11 @@ class Sieve
     end
   end
 
-  def prime_division(x)
+  def prime_division(x : Int)
     PrimeDivisionIterator.new(x, factor)
   end
 
-  def each_factor(x, &) : Nil
+  def each_factor(x : Int, &) : Nil
     while x > 1
       element = @factor[x]
       count = 0
@@ -53,5 +53,21 @@ class Sieve
       end
       yield(element, count)
     end
+  end
+
+  def number_of_divisors(x : Int)
+    cnt = 1
+    each_factor(x) do |elem, cnt|
+      cnt *= cnt.succ
+    end
+    cnt
+  end
+
+  def sum_of_divisors(x : Int)
+    sum = 1i64
+    each_factor(x) do |elem, cnt|
+      sum *= (elem.to_i64 ** cnt.succ - 1) // elem.pred
+    end
+    sum
   end
 end
