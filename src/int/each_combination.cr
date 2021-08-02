@@ -26,7 +26,7 @@ struct Int
     CombinationIterator.new(self, k)
   end
 
-  def each_combination(k : Int, &)
+  def each_combination(k : Int, &) : Nil
     combination = (self.class.new(1) << k) - 1
     while combination < (self.class.new(1) << self)
       yield combination

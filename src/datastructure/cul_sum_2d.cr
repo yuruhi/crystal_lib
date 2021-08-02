@@ -1,6 +1,5 @@
 class CulSum2D(T)
-  getter height : Int32
-  getter width : Int32
+  getter height : Int32, width : Int32
 
   def initialize(a : Array(Array(T)))
     @height = a.size
@@ -24,8 +23,7 @@ class CulSum2D(T)
   end
 
   def initialize(@height : Int32, @width : Int32, &block : Int32, Int32 -> T)
-    raise ArgumentError.new unless height > 0
-    raise ArgumentError.new unless width > 0
+    raise ArgumentError.new unless height > 0 && width > 0
     @sum = Array(Array(T)).new(height + 1) { Array.new(width + 1, T.zero) }
     height.times do |i|
       width.times do |j|

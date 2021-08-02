@@ -4,7 +4,7 @@ class Matrix(T)
   getter height : Int32, width : Int32
   getter data : Array(Array(T))
 
-  def Matrix.identity(size : Int32)
+  def Matrix.identity(size : Int32) : self
     result = Matrix(T).new(size, size)
     (0...size).each do |i|
       result[i][i] = T.new(1)
@@ -72,7 +72,7 @@ class Matrix(T)
     result
   end
 
-  def to_s(io)
+  def to_s(io) : Nil
     io << data
   end
 end

@@ -27,12 +27,12 @@ class RollingHash
     end
   end
 
-  def [](start : Int, count : Int)
+  def [](start : Int, count : Int) : UInt64
     res = @hash[start + count] + MOD - mul(@hash[start], @pow[count])
     res < MOD ? res : res - MOD
   end
 
-  def [](range : Range)
+  def [](range : Range) : UInt64
     self[*Indexable.range_to_index_and_count(range, size) || raise IndexError.new]
   end
 end
