@@ -31,8 +31,7 @@ class LCA(Edge, Edge2)
   delegate size, to: @graph
 
   def lca(u : Int, v : Int) : Int32
-    raise IndexError.new unless 0 <= u < size
-    raise IndexError.new unless 0 <= v < size
+    raise IndexError.new unless 0 <= u < size && 0 <= v < size
     u, v = v, u if @depth[u] > @depth[v]
     (0...@log2).each do |k|
       v = @parent[k][v] if (@depth[v] - @depth[u]).bit(k) == 1
