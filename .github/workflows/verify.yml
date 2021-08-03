@@ -35,6 +35,12 @@ jobs:
             - name: Run spec
               run: crystal spec --release
 
+            - name: Install cr-bundle
+              run: |
+                  git clone https://github.com/yuruhi/cr-bundle.git
+                  crystal build cr-bundle/src/cli.cr -o bin/cr-bundle
+                  rm -rf cr-bundle
+
             - name: Run tests
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -42,18 +48,18 @@ jobs:
                   GH_PAT: ${{ secrets.GH_PAT }}
               run: ls src && oj-verify all
 
-            - name: Install cr-bundle
-              run: |
-                  git clone https://github.com/yuruhi/cr-bundle.git
-                  crystal build cr-bundle/src/cli.cr -o bin/cr-bundle
-                  rm -rf cr-bundle
-
             - name: Generate API docs
               run: |
                   git checkout master
                   rm -rf atcoder
                   git clone https://github.com/google/ac-library.cr.git atcoder
                   crystal docs -o dist/api
+
+            - name: Install cr-bundle
+              run: |
+                  git clone https://github.com/yuruhi/cr-bundle.git
+                  crystal build cr-bundle/src/cli.cr -o bin/cr-bundle
+                  rm -rf cr-bundle
 
             - name: Generate bundled docs
               run: |
