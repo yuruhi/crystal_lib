@@ -117,7 +117,7 @@ data:
   path: src/math/mint.cr
   requiredBy:
   - spec/math/mint_spec.cr
-  timestamp: '2021-08-03 16:41:37+09:00'
+  timestamp: '2021-08-03 16:45:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/gcd_convolution.test.cr

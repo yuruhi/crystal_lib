@@ -42,7 +42,7 @@ data:
   isVerificationFile: false
   path: src/string/rolling_hash.cr
   requiredBy: []
-  timestamp: '2021-08-03 16:41:37+09:00'
+  timestamp: '2021-08-03 16:45:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/string/rolling_hash.test.cr
