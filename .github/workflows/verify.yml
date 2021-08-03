@@ -27,12 +27,6 @@ jobs:
                   sudo apt-get install ruby-full -y
                   sudo gem install bundler
 
-            - name: Install cr-bundle
-              run: |
-                  git clone https://github.com/yuruhi/cr-bundle.git
-                  crystal build cr-bundle/src/cli.cr -o bin/cr-bundle
-                  rm -rf cr-bundle
-
             - name: Install ac-library
               run: |
                   git clone https://github.com/google/ac-library.cr.git atcoder
@@ -47,6 +41,12 @@ jobs:
                   YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
                   GH_PAT: ${{ secrets.GH_PAT }}
               run: ls src && oj-verify all
+
+            - name: Install cr-bundle
+              run: |
+                  git clone https://github.com/yuruhi/cr-bundle.git
+                  crystal build cr-bundle/src/cli.cr -o bin/cr-bundle
+                  rm -rf cr-bundle
 
             - name: Generate API docs
               run: |
