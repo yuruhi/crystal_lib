@@ -62,7 +62,7 @@ data:
   isVerificationFile: false
   path: src/math/matrix.cr
   requiredBy: []
-  timestamp: '2021-08-03 16:45:50+09:00'
+  timestamp: '2021-08-03 16:50:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/matrix.test.cr
