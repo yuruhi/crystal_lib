@@ -151,7 +151,7 @@ data:
   path: src/datastructure/multi_set.cr
   requiredBy:
   - spec/datastructure/multi_set_spec.cr
-  timestamp: '2021-08-03 16:52:13+09:00'
+  timestamp: '2021-08-03 16:57:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/datastructure/multi_set.cr
