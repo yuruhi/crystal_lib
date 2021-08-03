@@ -81,7 +81,7 @@ data:
   requiredBy:
   - src/math/gcd.cr
   - spec/math/prime_spec.cr
-  timestamp: '2021-08-03 16:39:26+09:00'
+  timestamp: '2021-08-03 16:41:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/math/prime.cr
