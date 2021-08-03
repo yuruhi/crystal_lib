@@ -13,6 +13,9 @@ jobs:
               with:
                   crystal: latest
 
+            - name: Run format check
+              run: crystal tool format --check --exclude atcoder
+
             - name: Install Ameba
               run: shards install
 
