@@ -39,7 +39,7 @@ data:
   isVerificationFile: false
   path: src/dp/knapsack.cr
   requiredBy: []
-  timestamp: '2021-08-03 16:37:22+09:00'
+  timestamp: '2021-08-03 16:39:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/dp/knapsack01.test.cr
