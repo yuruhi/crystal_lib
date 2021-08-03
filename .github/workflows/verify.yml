@@ -30,7 +30,7 @@ jobs:
             - name: Install ac-library
               run: |
                   git clone https://github.com/google/ac-library.cr.git atcoder
-                  rm atcoder/verify/*
+                  rm atcoder/{benchmark,spec,verify}/*
 
             - name: Run spec
               run: crystal spec --release
@@ -48,18 +48,18 @@ jobs:
                   GH_PAT: ${{ secrets.GH_PAT }}
               run: oj-verify all
 
-            - name: Generate API docs
+            - name: Checkout
               run: |
                   git checkout master
                   rm -rf atcoder
                   git clone https://github.com/google/ac-library.cr.git atcoder
-                  crystal docs -o dist/api
-
-            - name: Install cr-bundle
-              run: |
+                  rm atcoder/{benchmark,spec,verify}/*
                   git clone https://github.com/yuruhi/cr-bundle.git
                   crystal build cr-bundle/src/cli.cr -o bin/cr-bundle
                   rm -rf cr-bundle
+
+            - name: Generate API docs
+              run: crystal docs -o dist/api
 
             - name: Generate bundled docs
               run: |
