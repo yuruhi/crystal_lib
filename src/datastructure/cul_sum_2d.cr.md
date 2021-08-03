@@ -79,7 +79,7 @@ data:
   isVerificationFile: false
   path: src/datastructure/cul_sum_2d.cr
   requiredBy: []
-  timestamp: '2021-08-03 17:59:57+09:00'
+  timestamp: '2021-08-03 18:03:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/datastructure/cul_sum_2d_2.test.cr

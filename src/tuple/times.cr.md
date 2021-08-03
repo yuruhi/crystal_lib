@@ -57,7 +57,7 @@ data:
   requiredBy:
   - src/template.cr
   - spec/tuple/times_spec.cr
-  timestamp: '2021-08-03 17:59:57+09:00'
+  timestamp: '2021-08-03 18:03:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/tuple/times.cr
