@@ -53,7 +53,7 @@ jobs:
                   git checkout master
                   rm -rf atcoder
                   git clone https://github.com/google/ac-library.cr.git atcoder
-                  rm atcoder/{benchmark,spec,verify}/*
+                  rm atcoder/{benchmarks,spec,verify}/*
                   git clone https://github.com/yuruhi/cr-bundle.git
                   crystal build cr-bundle/src/cli.cr -o bin/cr-bundle
                   rm -rf cr-bundle
