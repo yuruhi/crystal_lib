@@ -46,7 +46,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
                   GH_PAT: ${{ secrets.GH_PAT }}
-              run: ls src && oj-verify all
+              run: oj-verify all
 
             - name: Generate API docs
               run: |
@@ -63,7 +63,7 @@ jobs:
 
             - name: Generate bundled docs
               run: |
-                  ls src && oj-verify docs
+                  oj-verify docs
                   sudo bundle install --gemfile=.verify-helper/markdown/Gemfile --path .vendor/bundle
                   bundle exec --gemfile=.verify-helper/markdown/Gemfile jekyll build --source .verify-helper/markdown --destination dist/docs --baseurl crystal_lib/docs
 
