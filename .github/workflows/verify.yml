@@ -46,12 +46,10 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
                   GH_PAT: ${{ secrets.GH_PAT }}
-              run: |
-                  ls
-                  oj-verify all
+              run: ls && oj-verify all
 
             - name: Generate API docs
-              run: crystal docs -o dist/api
+              run: ls && crystal docs -o dist/api
 
             - name: Generate bundled docs
               run: |
