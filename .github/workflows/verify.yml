@@ -50,9 +50,9 @@ jobs:
 
             - name: Generate API docs
               run: |
-                  git beanch
+                  git branch
                   git checkout master
-                  git beanch
+                  git branch
                   ls atcoder/src
                   # git clone https://github.com/google/ac-library.cr.git atcoder
                   crystal docs -o dist/api
