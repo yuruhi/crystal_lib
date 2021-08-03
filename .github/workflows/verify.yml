@@ -51,8 +51,8 @@ jobs:
             - name: Generate API docs
               run: |
                   git checkout master
-                  ls
-                  git clone https://github.com/google/ac-library.cr.git atcoder
+                  ls atcoder
+                  # git clone https://github.com/google/ac-library.cr.git atcoder
                   ls src && crystal docs -o dist/api
 
             - name: Generate bundled docs
