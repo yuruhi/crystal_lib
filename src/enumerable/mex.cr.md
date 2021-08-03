@@ -23,7 +23,7 @@ data:
   path: src/enumerable/mex.cr
   requiredBy:
   - spec/array/mex_spec.cr
-  timestamp: '2021-08-03 16:50:02+09:00'
+  timestamp: '2021-08-03 16:52:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/enumerable/mex.cr
