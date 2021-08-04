@@ -2,12 +2,13 @@
 require "../../src/graph/compress"
 require "../../src/graph/degree"
 require "../../src/datastructure/union_find"
-n = read_line.to_i
-edges = Array.new(n) { u, v = read_line.split.map(&.to_i); UnweightedEdge2.new(u, v) }
+require "../../src/scanner"
+n = input(i)
+edges = input({i, i}[n])
 graph = UnweightedDirectedGraph.new(2*10**5 + 1, edges).compress
 m = graph.size
 uf = UnionFind.new(m)
-graph.each { |e| uf.unite(e.from, e.to) }
+graph.each { |edge| uf.unite(edge.from, edge.to) }
 
 if uf.size(0) != m
   puts 0

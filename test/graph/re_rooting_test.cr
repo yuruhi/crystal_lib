@@ -1,5 +1,6 @@
 # verification-helper: PROBLEM https://onlinejudge.u-aizu.ac.jp/challenges/sources/VPC/WUPC/3163
 require "../../src/graph/re_rooting"
+require "../../src/scanner"
 
 struct DP
   getter sum : Int64, val : Int64
@@ -26,11 +27,7 @@ struct DP
   end
 end
 
-n = read_line.to_i
-DP.a = read_line.split.map(&.to_i64)
-dp = ReRooting(DP, UnweightedUndirectedGraph).new(n)
-(n - 1).times do
-  a, b = read_line.split.map(&.to_i.pred)
-  dp << {a, b}
-end
+n = input(i)
+DP.a = input(i64[n])
+dp = ReRooting(DP, UnweightedUndirectedGraph).new n, input({i - 1, i - 1}[n - 1])
 puts dp.solve.join('\n', &.val)

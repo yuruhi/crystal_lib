@@ -1,12 +1,11 @@
 # verification-helper: PROBLEM https://yukicoder.me/problems/no/997
 require "../../src/math/mint"
 require "../../src/math/matrix"
-n, w, k = read_line.split.try { |(n, w, k)|
-  {n.to_i, w.to_i, k.to_i64}
-}
-a = read_line.split.map(&.to_i)
+require "../../src/scanner"
+n, w, k = input(i, i, i64)
+a = input(i[n])
 
-dp = Array.new(2 * w + 1) { Array.new(2, 0.to_m) }
+dp = Array.new(2 * w + 1) { [0.to_m, 0.to_m] }
 dp[0][0] = 1.to_m
 (1..2 * w).each do |i|
   (0...n).each do |j|

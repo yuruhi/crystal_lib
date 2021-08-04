@@ -2,6 +2,6 @@
 require "../../src/string/rolling_hash"
 s = RollingHash.new read_line
 t = RollingHash.new read_line
-(0..s.size - t.size).each { |i|
+(0..s.size - t.size).each do |i|
   puts i if s[i, t.size] == t[0, t.size]
-}
+end

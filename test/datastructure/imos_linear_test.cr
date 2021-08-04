@@ -1,11 +1,9 @@
 # verification-helper: PROBLEM https://yukicoder.me/problems/no/1008
 require "../../src/datastructure/imos_linear"
-n, m = read_line.split.map(&.to_i)
-a = read_line.split.map(&.to_i64)
-xw = (1..m).map {
-  x, w = read_line.split
-  {x.to_i - 1, w.to_i64}
-}
+require "../../src/scanner"
+n, m = input(i, i)
+a = input(i64[n])
+xw = input({i - 1, i64}[m])
 
 if xw.sum(&.[1]) < a.min
   puts 0

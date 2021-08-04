@@ -1,22 +1,14 @@
 # verification-helper: PROBLEM https://yukicoder.me/problems/no/416
 require "../../src/datastructure/partially_persistent_union_find"
+require "../../src/scanner"
 n, m, q = read_line.split.map(&.to_i)
-ab = Array.new(m) {
-  {Int32, Int32}.from read_line.split.map(&.to_i.pred)
-}
-cd = Array.new(q) {
-  {Int32, Int32}.from read_line.split.map(&.to_i.pred)
-}
-ab -= cd
+ab = input({i - 1, i - 1}[m])
+cd = input({i - 1, i - 1}[q])
 
 uf = PartiallyPersistentUnionFind.new(n)
-(ab - cd).each do |a, b|
-  uf.unite(a, b)
-end
+(ab - cd).each { |a, b| uf.unite(a, b) }
 begin_time = uf.now
-cd.reverse_each do |c, d|
-  uf.unite(c, d)
-end
+cd.reverse_each { |c, d| uf.unite(c, d) }
 end_time = uf.now
 
 (1...n).each do |i|

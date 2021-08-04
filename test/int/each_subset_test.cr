@@ -3,5 +3,5 @@ require "../../src/int/each_subset"
 n = read_line.to_i
 a = read_line.split.map(&.to_i).skip(1).reduce(0) { |acc, x| acc | (1 << x) }
 puts a.each_subset.map { |x|
-  "#{x}:" + (0...n).select { |i| x.bit(i) == 1 }.join { |i| " #{i}" }
+  "#{x}:" + (0...n).select { |i| x.bit(i) == 1 }.join { |x| " #{x}" }
 }.to_a.reverse.join('\n')

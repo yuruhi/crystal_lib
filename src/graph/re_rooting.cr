@@ -25,14 +25,16 @@ class ReRooting(T, GraphType)
   getter graph : GraphType
 
   def initialize(size : Int)
-    @graph = GraphType.new(size)
-    @dp = Array(Array(T)).new
-    @result = Array(T).new
+    initialize(GraphType.new(size))
   end
 
   def initialize(@graph : GraphType)
     @dp = Array(Array(T)).new
     @result = Array(T).new
+  end
+
+  def initialize(size : Int, edges : Enumerable)
+    initialize(GraphType.new(size, edges))
   end
 
   delegate size, to: @graph

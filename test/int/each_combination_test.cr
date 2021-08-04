@@ -8,9 +8,5 @@ ans2 = n.each_combination(k).to_a
 raise "" unless ans == ans2
 
 ans.each do |x|
-  print x, ":"
-  (0...n).each do |i|
-    print ' ', i if x.bit(i) == 1
-  end
-  puts
+  print x, ": ", (0...n).select { |i| x.bit(i) == 1 }.join(' '), '\n'
 end
