@@ -17,9 +17,7 @@ jobs:
                   crystal: 0.33.0
 
             - name: Add path
-              run: |
-                  mkdir bin
-                  echo "/home/runner/work/crystal_lib/crystal_lib/bin" >> $GITHUB_PATH
+              run: mkdir bin && echo `pwd`/bin >> $GITHUB_PATH
 
             - name: Install dependencies
               run: |
