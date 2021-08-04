@@ -1,24 +1,24 @@
 require "spec"
 require "../../src/datastructure/multi_set"
 
-describe "MultiSet" do
-  it "initialize" do
+describe MultiSet do
+  it "#initialize" do
     MultiSet(Int32).new.to_s.should eq "MultiSet{}"
     MultiSet.new([0, 1, 2, 2]).to_s.should eq "MultiSet{0, 1, 2, 2}"
     MultiSet{0, 1, 2, 2}.to_s.should eq "MultiSet{0, 1, 2, 2}"
   end
 
-  it "size" do
+  it "#size" do
     MultiSet{0, 0, 0, 1, 1, 2}.size.should eq 6
     MultiSet(Int32).new.size.should eq 0
   end
 
-  it "kind_count" do
+  it "#kind_count" do
     MultiSet{0, 0, 1, 2}.kind_count.should eq 3
     MultiSet(Int32).new.kind_count.should eq 0
   end
 
-  it "add" do
+  it "#add" do
     a = MultiSet(Int32).new
     a.add 1
     a.add 2
@@ -30,7 +30,7 @@ describe "MultiSet" do
     a.inspect.should eq "{1(2), 2(4), 3(5)}"
   end
 
-  it "delete" do
+  it "#delete" do
     a = MultiSet{1, 1, 1, 1, 1, 2, 2, 3}
     a.delete 2
     a.inspect.should eq "{1(5), 2(1), 3(1)}"
@@ -40,7 +40,7 @@ describe "MultiSet" do
     a.inspect.should eq "{1(2), 2(1)}"
   end
 
-  it "concat" do
+  it "#concat" do
     a = MultiSet{1, 1, 1, 1, 1, 2, 2, 3}
     a.concat a
     a.inspect.should eq "{1(10), 2(4), 3(2)}"
@@ -48,12 +48,12 @@ describe "MultiSet" do
     a.inspect.should eq "{1(11), 2(5), 3(3), 0(3)}"
   end
 
-  it "clear" do
+  it "#clear" do
     a = MultiSet{0, 0, 1, 1}
     a.clear
   end
 
-  it "count" do
+  it "#count" do
     a = MultiSet{0, 0, 0, 1, 1, 2}
     a.count(0).should eq 3
     a.count(1).should eq 2
@@ -61,7 +61,7 @@ describe "MultiSet" do
     a.count(3).should eq 0
   end
 
-  it "includes?" do
+  it "#includes?" do
     a = MultiSet{0, 0, 0, 1, 1, 2}
     a.includes?(0).should eq true
     a.includes?(1).should eq true
@@ -69,12 +69,12 @@ describe "MultiSet" do
     a.includes?(3).should eq false
   end
 
-  it "empty?" do
+  it "#empty?" do
     MultiSet{0, 0, 0, 1, 1, 2}.empty?.should eq false
     MultiSet(Int32).new.empty?.should eq true
   end
 
-  it "intersects?" do
+  it "#intersects?" do
     a = MultiSet{0, 0, 0, 1, 1, 2}
     b = MultiSet{2, 3}
     c = MultiSet{3, 3, 3, 4, 4, 5}
@@ -83,7 +83,7 @@ describe "MultiSet" do
     a.intersects?(c).should eq false
   end
 
-  it "subset_of?" do
+  it "#subset_of?" do
     a = MultiSet{0, 0, 0, 1, 1, 2}
     b = MultiSet{0, 1, 0}
     c = MultiSet{-1, 0, 0, 1}
@@ -92,7 +92,7 @@ describe "MultiSet" do
     c.subset_of?(a).should eq false
   end
 
-  it "superset_of?" do
+  it "#superset_of?" do
     a = MultiSet{0, 0, 0, 1, 1, 2}
     b = MultiSet{0, 1, 0}
     c = MultiSet{-1, 0, 0, 1}
@@ -101,13 +101,13 @@ describe "MultiSet" do
     c.superset_of?(a).should eq false
   end
 
-  it "each" do
+  it "#each" do
     a = MultiSet{0, 0, 0, 1, 1, 2}
     a.each.to_a.should eq [0, 0, 0, 1, 1, 2]
     a.each.max.should eq 2
   end
 
-  it "each(&)" do
+  it "#each(&)" do
     a = [] of Int32
     MultiSet{0, 0, 0, 1, 1, 2}.each do |elem|
       a << elem
@@ -115,11 +115,11 @@ describe "MultiSet" do
     a.should eq [0, 0, 0, 1, 1, 2]
   end
 
-  it "each_count" do
+  it "#each_count" do
     MultiSet{0, 0, 0, 1, 1, 2}.each_count.max.should eq({2, 1})
   end
 
-  it "each_count(&)" do
+  it "#each_count(&)" do
     a = [] of {Int32, Int32}
     MultiSet{0, 0, 0, 1, 1, 2}.each_count do |elem, cnt|
       a << {elem, cnt}
@@ -127,35 +127,35 @@ describe "MultiSet" do
     a.should eq [{0, 3}, {1, 2}, {2, 1}]
   end
 
-  it "&" do
+  it "#&" do
     a = MultiSet{0, 0, 0, 1, 1, 2, 3}
     b = MultiSet{0, 1, 1, 2, 2, 2}
     (a & b).inspect.should eq "{0(1), 1(2), 2(1)}"
   end
 
-  it "|" do
+  it "#|" do
     a = MultiSet{0, 0, 0, 1, 1, 2, 3}
     b = MultiSet{0, 1, 1, 2, 2, 2}
     (a | b).inspect.should eq "{0(4), 1(4), 2(4), 3(1)}"
     (a + b).inspect.should eq "{0(4), 1(4), 2(4), 3(1)}"
   end
 
-  it "to_s" do
+  it "#to_s" do
     MultiSet{0, 0, 0, 1, 1, 2}.to_s.should eq "MultiSet{0, 0, 0, 1, 1, 2}"
   end
 
-  it "inspect" do
+  it "#inspect" do
     io = IO::Memory.new
     MultiSet{0, 0, 0, 1, 1, 2}.inspect(io)
     io.to_s.should eq "{0(3), 1(2), 2(1)}"
   end
 
-  it "Iterable" do
+  it "includes Iterable" do
     MultiSet{0, 0, 0, 1, 1, 2}.each_slice(3).to_a.should eq [[0, 0, 0], [1, 1, 2]]
     MultiSet{0, 0, 0, 1, 1, 2}.each_cons(2).select { |(i, j)| i != j }.to_a.should eq [[0, 1], [1, 2]]
   end
 
-  it "Enumeratable" do
+  it "includes Enumeratable" do
     MultiSet{0, 0, 0, 1, 1, 2}.all?(&.even?).should eq false
     MultiSet{0, 0, 0, 1, 1, 2}.all? { |i| i >= 0 }.should eq true
     MultiSet{0, 0, 0, 1, 1, 2}.max.should eq 2
