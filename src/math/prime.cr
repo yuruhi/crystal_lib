@@ -59,13 +59,53 @@ module Prime
     end
   end
 
+  # Returns the *index* th prime, without doing any bounds check.
   def unsafe_fetch(index : Int)
     generate_until(index: index)
     @@primes.unsafe_fetch(index)
   end
 
+  # Returns the limit of size.
   def size
     10**9
+  end
+
+  def []?(start : Int, count : Int) : Array(Int32)?
+    raise ArgumentError.new "Negative count: #{count}" if count < 0
+    return [] of Int32 if start == size
+
+    if 0 <= start <= size
+      return [] of Int32 if count == 0
+
+      count = Math.min(count, size - start)
+      generate_until(index: start + count)
+
+      Array(Int32).build(count) do |buffer|
+        buffer.copy_from(@@primes.to_unsafe + start, count)
+        count
+      end
+    end
+  end
+
+  def [](start : Int, count : Int) : Array(Int32)
+    self[start, count]? || raise IndexError.new
+  end
+
+  private def self.range_to_index_and_count(range : Range, size : Int)
+    end_index = range.end || raise ArgumentError.new
+    end_index -= 1 if range.excludes_end?
+    start_index = range.begin || 0
+    raise IndexError.new unless start_index >= 0
+    count = Math.max(end_index - start_index + 1, 0)
+    {start_index, count}
+  end
+
+  def []?(range : Range) : Array(Int32)?
+    self[*range_to_index_and_count(range, size)]?
+  end
+
+  def [](range : Range) : Array(Int32)
+    self[*range_to_index_and_count(range, size)]
   end
 
   def includes?(x : Int)

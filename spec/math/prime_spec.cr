@@ -26,12 +26,58 @@ describe Prime do
     Prime.each(10**8).size.should eq 5761455
   end
 
-  it "#[](i)" do
-    Prime[0].should eq 2
-    Prime[1].should eq 3
-    Prime[2].should eq 5
-    expect_raises(IndexError) { Prime[-1] }
-    expect_raises(IndexError) { Prime[10**9] }
+  describe "includes Indexable" do
+    it "#[](i)" do
+      Prime[0].should eq 2
+      Prime[1].should eq 3
+      Prime[2].should eq 5
+      expect_raises(IndexError) { Prime[-1] }
+      expect_raises(IndexError) { Prime[10**9] }
+    end
+
+    it "#first" do
+      Prime.first.should eq 2
+    end
+  end
+
+  it "#[]?(start, count)" do
+    Prime[0, 3]?.should eq [2, 3, 5]
+    Prime[1, 3]?.should eq [3, 5, 7]
+    Prime[2, 3]?.should eq [5, 7, 11]
+    Prime[-2, 3]?.should be_nil
+    expect_raises(ArgumentError) { Prime[0, -3]? }
+  end
+
+  it "#[](start, count)" do
+    Prime[0, 3].should eq [2, 3, 5]
+    Prime[1, 3].should eq [3, 5, 7]
+    Prime[2, 3].should eq [5, 7, 11]
+    expect_raises(IndexError) { Prime[-2, 3] }
+    expect_raises(ArgumentError) { Prime[0, -3] }
+  end
+
+  it "#[]?(range)" do
+    Prime[0...3]?.should eq [2, 3, 5]
+    Prime[1...4]?.should eq [3, 5, 7]
+    Prime[2...5]?.should eq [5, 7, 11]
+    Prime[0..-3]?.should eq [] of Int32
+    Prime[5..2]?.should eq [] of Int32
+    Prime[...3]?.should eq [2, 3, 5]
+    Prime[...-3]?.should eq [] of Int32
+    expect_raises(IndexError) { Prime[-2..3]? }
+    expect_raises(ArgumentError) { Prime[3..]? }
+  end
+
+  it "#[](range)" do
+    Prime[0...3].should eq [2, 3, 5]
+    Prime[1...4].should eq [3, 5, 7]
+    Prime[2...5].should eq [5, 7, 11]
+    Prime[0..-3].should eq [] of Int32
+    Prime[5..2].should eq [] of Int32
+    Prime[...3].should eq [2, 3, 5]
+    Prime[...-3].should eq [] of Int32
+    expect_raises(IndexError) { Prime[-2..3] }
+    expect_raises(ArgumentError) { Prime[3..] }
   end
 
   it "#includes?(x)" do
