@@ -2,20 +2,20 @@ require "spec"
 require "../src/point"
 
 macro check_direction(name, dy, dx)
-	it ".{{name}}" do
-	  Point.{{name}}.should eq Point.new({{dy}}, {{dx}})
-	end
-	it "#" + "{{name}}" do
-		Point.new(1, 1).{{name}}.should eq Point.new(1 + {{dy}}, 1 + {{dx}})
-	end
+  it ".{{name}}" do
+    Point.{{name}}.should eq Point.new({{dy}}, {{dx}})
+  end
+  it "#" + "{{name}}" do
+    Point.new(1, 1).{{name}}.should eq Point.new(1 + {{dy}}, 1 + {{dx}})
+  end
 end
 
 macro check_binary_operator(op)
-	it "\#{{op.id}}" do
-		a, b = Point.new(1, 2), Point.new(3, 4)
-		(a {{op.id}} b).should eq Point.new(1 {{op.id}} 3, 2 {{op.id}} 4)
-		(a {{op.id}} 5).should eq Point.new(1 {{op.id}} 5, 2 {{op.id}} 5)
-	end
+  it "\#{{op.id}}" do
+    a, b = Point.new(1, 2), Point.new(3, 4)
+    (a {{op.id}} b).should eq Point.new(1 {{op.id}} 3, 2 {{op.id}} 4)
+    (a {{op.id}} 5).should eq Point.new(1 {{op.id}} 5, 2 {{op.id}} 5)
+  end
 end
 
 H = 3

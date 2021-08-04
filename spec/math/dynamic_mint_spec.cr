@@ -5,13 +5,13 @@ alias M = DynamicMint
 init = 998244353
 
 macro check_binary_operator(mod, op)
-	%mod = {{mod}}
-	M.mod = %mod
-	(0...%mod).each do |x|
-		(0...%mod).each do |y|
-			(M.new(x) {{op.id}} M.new(y)).should eq (x {{op.id}} y) % %mod
-		end
-	end
+  %mod = {{mod}}
+  M.mod = %mod
+  (0...%mod).each do |x|
+    (0...%mod).each do |y|
+      (M.new(x) {{op.id}} M.new(y)).should eq (x {{op.id}} y) % %mod
+    end
+  end
 end
 
 macro check_method(mod, method)
