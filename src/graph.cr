@@ -68,7 +68,11 @@ module Graph(Edge, Edge2)
   end
 
   def inspect(io : IO) : Nil
-    to_s(io)
+    io << "[\n"
+    graph.each do |edges|
+      io << "  " << edges << ",\n"
+    end
+    io << ']'
   end
 end
 
