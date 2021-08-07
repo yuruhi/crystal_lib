@@ -58,6 +58,9 @@ struct UnweightedEdge
   def initialize(@to)
   end
 
+  def initialize(@to, cost)
+  end
+
   def cost
     1
   end
@@ -75,6 +78,9 @@ struct UnweightedEdge2
   property from : Int32, to : Int32
 
   def initialize(@from, @to)
+  end
+
+  def initialize(@from, @to, cost)
   end
 
   def initialize(@from, edge : UnweightedEdge)
