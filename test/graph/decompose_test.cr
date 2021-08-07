@@ -28,7 +28,7 @@ end
 n, m, q = input(i, i, i)
 g = UnweightedUndirectedGraph.new n, input({i - 1, i - 1}[m])
 
-graphs, index = g.decompose
+graphs, index, _ = g.decompose
 lcas = graphs.map { |graph| LCA.new(graph, 0) }
 
 ans = 0i64
