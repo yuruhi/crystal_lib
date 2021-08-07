@@ -21,7 +21,7 @@ module Graph(Edge, Edge2)
       each do |edge|
         i1, j1 = index[edge.from]
         _, j2 = index[edge.to]
-        graphs[i1] << {j1, j2}
+        graphs[i1] << {j1, j2, edge.cost}
       end
     else
       edge_set = Set(Edge2).new
@@ -29,7 +29,7 @@ module Graph(Edge, Edge2)
         if edge_set.add?(edge.sort)
           i1, j1 = index[edge.from]
           _, j2 = index[edge.to]
-          graphs[i1] << {j1, j2}
+          graphs[i1] << {j1, j2, edge.cost}
         end
       end
     end
