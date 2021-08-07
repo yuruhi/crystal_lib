@@ -4,7 +4,7 @@ require "./degree"
 module Graph(Edge, Edge2)
   # Returns forest and cycle of the undirected graph with equal number of vertices and edges.
   def namori_decompose : {self, Array(Int32)}
-    raise ArgumentError.new unless !self.class.directed?
+    raise ArgumentError.new if self.class.directed?
     raise ArgumentError.new unless size == graph.sum(&.size) // 2
 
     deg = Array.new(size) { |i| self[i].size }
