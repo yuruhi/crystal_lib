@@ -60,7 +60,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/graph/dijkstra_test.cr
     title: test/graph/dijkstra_test.cr
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graph/euler_tour_for_vertex_test.cr
     title: test/graph/euler_tour_for_vertex_test.cr
   - icon: ':heavy_check_mark:'
@@ -267,7 +267,7 @@ data:
   path: src/scanner.cr
   requiredBy:
   - src/template.cr
-  timestamp: '2021-08-08 10:19:39+09:00'
+  timestamp: '2021-08-08 01:27:52+00:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/array/compress_test.cr

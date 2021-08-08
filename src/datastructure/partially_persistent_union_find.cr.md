@@ -40,7 +40,7 @@ data:
   isVerificationFile: false
   path: src/datastructure/partially_persistent_union_find.cr
   requiredBy: []
-  timestamp: '2021-08-08 10:19:39+09:00'
+  timestamp: '2021-08-08 01:27:52+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/datastructure/partially_persistent_union_find_test.cr

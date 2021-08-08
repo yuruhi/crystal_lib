@@ -40,7 +40,7 @@ data:
   isVerificationFile: false
   path: src/datastructure/imos_linear.cr
   requiredBy: []
-  timestamp: '2021-08-08 10:19:39+09:00'
+  timestamp: '2021-08-08 01:27:52+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/datastructure/imos_linear_test.cr

@@ -6,12 +6,12 @@ data:
     title: src/graph.cr
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graph/euler_tour_for_vertex_test.cr
     title: test/graph/euler_tour_for_vertex_test.cr
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cr
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes: {}
   bundledCode: "# require \"../graph\"\n# require \"./graph/edge\"\nstruct WeightedEdge(T)\n\
     \  include Comparable(WeightedEdge(T))\n\n  property to : Int32, cost : T\n\n\
@@ -106,7 +106,7 @@ data:
   path: src/graph/euler_tour_for_vertex.cr
   requiredBy: []
   timestamp: '2021-08-08 10:19:36+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graph/euler_tour_for_vertex_test.cr
 documentation_of: src/graph/euler_tour_for_vertex.cr

@@ -21,7 +21,7 @@ data:
   isVerificationFile: false
   path: src/math/eratosthenes.cr
   requiredBy: []
-  timestamp: '2021-08-08 10:19:39+09:00'
+  timestamp: '2021-08-08 01:27:52+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/math/eratosthenes.cr

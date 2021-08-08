@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/src/SegTree.cr
     title: atcoder/src/SegTree.cr
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/graph/euler_tour_for_vertex.cr
     title: src/graph/euler_tour_for_vertex.cr
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: src/scanner.cr
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cr
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://yukicoder.me/problems/no/1641
   bundledCode: "# verification-helper: PROBLEM https://yukicoder.me/problems/no/1641\n\
@@ -221,7 +221,7 @@ data:
     \ do\n    {% for type, i in types %}\n      %array{i} << input({{type}})\n   \
     \ {% end %}\n  end\n  { {% for type, i in types %} %array{i}, {% end %} }\nend\n\
     \nn, q = input(i, i)\nc = input(i64[n])\ngraph = UnweightedUndirectedGraph.new\
-    \ n, input({i - 1, i - 1}[n - 1])\neuler = EulerTourForVertex.new(graph).run(0)\n\
+    \ n, input({i - 1, i - 1}[n - 1])\nls, rs = EulerTourForVertex.new(graph).run(0)\n\
     \nseg = AtCoder::SegTree.new([0i64] * n) { |x, y| x ^ y }\nls.each_with_index\
     \ { |x, i| seg[x] = c[i] }\n\nq.times do\n  t, x, y = input(i, i - 1, i)\n  case\
     \ t\n  when 1\n    seg[ls[x]] ^= y\n  when 2\n    puts seg[ls[x]...rs[x]]\n  end\n\
@@ -229,7 +229,7 @@ data:
   code: "# verification-helper: PROBLEM https://yukicoder.me/problems/no/1641\nrequire\
     \ \"../../src/graph/euler_tour_for_vertex\"\nrequire \"../../atcoder/src/SegTree\"\
     \nrequire \"../../src/scanner\"\n\nn, q = input(i, i)\nc = input(i64[n])\ngraph\
-    \ = UnweightedUndirectedGraph.new n, input({i - 1, i - 1}[n - 1])\neuler = EulerTourForVertex.new(graph).run(0)\n\
+    \ = UnweightedUndirectedGraph.new n, input({i - 1, i - 1}[n - 1])\nls, rs = EulerTourForVertex.new(graph).run(0)\n\
     \nseg = AtCoder::SegTree.new([0i64] * n) { |x, y| x ^ y }\nls.each_with_index\
     \ { |x, i| seg[x] = c[i] }\n\nq.times do\n  t, x, y = input(i, i - 1, i)\n  case\
     \ t\n  when 1\n    seg[ls[x]] ^= y\n  when 2\n    puts seg[ls[x]...rs[x]]\n  end\n\
@@ -241,8 +241,8 @@ data:
   isVerificationFile: true
   path: test/graph/euler_tour_for_vertex_test.cr
   requiredBy: []
-  timestamp: '2021-08-08 10:19:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-08-08 10:24:00+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graph/euler_tour_for_vertex_test.cr
 layout: document

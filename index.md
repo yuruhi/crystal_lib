@@ -36,7 +36,7 @@ data:
     - icon: ':warning:'
       path: atcoder/src/SCC.cr
       title: atcoder/src/SCC.cr
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/src/SegTree.cr
       title: atcoder/src/SegTree.cr
     - icon: ':warning:'
@@ -214,7 +214,7 @@ data:
     - icon: ':warning:'
       path: src/graph/edge.cr
       title: src/graph/edge.cr
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: src/graph/euler_tour_for_vertex.cr
       title: src/graph/euler_tour_for_vertex.cr
     - icon: ':heavy_check_mark:'
@@ -381,7 +381,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/graph/dijkstra_test.cr
       title: test/graph/dijkstra_test.cr
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/graph/euler_tour_for_vertex_test.cr
       title: test/graph/euler_tour_for_vertex_test.cr
     - icon: ':heavy_check_mark:'

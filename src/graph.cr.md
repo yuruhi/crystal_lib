@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/graph/dijkstra.cr
     title: src/graph/dijkstra.cr
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/graph/euler_tour_for_vertex.cr
     title: src/graph/euler_tour_for_vertex.cr
   - icon: ':heavy_check_mark:'
