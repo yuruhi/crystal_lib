@@ -77,7 +77,7 @@ def check(n, a)
   sum = n * (n * n + 1) // 2
   a.size == n &&
     a.all? { |b| b.size == n } &&
-    a.flatten.sort == (1..n * n).to_a &&
+    a.flatten.sort! == (1..n * n).to_a &&
     a.all? { |b| b.sum == sum } &&
     a.transpose.all? { |b| b.sum == sum }
 end
