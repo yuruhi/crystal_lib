@@ -22,6 +22,18 @@ struct Point
     Point.new(index // Point.width, index % Point.width)
   end
 
+  def self.each(h : Int, w : Int, &block)
+    h.times do |y|
+      w.times do |x|
+        yield Point[y, x]
+      end
+    end
+  end
+
+  def self.each(y : Int, w : Int)
+    size.times.map { |i| Point.new(i) }
+  end
+
   def initialize
     @y, @x = 0, 0
   end
@@ -50,6 +62,12 @@ struct Point
 
     def {{name}}
       Point.new(y + {{dy}}, x + {{dx}})
+    end
+
+    def {{name}}!
+      @y += {{dy}}
+      @x += {{dx}}
+      self
     end
   end
 
