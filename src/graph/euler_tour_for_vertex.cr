@@ -1,3 +1,5 @@
+require "../graph"
+
 class EulerTourForVertex
   getter graph : UnweightedUndirectedGraph
 
@@ -11,16 +13,16 @@ class EulerTourForVertex
   delegate :[], to: @graph
   delegate add_edge, to: @graph
 
-  def dfs(v : Int32, p : Int32) : Nil
+  def dfs(v : Int, p : Int) : Nil
     @ls[v] = @k
     @k += 1
-    @graph[v].each do |u|
-      dfs(u, v) if u != p
+    @graph[v].each do |edge|
+      dfs(edge.to, v) if edge.to != p
     end
     @rs[v] = @k
   end
 
-  def run(root : Int32)
+  def run(root : Int)
     dfs(root, -1)
     {@ls, @rs}
   end
