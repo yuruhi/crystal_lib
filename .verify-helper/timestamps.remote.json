@@ -24,6 +24,7 @@
 "test/graph/diameter_test.cr": "2021-08-04 18:11:49 +0900",
 "test/graph/dijkstra_path_test.cr": "2021-08-07 21:46:02 +0900",
 "test/graph/dijkstra_test.cr": "2021-08-07 21:46:02 +0900",
+"test/graph/euler_tour_for_vertex_test.cr": "2021-08-08 10:24:00 +0900",
 "test/graph/kruskal_test.cr": "2021-08-04 18:11:49 +0900",
 "test/graph/lca_test.cr": "2021-08-04 18:11:49 +0900",
 "test/graph/re_rooting_test.cr": "2021-08-04 18:11:49 +0900",
