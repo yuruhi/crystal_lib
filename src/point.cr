@@ -9,7 +9,7 @@ struct Point
 
   class_getter! height : Int32, width : Int32
 
-  def self.set_range(height : Int32, width : Int32)
+  def self.set_range(height : Int, width : Int)
     raise ArgumentError.new unless 0 < height && 0 < width
     @@height, @@width = height, width
   end
@@ -41,7 +41,7 @@ struct Point
   def initialize(@y : Int32, @x : Int32)
   end
 
-  def initialize(i : Int32)
+  def initialize(i : Int)
     raise ArgumentError.new unless 0 <= i && i < Point.size
     @y, @x = i // Point.width, i % Point.width
   end
@@ -51,7 +51,7 @@ struct Point
     Point.new(array.unsafe_fetch(0), array.unsafe_fetch(1))
   end
 
-  def self.[](y : Int32, x : Int32) : self
+  def self.[](y : Int, x : Int) : self
     Point.new(y, x)
   end
 
@@ -86,7 +86,7 @@ struct Point
       Point.new(y {{op.id}} other.y, x {{op.id}} other.x)
     end
 
-    def {{op.id}}(other : Int32)
+    def {{op.id}}(other : Int)
       Point.new(y {{op.id}} other, x {{op.id}} other)
     end
   {% end %}
@@ -107,7 +107,7 @@ struct Point
     to_i <=> other.to_i
   end
 
-  def [](i : Int32)
+  def [](i : Int)
     return y if i == 0
     return x if i == 1
     raise IndexError.new
@@ -135,7 +135,7 @@ struct Point
     (0...Point.height).includes?(y) && (0...Point.width).includes?(x)
   end
 
-  def to_i : Int32
+  def to_i
     raise IndexError.new unless in_range?
     y * Point.width + x
   end
