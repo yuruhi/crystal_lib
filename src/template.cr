@@ -1,5 +1,5 @@
-require "./scanner"
 require "./tuple/times"
 require "./comparable/min_max"
 require "./array/new"
 require "./array/change"
+require "./scanner"
