@@ -5,7 +5,7 @@ require "../../src/scanner"
 n, m = input(i, i)
 graph = DirectedGraph.new n, (0...m).map { |i| input(i, i) + {i} }
 if ans = graph.detect_cycle
-	puts ans.size, ans.join('\n', &.cost)
+  puts ans.size, ans.join('\n', &.cost)
 else
-	puts -1
+  puts -1
 end
