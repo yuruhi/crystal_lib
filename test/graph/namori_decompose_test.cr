@@ -4,7 +4,7 @@ require "../../src/scanner"
 
 n = input(i)
 graph = UnweightedUndirectedGraph.new n, input({i - 1, i - 1}[n])
-forest, cycle = graph.namori_decompose
+_, cycle = graph.namori_decompose
 set = Set.new cycle
 
 input(i).times do
