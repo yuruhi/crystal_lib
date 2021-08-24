@@ -1,5 +1,5 @@
 module Math
-  # Solve `x = ax^2 + bx + c`.
+  # Solve `y = ax^2 + bx + c`.
   def quadratic_equation(a : Int64, b : Int64, c : Int64) : Array(Float64)?
     if a == 0 && b == 0 && c == 0
       nil
