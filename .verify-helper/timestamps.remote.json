@@ -39,6 +39,7 @@
 "test/math/matrix_test.cr": "2021-08-09 09:32:32 +0900",
 "test/math/ntt_test.cr": "2021-08-09 09:32:32 +0900",
 "test/math/powmod_test.cr": "2021-08-04 13:11:57 +0900",
+"test/math/quadratic_equation_test.cr": "2021-08-24 11:52:19 +0900",
 "test/point/point_to_direction_test.cr": "2021-08-09 10:11:26 +0900",
 "test/scanner/10_test.cr": "2021-08-09 09:32:32 +0900",
 "test/scanner/11_test.cr": "2021-08-09 09:32:32 +0900",
