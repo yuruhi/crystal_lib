@@ -218,7 +218,7 @@ class RedBlackTree(T)
   end
 
   def each : Nil
-    inorder_walk(x) { |k| yield k }
+    inorder_walk { |k| yield k }
   end
 
   def reverse_inorder_walk : Nil
@@ -230,7 +230,7 @@ class RedBlackTree(T)
   end
 
   def reverse_each : Nil
-    reverse_inorder_walk(x) { |k| yield k }
+    reverse_inorder_walk { |k| yield k }
   end
 
   def includes?(key : T) : Bool
