@@ -209,7 +209,7 @@ class RedBlackTree(T)
     y
   end
 
-  def inorder_walk(x : Node = root) : Nil
+  def inorder_walk : Nil
     x = self.min_node
     while !x.nil_node?
       yield x.key
@@ -217,11 +217,11 @@ class RedBlackTree(T)
     end
   end
 
-  def each(x : Node = root) : Nil
+  def each : Nil
     inorder_walk(x) { |k| yield k }
   end
 
-  def reverse_inorder_walk(x : Node = root) : Nil
+  def reverse_inorder_walk : Nil
     x = self.max_node
     while !x.nil_node?
       yield x.key
@@ -229,7 +229,7 @@ class RedBlackTree(T)
     end
   end
 
-  def reverse_each(x : Node = root) : Nil
+  def reverse_each : Nil
     reverse_inorder_walk(x) { |k| yield k }
   end
 

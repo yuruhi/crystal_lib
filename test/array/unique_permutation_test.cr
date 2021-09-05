@@ -1,6 +1,6 @@
 # verification-helper: PROBLEM https://yukicoder.me/problems/no/170
 require "../..//src/array/unique_permutation"
-s = read_line.chars.sort
+s = read_line.chars.sort!
 
 ans1 = -1
 s.each_unique_permutation { ans1 += 1 }

@@ -1,5 +1,8 @@
 Lint/ShadowingOuterLocalVar:
     Enabled: false
 
+Metrics/CyclomaticComplexity:
+    Enabled: false
+
 Excluded:
     - atcoder/src/*.cr
