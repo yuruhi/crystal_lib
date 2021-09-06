@@ -40,7 +40,6 @@ benchmark_each "Int32 10^6 sparse", Array.new(10**6) { |i| i }
 benchmark_each "Int32 10^6 dence", Array.new(10**6) { |i| i % 100 }
 
 r = Random.new(12345)
-benchmark_each "Array 10^6 * 10^1", Array.new(10**6) { Array.new(10**1) { r.rand(10) } }
-benchmark_each "Array 10^5 * 10^2", Array.new(10**5) { Array.new(10**2) { r.rand(10) } }
-benchmark_each "Array 10^3 * 10^4", Array.new(10**3) { Array.new(10**4) { r.rand(10) } }
-benchmark_each "Array 10^2 * 10^5", Array.new(10**2) { Array.new(10**5) { r.rand(10) } }
+benchmark_each "Array 10^6 * 10^2", Array.new(10**6) { Array.new(10**2) { r.rand(100) } }
+benchmark_each "Array 10^5 * 10^3", Array.new(10**5) { Array.new(10**3) { r.rand(100) } }
+benchmark_each "Array 10^4 * 10^4", Array.new(10**4) { Array.new(10**4) { r.rand(100) } }
