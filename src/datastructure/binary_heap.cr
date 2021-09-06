@@ -1,11 +1,21 @@
 class BinaryHeap(T)
   def initialize
-    initialize { |a, b| a < b }
+    initialize { |a, b| a <=> b }
   end
 
-  def initialize(&block : T, T -> Bool)
+  def initialize(enumerable : Enumerable(T))
+    initialize
+    enumerable.each { |x| add(x) }
+  end
+
+  def initialize(&block : T, T -> Int32?)
     @heap = Array(T).new
-    @compare = block
+    @compare_proc = block
+  end
+
+  def initialize(enumerable : Enumerable(T), &block : T, T -> Int32?)
+    initialize &block
+    enumerable.each { |x| add(x) }
   end
 
   include Enumerable(T)
@@ -19,7 +29,9 @@ class BinaryHeap(T)
   end
 
   private def compare(index1 : Int32, index2 : Int32)
-    @compare.call(@heap[index1], @heap[index2])
+    v = @compare_proc.call(@heap[index1], @heap[index2])
+		raise ArgumentError.new("Comparison of #{@heap[index1]} and #{@heap[index2]} failed") if v.nil?
+		v > 0
   end
 
   # Removes all elements from the heap and returns `self`.
@@ -28,20 +40,20 @@ class BinaryHeap(T)
     self
   end
 
-	# Returns the greatest value in the `self`.
-	# If the `self` is empty, calls the block and returns its value.
+  # Returns the lowest value in the `self`.
+  # If the `self` is empty, calls the block and returns its value.
   def top(&block)
     @heap.first { yield }
   end
 
-	# Returns the greatest value in the `self`.
-	# If the `self` is empty, returns `nil`.
+  # Returns the lowest value in the `self`.
+  # If the `self` is empty, returns `nil`.
   def top? : T?
     top { nil }
   end
 
-	# Returns the greatest value in the `self`.
-	# If the `self` is empty, raises `IndexError`.
+  # Returns the lowest value in the `self`.
+  # If the `self` is empty, raises `IndexError`.
   def top : T
     top { raise IndexError.new }
   end
@@ -63,7 +75,7 @@ class BinaryHeap(T)
     add(object)
   end
 
-  # Removes the greatest value from `self` and returns the removed value.
+  # Removes the lowest value from `self` and returns the removed value.
   # If the array is empty, the given block is called.
   def pop(&block)
     case size
@@ -96,7 +108,7 @@ class BinaryHeap(T)
     pop { nil }
   end
 
-  # Removes the greatest value from `self` and returns the removed value.
+  # Removes the lowest value from `self` and returns the removed value.
   # Raises `IndexError` if heap is of 0 size.
   def pop : T
     pop { raise IndexError.new }
@@ -109,9 +121,8 @@ class BinaryHeap(T)
   end
 
   def each(&block)
-    heap = clone
-    while v = heap.pop?
-      yield v
+    @heap.sort { |a, b| @compare_proc.call(a, b) }.each do |x|
+      yield x
     end
   end
 
