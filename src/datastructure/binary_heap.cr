@@ -30,8 +30,8 @@ class BinaryHeap(T)
 
   private def compare(index1 : Int32, index2 : Int32)
     v = @compare_proc.call(@heap[index1], @heap[index2])
-		raise ArgumentError.new("Comparison of #{@heap[index1]} and #{@heap[index2]} failed") if v.nil?
-		v > 0
+    raise ArgumentError.new("Comparison of #{@heap[index1]} and #{@heap[index2]} failed") if v.nil?
+    v > 0
   end
 
   # Removes all elements from the heap and returns `self`.
@@ -117,7 +117,7 @@ class BinaryHeap(T)
   def pop(n : Int) : Array(T)
     raise ArgumentError.new unless n >= 0
     n = Math.min(n, size)
-    Array.new(n) { |i| pop }
+    Array.new(n) { pop }
   end
 
   def each(&block)
