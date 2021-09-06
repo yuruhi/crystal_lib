@@ -1,0 +1,34 @@
+name: verify
+
+on: push
+
+jobs:
+    verify:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v1
+
+            - name: Set up Python
+              uses: actions/setup-python@v1
+
+            - name: Set up Crystal
+              uses: oprypin/install-crystal@v1
+              with:
+                  crystal: 0.33.0
+
+            - name: Add path
+              run: mkdir bin && echo `pwd`/bin >> $GITHUB_PATH
+
+            - name: Install dependencies
+              run: |
+                  pip3 install -U online-judge-verify-helper
+                  sudo apt-get install ruby-full -y
+                  sudo gem install bundler
+
+            - name: Install ac-library
+              run: |
+                  git clone https://github.com/google/ac-library.cr.git atcoder
+                  rm atcoder/{benchmarks,spec,verify}/*
+
+            - name: Run benchmark
+              run: bash scripts/benchmark.sh
