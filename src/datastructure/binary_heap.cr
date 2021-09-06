@@ -28,14 +28,20 @@ class BinaryHeap(T)
     self
   end
 
+	# Returns the greatest value in the `self`.
+	# If the `self` is empty, calls the block and returns its value.
   def top(&block)
     @heap.first { yield }
   end
 
+	# Returns the greatest value in the `self`.
+	# If the `self` is empty, returns `nil`.
   def top? : T?
     top { nil }
   end
 
+	# Returns the greatest value in the `self`.
+	# If the `self` is empty, raises `IndexError`.
   def top : T
     top { raise IndexError.new }
   end
