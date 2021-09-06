@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/datastructure/binary_heap.cr
     title: src/datastructure/binary_heap.cr
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cr
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_9_C
   bundledCode: "# verification-helper: PROBLEM https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_9_C\n\
@@ -48,24 +48,24 @@ data:
     \ the removed value.\n  # Raises `IndexError` if heap is of 0 size.\n  def pop\
     \ : T\n    pop { raise IndexError.new }\n  end\n\n  def pop(n : Int) : Array(T)\n\
     \    raise ArgumentError.new unless n >= 0\n    n = Math.min(n, size)\n    Array.new(n)\
-    \ { |i| pop }\n  end\n\n  def each(&block)\n    @heap.sort { |a, b| @compare_proc.call(a,\
+    \ { pop }\n  end\n\n  def each(&block)\n    @heap.sort { |a, b| @compare_proc.call(a,\
     \ b) }.each do |x|\n      yield x\n    end\n  end\n\n  def to_s(io : IO) : Nil\n\
     \    io << \"BinaryHeap{\"\n    each_with_index do |x, i|\n      io << \", \"\
     \ if i > 0\n      io << x\n    end\n    io << '}'\n  end\n\n  def inspect(io :\
-    \ IO) : Nil\n    to_s(io)\n  end\nend\n\na = BinaryHeap(Int32).new\nloop do\n\
-    \  case gets\n  when .=~ /insert (\\d+)/\n    a << $1.to_i\n  when \"extract\"\
-    \n    puts a.pop\n  else\n    break\n  end\nend\n"
+    \ IO) : Nil\n    to_s(io)\n  end\nend\n\na = BinaryHeap(Int32).new { |a, b| b\
+    \ <=> a }\nloop do\n  case gets\n  when .=~ /insert (\\d+)/\n    a << $1.to_i\n\
+    \  when \"extract\"\n    puts a.pop\n  else\n    break\n  end\nend\n"
   code: "# verification-helper: PROBLEM https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_9_C\n\
-    require \"../../src/datastructure/binary_heap\"\n\na = BinaryHeap(Int32).new\n\
-    loop do\n  case gets\n  when .=~ /insert (\\d+)/\n    a << $1.to_i\n  when \"\
-    extract\"\n    puts a.pop\n  else\n    break\n  end\nend\n"
+    require \"../../src/datastructure/binary_heap\"\n\na = BinaryHeap(Int32).new {\
+    \ |a, b| b <=> a }\nloop do\n  case gets\n  when .=~ /insert (\\d+)/\n    a <<\
+    \ $1.to_i\n  when \"extract\"\n    puts a.pop\n  else\n    break\n  end\nend\n"
   dependsOn:
   - src/datastructure/binary_heap.cr
   isVerificationFile: true
   path: test/datastructure/binary_heap_test.cr
   requiredBy: []
-  timestamp: '2021-09-06 17:48:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-09-06 18:04:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/datastructure/binary_heap_test.cr
 layout: document

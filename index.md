@@ -132,7 +132,7 @@ data:
       title: src/comparable/min_max.cr
   - name: src/datastructure
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: src/datastructure/binary_heap.cr
       title: src/datastructure/binary_heap.cr
     - icon: ':heavy_check_mark:'
@@ -356,7 +356,7 @@ data:
       title: test/array/unique_permutation_test.cr
   - name: test/datastructure
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/datastructure/binary_heap_test.cr
       title: test/datastructure/binary_heap_test.cr
     - icon: ':heavy_check_mark:'

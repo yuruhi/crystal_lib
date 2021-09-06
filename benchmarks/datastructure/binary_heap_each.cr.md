@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/datastructure/binary_heap.cr
     title: src/datastructure/binary_heap.cr
   _extendedRequiredBy: []
@@ -47,7 +47,7 @@ data:
     \ the removed value.\n  # Raises `IndexError` if heap is of 0 size.\n  def pop\
     \ : T\n    pop { raise IndexError.new }\n  end\n\n  def pop(n : Int) : Array(T)\n\
     \    raise ArgumentError.new unless n >= 0\n    n = Math.min(n, size)\n    Array.new(n)\
-    \ { |i| pop }\n  end\n\n  def each(&block)\n    @heap.sort { |a, b| @compare_proc.call(a,\
+    \ { pop }\n  end\n\n  def each(&block)\n    @heap.sort { |a, b| @compare_proc.call(a,\
     \ b) }.each do |x|\n      yield x\n    end\n  end\n\n  def to_s(io : IO) : Nil\n\
     \    io << \"BinaryHeap{\"\n    each_with_index do |x, i|\n      io << \", \"\
     \ if i > 0\n      io << x\n    end\n    io << '}'\n  end\n\n  def inspect(io :\
@@ -56,75 +56,39 @@ data:
     \  def each_sort\n    @heap.sort.each do |x|\n      yield x\n    end\n  end\n\
     end\n\ndef benchmark_each(label, a : Array)\n  n = a.size\n  heap = BinaryHeap.new\
     \ a\n\n  puts \"#{label}: \"\n  Benchmark.ips do |x|\n    x.report(\"each_clone\"\
-    ) do\n      heap.each_clone { |x| }\n    end\n    x.report(\"each_sort\") do\n\
-    \      heap.each_sort { |x| }\n    end\n  end\n  puts\n\n  raise \"\" unless a.size\
-    \ == n\nend\n\nbenchmark_each \"Int32 10^2 sparse\", Array.new(10**2) { |i| i\
-    \ }\nbenchmark_each \"Int32 10^2 dence\", Array.new(10**2) { |i| i % 10 }\nbenchmark_each\
+    ) do\n      heap.each_clone { }\n    end\n    x.report(\"each_sort\") do\n   \
+    \   heap.each_sort { }\n    end\n  end\n  puts\n\n  raise \"\" unless a.size ==\
+    \ n\nend\n\nbenchmark_each \"Int32 10^2 sparse\", Array.new(10**2) { |i| i }\n\
+    benchmark_each \"Int32 10^2 dence\", Array.new(10**2) { |i| i % 10 }\nbenchmark_each\
     \ \"Int32 10^6 sparse\", Array.new(10**6) { |i| i }\nbenchmark_each \"Int32 10^6\
     \ dence\", Array.new(10**6) { |i| i % 100 }\n\nr = Random.new(12345)\nbenchmark_each\
-    \ \"Array 10^5 * 10^1\", Array.new(10**5) { Array.new(10**1) { r.rand(Int32) }\
-    \ }\nbenchmark_each \"Array 10^4 * 10^2\", Array.new(10**4) { Array.new(10**2)\
-    \ { r.rand(Int32) } }\nbenchmark_each \"Array 10^2 * 10^4\", Array.new(10**2)\
-    \ { Array.new(10**4) { r.rand(Int32) } }\nbenchmark_each \"Array 10^1 * 10^5\"\
-    , Array.new(10**1) { Array.new(10**5) { r.rand(Int32) } }\n\n# Int32 10^2 sparse:\n\
-    # each_clone 166.16k (  6.02\xB5s) (\xB1 2.98%)  528B/op   6.22\xD7 slower\n#\
-    \  each_sort   1.03M (967.15ns) (\xB1 4.73%)  832B/op        fastest\n\n# Int32\
-    \ 10^2 dence:\n# each_clone 148.79k (  6.72\xB5s) (\xB110.08%)  528B/op   5.01\xD7\
-    \ slower\n#  each_sort 745.52k (  1.34\xB5s) (\xB1 8.87%)  832B/op        fastest\n\
-    \n# Int32 10^6 sparse:\n# each_clone   3.91  (255.97ms) (\xB1 6.17%)  3.81MB/op\
-    \  23.58\xD7 slower\n#  each_sort  92.14  ( 10.85ms) (\xB1 6.50%)   6.0MB/op \
-    \       fastest\n\n# Int32 10^6 dence:\n# each_clone   3.89  (257.24ms) (\xB1\
-    \ 5.56%)  3.81MB/op   7.01\xD7 slower\n#  each_sort  27.24  ( 36.71ms) (\xB1 5.54%)\
-    \   6.0MB/op        fastest\n\n# Array 10^5 * 10^1:\n# each_clone  13.36  ( 74.83ms)\
-    \ (\xB1 5.50%)  8.39MB/op   3.09\xD7 slower\n#  each_sort  41.34  ( 24.19ms) (\xB1\
-    \ 7.81%)   1.5MB/op        fastest\n\n# Array 10^4 * 10^2:\n# each_clone  95.59\
-    \  ( 10.46ms) (\xB1 4.96%)  4.65MB/op   6.44\xD7 slower\n#  each_sort 615.37 \
-    \ (  1.63ms) (\xB1 5.48%)  96.1kB/op        fastest\n\n# Array 10^2 * 10^4:\n\
-    # each_clone 885.26  (  1.13ms) (\xB1 5.04%)  3.82MB/op   7.80\xD7 slower\n# \
-    \ each_sort   6.90k (144.85\xB5s) (\xB1 7.93%)  2.03kB/op        fastest\n\n#\
-    \ Array 10^1 * 10^5:\n# each_clone 325.20  (  3.08ms) (\xB1 8.73%)  3.81MB/op\
-    \  13893.74\xD7 slower\n#  each_sort   4.52M (221.33ns) (\xB1 8.63%)    144B/op\
-    \           fastest\n"
+    \ \"Array 10^6 * 10^1\", Array.new(10**6) { Array.new(10**1) { r.rand(10) } }\n\
+    benchmark_each \"Array 10^5 * 10^2\", Array.new(10**5) { Array.new(10**2) { r.rand(10)\
+    \ } }\nbenchmark_each \"Array 10^3 * 10^4\", Array.new(10**3) { Array.new(10**4)\
+    \ { r.rand(10) } }\nbenchmark_each \"Array 10^2 * 10^5\", Array.new(10**2) { Array.new(10**5)\
+    \ { r.rand(10) } }\n"
   code: "require \"benchmark\"\nrequire \"../../src/datastructure/binary_heap\"\n\n\
     class BinaryHeap(T)\n  def each_clone\n    heap = clone\n    while v = heap.pop?\n\
     \      yield v\n    end\n  end\n\n  def each_sort\n    @heap.sort.each do |x|\n\
     \      yield x\n    end\n  end\nend\n\ndef benchmark_each(label, a : Array)\n\
     \  n = a.size\n  heap = BinaryHeap.new a\n\n  puts \"#{label}: \"\n  Benchmark.ips\
-    \ do |x|\n    x.report(\"each_clone\") do\n      heap.each_clone { |x| }\n   \
-    \ end\n    x.report(\"each_sort\") do\n      heap.each_sort { |x| }\n    end\n\
-    \  end\n  puts\n\n  raise \"\" unless a.size == n\nend\n\nbenchmark_each \"Int32\
-    \ 10^2 sparse\", Array.new(10**2) { |i| i }\nbenchmark_each \"Int32 10^2 dence\"\
-    , Array.new(10**2) { |i| i % 10 }\nbenchmark_each \"Int32 10^6 sparse\", Array.new(10**6)\
-    \ { |i| i }\nbenchmark_each \"Int32 10^6 dence\", Array.new(10**6) { |i| i % 100\
-    \ }\n\nr = Random.new(12345)\nbenchmark_each \"Array 10^5 * 10^1\", Array.new(10**5)\
-    \ { Array.new(10**1) { r.rand(Int32) } }\nbenchmark_each \"Array 10^4 * 10^2\"\
-    , Array.new(10**4) { Array.new(10**2) { r.rand(Int32) } }\nbenchmark_each \"Array\
-    \ 10^2 * 10^4\", Array.new(10**2) { Array.new(10**4) { r.rand(Int32) } }\nbenchmark_each\
-    \ \"Array 10^1 * 10^5\", Array.new(10**1) { Array.new(10**5) { r.rand(Int32) }\
-    \ }\n\n# Int32 10^2 sparse:\n# each_clone 166.16k (  6.02\xB5s) (\xB1 2.98%) \
-    \ 528B/op   6.22\xD7 slower\n#  each_sort   1.03M (967.15ns) (\xB1 4.73%)  832B/op\
-    \        fastest\n\n# Int32 10^2 dence:\n# each_clone 148.79k (  6.72\xB5s) (\xB1\
-    10.08%)  528B/op   5.01\xD7 slower\n#  each_sort 745.52k (  1.34\xB5s) (\xB1 8.87%)\
-    \  832B/op        fastest\n\n# Int32 10^6 sparse:\n# each_clone   3.91  (255.97ms)\
-    \ (\xB1 6.17%)  3.81MB/op  23.58\xD7 slower\n#  each_sort  92.14  ( 10.85ms) (\xB1\
-    \ 6.50%)   6.0MB/op        fastest\n\n# Int32 10^6 dence:\n# each_clone   3.89\
-    \  (257.24ms) (\xB1 5.56%)  3.81MB/op   7.01\xD7 slower\n#  each_sort  27.24 \
-    \ ( 36.71ms) (\xB1 5.54%)   6.0MB/op        fastest\n\n# Array 10^5 * 10^1:\n\
-    # each_clone  13.36  ( 74.83ms) (\xB1 5.50%)  8.39MB/op   3.09\xD7 slower\n# \
-    \ each_sort  41.34  ( 24.19ms) (\xB1 7.81%)   1.5MB/op        fastest\n\n# Array\
-    \ 10^4 * 10^2:\n# each_clone  95.59  ( 10.46ms) (\xB1 4.96%)  4.65MB/op   6.44\xD7\
-    \ slower\n#  each_sort 615.37  (  1.63ms) (\xB1 5.48%)  96.1kB/op        fastest\n\
-    \n# Array 10^2 * 10^4:\n# each_clone 885.26  (  1.13ms) (\xB1 5.04%)  3.82MB/op\
-    \   7.80\xD7 slower\n#  each_sort   6.90k (144.85\xB5s) (\xB1 7.93%)  2.03kB/op\
-    \        fastest\n\n# Array 10^1 * 10^5:\n# each_clone 325.20  (  3.08ms) (\xB1\
-    \ 8.73%)  3.81MB/op  13893.74\xD7 slower\n#  each_sort   4.52M (221.33ns) (\xB1\
-    \ 8.63%)    144B/op           fastest\n"
+    \ do |x|\n    x.report(\"each_clone\") do\n      heap.each_clone { }\n    end\n\
+    \    x.report(\"each_sort\") do\n      heap.each_sort { }\n    end\n  end\n  puts\n\
+    \n  raise \"\" unless a.size == n\nend\n\nbenchmark_each \"Int32 10^2 sparse\"\
+    , Array.new(10**2) { |i| i }\nbenchmark_each \"Int32 10^2 dence\", Array.new(10**2)\
+    \ { |i| i % 10 }\nbenchmark_each \"Int32 10^6 sparse\", Array.new(10**6) { |i|\
+    \ i }\nbenchmark_each \"Int32 10^6 dence\", Array.new(10**6) { |i| i % 100 }\n\
+    \nr = Random.new(12345)\nbenchmark_each \"Array 10^6 * 10^1\", Array.new(10**6)\
+    \ { Array.new(10**1) { r.rand(10) } }\nbenchmark_each \"Array 10^5 * 10^2\", Array.new(10**5)\
+    \ { Array.new(10**2) { r.rand(10) } }\nbenchmark_each \"Array 10^3 * 10^4\", Array.new(10**3)\
+    \ { Array.new(10**4) { r.rand(10) } }\nbenchmark_each \"Array 10^2 * 10^5\", Array.new(10**2)\
+    \ { Array.new(10**5) { r.rand(10) } }\n"
   dependsOn:
   - src/datastructure/binary_heap.cr
   isVerificationFile: false
   path: benchmarks/datastructure/binary_heap_each.cr
   requiredBy: []
-  timestamp: '2021-09-06 17:57:55+09:00'
+  timestamp: '2021-09-06 18:03:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: benchmarks/datastructure/binary_heap_each.cr

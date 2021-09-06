@@ -50,7 +50,7 @@ data:
   path: src/datastructure/fenwick_tree.cr
   requiredBy:
   - src/dp/inversion.cr
-  timestamp: '2021-09-06 17:57:58+09:00'
+  timestamp: '2021-09-06 09:07:41+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/datastructure/fewnick_tree_test.cr

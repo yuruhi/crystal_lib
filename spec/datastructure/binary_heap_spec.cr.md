@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/datastructure/binary_heap.cr
     title: src/datastructure/binary_heap.cr
   _extendedRequiredBy: []
@@ -47,7 +47,7 @@ data:
     \ the removed value.\n  # Raises `IndexError` if heap is of 0 size.\n  def pop\
     \ : T\n    pop { raise IndexError.new }\n  end\n\n  def pop(n : Int) : Array(T)\n\
     \    raise ArgumentError.new unless n >= 0\n    n = Math.min(n, size)\n    Array.new(n)\
-    \ { |i| pop }\n  end\n\n  def each(&block)\n    @heap.sort { |a, b| @compare_proc.call(a,\
+    \ { pop }\n  end\n\n  def each(&block)\n    @heap.sort { |a, b| @compare_proc.call(a,\
     \ b) }.each do |x|\n      yield x\n    end\n  end\n\n  def to_s(io : IO) : Nil\n\
     \    io << \"BinaryHeap{\"\n    each_with_index do |x, i|\n      io << \", \"\
     \ if i > 0\n      io << x\n    end\n    io << '}'\n  end\n\n  def inspect(io :\
@@ -137,7 +137,7 @@ data:
   isVerificationFile: false
   path: spec/datastructure/binary_heap_spec.cr
   requiredBy: []
-  timestamp: '2021-09-06 17:48:00+09:00'
+  timestamp: '2021-09-06 18:03:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: spec/datastructure/binary_heap_spec.cr

@@ -51,7 +51,7 @@ data:
   - src/graph/kruskal.cr
   - src/graph/components.cr
   - src/graph/decompose.cr
-  timestamp: '2021-09-06 17:57:58+09:00'
+  timestamp: '2021-09-06 09:07:41+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/datastructure/union_find_test.cr

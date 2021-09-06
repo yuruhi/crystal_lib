@@ -31,7 +31,7 @@ data:
   path: src/enumerable/accumulate.cr
   requiredBy:
   - spec/enumerable/accumulate_spec.cr
-  timestamp: '2021-09-06 17:57:58+09:00'
+  timestamp: '2021-09-06 09:07:41+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/enumerable/accumulate.cr
