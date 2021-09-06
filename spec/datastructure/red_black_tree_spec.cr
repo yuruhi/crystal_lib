@@ -1,7 +1,7 @@
 require "spec"
 require "../../src/datastructure/red_black_tree"
 
-N = 10**6
+N = 10**3
 
 describe RedBlackTree do
   it ".new(enumerable)" do
@@ -87,7 +87,7 @@ describe RedBlackTree do
     end
   end
 
-  it "#succ" do
+  it "Node#succ" do
     values = Array.new(N) { rand(Int32) }
     a = RedBlackTree.new(values)
     values.sort!
@@ -96,12 +96,12 @@ describe RedBlackTree do
     values.each do |x|
       node.nil_node?.should be_false
       node.key.should eq x
-      node = a.succ(node)
+      node = node.succ
     end
     node.nil_node?.should be_true
   end
 
-  it "#pred" do
+  it "Node#pred" do
     values = Array.new(N) { rand(Int32) }
     a = RedBlackTree.new(values)
     values.sort!
@@ -110,7 +110,7 @@ describe RedBlackTree do
     values.reverse_each do |x|
       node.nil_node?.should be_false
       node.key.should eq x
-      node = a.pred(node)
+      node = node.pred
     end
     node.nil_node?.should be_true
   end
@@ -188,7 +188,7 @@ describe RedBlackTree do
         node.key.should eq expect
       end
 
-      pred = a.pred(node)
+      pred = node.pred
       if values.first >= x
         pred.nil_node?.should be_true
       else
@@ -217,7 +217,7 @@ describe RedBlackTree do
         node.key.should eq expect
       end
 
-      pred = a.pred(node)
+      pred = node.pred
       if values.first > x
         pred.nil_node?.should be_true
       else

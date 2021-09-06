@@ -19,6 +19,46 @@ class RedBlackTree(T)
     def nil_node?
       false
     end
+
+    def min_node : Node
+      x = self
+      until x.left.nil_node?
+        x = x.left
+      end
+      x
+    end
+
+    def max_node : Node
+      x = self
+      until x.right.nil_node?
+        x = x.right
+      end
+      x
+    end
+
+    def succ : Node
+      unless right.nil_node?
+        return right.min_node
+      end
+      x, y = self, parent
+      until y.nil_node? || x == y.left
+        x = y
+        y = y.parent
+      end
+      y
+    end
+
+    def pred : Node
+      unless left.nil_node?
+        return left.max_node
+      end
+      x, y = self, parent
+      until y.nil_node? || x == y.right
+        x = y
+        y = y.parent
+      end
+      y
+    end
   end
 
   class NilNode < Node
@@ -57,14 +97,8 @@ class RedBlackTree(T)
 
   getter root : Node, size : Int32
 
-  private def root=(@root)
-  end
-
-  private def size=(@size)
-  end
-
   def empty? : Bool
-    self.root.nil_node?
+    root.nil_node?
   end
 
   def insert_node(x : Node) : Nil
@@ -110,12 +144,12 @@ class RedBlackTree(T)
   end
 
   def delete_node(z : Node) : Nil
-    y = (z.left.nil_node? || z.right.nil_node?) ? z : succ(z)
+    y = (z.left.nil_node? || z.right.nil_node?) ? z : z.succ
     x = y.left.nil_node? ? y.right : y.left
     x.parent = y.parent
 
     if y.parent.nil_node?
-      self.root = x
+      @root = x
     else
       if y == y.parent.left
         y.parent.left = x
@@ -130,7 +164,7 @@ class RedBlackTree(T)
       delete_fixup(x)
     end
 
-    self.size -= 1
+    @size -= 1
     y
   end
 
@@ -145,30 +179,24 @@ class RedBlackTree(T)
 
   def delete(key : T) : Bool
     node = search(key)
-    if node.nil_node?
-      false
-    else
+    unless node.nil_node?
       delete_node(node)
       true
+    else
+      false
     end
   end
 
-  def min_node(x : Node = root) : Node
-    while !x.left.nil_node?
-      x = x.left
-    end
-    x
+  def min_node : Node
+    root.min_node
   end
 
-  def max_node(x : Node = root) : Node
-    while !x.right.nil_node?
-      x = x.right
-    end
-    x
+  def max_node : Node
+    root.max_node
   end
 
   def min? : T?
-    node = min_node
+    node = self.min_node
     node.nil_node? ? nil : node.key
   end
 
@@ -177,7 +205,7 @@ class RedBlackTree(T)
   end
 
   def max? : T?
-    node = max_node
+    node = self.max_node
     node.nil_node? ? nil : node.key
   end
 
@@ -185,52 +213,26 @@ class RedBlackTree(T)
     max? || raise EmptyError.new
   end
 
-  def succ(x : Node) : Node
-    if !x.right.nil_node?
-      return min_node(x.right)
-    end
-    y = x.parent
-    while !y.nil_node? && x == y.right
-      x = y
-      y = y.parent
-    end
-    y
-  end
-
-  def pred(x : Node) : Node
-    if !x.left.nil_node?
-      return max_node(x.left)
-    end
-    y = x.parent
-    while !y.nil_node? && x == y.left
-      x = y
-      y = y.parent
-    end
-    y
-  end
-
-  def inorder_walk : Nil
-    x = self.min_node
-    while !x.nil_node?
+  def inorder_walk(x : Node) : Nil
+    until x.nil_node?
       yield x.key
-      x = succ(x)
+      x = x.succ
     end
   end
 
   def each : Nil
-    inorder_walk { |k| yield k }
+    inorder_walk(self.min_node) { |k| yield k }
   end
 
-  def reverse_inorder_walk : Nil
-    x = self.max_node
-    while !x.nil_node?
+  def reverse_inorder_walk(x : Node) : Nil
+    until x.nil_node?
       yield x.key
-      x = pred(x)
+      x = x.pred
     end
   end
 
   def reverse_each : Nil
-    reverse_inorder_walk { |k| yield k }
+    reverse_inorder_walk(self.max_node) { |k| yield k }
   end
 
   def includes?(key : T) : Bool
@@ -243,7 +245,7 @@ class RedBlackTree(T)
   end
 
   def search(key : T, x : Node = root) : Node
-    while !x.nil_node? && x.key != key
+    until x.nil_node? || x.key == key
       x = key < x.key ? x.left : x.right
     end
     x
@@ -253,7 +255,7 @@ class RedBlackTree(T)
     loop do
       y = key < x.key ? x.left : x.right
       if y.nil_node?
-        return key < x.key ? pred(x) : x
+        return key < x.key ? x.pred : x
       end
       x = y
     end
@@ -263,7 +265,7 @@ class RedBlackTree(T)
     loop do
       y = key <= x.key ? x.left : x.right
       if y.nil_node?
-        return key <= x.key ? pred(x) : x
+        return key <= x.key ? x.pred : x
       end
       x = y
     end
@@ -273,7 +275,7 @@ class RedBlackTree(T)
     loop do
       y = key <= x.key ? x.left : x.right
       if y.nil_node?
-        return key <= x.key ? x : succ(x)
+        return key <= x.key ? x : x.succ
       end
       x = y
     end
@@ -283,7 +285,7 @@ class RedBlackTree(T)
     loop do
       y = key < x.key ? x.left : x.right
       if y.nil_node?
-        return key < x.key ? x : succ(x)
+        return key < x.key ? x : x.succ
       end
       x = y
     end
@@ -302,7 +304,7 @@ class RedBlackTree(T)
 
   def black_height(x : Node = root)
     height = 0
-    while !x.nil_node?
+    until x.nil_node?
       x = x.left
       height += 1 if x.nil_node? || x.black?
     end
@@ -329,7 +331,7 @@ class RedBlackTree(T)
     y.left.parent = x if !y.left.nil_node?
     y.parent = x.parent
     if x.parent.nil_node?
-      self.root = y
+      @root = y
     else
       if x == x.parent.left
         x.parent.left = y
@@ -348,7 +350,7 @@ class RedBlackTree(T)
     y.right.parent = x if !y.right.nil_node?
     y.parent = x.parent
     if x.parent.nil_node?
-      self.root = y
+      @root = y
     else
       if x == x.parent.left
         x.parent.left = y
@@ -369,11 +371,11 @@ class RedBlackTree(T)
     end
     z.parent = y
     if y.nil_node?
-      self.root = z
+      @root = z
     else
       z.key < y.key ? y.left = z : y.right = z
     end
-    self.size += 1
+    @size += 1
   end
 
   private def delete_fixup(x : Node)
