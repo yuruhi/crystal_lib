@@ -1,13 +1,14 @@
 # Copied with modifications from: https://github.com/crystal-lang/crystal/blob/1.1.1/samples/red_black_tree.cr
-class RedBlackTree(T)
+macro define_red_black_tree(name, type, nil_key)
+class {{name}}
   class Node
     enum Color
       Red
       Black
     end
 
-    property color : Color, key : Int32
-    property! left, right, parent : self
+    property color : Color, key : {{type}}
+    property! left : self, right : self, parent : self
 
     def initialize(@key, @color : Color = :red)
       @left = @right = @parent = NilNode.instance
@@ -59,21 +60,37 @@ class RedBlackTree(T)
       end
       y
     end
+
+    def to_s(io : IO)
+      io << '[' << key << ']'
+    end
+
+    def inspect(io)
+      to_s(io)
+    end
   end
 
   class NilNode < Node
     def self.instance
-      @@instance ||= RedBlackTree::NilNode.new
+      @@instance ||= NilNode.new
     end
 
     def initialize
-      @key = 0
+      @key = {{nil_key}}
       @color = :black
       @left = @right = @parent = self
     end
 
     def nil_node?
       true
+    end
+
+    def to_s(io : IO)
+      io << "NilNode"
+    end
+
+    def inspect(io)
+      to_s(io)
     end
   end
 
@@ -83,6 +100,7 @@ class RedBlackTree(T)
     end
   end
 
+	alias T = {{type}}
   include Enumerable(T)
 
   def initialize
@@ -432,4 +450,5 @@ class RedBlackTree(T)
     end
     x.color = :black
   end
+end
 end

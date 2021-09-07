@@ -1,7 +1,8 @@
 require "spec"
 require "../../src/datastructure/red_black_tree"
 
-N = 10**3
+N = 10**6
+define_red_black_tree(RedBlackTree, Int32, 0)
 
 describe RedBlackTree do
   it ".new(enumerable)" do
@@ -14,14 +15,14 @@ describe RedBlackTree do
   end
 
   it "#add, #<<" do
-    a = RedBlackTree(Int32).new
+    a = RedBlackTree.new
     (1..10).each { |x| a.add x }
     (11..20).each { |x| a << x }
     a.to_a.should eq (1..20).to_a
   end
 
   it "#delete" do
-    a = RedBlackTree(Int32).new
+    a = RedBlackTree.new
     (1..100).each { |x| a << x << x }
     (1..100).select(&.odd?).each { |x|
       a.delete(x).should be_true
@@ -32,7 +33,7 @@ describe RedBlackTree do
   end
 
   it "#min_node" do
-    a = RedBlackTree(Int32).new
+    a = RedBlackTree.new
     a.min_node.nil_node?.should be_true
 
     expect = Int32::MAX
@@ -45,7 +46,7 @@ describe RedBlackTree do
   end
 
   it "#max_node" do
-    a = RedBlackTree(Int32).new
+    a = RedBlackTree.new
     a.max_node.nil_node?.should be_true
 
     expect = Int32::MIN
@@ -58,7 +59,7 @@ describe RedBlackTree do
   end
 
   it "#min, #.min?" do
-    a = RedBlackTree(Int32).new
+    a = RedBlackTree.new
     a.min?.should be_nil
     expect_raises(RedBlackTree::EmptyError) { a.min }
 
@@ -73,7 +74,7 @@ describe RedBlackTree do
   end
 
   it "#max, #.max?" do
-    a = RedBlackTree(Int32).new
+    a = RedBlackTree.new
     a.max?.should be_nil
     expect_raises(RedBlackTree::EmptyError) { a.max }
 
@@ -216,6 +217,7 @@ describe RedBlackTree do
         node.nil_node?.should be_false
         node.key.should eq expect
       end
+      return if node.nil_node?
 
       pred = node.pred
       if values.first > x
@@ -294,4 +296,13 @@ describe RedBlackTree do
     a.to_s.should eq expect
     a.inspect.should eq expect
   end
+end
+
+define_red_black_tree(RBT_String, String, "")
+
+it RBT_String do
+  a = RBT_String{"a", "c", "b"}
+  a.min.should eq "a"
+  a.max.should eq "c"
+  a.to_a.should eq %w[a b c]
 end
