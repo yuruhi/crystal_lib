@@ -1,7 +1,12 @@
-# ```
-# tree = RedBlackTree{3, 1, 4, 1, 5, 9, 2, 6, 5, 3}
-# AsciiBinaryTree.print tree
-# ```
+#                     _______________[57]_______________               
+#                    /                                  \              
+#         ________[33]________                       ___[77]___        
+#        /                    \                     /          \       
+#    _[14]_                  _[42]_              [62]          [82]    
+#   /      \                /      \            /    \             \   
+# [6]      [22]          [35]      [52]      [61]    [67]          [84]
+#         /    \        /    \         \                 \             
+#      [15]    [22]  [34]    [38]      [55]              [75]          
 class AsciiBinaryTree(Node)
   private def self.dfs(root : Node) : {Array(Array(Char)), Range(Int32, Int32)}
     if root.nil_node?
