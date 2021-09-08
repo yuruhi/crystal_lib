@@ -119,6 +119,12 @@ class {{name}}
     root.nil_node?
   end
 
+  def clear : self
+    @root = NilNode.instance
+    @size = 0
+    self
+  end
+
   def insert_node(x : Node) : Nil
     insert_helper(x)
 
