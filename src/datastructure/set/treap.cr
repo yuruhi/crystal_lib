@@ -1,6 +1,6 @@
-require "./binary_tree"
+require "../binary_tree"
 
-class Treap(T)
+class Set::Treap(T)
   class Node(T)
     include TreeNode(T)
 
@@ -21,7 +21,7 @@ class Treap(T)
     end
   end
 
-  include BinaryTree(T, Node, NilNode)
+  include BinaryTree(T, Node(T), NilNode(T))
   getter root : Node(T), size : Int32 = 0
 
   def initialize
@@ -90,9 +90,9 @@ class Treap(T)
     return false if u.nil_node?
     trickle_down(u)
     if u.parent.left == u
-      u.parent.left = NilNode.instance
+      u.parent.left = NilNode(T).new
     else
-      u.parent.right = NilNode.instance
+      u.parent.right = NilNode(T).new
     end
     @size -= 1
     true
