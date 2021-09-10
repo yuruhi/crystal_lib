@@ -105,9 +105,7 @@ module BinaryTree(T, Node, NilNode)
   include Enumerable(T)
 
   abstract def root
-
-  getter size : Int32 = 0
-
+  abstract def size : Int32
   abstract def add?(key : T) : Bool
   abstract def delete(key : T) : Bool
 
@@ -200,7 +198,7 @@ module BinaryTree(T, Node, NilNode)
   end
 
   def each : Nil
-    inorder_walk(self.min_node) { |k| yield k }
+    inorder_walk(min_node) { |k| yield k }
   end
 
   def reverse_inorder_walk(x : Node) : Nil
@@ -211,7 +209,7 @@ module BinaryTree(T, Node, NilNode)
   end
 
   def reverse_each : Nil
-    reverse_inorder_walk(self.max_node) { |k| yield k }
+    reverse_inorder_walk(max_node) { |k| yield k }
   end
 
   def includes?(key : T) : Bool

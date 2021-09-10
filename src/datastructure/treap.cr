@@ -98,11 +98,3 @@ class Treap(T)
     true
   end
 end
-
-require "./ascii_binary_tree"
-tree = Treap(Int32).new
-{1, 2, 3, 4, 5, 6}.each do |x|
-  tree << x
-end
-AsciiBinaryTree.print tree
-tree.each { |x| p x }
