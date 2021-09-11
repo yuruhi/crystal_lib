@@ -11,7 +11,6 @@ class Set::RedBlackTree(T)
     include TreeNode(T)
 
     property key : T, color : Color
-
     property! left : Node(T), right : Node(T), parent : Node(T)
 
     def initialize(@key : T, @color : Color = :red)
@@ -146,7 +145,7 @@ class Set::RedBlackTree(T)
 
   def delete(key : T) : Bool
     node = search(key)
-    return false if node.node?
+    return false if node.nil_node?
     delete_node(node)
     true
   end
