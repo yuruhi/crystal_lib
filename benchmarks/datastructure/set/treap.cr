@@ -30,7 +30,7 @@ def benchmark_split(label, type : T.class, values, split_key) forall T
   Benchmark.ips do |x|
     x.report(label) do
       s = T.new values
-      l, r = s.split(split_key)
+      _, _ = s.split(split_key)
     end
   end
 end
@@ -47,7 +47,7 @@ benchmark_add_delete "Int32 1e3 sorted", SInt32, values3
 benchmark_add_delete "Int32 1e3       ", SInt32, values3.shuffle(R)
 benchmark_add_delete "Int32 1e6 sorted", SInt32, values6
 benchmark_add_delete "Int32 1e6       ", SInt32, values6.shuffle(R)
-benchmark_add_delete "Int32 1e3 * 1e3 ", SInt32, values6.map { |x| x % 1000 }.shuffle(R)
+benchmark_add_delete "Int32 1e3 * 1e3 ", SInt32, values6.map { |x| x % 1000 }.shuffle!(R)
 benchmark_add_delete "Array 1e6 * 1e2 ", SArray, Array.new(10**6) { Array.new(10**2) { R.rand(100) } }
 benchmark_add_delete "class 1e6       ", SClass, Array.new(10**6) { |i| Foo.new i }.shuffle(R)
 puts
