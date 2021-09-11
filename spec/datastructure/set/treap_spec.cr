@@ -3,6 +3,32 @@ require "../../../src/datastructure/set/treap"
 
 alias S = Set::Treap(Int32)
 
+def verify_dfs(node)
+  if node.nil_node?
+    node.left.nil_node?.should be_true
+    node.right.nil_node?.should be_true
+  end
+  if node.left.node?
+    node.key.should be > node.left.key
+    node.priority.should be <= node.left.priority
+    node.left.parent.should eq node
+    verify_dfs(node.left)
+  end
+  if node.right.node?
+    node.key.should be < node.right.key
+    node.priority.should be <= node.right.priority
+    node.right.parent.should eq node
+    verify_dfs(node.right)
+  end
+end
+
+def verify(set)
+  if set.root.node?
+    set.root.parent.nil_node?.should be_true
+  end
+  verify_dfs(set.root)
+end
+
 describe Set::Treap(Int32) do
   it "{}" do
     S{3, 1, 4, 1, 5}.to_a.should eq [1, 3, 4, 5]
@@ -41,6 +67,7 @@ describe Set::Treap(Int32) do
     s = S.new
     s.add?(1).should be_true
     s.add?(1).should be_false
+    verify(s)
   end
 
   it "#add, #<<" do
@@ -49,6 +76,7 @@ describe Set::Treap(Int32) do
     s.size.should eq 2
     s << 3 << 4 << 3
     s.size.should eq 4
+    verify(s)
   end
 
   it "#min_node, #max_node" do
@@ -71,6 +99,23 @@ describe Set::Treap(Int32) do
     s.max?.should eq 2
     s.min.should eq 1
     s.max.should eq 2
+  end
+
+  it "#split" do
+    1000.times do
+      s = S.new(1..10)
+      l, r = s.split(5)
+      l.to_a.should eq [1, 2, 3, 4, 5]
+      r.to_a.should eq [6, 7, 8, 9, 10]
+      verify(s)
+    end
+    10.times do
+      s = S.new(1..1000)
+      l, r = s.split(500)
+      l.to_a.should eq (1..500).to_a
+      r.to_a.should eq (501..1000).to_a
+      verify(s)
+    end
   end
 
   it "#each" do

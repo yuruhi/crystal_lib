@@ -10,6 +10,26 @@ class Set::Treap(T)
     def initialize(@key : T, @priority)
       @left = @right = @parent = NilNode(T).new
     end
+
+    def split(split_key : T) : {Node(T), Node(T)}
+      if nil_node?
+        {NilNode(T).new, NilNode(T).new}
+      elsif split_key < key
+        l, r = left.split(split_key)
+        self.left = r
+        r.parent = self
+        {l, self}
+      else
+        l, r = right.split(split_key)
+        self.right = l
+        l.parent = self
+        {self, r}
+      end
+    end
+
+    def to_s(io : IO)
+      io << '[' << key << ']'
+    end
   end
 
   class NilNode(T) < Node(T)
@@ -35,6 +55,9 @@ class Set::Treap(T)
   def initialize(enumerable : Enumerable(T))
     initialize
     enumerable.each { |x| self << x }
+  end
+
+  protected def initialize(@root : Node(T))
   end
 
   private def add_node(node : Node) : Bool
@@ -77,7 +100,7 @@ class Set::Treap(T)
     end
   end
 
-  private def trickle_down(u : Node)
+  private def trickle_down(u : Node(T))
     loop do
       l, r = u.left.node?, u.right.node?
       break unless l || r
@@ -105,5 +128,12 @@ class Set::Treap(T)
     end
     @size -= 1
     true
+  end
+
+  def split(key : T) : {self, self}
+    l, r = root.split(key)
+    l.parent = NilNode(T).new
+    r.parent = NilNode(T).new
+    {Treap(T).new(l), Treap(T).new(r)}
   end
 end
