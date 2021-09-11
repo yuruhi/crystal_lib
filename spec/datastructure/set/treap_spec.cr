@@ -173,6 +173,12 @@ describe Set::Treap(Int32) do
     expect_raises(NilAssertionError) { s.gt!(4) }
     [1, 3, 3].each_with_index { |e, x| s.gt!(x).should eq e }
   end
+
+  it "#to_s, #inspect" do
+    s = S{1, 2, 3, 4}
+    s.to_s.should eq "Set::Treap{1, 2, 3, 4}"
+    s.inspect.should eq "Set::Treap{1, 2, 3, 4}"
+  end
 end
 
 alias SS = Set::Treap(String)

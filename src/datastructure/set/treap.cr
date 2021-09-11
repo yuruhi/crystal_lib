@@ -7,7 +7,7 @@ class Set::Treap(T)
     getter key : T, priority : Int32
     property! left : Node(T), right : Node(T), parent : Node(T)
 
-    def initialize(@key : T, @priority)
+    def initialize(@key : T, @priority : Int32)
       @left = @right = @parent = NilNode(T).new
     end
 
@@ -135,5 +135,18 @@ class Set::Treap(T)
     l.parent = NilNode(T).new
     r.parent = NilNode(T).new
     {Treap(T).new(l), Treap(T).new(r)}
+  end
+
+  def to_s(io : IO) : Nil
+    io << "Set::Treap{"
+    each_with_index do |x, i|
+      io << ", " if i > 0
+      io << x
+    end
+    io << '}'
+  end
+
+  def inspect(io : IO) : Nil
+    to_s(io)
   end
 end
