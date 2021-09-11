@@ -3,7 +3,11 @@ require "../../../src/datastructure/set/treap"
 
 alias S = Set::Treap(Int32)
 
-describe Set::Treap do
+describe Set::Treap(Int32) do
+  it "{}" do
+    S{3, 1, 4, 1, 5}.to_a.should eq [1, 3, 4, 5]
+  end
+
   it "#root" do
     s = S.new
     s.root.nil_node?.should be_true
@@ -124,4 +128,11 @@ describe Set::Treap do
     expect_raises(NilAssertionError) { s.gt!(4) }
     [1, 3, 3].each_with_index { |e, x| s.gt!(x).should eq e }
   end
+end
+
+alias SS = Set::Treap(String)
+
+it Set::Treap(String) do
+  SS{"a", "c", "b"}.to_a.should eq %w[a b c]
+  SS{"a", "ab", "abc", "abc"}.to_a.should eq %w[a ab abc]
 end

@@ -16,7 +16,11 @@ class Set::Treap(T)
     include TreeNilNode(T)
 
     def initialize
-      @key = T.zero
+      @key = {% if T.class.has_method?(:zero) %}
+               T.zero
+             {% else %}
+               T.new
+             {% end %}
       @left = @right = @parent = self
     end
   end
@@ -26,6 +30,11 @@ class Set::Treap(T)
 
   def initialize
     @root = NilNode(T).new
+  end
+
+  def initialize(enumerable : Enumerable(T))
+    initialize
+    enumerable.each { |x| self << x }
   end
 
   private def add_node(node : Node) : Bool
