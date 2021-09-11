@@ -34,9 +34,11 @@ jobs:
               run: bash scripts/benchmark.sh
 
             - name: Push
+              env:
+                  SHA: ${{ github.sha }}
               run: |
                   git config user.name github-actions
                   git config user.email github-actions@github.com
                   git add .
-                  git commit -m "[auto] benchmark"
+                  git commit -m "[auto] benchmark commit $SHA"
                   git push
