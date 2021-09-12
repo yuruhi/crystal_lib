@@ -1,5 +1,5 @@
 require "spec"
-require "../../../src/datastructure/smultiset//red_black_tree"
+require "../../../src/datastructure/smultiset/red_black_tree"
 
 def verify_dfs(node : SMultiSet::RedBlackTree::Node)
   if node.nil_node?
