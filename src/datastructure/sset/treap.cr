@@ -128,6 +128,9 @@ class SSet::Treap(T)
       u.parent.right = NilNode(T).new
     end
     @size -= 1
+    if size == 0
+      @root = NilNode(T).new
+    end
     true
   end
 
