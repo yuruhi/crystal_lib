@@ -103,6 +103,7 @@ module BinaryTree(T, Node, NilNode)
   end
 
   include Enumerable(T)
+  include Iterable(T)
 
   abstract def root
   abstract def size : Int32
@@ -190,26 +191,56 @@ module BinaryTree(T, Node, NilNode)
     max? || raise EmptyError.new
   end
 
-  def inorder_walk(x : Node) : Nil
-    until x.nil_node?
-      yield x.key
-      x = x.succ
+  private class InorderWalkIterator(T, Node)
+    include Iterator(T)
+
+    def initialize(@node : Node)
+    end
+
+    def next
+      if @node.nil_node?
+        stop
+      else
+        @node.key.tap { @node = @node.succ }
+      end
     end
   end
 
-  def each : Nil
-    inorder_walk(min_node) { |k| yield k }
-  end
-
-  def reverse_inorder_walk(x : Node) : Nil
-    until x.nil_node?
-      yield x.key
-      x = x.pred
+  def each(node : Node = min_node, &block) : Nil
+    while node.node?
+      yield node.key
+      node = node.succ
     end
   end
 
-  def reverse_each : Nil
-    reverse_inorder_walk(max_node) { |k| yield k }
+  def each(node : Node = min_node)
+    InorderWalkIterator(T, Node).new(node)
+  end
+
+  private class ReverseInorderWalkIterator(T, Node)
+    include Iterator(T)
+
+    def initialize(@node : Node)
+    end
+
+    def next
+      if @node.nil_node?
+        stop
+      else
+        @node.key.tap { @node = @node.pred }
+      end
+    end
+  end
+
+  def reverse_each(node : Node = max_node, &block) : Nil
+    while node.node?
+      yield node.key
+      node = node.pred
+    end
+  end
+
+  def reverse_each(node : Node = max_node)
+    ReverseInorderWalkIterator(T, Node).new(node)
   end
 
   def includes?(key : T) : Bool
