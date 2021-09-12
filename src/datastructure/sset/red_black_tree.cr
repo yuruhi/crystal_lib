@@ -70,7 +70,7 @@ class SSet::RedBlackTree(T)
   protected def initialize(@root : Node(T))
   end
 
-  def insert_node(x : Node(T)) : Nil
+  private def insert_node(x : Node(T)) : Nil
     insert_helper(x)
 
     x.color = :red
@@ -112,7 +112,7 @@ class SSet::RedBlackTree(T)
     root.color = :black
   end
 
-  def delete_node(z : Node(T)) : Nil
+  private def delete_node(z : Node(T)) : Nil
     y = (z.left.nil_node? || z.right.nil_node?) ? z : z.succ
     x = y.left.nil_node? ? y.right : y.left
     x.parent = y.parent
