@@ -39,7 +39,7 @@ def run_smultiset_spec(type : MS.class, class_name : String) forall MS
       s = MS(Int32).new
       s.add?(1).should be_true
       s.add?(1).should be_true
-			s.verify
+      s.verify
     end
 
     it "#add, #<<" do
@@ -48,7 +48,7 @@ def run_smultiset_spec(type : MS.class, class_name : String) forall MS
       s.size.should eq 3
       s << 3 << 4 << 3
       s.size.should eq 6
-			s.verify
+      s.verify
     end
 
     it "#min_node, #max_node" do
