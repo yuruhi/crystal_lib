@@ -1,17 +1,19 @@
 require "spec"
-require "../../../src/datastructure/set/treap"
+require "../../../src/datastructure/sset/treap"
 
-def verify_dfs(node : Set::Treap::Node)
+def verify_dfs(node : SSet::Treap::Node)
   if node.nil_node?
     node.left.nil_node?.should be_true
     node.right.nil_node?.should be_true
   end
+
   if node.left.node?
     node.key.should be > node.left.key
     node.priority.should be <= node.left.priority
     node.left.parent.should eq node
     verify_dfs(node.left)
   end
+
   if node.right.node?
     node.key.should be < node.right.key
     node.priority.should be <= node.right.priority
@@ -20,16 +22,16 @@ def verify_dfs(node : Set::Treap::Node)
   end
 end
 
-def verify(set : Set::Treap)
+def verify(set : SSet::Treap)
   if set.root.node?
     set.root.parent.nil_node?.should be_true
   end
   verify_dfs(set.root)
 end
 
-alias Treap = Set::Treap(Int32)
+alias Treap = SSet::Treap(Int32)
 
-describe Set::Treap(Int32) do
+describe SSet::Treap(Int32) do
   it "{}" do
     Treap{3, 1, 4, 1, 5}.to_a.should eq [1, 3, 4, 5]
   end
@@ -92,8 +94,8 @@ describe Set::Treap(Int32) do
     s = Treap.new
     s.min?.should be_nil
     s.max?.should be_nil
-    expect_raises(Set::Treap::EmptyError) { s.min }
-    expect_raises(Set::Treap::EmptyError) { s.max }
+    expect_raises(SSet::Treap::EmptyError) { s.min }
+    expect_raises(SSet::Treap::EmptyError) { s.max }
     s << 1 << 2
     s.min?.should eq 1
     s.max?.should eq 2
@@ -176,12 +178,12 @@ describe Set::Treap(Int32) do
 
   it "#to_s, #inspect" do
     s = Treap{1, 2, 3, 4}
-    s.to_s.should eq "Set::Treap{1, 2, 3, 4}"
-    s.inspect.should eq "Set::Treap{1, 2, 3, 4}"
+    s.to_s.should eq "SSet::Treap{1, 2, 3, 4}"
+    s.inspect.should eq "SSet::Treap{1, 2, 3, 4}"
   end
 end
 
-it Set::Treap(String) do
-  Set::Treap{"a", "c", "b"}.to_a.should eq %w[a b c]
-  Set::Treap{"a", "ab", "abc", "abc"}.to_a.should eq %w[a ab abc]
+it SSet::Treap(String) do
+  SSet::Treap{"a", "c", "b"}.to_a.should eq %w[a b c]
+  SSet::Treap{"a", "ab", "abc", "abc"}.to_a.should eq %w[a ab abc]
 end

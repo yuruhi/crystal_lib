@@ -1,6 +1,6 @@
 require "../binary_tree"
 
-class Set::Treap(T)
+class SSet::Treap(T)
   class Node(T)
     include TreeNode(T)
 
@@ -138,7 +138,7 @@ class Set::Treap(T)
   end
 
   def to_s(io : IO) : Nil
-    io << "Set::Treap{"
+    io << "SSet::Treap{"
     each_with_index do |x, i|
       io << ", " if i > 0
       io << x

@@ -1,7 +1,7 @@
 require "spec"
-require "../../../src/datastructure/set/red_black_tree"
+require "../../../src/datastructure/sset/red_black_tree"
 
-def verify_dfs(node : Set::RedBlackTree::Node)
+def verify_dfs(node : SSet::RedBlackTree::Node)
   if node.nil_node?
     node.left.nil_node?.should be_true
     node.right.nil_node?.should be_true
@@ -22,16 +22,16 @@ def verify_dfs(node : Set::RedBlackTree::Node)
   end
 end
 
-def verify(set : Set::RedBlackTree)
+def verify(set : SSet::RedBlackTree)
   if set.root.node?
     set.root.parent.nil_node?.should be_true
   end
   verify_dfs(set.root)
 end
 
-alias RBT = Set::RedBlackTree(Int32)
+alias RBT = SSet::RedBlackTree(Int32)
 
-describe Set::RedBlackTree(Int32) do
+describe SSet::RedBlackTree(Int32) do
   it "{}" do
     RBT{3, 1, 4, 1, 5}.to_a.should eq [1, 3, 4, 5]
   end
@@ -94,8 +94,8 @@ describe Set::RedBlackTree(Int32) do
     s = RBT.new
     s.min?.should be_nil
     s.max?.should be_nil
-    expect_raises(Set::RedBlackTree::EmptyError) { s.min }
-    expect_raises(Set::RedBlackTree::EmptyError) { s.max }
+    expect_raises(SSet::RedBlackTree::EmptyError) { s.min }
+    expect_raises(SSet::RedBlackTree::EmptyError) { s.max }
     s << 1 << 2
     s.min?.should eq 1
     s.max?.should eq 2
@@ -178,8 +178,8 @@ describe Set::RedBlackTree(Int32) do
 
   it "#to_s, #inspect" do
     s = RBT{1, 2, 3, 4}
-    s.to_s.should eq "Set::RedBlackTree{1, 2, 3, 4}"
-    s.inspect.should eq "Set::RedBlackTree{1, 2, 3, 4}"
+    s.to_s.should eq "SSet::RedBlackTree{1, 2, 3, 4}"
+    s.inspect.should eq "SSet::RedBlackTree{1, 2, 3, 4}"
   end
 
   it "big" do
@@ -203,7 +203,7 @@ describe Set::RedBlackTree(Int32) do
   end
 end
 
-it Set::RedBlackTree(String) do
-  Set::RedBlackTree{"a", "c", "b"}.to_a.should eq %w[a b c]
-  Set::RedBlackTree{"a", "ab", "abc", "abc"}.to_a.should eq %w[a ab abc]
+it SSet::RedBlackTree(String) do
+  SSet::RedBlackTree{"a", "c", "b"}.to_a.should eq %w[a b c]
+  SSet::RedBlackTree{"a", "ab", "abc", "abc"}.to_a.should eq %w[a ab abc]
 end

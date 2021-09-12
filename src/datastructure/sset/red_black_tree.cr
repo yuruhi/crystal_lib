@@ -1,7 +1,7 @@
 require "../binary_tree"
 
 # Copied with modifications from: https://github.com/crystal-lang/crystal/blob/1.1.1/samples/red_black_tree.cr
-class Set::RedBlackTree(T)
+class SSet::RedBlackTree(T)
   class Node(T)
     enum Color
       Red
@@ -167,7 +167,7 @@ class Set::RedBlackTree(T)
   end
 
   def to_s(io : IO) : Nil
-    io << "Set::RedBlackTree{"
+    io << "SSet::RedBlackTree{"
     each_with_index do |x, i|
       io << ", " if i > 0
       io << x
