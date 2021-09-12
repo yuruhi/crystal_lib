@@ -33,4 +33,4 @@ class SSet::Treap
   end
 end
 
-sset_spec_run(SSet::Treap, "SSet::Treap")
+run_sset_spec(SSet::Treap, "SSet::Treap")

@@ -1,6 +1,6 @@
 require "spec"
 
-def sset_spec_run(type : SSet.class, class_name : String) forall SSet
+def run_sset_spec(type : SSet.class, class_name : String) forall SSet
   describe class_name + "(Int32)" do
     it "{}" do
       SSet{3, 1, 4, 1, 5}.to_a.should eq [1, 3, 4, 5]

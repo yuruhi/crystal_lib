@@ -33,4 +33,4 @@ class SSet::RedBlackTree
   end
 end
 
-sset_spec_run(SSet::RedBlackTree, "SSet::RedBlackTree")
+run_sset_spec(SSet::RedBlackTree, "SSet::RedBlackTree")
