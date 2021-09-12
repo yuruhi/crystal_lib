@@ -216,23 +216,27 @@ module BinaryTree(T, Node, NilNode)
     x = root
     loop do
       return false if x.nil_node?
-      return true if x.key == key
-      x = key < x.key ? x.left : x.right
+      cmp = key <=> x.key
+      return true if cmp == 0
+      x = cmp < 0 ? x.left : x.right
     end
   end
 
   def search(key : T, x : Node = root) : Node
-    while x.node? && x.key != key
-      x = key < x.key ? x.left : x.right
+    while x.node?
+      cmp = key <=> x.key
+      break if cmp == 0
+      x = cmp < 0 ? x.left : x.right
     end
     x
   end
 
   def le_node(key : T, x : Node = root) : Node
     loop do
-      y = key < x.key ? x.left : x.right
+      cmp = key <=> x.key
+      y = cmp < 0 ? x.left : x.right
       if y.nil_node?
-        return key < x.key ? x.pred : x
+        return cmp < 0 ? x.pred : x
       end
       x = y
     end
@@ -240,9 +244,10 @@ module BinaryTree(T, Node, NilNode)
 
   def lt_node(key : T, x : Node = root) : Node
     loop do
-      y = key <= x.key ? x.left : x.right
+      cmp = key <=> x.key
+      y = cmp <= 0 ? x.left : x.right
       if y.nil_node?
-        return key <= x.key ? x.pred : x
+        return cmp <= 0 ? x.pred : x
       end
       x = y
     end
@@ -250,9 +255,10 @@ module BinaryTree(T, Node, NilNode)
 
   def ge_node(key : T, x : Node = root) : Node
     loop do
-      y = key <= x.key ? x.left : x.right
+      cmp = key <=> x.key
+      y = cmp <= 0 ? x.left : x.right
       if y.nil_node?
-        return key <= x.key ? x : x.succ
+        return cmp <= 0 ? x : x.succ
       end
       x = y
     end
@@ -260,9 +266,10 @@ module BinaryTree(T, Node, NilNode)
 
   def gt_node(key : T, x : Node = root) : Node
     loop do
-      y = key < x.key ? x.left : x.right
+      cmp = key <=> x.key
+      y = cmp < 0 ? x.left : x.right
       if y.nil_node?
-        return key < x.key ? x : x.succ
+        return cmp < 0 ? x : x.succ
       end
       x = y
     end

@@ -68,8 +68,9 @@ class SSet::Treap(T)
     end
     u, prev = root, NilNode(T).new
     while u.node?
-      return false if u.key == node.key
-      u, prev = node.key < u.key ? u.left : u.right, u
+      cmp = node.key <=> u.key
+      return false if cmp == 0
+      u, prev = cmp < 0 ? u.left : u.right, u
     end
     if node.key < prev.key
       prev.left = node
