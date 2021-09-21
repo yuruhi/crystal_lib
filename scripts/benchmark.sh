@@ -1,7 +1,7 @@
 readme="./benchmarks/README.md"
 echo -e "# benchmark results\n" > $readme
 
-for file in `find ./benchmarks -name "*.cr"`; do
+for file in `find ./benchmarks -name "*.cr" | grep -v helper | sort`; do
 	echo $file
 	url=https://github.com/yuruhi/crystal_lib/blob/master/${file#./}
 
