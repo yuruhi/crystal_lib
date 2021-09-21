@@ -1,90 +1,84 @@
 # benchmark results
 
-## [datastructure/smultiset/treap.cr](https://github.com/yuruhi/crystal_lib/blob/master/benchmarks/datastructure/smultiset/treap.cr)
+## [datastructure/binary_heap.cr](https://github.com/yuruhi/crystal_lib/blob/master/benchmarks/datastructure/binary_heap.cr)
 
 ```
--------- add, delete --------
-Int32 1e3 sorted   4.27k (234.30µs) (± 4.72%)  188kB/op  fastest
-Int32 1e3          3.24k (308.17µs) (± 6.87%)  188kB/op  fastest
-Int32 1e6 sorted 844.48m (  1.18s ) (± 3.36%)  183MB/op  fastest
-Int32 1e6        430.86m (  2.32s ) (± 1.87%)  183MB/op  fastest
-Int32 1e3 * 1e3  521.19m (  1.92s ) (± 2.14%)  183MB/op  fastest
-Array 1e6 * 1e2  190.77m (  5.24s ) (± 0.00%)  336MB/op  fastest
-class 1e6        476.64m (  2.10s ) (± 2.47%)  290MB/op  fastest
-SlowC 1e6 * 1e2   57.16m ( 17.49s ) (± 0.00%)  427MB/op  fastest
-
--------- split --------
-Int32 5e5+5e5   6.24  (160.30ms) (±25.83%)  137MB/op  fastest
-Int32 1e5+9e5   7.21  (138.61ms) (±14.21%)  137MB/op  fastest
+Int32 10^2 sparse 109.83k (  9.11µs) (± 2.46%)  1.72kB/op  fastest
+Int32 10^2 dence   98.21k ( 10.18µs) (± 2.94%)  1.72kB/op  fastest
+Int32 10^6 sparse   3.37  (296.33ms) (± 4.75%)  12.0MB/op  fastest
+Int32 10^6 dence    3.28  (305.03ms) (± 2.51%)  12.0MB/op  fastest
+Array 10^6 * 10^2 443.70m (  2.25s ) (± 3.10%)  24.0MB/op  fastest
 ```
 
 ## [datastructure/smultiset/red_black_tree.cr](https://github.com/yuruhi/crystal_lib/blob/master/benchmarks/datastructure/smultiset/red_black_tree.cr)
 
 ```
 -------- add, delete --------
-Int32 1e3 sorted   4.86k (205.65µs) (± 5.25%)  141kB/op  fastest
-Int32 1e3          4.09k (244.35µs) (± 5.79%)  141kB/op  fastest
-Int32 1e6 sorted   1.08  (922.93ms) (± 1.82%)  137MB/op  fastest
-Int32 1e6        647.13m (  1.55s ) (± 9.73%)  137MB/op  fastest
-Int32 1e3 * 1e3    1.02  (982.79ms) (± 3.91%)  137MB/op  fastest
-Array 1e6 * 1e2  257.93m (  3.88s ) (± 4.67%)  244MB/op  fastest
-class 1e6          1.01  (991.07ms) (± 4.63%)  214MB/op  fastest
-SlowC 1e6 * 1e2  117.36m (  8.52s ) (± 0.00%)  305MB/op  fastest
+Int32 1e3 sorted   4.31k (231.83µs) (± 2.47%)  141kB/op  fastest
+Int32 1e3          3.75k (266.81µs) (± 2.44%)  141kB/op  fastest
+Int32 1e6 sorted   1.05  (950.48ms) (± 3.06%)  137MB/op  fastest
+Int32 1e6        643.91m (  1.55s ) (± 5.60%)  137MB/op  fastest
+Int32 1e3 * 1e3    1.04  (964.02ms) (± 2.07%)  137MB/op  fastest
+Array 1e6 * 1e2  275.73m (  3.63s ) (± 1.53%)  244MB/op  fastest
+class 1e6          1.07  (933.61ms) (± 2.70%)  214MB/op  fastest
+SlowC 1e6 * 1e2  109.06m (  9.17s ) (± 0.00%)  305MB/op  fastest
 
 -------- split --------
-Int32 5e5+5e5   3.84  (260.34ms) (±19.47%)  137MB/op  fastest
-Int32 1e5+9e5   4.79  (208.85ms) (±11.83%)  137MB/op  fastest
+Int32 5e5+5e5   3.67  (272.82ms) (±16.58%)  137MB/op  fastest
+Int32 1e5+9e5   4.79  (208.96ms) (± 9.97%)  137MB/op  fastest
 ```
 
-## [datastructure/sset_benchmark_helper.cr](https://github.com/yuruhi/crystal_lib/blob/master/benchmarks/datastructure/sset_benchmark_helper.cr)
-
-```
-
-```
-
-## [datastructure/binary_heap.cr](https://github.com/yuruhi/crystal_lib/blob/master/benchmarks/datastructure/binary_heap.cr)
-
-```
-Int32 10^2 sparse 134.30k (  7.45µs) (± 6.86%)  1.72kB/op  fastest
-Int32 10^2 dence  117.27k (  8.53µs) (± 5.91%)  1.72kB/op  fastest
-Int32 10^6 sparse   4.01  (249.19ms) (± 4.94%)  12.0MB/op  fastest
-Int32 10^6 dence    4.05  (247.04ms) (± 4.30%)  12.0MB/op  fastest
-Array 10^6 * 10^2 420.44m (  2.38s ) (± 1.97%)  24.0MB/op  fastest
-```
-
-## [datastructure/sset/treap.cr](https://github.com/yuruhi/crystal_lib/blob/master/benchmarks/datastructure/sset/treap.cr)
+## [datastructure/smultiset/treap.cr](https://github.com/yuruhi/crystal_lib/blob/master/benchmarks/datastructure/smultiset/treap.cr)
 
 ```
 -------- add, delete --------
-Int32 1e3 sorted   4.36k (229.47µs) (± 7.16%)  188kB/op  fastest
-Int32 1e3          3.28k (304.68µs) (± 5.13%)  188kB/op  fastest
-Int32 1e6 sorted 900.48m (  1.11s ) (± 4.47%)  183MB/op  fastest
-Int32 1e6        473.67m (  2.11s ) (± 2.12%)  183MB/op  fastest
-Int32 1e3 * 1e3    5.88  (170.16ms) (± 4.68%)  137MB/op  fastest
-Array 1e6 * 1e2  191.12m (  5.23s ) (± 0.00%)  336MB/op  fastest
-class 1e6          6.04  (165.44ms) (±14.44%)  214MB/op  fastest
-SlowC 1e6 * 1e2  251.77m (  3.97s ) (± 9.49%)  305MB/op  fastest
+Int32 1e3 sorted   3.99k (250.83µs) (± 2.55%)  188kB/op  fastest
+Int32 1e3          2.96k (337.93µs) (± 2.78%)  188kB/op  fastest
+Int32 1e6 sorted 863.35m (  1.16s ) (± 3.40%)  183MB/op  fastest
+Int32 1e6        495.54m (  2.02s ) (± 1.22%)  183MB/op  fastest
+Int32 1e3 * 1e3  573.30m (  1.74s ) (± 0.62%)  183MB/op  fastest
+Array 1e6 * 1e2  199.83m (  5.00s ) (± 0.00%)  336MB/op  fastest
+class 1e6        492.36m (  2.03s ) (± 0.71%)  290MB/op  fastest
+SlowC 1e6 * 1e2   55.49m ( 18.02s ) (± 0.00%)  427MB/op  fastest
 
 -------- split --------
-Int32 5e5+5e5   4.69  (213.36ms) (±36.29%)  137MB/op  fastest
-Int32 1e5+9e5   6.09  (164.19ms) (±26.85%)  137MB/op  fastest
+Int32 5e5+5e5   6.03  (165.79ms) (±23.92%)  137MB/op  fastest
+Int32 1e5+9e5   6.92  (144.56ms) (±13.79%)  137MB/op  fastest
 ```
 
 ## [datastructure/sset/red_black_tree.cr](https://github.com/yuruhi/crystal_lib/blob/master/benchmarks/datastructure/sset/red_black_tree.cr)
 
 ```
 -------- add, delete --------
-Int32 1e3 sorted   4.14k (241.27µs) (± 6.12%)  141kB/op  fastest
-Int32 1e3          3.13k (319.21µs) (± 4.67%)  141kB/op  fastest
-Int32 1e6 sorted 918.13m (  1.09s ) (± 4.04%)  137MB/op  fastest
-Int32 1e6        616.24m (  1.62s ) (± 2.85%)  137MB/op  fastest
-Int32 1e3 * 1e3   14.74  ( 67.83ms) (± 5.39%)  141kB/op  fastest
-Array 1e6 * 1e2  228.79m (  4.37s ) (± 0.30%)  244MB/op  fastest
-class 1e6         21.76  ( 45.95ms) (± 5.98%)  22.0kB/op  fastest
-SlowC 1e6 * 1e2  386.97m (  2.58s ) (± 0.34%)  708kB/op  fastest
+Int32 1e3 sorted   3.67k (272.72µs) (± 3.05%)  141kB/op  fastest
+Int32 1e3          2.90k (345.36µs) (± 3.34%)  141kB/op  fastest
+Int32 1e6 sorted 891.69m (  1.12s ) (± 1.42%)  137MB/op  fastest
+Int32 1e6        580.23m (  1.72s ) (± 2.58%)  137MB/op  fastest
+Int32 1e3 * 1e3   12.09  ( 82.72ms) (± 4.07%)  141kB/op  fastest
+Array 1e6 * 1e2  240.12m (  4.16s ) (± 2.38%)  244MB/op  fastest
+class 1e6         19.30  ( 51.81ms) (± 3.80%)  22.0kB/op  fastest
+SlowC 1e6 * 1e2  352.66m (  2.84s ) (± 2.77%)  708kB/op  fastest
 
 -------- split --------
-Int32 5e5+5e5   2.96  (338.11ms) (±15.59%)  137MB/op  fastest
-Int32 1e5+9e5   3.54  (282.45ms) (± 8.22%)  137MB/op  fastest
+Int32 5e5+5e5   2.69  (372.09ms) (±12.47%)  137MB/op  fastest
+Int32 1e5+9e5   3.01  (331.78ms) (±12.96%)  137MB/op  fastest
+```
+
+## [datastructure/sset/treap.cr](https://github.com/yuruhi/crystal_lib/blob/master/benchmarks/datastructure/sset/treap.cr)
+
+```
+-------- add, delete --------
+Int32 1e3 sorted   3.99k (250.79µs) (± 0.86%)  188kB/op  fastest
+Int32 1e3          2.89k (345.94µs) (± 2.23%)  188kB/op  fastest
+Int32 1e6 sorted 784.11m (  1.28s ) (±12.74%)  183MB/op  fastest
+Int32 1e6        492.38m (  2.03s ) (± 5.17%)  183MB/op  fastest
+Int32 1e3 * 1e3    5.36  (186.53ms) (± 4.52%)  137MB/op  fastest
+Array 1e6 * 1e2  197.53m (  5.06s ) (± 3.48%)  336MB/op  fastest
+class 1e6          5.77  (173.22ms) (±11.46%)  214MB/op  fastest
+SlowC 1e6 * 1e2  241.22m (  4.15s ) (± 0.84%)  305MB/op  fastest
+
+-------- split --------
+Int32 5e5+5e5   4.63  (215.82ms) (±27.17%)  137MB/op  fastest
+Int32 1e5+9e5   6.61  (151.28ms) (±15.57%)  137MB/op  fastest
 ```
 
