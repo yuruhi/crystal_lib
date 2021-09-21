@@ -6,6 +6,7 @@ for file in `find ./benchmarks -name "*.cr" | grep -v helper | sort`; do
 	url=https://github.com/yuruhi/crystal_lib/blob/master/${file#./}
 
 	result=`crystal $file --release`
+	echo $result
 	cat - <<- EOS >> $readme
 	## [${file#./benchmarks/}]($url)
 
