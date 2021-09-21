@@ -46,11 +46,7 @@ class SSet::RedBlackTree(T)
     include TreeNilNode(T)
 
     def initialize
-      @key = {% if T.class.has_method?(:zero) %}
-               T.zero
-             {% else %}
-               T.new
-             {% end %}
+      @key = uninitialized T
       @left = @right = @parent = self
     end
   end
