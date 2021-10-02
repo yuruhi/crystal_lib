@@ -86,35 +86,106 @@
 # input_column({Int32, Int32}, n) # => {[1, 2, 3], [2, 3, 1]}
 # ```
 class Scanner
-  private def self.skip_to_not_space
-    peek = STDIN.peek
+  private def self.skip_to_not_space(io)
+    peek = io.peek
     not_space = peek.index { |x| x != 32 && x != 10 } || peek.size
-    STDIN.skip(not_space)
+    io.skip(not_space)
   end
 
-  def self.c
-    skip_to_not_space
-    STDIN.read_char.not_nil!
+  def self.c(io = STDIN)
+    skip_to_not_space(io)
+    io.read_char.not_nil!
   end
 
-  def self.s
-    skip_to_not_space
+  private def self.int(int_type : T.class, io = STDIN) : T forall T
+    skip_to_not_space(io)
 
-    peek = STDIN.peek
+    value = T.zero
+    signed = false
+    case x = io.read_byte
+    when nil
+      raise IO::EOFError.new
+    when 45
+      signed = true
+    when 48..57
+      value = T.new 48 &- x
+    else
+      return value
+    end
+
+    loop do
+      peek = io.peek
+      return signed ? value : -value if peek.empty?
+      i = 0
+      while i < peek.size
+        c = peek.unsafe_fetch(i)
+        unless 48 <= c <= 57
+          io.skip(i)
+          return signed ? value : -value
+        end
+        value = value &* 10 &- c &+ 48
+        i &+= 1
+      end
+      io.skip(i)
+    end
+  end
+
+  private def self.uint(uint_type : T.class, io = STDIN) : T forall T
+    skip_to_not_space(io)
+    value = T.zero
+
+    loop do
+      peek = io.peek
+      i = 0
+      while i < peek.size
+        c = peek.unsafe_fetch(i)
+        unless 48 <= c <= 57
+          io.skip(i)
+          return value
+        end
+        value = value &* 10 &+ c &- 48
+        i &+= 1
+      end
+      io.skip(i)
+    end
+  end
+
+  {% for name_type in [
+                        {"i", Int32}, {"i8", Int8}, {"i16", Int16},
+                        {"i32", Int32}, {"i64", Int64}, {"i128", Int128},
+                      ] %}
+     def self.{{name_type[0].id}}(io = STDIN)
+       int({{name_type[1]}}, io)
+     end
+  {% end %}
+
+  {% for name_type in [
+                        {"u8", UInt8}, {"u16", UInt16},
+                        {"u32", UInt32}, {"u64", UInt64}, {"u128", UInt128},
+                      ] %}
+     def self.{{name_type[0].id}}(io = STDIN)
+       uint({{name_type[1]}}, io)
+     end
+  {% end %}
+
+  def self.s(io = STDIN)
+    skip_to_not_space(io)
+
+    peek = io.peek
     if index = peek.index { |x| x == 32 || x == 10 }
-      STDIN.skip(index + 1)
+      io.skip(index + 1)
       return String.new(peek[0, index])
     end
 
     String.build do |buffer|
       loop do
         buffer.write peek
-        STDIN.skip(peek.size)
-        peek = STDIN.peek
+        io.skip(peek.size)
+        peek = io.peek
         break if peek.empty?
         if index = peek.index { |x| x == 32 || x == 10 }
           buffer.write peek[0, index]
-          STDIN.skip(index)
+          io.skip(index)
           break
         end
       end
