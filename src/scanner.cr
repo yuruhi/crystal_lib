@@ -120,7 +120,7 @@ class Scanner
       while i < peek.size
         c = peek.unsafe_fetch(i)
         unless 48 <= c <= 57
-          io.skip(i)
+          io.skip(i &+ 1)
           return signed ? value : -value
         end
         value = value &* 10 &- c &+ 48
@@ -140,7 +140,7 @@ class Scanner
       while i < peek.size
         c = peek.unsafe_fetch(i)
         unless 48 <= c <= 57
-          io.skip(i)
+          io.skip(i &+ 1)
           return value
         end
         value = value &* 10 &+ c &- 48
