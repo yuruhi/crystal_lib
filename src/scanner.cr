@@ -135,6 +135,7 @@ class Scanner
 
     loop do
       peek = io.peek
+      return value if peek.empty?
       i = 0
       while i < peek.size
         c = peek.unsafe_fetch(i)
