@@ -31,7 +31,7 @@ jobs:
                   rm atcoder/{benchmarks,spec,verify}/*
 
             - name: Run spec
-              run: crystal spec --release
+              run: crystal spec
 
             - name: Install cr-bundle
               run: |
