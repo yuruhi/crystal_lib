@@ -30,6 +30,9 @@ jobs:
                   git clone https://github.com/google/ac-library.cr.git atcoder
                   rm atcoder/{benchmarks,spec,verify}/*
 
+            - name: Run spec
+              run: crystal spec --release --progress
+
             - name: Install cr-bundle
               run: |
                   git clone https://github.com/yuruhi/cr-bundle.git
