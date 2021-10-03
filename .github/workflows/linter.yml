@@ -21,3 +21,11 @@ jobs:
 
             - name: Run linter
               run: bin/ameba
+
+            - name: Install ac-library
+              run: |
+                  git clone https://github.com/google/ac-library.cr.git atcoder
+                  rm atcoder/{benchmarks,spec,verify}/*
+
+            - name: Run spec
+              run: crystal spec --release
