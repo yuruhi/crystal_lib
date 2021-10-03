@@ -150,22 +150,21 @@ class Scanner
     end
   end
 
-  {% for name_type in [
-                        {"i", Int32}, {"i8", Int8}, {"i16", Int16},
-                        {"i32", Int32}, {"i64", Int64}, {"i128", Int128},
-                      ] %}
-     def self.{{name_type[0].id}}(io = STDIN)
-       int({{name_type[1]}}, io)
-     end
-  {% end %}
+  def i(io = STDIN)
+    int(Int32, io)
+  end
 
-  {% for name_type in [
-                        {"u8", UInt8}, {"u16", UInt16},
-                        {"u32", UInt32}, {"u64", UInt64}, {"u128", UInt128},
-                      ] %}
-     def self.{{name_type[0].id}}(io = STDIN)
-       uint({{name_type[1]}}, io)
-     end
+  {% for signed in [true, false] %}
+    {% for n in [8, 16, 32, 64, 128] %}
+      {%
+        name = signed ? "i#{n}".id : "u#{n}".id
+        type = signed ? "Int#{n}".id : "UInt#{n}".id
+        method = signed ? "int".id : "uint".id
+      %}
+      def self.{{name}}(io = STDIN)
+        {{method}}({{type}}, io)
+      end
+    {% end %}
   {% end %}
 
   def self.s(io = STDIN)

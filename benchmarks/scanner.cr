@@ -4,10 +4,10 @@ require "benchmark"
 N = 100000
 
 {% for signed in [true, false] %}
-  {% for num in [8, 16, 32, 64] %}
+  {% for n in [8, 16, 32, 64] %}
     {%
-      type = signed ? "Int#{num}".id : "UInt#{num}".id
-      method = signed ? "i#{num}".id : "u#{num}".id
+      type = signed ? "Int#{n}".id : "UInt#{n}".id
+      method = signed ? "i#{n}".id : "u#{n}".id
     %}
     a_{{method}} = Array.new(N) { rand({{type}}) }
     tmp_{{method}} = File.tempfile { |file| a_{{method}}.join(' ', file) }
