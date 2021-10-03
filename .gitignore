@@ -4,6 +4,4 @@
 /.shards/
 *.dwarf
 .test.swp
-a.out
-atcoder/
 .tool-versions
