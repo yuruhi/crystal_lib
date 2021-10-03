@@ -150,7 +150,7 @@ class Scanner
     end
   end
 
-  def i(io = STDIN)
+  def self.i(io = STDIN)
     int(Int32, io)
   end
 
