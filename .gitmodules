@@ -1,0 +1,3 @@
+[submodule "atcoder"]
+	path = atcoder
+	url = https://github.com/google/ac-library.cr
