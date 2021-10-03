@@ -109,7 +109,7 @@ class Scanner
     when 48..57
       value = T.new 48 &- x
     else
-      return value
+      raise "Unexpected char: #{x.chr}"
     end
 
     loop do
@@ -118,12 +118,15 @@ class Scanner
       i = 0
       while i < peek.size
         c = peek.unsafe_fetch(i)
-        unless 48 <= c <= 57
+        if 48 <= c <= 57
+          value = value &* 10 &- c &+ 48
+          i &+= 1
+        elsif c == 32 || c == 10
           io.skip(i &+ 1)
           return signed ? value : -value
+        else
+          raise "Unexpected char: #{c.chr}"
         end
-        value = value &* 10 &- c &+ 48
-        i &+= 1
       end
       io.skip(i)
     end
@@ -132,19 +135,29 @@ class Scanner
   private def self.uint(uint_type : T.class, io = STDIN) : T forall T
     skip_to_not_space(io)
     value = T.zero
-
+    found_digit = false
     loop do
       peek = io.peek
-      return value if peek.empty?
+      if peek.empty?
+        if found_digit
+          return value
+        else
+          raise IO::EOFError.new
+        end
+      end
       i = 0
       while i < peek.size
         c = peek.unsafe_fetch(i)
-        unless 48 <= c <= 57
+        if 48 <= c <= 57
+          found_digit = true
+          value = value &* 10 &+ c &- 48
+          i &+= 1
+        elsif c == 32 || c == 10
           io.skip(i &+ 1)
           return value
+        else
+          raise "Unexpected char: #{c.chr}"
         end
-        value = value &* 10 &+ c &- 48
-        i &+= 1
       end
       io.skip(i)
     end
@@ -171,6 +184,9 @@ class Scanner
     skip_to_not_space(io)
 
     peek = io.peek
+    if peek.empty?
+      raise IO::EOFError.new
+    end
     if index = peek.index { |x| x == 32 || x == 10 }
       io.skip(index + 1)
       return String.new(peek[0, index])
@@ -184,7 +200,7 @@ class Scanner
         break if peek.empty?
         if index = peek.index { |x| x == 32 || x == 10 }
           buffer.write peek[0, index]
-          io.skip(index)
+          io.skip(index + 1)
           break
         end
       end
