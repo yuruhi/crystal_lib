@@ -21,6 +21,3 @@ jobs:
 
             - name: Run linter
               run: bin/ameba
-
-            - name: Run spec
-              run: crystal spec
