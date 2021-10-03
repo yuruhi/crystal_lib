@@ -1,18 +1,17 @@
 # ### Specifications
 #
 # ```plain
-# Inside input macro                   | Expanded code
-# -------------------------------------+---------------------------------------
-# Uppercase string: Int32, Int64, etc. | {}.new(Scanner.s)
-# s                                    | Scanner.s
-# c                                    | Scanner.c
-# Other lowercase string: i, i64, etc. | Scanner.s.to_{}
-# operator[]: type[size]               | Array.new(input(size)) { input(type) }
-# Tuple literal: {t1, t2, t3}          | {input(t1), input(t2), input(t3)}
-# Array literal: [t1, t2, t3]          | [input(t1), input(t2), input(t3)]
-# Range literal: t1..t2                | input(t1)..input(t2)
-# If: cond ? t1 : t2                   | cond ? input(t1) : input(t2)
-# Assign: target = value               | target = input(value)
+# Inside input macro                     | Expanded code
+# ---------------------------------------+---------------------------------------
+# Uppercase string: Int32, Int64, etc.   | {}.new(Scanner.s)
+# s, c, i, iN, uN                        | Scanner.{}
+# Other lowercase string: f, big_i, etc. | Scanner.s.to_{}
+# operator[]: type[size]                 | Array.new(input(size)) { input(type) }
+# Tuple literal: {t1, t2, t3}            | {input(t1), input(t2), input(t3)}
+# Array literal: [t1, t2, t3]            | [input(t1), input(t2), input(t3)]
+# Range literal: t1..t2                  | input(t1)..input(t2)
+# If: cond ? t1 : t2                     | cond ? input(t1) : input(t2)
+# Assign: target = value                 | target = input(value)
 # ```
 #
 # ### Examples
