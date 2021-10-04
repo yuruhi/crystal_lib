@@ -1,12 +1,12 @@
 class BinaryHeap(T)
-  @compare_proc : (T, T -> Int32?)?
-
   def initialize
     @heap = Array(T).new
+    @compare_proc = nil
   end
 
   def initialize(initial_capacity : Int = 0)
     @heap = Array(T).new(initial_capacity)
+    @compare_proc = nil
   end
 
   def initialize(enumerable : Enumerable(T))
@@ -40,8 +40,8 @@ class BinaryHeap(T)
   end
 
   private def compare(i : Int32, j : Int32)
-    if cmp = @compare_proc
-      v = cmp.not_nil!.call(@heap[i], @heap[j])
+    if @compare_proc
+      v = @compare_proc.not_nil!.call(@heap[i], @heap[j])
       raise ArgumentError.new("Comparison of #{@heap[i]} and #{@heap[j]} failed") if v.nil?
       v > 0
     else
@@ -137,13 +137,19 @@ class BinaryHeap(T)
   end
 
   def each(&block) : Nil
-    @heap.sort { |a, b| @compare_proc.call(a, b) }.each do |x|
-      yield x
+    if @compare_proc
+      @heap.sort { |a, b| @compare_proc.not_nil!.call(a, b) }.each { |x| yield x }
+    else
+      @heap.sort.each { |x| yield x }
     end
   end
 
   def to_a : Array(T)
-    @heap.sort { |a, b| @compare_proc.call(a, b) }
+    if @compare_proc
+      @heap.sort { |a, b| @compare_proc.not_nil!.call(a, b) }
+    else
+      @heap.sort
+    end
   end
 
   def to_s(io : IO) : Nil
