@@ -26,7 +26,7 @@ describe BinaryHeap do
     end
   end
 
-  it "does {}" do
+  it "BinaryHeap{}" do
     a = BinaryHeap{3, 1, 2}
     a.to_a.should eq [1, 2, 3]
   end
