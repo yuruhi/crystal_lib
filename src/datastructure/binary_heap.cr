@@ -1,10 +1,12 @@
 class BinaryHeap(T)
+  @compare_proc : (T, T -> Int32?)?
+
   def initialize
-    initialize { |a, b| a <=> b }
+    @heap = Array(T).new
   end
 
   def initialize(initial_capacity : Int = 0)
-    initialize(initial_capacity) { |a, b| a <=> b }
+    @heap = Array(T).new(initial_capacity)
   end
 
   def initialize(enumerable : Enumerable(T))
@@ -37,10 +39,14 @@ class BinaryHeap(T)
     @heap.sort == other.@heap.sort
   end
 
-  private def compare(index1 : Int32, index2 : Int32)
-    v = @compare_proc.call(@heap[index1], @heap[index2])
-    raise ArgumentError.new("Comparison of #{@heap[index1]} and #{@heap[index2]} failed") if v.nil?
-    v > 0
+  private def compare(i : Int32, j : Int32)
+    if cmp = @compare_proc
+      v = cmp.not_nil!.call(@heap[i], @heap[j])
+      raise ArgumentError.new("Comparison of #{@heap[i]} and #{@heap[j]} failed") if v.nil?
+      v > 0
+    else
+      @heap[i] > @heap[j]
+    end
   end
 
   # Removes all elements from the heap and returns `self`.
