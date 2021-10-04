@@ -2,30 +2,33 @@ require "spec"
 require "../../src/datastructure/binary_heap"
 
 describe BinaryHeap do
-  it "new" do
-    a = BinaryHeap(Int32).new
-    a << 1 << 2 << 3
+  describe ".new" do
+    it "creates empty heap" do
+      a = BinaryHeap(Int32).new
+      a << 3 << 1 << 2
+      a.to_a.should eq [1, 2, 3]
+    end
+
+    it "creates with enumerable" do
+      a = BinaryHeap(Int32).new(1..9)
+      a.to_a.should eq (1..9).to_a
+    end
+
+    it "creates with compare block" do
+      a = BinaryHeap(Int32).new { |a, b| b <=> a }
+      a << 3 << 1 << 2
+      a.to_a.should eq [3, 2, 1]
+    end
+
+    it "creates with enumerable and compare block" do
+      a = BinaryHeap(Int32).new(1..9) { |a, b| b <=> a }
+      a.to_a.should eq (1..9).reverse_each.to_a
+    end
+  end
+
+  it "does {}" do
+    a = BinaryHeap{3, 1, 2}
     a.to_a.should eq [1, 2, 3]
-  end
-
-  it "new(enumerable)" do
-    a = BinaryHeap.new 1..10
-    a.to_a.should eq (1..10).to_a
-  end
-
-  it "new(&block)" do
-    a = BinaryHeap(Int32).new { |a, b| b <=> a }
-    a << 3 << 1 << 4 << 1 << 5
-    a.to_a.should eq [5, 4, 3, 1, 1]
-  end
-
-  it "new(enumerable, &block)" do
-    a = BinaryHeap.new(1..10) { |a, b| b <=> a }
-    a.to_a.should eq (1..10).to_a.reverse
-  end
-
-  it "{}" do
-    BinaryHeap{3, 1, 4}.top.should eq 1
   end
 
   it "#size" do
@@ -33,7 +36,7 @@ describe BinaryHeap do
     BinaryHeap{1, 2, 3}.size.should eq 3
   end
 
-  it "#empty" do
+  it "#empty?" do
     BinaryHeap(Int32).new.empty?.should be_true
     BinaryHeap{1, 2, 3}.empty?.should be_false
   end
@@ -52,53 +55,84 @@ describe BinaryHeap do
     a.should eq BinaryHeap{1, 2, 3}
   end
 
-  it "#==, #!=" do
+  describe "compare" do
     a = BinaryHeap{1, 2, 3}
     b = BinaryHeap{3, 2, 1}
     c = BinaryHeap{1, 2}
-    (a == b).should be_true
-    (a != b).should be_false
-    (a == c).should be_false
-    (a != c).should be_true
+
+    it "#==" do
+      (a == b).should be_true
+      (a == c).should be_false
+    end
+
+    it "#!=" do
+      (a != b).should be_false
+      (a != c).should be_true
+    end
   end
 
-  it "#top(&block), #top?, #top" do
-    a = BinaryHeap{3, 1, 4}
-    a.top.should eq 1
-    a.top?.should eq 1
-    a.top { "none" }.should eq 1
+  describe "#top" do
+    it "gets top element when non empty" do
+      a = BinaryHeap{3, 1, 2}
+      a.top.should eq 1
+      a.top?.should eq 1
+      a.top { "none" }.should eq 1
+    end
 
-    a = BinaryHeap(Int32).new
-    expect_raises(IndexError) { a.top }
-    a.top?.should be_nil
-    a.top { "none" }.should eq "none"
+    it "gets top element when empty" do
+      a = BinaryHeap(Int32).new
+      expect_raises(IndexError) { a.top }
+      a.top?.should be_nil
+      a.top { "none" }.should eq "none"
+    end
   end
 
   it "#add, #<<" do
     a = BinaryHeap(Int32).new
-    a.add(1).add(2)
-    a << 1 << 2 << 3
-    a == BinaryHeap{1, 1, 2, 2, 3}
+    a.add(1).add(2).should be a
+    (a << 1 << 2 << 3).should be a
+    a.to_a.should eq [1, 1, 2, 2, 3]
   end
 
-  it "#pop(&block), #pop?, #pop" do
-    a = BinaryHeap{1, 2, 3}
-    a.pop.should eq 1
-    a.pop?.should eq 2
-    a.pop { "none" }.should eq 3
-    expect_raises(IndexError) { a.pop }
-    a.pop?.should be_nil
-    a.pop { "none" }.should eq "none"
+  describe "#pop" do
+    it "pops when non empty" do
+      a = BinaryHeap{1, 2, 3}
+      a.pop.should eq 1
+      a.pop?.should eq 2
+      a.pop { "none" }.should eq 3
+    end
+
+    it "pops when empty" do
+      a = BinaryHeap(Int32).new
+      expect_raises(IndexError) { a.pop }
+      a.pop?.should be_nil
+      a.pop { "none" }.should eq "none"
+    end
+
+    it "pops many elements" do
+      a = BinaryHeap{1, 2, 3, 4, 5}
+      a.pop(3).should eq [1, 2, 3]
+      a.to_a.should eq [4, 5]
+      a.pop(2).should eq [4, 5]
+      a.to_a.should eq [] of Int32
+    end
+
+    it "pops more elements that what is available" do
+      a = BinaryHeap{1, 2, 3, 4, 5}
+      a.pop(9).should eq [1, 2, 3, 4, 5]
+      a.empty?.should be_true
+      a.pop(1).should eq [] of Int32
+    end
+
+    it "pops negative count raises" do
+      a = BinaryHeap{1, 2}
+      expect_raises(ArgumentError) { a.pop(-1) }
+    end
   end
 
-  it "#pop(n)" do
-    a = BinaryHeap{1, 2, 3, 4, 5}
-    a.pop(3).should eq [1, 2, 3]
-    a.pop(1).should eq [4]
-    a.pop(3).should eq [5]
-    a.pop(0).should eq [] of Int32
-    a.pop(9).should eq [] of Int32
-    expect_raises(ArgumentError) { a.pop(-1) }
+  it "#to_a" do
+    a = BinaryHeap{3, 1, 2}
+    a.to_a.should eq [1, 2, 3]
   end
 
   it "#to_s, #inspect" do
@@ -107,31 +141,48 @@ describe BinaryHeap do
     a.inspect.should eq "BinaryHeap{1, 3, 4}"
   end
 
-  it "include Enumerable" do
+  it "includes Enumerable" do
     a = BinaryHeap{1, 2, 3}
     a.to_a.should eq [1, 2, 3]
     a.min.should eq 1
     a.max.should eq 3
   end
 
-  it "big test" do
-    test = ->(values : Array(Int32)) {
-      a = BinaryHeap(Int32).new
-      values.each { |x| a << x }
-      a.to_a.should eq values.sort
-    }
-    n = 1000
-    test.call Array.new(n) { rand(Int32) }
-    test.call Array.new(n) { rand(100) }
-    test.call (1..n).to_a
-    test.call (1..n).to_a.reverse
+  describe "big test" do
+    it "hasn't compare proc" do
+      test = ->(values : Array(Int32)) {
+        a = BinaryHeap(Int32).new
+        values.each { |x| a << x }
+        a.to_a.should eq values.sort
+      }
+      n = 100000
+      test.call Array.new(n) { rand(Int32) }
+      test.call Array.new(n) { rand(100) }
+      test.call (1..n).to_a
+      test.call (1..n).to_a.reverse
+    end
+
+    it "has compare proc" do
+      test = ->(values : Array(Int32)) {
+        a = BinaryHeap(Int32).new { |a, b| b <=> a }
+        values.each { |x| a << x }
+        a.to_a.should eq values.sort.reverse
+      }
+      n = 100000
+      test.call Array.new(n) { rand(Int32) }
+      test.call Array.new(n) { rand(100) }
+      test.call (1..n).to_a
+      test.call (1..n).to_a.reverse
+    end
   end
 
-  it "(Float64)" do
-    BinaryHeap{1.1, 2.2, 3.3}.to_a.should eq [1.1, 2.2, 3.3]
-  end
+  describe "generics" do
+    it "Float64" do
+      BinaryHeap{1.1, 2.2, 3.3}.to_a.should eq [1.1, 2.2, 3.3]
+    end
 
-  it "(String)" do
-    BinaryHeap.new(%w[D C B A]).to_a.should eq %w[A B C D]
+    it "String" do
+      BinaryHeap.new(%w[D C B A]).to_a.should eq %w[A B C D]
+    end
   end
 end

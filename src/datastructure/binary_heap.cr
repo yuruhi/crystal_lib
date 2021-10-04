@@ -3,6 +3,10 @@ class BinaryHeap(T)
     initialize { |a, b| a <=> b }
   end
 
+  def initialize(initial_capacity : Int = 0)
+    initialize(initial_capacity) { |a, b| a <=> b }
+  end
+
   def initialize(enumerable : Enumerable(T))
     initialize
     enumerable.each { |x| add(x) }
@@ -10,6 +14,11 @@ class BinaryHeap(T)
 
   def initialize(&block : T, T -> Int32?)
     @heap = Array(T).new
+    @compare_proc = block
+  end
+
+  def initialize(initial_capacity : Int = 0, &block : T, T -> Int32?)
+    @heap = Array(T).new(initial_capacity)
     @compare_proc = block
   end
 
@@ -84,7 +93,7 @@ class BinaryHeap(T)
     when 1
       @heap.pop
     else
-      result = @heap.unsafe_fetch(0)
+      value = @heap.unsafe_fetch(0)
       @heap[0] = @heap.pop
       i = 0
       loop do
@@ -99,7 +108,7 @@ class BinaryHeap(T)
         @heap.swap(i, j)
         i = j
       end
-      result
+      value
     end
   end
 
@@ -114,16 +123,21 @@ class BinaryHeap(T)
     pop { raise IndexError.new }
   end
 
+  # Removes the last *n* values from `self` ahd returns the removed values.
   def pop(n : Int) : Array(T)
     raise ArgumentError.new unless n >= 0
     n = Math.min(n, size)
     Array.new(n) { pop }
   end
 
-  def each(&block)
+  def each(&block) : Nil
     @heap.sort { |a, b| @compare_proc.call(a, b) }.each do |x|
       yield x
     end
+  end
+
+  def to_a : Array(T)
+    @heap.sort { |a, b| @compare_proc.call(a, b) }
   end
 
   def to_s(io : IO) : Nil
