@@ -1,9 +1,9 @@
 class Array(T)
   def next_permutation! : Bool
-    i = (0...size - 1).reverse_each.find { |i| self[i] < self[i + 1] } || return false
-    j = (0...size).reverse_each.find { |j| self[i] < self[j] }.not_nil!
-    swap(i, j)
-    Slice.new(to_unsafe + i + 1, size - i - 1).reverse!
+    i = (1...size).reverse_each.find { |i| self[i - 1] < self[i] } || return false
+    j = (0...size).reverse_each.find { |j| self[i - 1] < self[j] }.not_nil!
+    swap(i - 1, j)
+    Slice.new(to_unsafe + i, size - i).reverse!
     true
   end
 
