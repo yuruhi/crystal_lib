@@ -1,4 +1,6 @@
 class BinaryHeap(T)
+  @compare_proc : (T, T -> Int32?)?
+
   def initialize
     @heap = Array(T).new
     @compare_proc = nil
@@ -30,6 +32,7 @@ class BinaryHeap(T)
   end
 
   include Enumerable(T)
+  include Iterable(T)
 
   delegate size, to: @heap
   delegate empty?, to: @heap
@@ -137,11 +140,11 @@ class BinaryHeap(T)
   end
 
   def each(&block) : Nil
-    if @compare_proc
-      @heap.sort { |a, b| @compare_proc.not_nil!.call(a, b) }.each { |x| yield x }
-    else
-      @heap.sort.each { |x| yield x }
-    end
+    to_a.each { |x| yield x }
+  end
+
+  def each
+    to_a.each
   end
 
   def to_a : Array(T)

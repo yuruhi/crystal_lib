@@ -130,6 +130,21 @@ describe BinaryHeap do
     end
   end
 
+  describe "#each" do
+    a = BinaryHeap{3, 1, 2}
+
+    it "receives block" do
+      b = [] of Int32
+      a.each { |x| b << x }
+      b.should eq [1, 2, 3]
+    end
+
+    it "returns Iterator" do
+      a.each.should be_a Iterator(Int32)
+      a.each.cycle(2).to_a.should eq [1, 2, 3, 1, 2, 3]
+    end
+  end
+
   it "#to_a" do
     a = BinaryHeap{3, 1, 2}
     a.to_a.should eq [1, 2, 3]
@@ -141,11 +156,18 @@ describe BinaryHeap do
     a.inspect.should eq "BinaryHeap{1, 3, 4}"
   end
 
-  it "includes Enumerable" do
+  it "includes Enumerable(T)" do
     a = BinaryHeap{1, 2, 3}
     a.to_a.should eq [1, 2, 3]
     a.min.should eq 1
     a.max.should eq 3
+  end
+
+  it "includes Iterable(T)" do
+    a = BinaryHeap{1, 2, 3}
+    a.cycle(2).should be_a Iterator(Int32)
+    a.cycle(2).to_a.should eq [1, 2, 3, 1, 2, 3]
+    a.each_cons(2).to_a.should eq [[1, 2], [2, 3]]
   end
 
   describe "big test" do
