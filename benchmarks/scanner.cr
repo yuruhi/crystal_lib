@@ -1,7 +1,9 @@
 require "../src/scanner"
 require "benchmark"
 
-N = 100000
+# TODO: benchmark Int128 and UInt128
+
+private N = 100000
 
 {% for signed in [true, false] %}
   {% for n in [8, 16, 32, 64] %}

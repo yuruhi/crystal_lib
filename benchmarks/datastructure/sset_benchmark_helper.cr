@@ -1,6 +1,6 @@
 require "benchmark"
 
-class Foo
+private class Foo
   getter x
   include Comparable(Foo)
 
@@ -12,7 +12,7 @@ class Foo
   end
 end
 
-class SlowCmp
+private class SlowCmp
   include Comparable(SlowCmp)
 
   def initialize(size)
@@ -28,7 +28,7 @@ class SlowCmp
   end
 end
 
-def benchmark_add_delete(label, type : T.class, values) forall T
+private def benchmark_add_delete(label, type : T.class, values) forall T
   index = (0...values.size).to_a.shuffle Random.new(123)
   Benchmark.ips do |x|
     x.report(label) do
@@ -39,7 +39,7 @@ def benchmark_add_delete(label, type : T.class, values) forall T
   end
 end
 
-def benchmark_split(label, type : T.class, values, split_key) forall T
+private def benchmark_split(label, type : T.class, values, split_key) forall T
   Benchmark.ips do |x|
     x.report(label) do
       s = T.new values
