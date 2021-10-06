@@ -1,18 +1,18 @@
 require "spec"
 require "../src/scanner"
 
-macro check(method, input, expect)
+private macro check(method, input, expect)
 	%io = IO::Memory.new {{input}}
 	({{expect}}).each { |str| Scanner.{{method.id}}(%io).should eq str }
 	expect_raises(IO::EOFError) { Scanner.{{method.id}}(%io) }
 end
 
-macro check_raises(method, input, exception)
+private macro check_raises(method, input, exception)
 	%io = IO::Memory.new {{input}}
 	expect_raises({{exception}}) { Scanner.{{method.id}}(%io) }
 end
 
-macro describe_scan_int(type, method)
+private macro describe_scan_int(type, method)
 	{% signed = type.stringify =~ /$Int\d+^/ %}
 	describe ".{{method.id}}" do
 		it "read integer separated by spaces or new lines" do

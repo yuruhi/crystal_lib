@@ -1,8 +1,9 @@
 # https://yukicoder.me/problems/no/217
 require "../../src/point"
 require "../../src/array/new"
+require "spec"
 
-module MagicSquare
+private module MagicSquare
   extend self
 
   def generate_odd(n)

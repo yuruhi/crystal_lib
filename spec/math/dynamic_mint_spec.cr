@@ -1,10 +1,10 @@
 require "spec"
 require "../../src/math/dynamic_mint"
 
-alias M = DynamicMint
+private alias M = DynamicMint
 init = 998244353
 
-macro check_binary_operator(mod, op)
+private macro check_binary_operator(mod, op)
   %mod = {{mod}}
   M.mod = %mod
   (0...%mod).each do |x|
@@ -14,7 +14,7 @@ macro check_binary_operator(mod, op)
   end
 end
 
-macro check_method(mod, method)
+private macro check_method(mod, method)
   %mod = {{mod}}
   M.mod = %mod
   (0...%mod).each do |x|
@@ -22,7 +22,7 @@ macro check_method(mod, method)
   end
 end
 
-macro check_method_mod(mod, method)
+private macro check_method_mod(mod, method)
   %mod = {{mod}}
   M.mod = %mod
   (0...%mod).each do |x|

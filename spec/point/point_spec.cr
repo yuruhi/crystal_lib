@@ -1,16 +1,17 @@
 require "spec"
 require "../../src/point"
 
-macro check_direction(name, dy, dx)
+private macro check_direction(name, dy, dx)
   it ".{{name}}" do
     Point.{{name}}.should eq Point.new({{dy}}, {{dx}})
   end
+
   it "#" + "{{name}}" do
     Point.new(1, 1).{{name}}.should eq Point.new(1 + {{dy}}, 1 + {{dx}})
   end
 end
 
-macro check_binary_operator(op)
+private macro check_binary_operator(op)
   it "\#{{op.id}}" do
     a, b = Point.new(1, 2), Point.new(3, 4)
     (a {{op.id}} b).should eq Point.new(1 {{op.id}} 3, 2 {{op.id}} 4)
@@ -18,8 +19,8 @@ macro check_binary_operator(op)
   end
 end
 
-H = 3
-W = 4
+private H = 3
+private W = 4
 
 describe Point do
   it ".set_range and .height and .width" do
@@ -52,10 +53,8 @@ describe Point do
 
   it ".from" do
     Point.from([0, 1]).should eq Point.new(0, 1)
-    expect_raises(ArgumentError) do
-      Point.from [0]
-      Point.from [0, 1, 2]
-    end
+    expect_raises(ArgumentError) { Point.from [0] }
+    expect_raises(ArgumentError) { Point.from [0, 1, 2] }
   end
 
   it ".[](y, x)" do
@@ -230,21 +229,18 @@ describe Point do
   end
 
   it "to_direction_char?" do
-    Point.left.to_direction_char?.should eq 'L'
-    Point.right.to_direction_char?.should eq 'R'
-    Point.up.to_direction_char?.should eq 'U'
-    Point.down.to_direction_char?.should eq 'D'
-    Point.new(1, 1).to_direction_char?.should be_nil
-    (Point.left * 10).to_direction_char?.should eq 'L'
-    (Point.right * 10).to_direction_char?.should eq 'R'
-    (Point.up * 10).to_direction_char?.should eq 'U'
-    (Point.down * 10).to_direction_char?.should eq 'D'
+    [
+      {Point.left * 1, 'L'}, {Point.right * 1, 'R'}, {Point.up * 1, 'U'}, {Point.down * 1, 'D'},
+      {Point.left * 9, 'L'}, {Point.right * 9, 'R'}, {Point.up * 9, 'U'}, {Point.down * 9, 'D'},
+      {Point.dr, nil},
+    ].each do |p, expected|
+      p.to_direction_char?.should eq expected
+    end
 
     {"<>^v", "1234"}.each do |str|
-      Point.left.to_direction_char?(str).should eq str[0]
-      Point.right.to_direction_char?(str).should eq str[1]
-      Point.up.to_direction_char?(str).should eq str[2]
-      Point.down.to_direction_char?(str).should eq str[3]
+      [Point.left, Point.right, Point.up, Point.down].zip(str.chars) do |p, c|
+        p.to_direction_char?(str).should eq c
+      end
     end
   end
 
@@ -257,79 +253,52 @@ describe Point do
   end
 
   it ".to_direction?(s : String)" do
-    Point.to_direction?("L").should eq Point.left
-    Point.to_direction?("R").should eq Point.right
-    Point.to_direction?("U").should eq Point.up
-    Point.to_direction?("D").should eq Point.down
-    Point.to_direction?("?").should be_nil
-    Point.to_direction?("LU").should eq Point.ul
-    Point.to_direction?("UL").should eq Point.ul
-    Point.to_direction?("LD").should eq Point.dl
-    Point.to_direction?("DL").should eq Point.dl
-    Point.to_direction?("RU").should eq Point.ur
-    Point.to_direction?("UR").should eq Point.ur
-    Point.to_direction?("RD").should eq Point.dr
-    Point.to_direction?("DR").should eq Point.dr
-    Point.to_direction?("LL").should be_nil
-    Point.to_direction?("LR").should be_nil
-    Point.to_direction?("UD").should be_nil
-    Point.to_direction?("L?").should be_nil
-    Point.to_direction?("").should be_nil
-    Point.to_direction?("LRU").should be_nil
+    [
+      {"L", Point.left}, {"R", Point.right}, {"U", Point.up}, {"D", Point.down},
+      {"LU", Point.ul}, {"UL", Point.ul}, {"LD", Point.dl}, {"DL", Point.dl},
+      {"RU", Point.ur}, {"UR", Point.ur}, {"RD", Point.dr}, {"DR", Point.dr},
+      {"?", nil}, {"LL", nil}, {"LR", nil}, {"UD", nil}, {"L?", nil}, {"", nil}, {"LRU", nil},
+    ].each do |str, expected|
+      Point.to_direction?(str).should eq expected
+    end
   end
 end
 
 describe Indexable do
   it "#[](point : Point)" do
     a = [[0, 1], [2, 3], [4]]
-    a[Point.new(0, 0)].should eq 0
-    a[Point.new(0, 1)].should eq 1
-    a[Point.new(1, 0)].should eq 2
-    a[Point.new(1, 1)].should eq 3
-    a[Point.new(2, 0)].should eq 4
-    expect_raises(IndexError) { a[Point.new(2, 1)] }
-    expect_raises(IndexError) { a[Point.new(0, 2)] }
-    expect_raises(IndexError) { a[Point.new(0, -1)] }
-    expect_raises(IndexError) { a[Point.new(-1, 0)] }
-    expect_raises(IndexError) { a[Point.new(3, 0)] }
+    [{0, 0, 0}, {0, 1, 1}, {1, 0, 2}, {1, 1, 3}, {2, 0, 4}].each do |y, x, value|
+      a[Point.new(y, x)].should eq value
+    end
+    [{2, 1}, {0, 2}, {0, -1}, {-1, 0}, {3, 0}].each do |y, x|
+      expect_raises(IndexError) { a[Point.new(y, x)] }
+    end
 
     b = %w[ab cd e]
-    b[Point.new(0, 0)].should eq 'a'
-    b[Point.new(0, 1)].should eq 'b'
-    b[Point.new(1, 0)].should eq 'c'
-    b[Point.new(1, 1)].should eq 'd'
-    b[Point.new(2, 0)].should eq 'e'
-    expect_raises(IndexError) { b[Point.new(2, 1)] }
-    expect_raises(IndexError) { b[Point.new(0, 2)] }
-    expect_raises(IndexError) { b[Point.new(0, -1)] }
-    expect_raises(IndexError) { b[Point.new(-1, 0)] }
-    expect_raises(IndexError) { b[Point.new(3, 0)] }
+    [{0, 0, 'a'}, {0, 1, 'b'}, {1, 0, 'c'}, {1, 1, 'd'}, {2, 0, 'e'}].each do |y, x, char|
+      b[Point.new(y, x)].should eq char
+    end
+    [{2, 1}, {0, 2}, {0, -1}, {-1, 0}, {3, 0}].each do |y, x|
+      expect_raises(IndexError) { b[Point.new(y, x)] }
+    end
   end
 
   it "#[]?(point : Point)" do
     a = [[0, 1], [2, 3], [4]]
-    a[Point.new(0, 0)]?.should eq 0
-    a[Point.new(0, 1)]?.should eq 1
-    a[Point.new(1, 0)]?.should eq 2
-    a[Point.new(1, 1)]?.should eq 3
-    a[Point.new(2, 0)]?.should eq 4
-    a[Point.new(2, 1)]?.should be_nil
-    a[Point.new(0, 2)]?.should be_nil
-    a[Point.new(0, -1)]?.should be_nil
-    a[Point.new(-1, 0)]?.should be_nil
-    a[Point.new(3, 0)]?.should be_nil
+    [
+      {0, 0, 0}, {0, 1, 1}, {1, 0, 2}, {1, 1, 3}, {2, 0, 4},
+      {0, 2, nil}, {0, -1, nil}, {-1, 0, nil}, {3, 0, nil},
+    ].each do |y, x, value|
+      a[Point.new(y, x)]?.should eq value
+    end
 
     b = %w[ab cd e]
-    b[Point.new(0, 0)]?.should eq 'a'
-    b[Point.new(0, 1)]?.should eq 'b'
-    b[Point.new(1, 0)]?.should eq 'c'
-    b[Point.new(1, 1)]?.should eq 'd'
-    b[Point.new(2, 0)]?.should eq 'e'
-    b[Point.new(2, 1)]?.should be_nil
-    b[Point.new(0, 2)]?.should be_nil
-    b[Point.new(0, -1)]?.should be_nil
-    b[Point.new(-1, 0)]?.should be_nil
-    b[Point.new(3, 0)]?.should be_nil
+    [
+      {0, 0, 'a'}, {0, 1, 'b'}, {1, 0, 'c'}, {1, 1, 'd'}, {2, 0, 'e'},
+      {2, 1, nil}, {0, 2, nil}, {0, -1, nil}, {-1, 0, nil}, {3, 0, nil},
+    ].each do |y, x, value|
+      b[Point.new(y, x)]?.should eq value
+    end
   end
 end
 
@@ -339,11 +308,11 @@ describe Array do
     a[Point.new(0, 0)] = 3
     a[Point.new(0, 1)] = 4
     a[Point.new(1, 0)] = 5
-    expect_raises(IndexError) { a[Point.new(2, 1)] }
-    expect_raises(IndexError) { a[Point.new(0, 2)] }
-    expect_raises(IndexError) { a[Point.new(0, -1)] }
-    expect_raises(IndexError) { a[Point.new(-1, 0)] }
-    expect_raises(IndexError) { a[Point.new(3, 0)] }
+    expect_raises(IndexError) { a[Point.new(2, 1)] = 0 }
+    expect_raises(IndexError) { a[Point.new(0, 2)] = 0 }
+    expect_raises(IndexError) { a[Point.new(0, -1)] = 0 }
+    expect_raises(IndexError) { a[Point.new(-1, 0)] = 0 }
+    expect_raises(IndexError) { a[Point.new(3, 0)] = 0 }
     a.should eq [[3, 4], [5]]
   end
 end

@@ -5,7 +5,7 @@ mod = 10i64**9 + 7
 x = Mint.new(mod - 1)
 max = Int64::MAX % mod
 
-macro check_binary_operator(type, op)
+private macro check_binary_operator(type, op)
   %mod = {{type}}::MOD
   0i64.step(to: %mod, by: %mod // 1000).each do |x|
     0i64.step(to: %mod, by: %mod // 999).each do |y|
@@ -16,14 +16,14 @@ macro check_binary_operator(type, op)
   end
 end
 
-macro check_method(type, method)
+private macro check_method(type, method)
   %mod = {{type}}::MOD
   0i64.step(to: %mod, by: %mod // 1000000).each do |x|
     {{type}}.new(x).{{method}}.should eq x.{{method}}
   end
 end
 
-macro check_method_mod(type, method)
+private macro check_method_mod(type, method)
   %mod = {{type}}::MOD
   0i64.step(to: %mod, by: %mod // 1000000).each do |x|
     {{type}}.new(x).{{method}}.should eq x.{{method}} % %mod
