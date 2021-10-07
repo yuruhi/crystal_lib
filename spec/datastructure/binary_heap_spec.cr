@@ -188,7 +188,7 @@ describe BinaryHeap do
       test = ->(values : Array(Int32)) {
         a = BinaryHeap(Int32).new { |a, b| b <=> a }
         values.each { |x| a << x }
-        a.to_a.should eq values.sort.reverse
+        a.to_a.should eq values.sort_by(&.-)
       }
       n = 100000
       test.call Array.new(n) { rand(Int32) }
