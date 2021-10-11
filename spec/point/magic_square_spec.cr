@@ -27,7 +27,7 @@ private module MagicSquare
     a = Array.new({n, n}, nil.as(Int32?))
     Point.each do |p|
       p2 = p % 4
-      if p2.x == p2.y || (p2.x + p2.y) == 3
+      if p2.x == p2.y || p2.x + p2.y == 3
         a[p] = p.to_i + 1
       end
     end
@@ -67,12 +67,10 @@ private module MagicSquare
 
   def generate(n)
     Point.set_range(n, n)
-    if n.odd?
-      generate_odd(n)
-    elsif n % 4 == 0
-      generate_4x(n)
-    else
-      generate_4x2(n)
+    case n
+    when .odd?             then generate_odd(n)
+    when .divisible_by?(4) then generate_4x(n)
+    else                        generate_4x2(n)
     end
   end
 
@@ -89,8 +87,8 @@ end
 describe Point do
   it "magic square" do
     (3..500).each do |n|
-      ans = MagicSquare.generate(n)
-      MagicSquare.check(n, ans).should be_true
+      magic_square = MagicSquare.generate(n)
+      MagicSquare.check(n, magic_square).should be_true
     end
   end
 end
