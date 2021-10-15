@@ -31,11 +31,6 @@ class BinaryHeap(T)
     enumerable.each { |x| add(x) }
   end
 
-  def initialize(&block : T, T -> Int32?)
-    @heap = Array(T).new
-    @compare_proc = block
-  end
-
   # Creates a new empty heap with the custom comperator.
   #
   # The block must implement a comparison between two elements *a* and *b*, where `a < b` returns `-1`,
