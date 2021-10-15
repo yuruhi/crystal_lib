@@ -1,6 +1,4 @@
 class BinaryHeap(T)
-  @compare_proc : (T, T -> Int32?)?
-
   def initialize
     @heap = Array(T).new
     @compare_proc = nil
@@ -34,22 +32,20 @@ class BinaryHeap(T)
   include Enumerable(T)
   include Iterable(T)
 
-  delegate size, to: @heap
-  delegate empty?, to: @heap
   def_clone
 
   def ==(other : BinaryHeap(T))
     @heap.sort == other.@heap.sort
   end
 
-  private def compare(i : Int32, j : Int32)
-    if @compare_proc
-      v = @compare_proc.not_nil!.call(@heap[i], @heap[j])
-      raise ArgumentError.new("Comparison of #{@heap[i]} and #{@heap[j]} failed") if v.nil?
-      v > 0
-    else
-      @heap[i] > @heap[j]
-    end
+  # Returns the number of elements in the heap.
+  def size
+    @heap.size
+  end
+
+  # Returns `true` if `self` is empty, `false` otherwise.
+  def empty?
+    @heap.empty?
   end
 
   # Removes all elements from the heap and returns `self`.
@@ -74,6 +70,16 @@ class BinaryHeap(T)
   # If the `self` is empty, raises `IndexError`.
   def top : T
     top { raise IndexError.new }
+  end
+
+  private def compare(i : Int32, j : Int32)
+    if @compare_proc
+      v = @compare_proc.not_nil!.call(@heap[i], @heap[j])
+      raise ArgumentError.new("Comparison of #{@heap[i]} and #{@heap[j]} failed") if v.nil?
+      v > 0
+    else
+      @heap[i] > @heap[j]
+    end
   end
 
   # Adds *object* to the heap and returns `self`.
@@ -139,20 +145,27 @@ class BinaryHeap(T)
     Array.new(n) { pop }
   end
 
-  def each(&block) : Nil
-    to_a.each { |x| yield x }
+  # Yields each element of the heap, and returns nil.
+  def each(&) : Nil
+    @heap.each { |elem| yield elem }
   end
 
+  # Returns an iterator for each element of the heap.
   def each
-    to_a.each
+    @heap.each
   end
 
-  def to_a : Array(T)
+  # Returns a new array with all elements sorted.
+  def sort : Array(T)
     if @compare_proc
       @heap.sort { |a, b| @compare_proc.not_nil!.call(a, b) }
     else
       @heap.sort
     end
+  end
+
+  def to_a : Array(T)
+    @heap.dup
   end
 
   def to_s(io : IO) : Nil

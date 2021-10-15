@@ -6,29 +6,29 @@ describe BinaryHeap do
     it "creates empty heap" do
       a = BinaryHeap(Int32).new
       a << 3 << 1 << 2
-      a.to_a.should eq [1, 2, 3]
+      a.sort.should eq [1, 2, 3]
     end
 
     it "creates with enumerable" do
       a = BinaryHeap(Int32).new(1..9)
-      a.to_a.should eq (1..9).to_a
+      a.sort.should eq (1..9).to_a
     end
 
     it "creates with compare block" do
       a = BinaryHeap(Int32).new { |a, b| b <=> a }
       a << 3 << 1 << 2
-      a.to_a.should eq [3, 2, 1]
+      a.sort.should eq [3, 2, 1]
     end
 
     it "creates with enumerable and compare block" do
       a = BinaryHeap(Int32).new(1..9) { |a, b| b <=> a }
-      a.to_a.should eq (1..9).reverse_each.to_a
+      a.sort.should eq (1..9).reverse_each.to_a
     end
   end
 
   it "BinaryHeap{}" do
     a = BinaryHeap{3, 1, 2}
-    a.to_a.should eq [1, 2, 3]
+    a.sort.should eq [1, 2, 3]
   end
 
   it "#size" do
@@ -91,7 +91,7 @@ describe BinaryHeap do
     a = BinaryHeap(Int32).new
     a.add(1).add(2).should be a
     (a << 1 << 2 << 3).should be a
-    a.to_a.should eq [1, 1, 2, 2, 3]
+    a.sort.should eq [1, 1, 2, 2, 3]
   end
 
   describe "#pop" do
@@ -112,9 +112,9 @@ describe BinaryHeap do
     it "pops many elements" do
       a = BinaryHeap{1, 2, 3, 4, 5}
       a.pop(3).should eq [1, 2, 3]
-      a.to_a.should eq [4, 5]
+      a.sort.should eq [4, 5]
       a.pop(2).should eq [4, 5]
-      a.to_a.should eq [] of Int32
+      a.sort.should eq [] of Int32
     end
 
     it "pops more elements that what is available" do
@@ -136,18 +136,27 @@ describe BinaryHeap do
     it "receives block" do
       b = [] of Int32
       a.each { |x| b << x }
-      b.should eq [1, 2, 3]
+      b.sort.should eq [1, 2, 3]
     end
 
     it "returns Iterator" do
       a.each.should be_a Iterator(Int32)
-      a.each.cycle(2).to_a.should eq [1, 2, 3, 1, 2, 3]
+      a.each.min.should eq 1
+      a.each.max.should eq 3
+      a.each.cycle(2).to_a.sort.should eq [1, 1, 2, 2, 3, 3]
     end
+  end
+
+  it "#sort" do
+    a = BinaryHeap{3, 1, 2}
+    a.sort.should eq [1, 2, 3]
+    b = BinaryHeap.new([1, 2, 3]) { |a, b| b <=> a }
+    b.sort.should eq [3, 2, 1]
   end
 
   it "#to_a" do
     a = BinaryHeap{3, 1, 2}
-    a.to_a.should eq [1, 2, 3]
+    a.sort.should eq [1, 2, 3]
   end
 
   it "#to_s, #inspect" do
@@ -158,7 +167,7 @@ describe BinaryHeap do
 
   it "includes Enumerable(T)" do
     a = BinaryHeap{1, 2, 3}
-    a.to_a.should eq [1, 2, 3]
+    a.sort.should eq [1, 2, 3]
     a.min.should eq 1
     a.max.should eq 3
   end
@@ -175,7 +184,7 @@ describe BinaryHeap do
       test = ->(values : Array(Int32)) {
         a = BinaryHeap(Int32).new
         values.each { |x| a << x }
-        a.to_a.should eq values.sort
+        a.sort.should eq values.sort
       }
       n = 100000
       test.call Array.new(n) { rand(Int32) }
@@ -188,7 +197,7 @@ describe BinaryHeap do
       test = ->(values : Array(Int32)) {
         a = BinaryHeap(Int32).new { |a, b| b <=> a }
         values.each { |x| a << x }
-        a.to_a.should eq values.sort_by(&.-)
+        a.sort.should eq values.sort_by(&.-)
       }
       n = 100000
       test.call Array.new(n) { rand(Int32) }
