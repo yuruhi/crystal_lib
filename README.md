@@ -7,8 +7,11 @@
 
 | commit type   | emoji                   |
 | ------------- | ----------------------- |
+| New feature   | ✨ `:sparkles:`         |
+| Bugfix        | 🐛 `:bug:`              |
 | Refactor      | 🔨 `:hammer:`           |
-| Add spec      | ✔️ `:heavy_check_mark:` |
-| Add benchmark | 💺 `:seat:`             |
+| Performance   | 🐎 `:racehorse:`        |
+| Spec          | ✔️ `:heavy_check_mark:` |
+| Benchmark     | 💺 `:seat:`             |
 | Documantation | 📚 `:books:`            |
 | CI            | 💚 `:green_heart:`      |
