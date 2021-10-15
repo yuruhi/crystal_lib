@@ -4,3 +4,11 @@
 
 [![GitHub Pages](https://img.shields.io/static/v1?label=GitHub+Pages&message=+&color=brightgreen&logo=github)](https://yuruhi.github.io/crystal_lib/docs)
 [![GitHub Pages](https://img.shields.io/static/v1?label=API+Document&message=+&color=brightgreen&logo=crystal)](https://yuruhi.github.io/crystal_lib/api/)
+
+| commit type   | emoji                   |
+| ------------- | ----------------------- |
+| Refactor      | 🔨 `:hammer:`           |
+| Add spec      | ✔️ `:heavy_check_mark:` |
+| Add benchmark | 💺 `:seat:`             |
+| Documantation | 📚 `:books:`            |
+| CI            | 💚 `:green_heart:`      |
