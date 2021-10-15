@@ -4,11 +4,28 @@ class BinaryHeap(T)
     @compare_proc = nil
   end
 
+  # Creates a new empty heap backed by a buffer that is initially *initial_capacity* big (default: `0`).
+  #
+  # ```
+  # a = BinaryHeap.new(3)
+  # a << 3 << 1 << 2
+  # a.pop # => 1
+  # a.pop # => 2
+  # a.pop # => 3
+  # ```
   def initialize(initial_capacity : Int = 0)
     @heap = Array(T).new(initial_capacity)
     @compare_proc = nil
   end
 
+  # Creates a new heap from the elements in *enumerable*.
+  #
+  # ```
+  # a = BinaryHeap.new [3, 1, 2]
+  # a.pop # => 1
+  # a.pop # => 2
+  # a.pop # => 3
+  # ```
   def initialize(enumerable : Enumerable(T))
     initialize
     enumerable.each { |x| add(x) }
@@ -19,11 +36,23 @@ class BinaryHeap(T)
     @compare_proc = block
   end
 
+  # Creates a new empty heap with the custom comperator.
+  #
+  # The block must implement a comparison between two elements *a* and *b*, where `a < b` returns `-1`,
+  # `a == b` returns `0`, and `a > b` returns `1`. The comparison operator `#<=>` can be used for this.
+  #
+  # ```
+  # a = BinaryHeap.new [3, 1, 2]
+  # a.pop # => 1
+  # b = BinaryHeap.new [3, 1, 2] { |a, b| b <=> a }
+  # b.pop # => 3
+  # ```
   def initialize(initial_capacity : Int = 0, &block : T, T -> Int32?)
     @heap = Array(T).new(initial_capacity)
     @compare_proc = block
   end
 
+  # :ditto:
   def initialize(enumerable : Enumerable(T), &block : T, T -> Int32?)
     initialize &block
     enumerable.each { |x| add(x) }
@@ -34,17 +63,19 @@ class BinaryHeap(T)
 
   def_clone
 
-  def ==(other : BinaryHeap(T))
+  # Returns true if both heap have the same elements.
+  def ==(other : BinaryHeap(T)) : Bool
+    return false if size != other.size
     @heap.sort == other.@heap.sort
   end
 
   # Returns the number of elements in the heap.
-  def size
+  def size : Int32
     @heap.size
   end
 
   # Returns `true` if `self` is empty, `false` otherwise.
-  def empty?
+  def empty? : Bool
     @heap.empty?
   end
 
@@ -73,12 +104,13 @@ class BinaryHeap(T)
   end
 
   private def compare(i : Int32, j : Int32)
+    x, y = @heap.unsafe_fetch(i), @heap.unsafe_fetch(j)
     if @compare_proc
-      v = @compare_proc.not_nil!.call(@heap[i], @heap[j])
-      raise ArgumentError.new("Comparison of #{@heap[i]} and #{@heap[j]} failed") if v.nil?
+      v = @compare_proc.not_nil!.call(x, y)
+      raise ArgumentError.new("Comparison of #{x} and #{y} failed") if v.nil?
       v > 0
     else
-      @heap[i] > @heap[j]
+      x > y
     end
   end
 
@@ -145,7 +177,7 @@ class BinaryHeap(T)
     Array.new(n) { pop }
   end
 
-  # Yields each element of the heap, and returns nil.
+  # Yields each element of the heap, and returns `nil`.
   def each(&) : Nil
     @heap.each { |elem| yield elem }
   end
@@ -156,6 +188,13 @@ class BinaryHeap(T)
   end
 
   # Returns a new array with all elements sorted.
+  #
+  # ```
+  # a = BinaryHeap.new [3, 1, 2]
+  # a.sort # => [1, 2, 3]
+  # b = BinaryHeap.new [3, 1, 2] { |a, b| b <=> a }
+  # b.sort # => [3, 2, 1]
+  # ```
   def sort : Array(T)
     if @compare_proc
       @heap.sort { |a, b| @compare_proc.not_nil!.call(a, b) }
@@ -164,10 +203,20 @@ class BinaryHeap(T)
     end
   end
 
+  # Returns the elements as an Array.
+  #
+  # ```
+  # BinaryHeap{3, 1, 2}.to_a # => [1, 3, 2]
+  # ```
   def to_a : Array(T)
     @heap.dup
   end
 
+  # Writes a string representation of the heap to `io`.
+  #
+  # ```
+  # BinaryHeap{1, 2}.to_s # => "BinaryHeap{1, 2}"
+  # ```
   def to_s(io : IO) : Nil
     io << "BinaryHeap{"
     each_with_index do |x, i|
@@ -177,6 +226,7 @@ class BinaryHeap(T)
     io << '}'
   end
 
+  # Same to `#to_s`.
   def inspect(io : IO) : Nil
     to_s(io)
   end
