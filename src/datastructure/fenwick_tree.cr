@@ -1,37 +1,37 @@
 class FenwickTree(T)
   getter size : Int32
 
-  def initialize(@size)
-    @a = Array(T).new(@size + 1, T.zero)
+  def initialize(size : Int)
+    @size = size.to_i
+    @data = Array(T).new(@size + 1, T.zero)
   end
 
-  def initialize(a : Array(T))
-    @a = [T.zero]
-    @a.concat a
-    @size = a.size
+  def initialize(array : Array(T))
+    @data = [T.zero] + array
+    @size = array.size
     (1...size).each do |i|
       j = i + (i & -i)
       next if j > size
-      @a[j] += @a[i]
+      @data[j] += @data[i]
     end
   end
 
-  # Add *x* to `a[i]`.
-  def add(i : Int, x) : Nil
-    raise IndexError.new unless 0 <= i < size
-    i += 1
-    while i <= size
-      @a[i] += x
-      i += i & -i
+  # Adds *x* to *index* th element.
+  def add(index : Int, x) : Nil
+    raise IndexError.new unless 0 <= index < size
+    index += 1
+    while index <= size
+      @data[index] += x
+      index += index & -index
     end
   end
 
-  # Set *x* to `a[i]`.
-  def set(i : Int, x) : Nil
-    add(i, x - self[i, 1])
+  # Set *x* to *index* th element.
+  def set(index : Int, x) : Nil
+    add(index, x - self[index])
   end
 
-  # Alias for `set`
+  # :ditto:
   def []=(i : Int, x) : Nil
     set(i, x)
   end
@@ -41,25 +41,29 @@ class FenwickTree(T)
     raise IndexError.new unless 0 <= i <= size
     sum = T.zero
     while i > 0
-      sum += @a[i]
+      sum += @data[i]
       i -= i & -i
     end
     sum
   end
 
-  def [](i : Int)
-    left_sum(i + 1) - left_sum(i)
+  # Returns *index* th element.
+  def [](index : Int)
+    left_sum(index + 1) - left_sum(index)
   end
 
+  # Returns sum of `a[start, count]`
   def [](start : Int, count : Int) : T
     left_sum(start + count) - left_sum(start)
   end
 
+  # Returns sum of `a[range]`
   def [](range : Range) : T
     self[*Indexable.range_to_index_and_count(range, size) || raise IndexError.new]
   end
 
+  # Returns the elements as an Array.
   def to_a : Array(T)
-    (0...size).map { |i| self[i..i] }
+    Array.new(size) { |i| self[i] }
   end
 end
