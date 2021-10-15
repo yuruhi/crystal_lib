@@ -16,25 +16,25 @@ private macro benchmark(mod)
       N.times { a = a * b % mod }
       raise "" unless expect == a
     end
-  
+
     x.report("a &* b % mod") do
       a = 1u64
       N.times { a = a * b % mod }
       raise "" unless expect == a
     end
-  
+
     x.report("a * b % MOD") do
       a = 1u64
       N.times { a = a * b % {{mod}} }
       raise "" unless expect == a
     end
-  
+
     x.report("a &* b % MOD") do
       a = 1u64
       N.times { a = a * b % {{mod}} }
       raise "" unless expect == a
     end
-  
+
     x.report("bt.mul(a, b)") do
       bt = Barrett.new(mod)
       a = 1u32
