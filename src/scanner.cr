@@ -167,17 +167,14 @@ class Scanner
     int(Int32, io)
   end
 
-  {% for signed in [true, false] %}
-    {% for n in [8, 16, 32, 64, 128] %}
-      {%
-        name = signed ? "i#{n}".id : "u#{n}".id
-        type = signed ? "Int#{n}".id : "UInt#{n}".id
-        method = signed ? "int".id : "uint".id
-      %}
-      def self.{{name}}(io = STDIN)
-        {{method}}({{type}}, io)
-      end
-    {% end %}
+  {% for n in [8, 16, 32, 64, 128] %}
+    def self.i{{n}}(io = STDIN)
+      int(Int{{n}}, io)
+    end
+
+    def self.u{{n}}(io = STDIN)
+      uint(UInt{{n}}, io)
+    end
   {% end %}
 
   def self.s(io = STDIN)
