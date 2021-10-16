@@ -58,34 +58,30 @@ struct Point
     Point.new(y, x)
   end
 
-  private macro define_direction(name, dy, dx)
+  {% for name, d in {
+                      :zero => {0, 0},
+                      :up => {-1, 0}, :down => {1, 0}, :left => {0, -1}, :right => {0, 1},
+                      :ul => {-1, -1}, :ur => {-1, 1}, :dl => {1, -1}, :dr => {1, 1},
+                    } %}
+    {% dy = d[0]; dx = d[1] %}
+
     # Returns `Point.new({{dy}}, {{dx}})`
-    def self.{{name}}
+    def self.{{name.id}}
       Point.new({{dy}}, {{dx}})
     end
 
     # Returns `self + Point.new({{dy}}, {{dx}})`
-    def {{name}}
+    def {{name.id}}
       Point.new(y + {{dy}}, x + {{dx}})
     end
 
     # Adds `Point.new({{dy}}, {{dx}})`
-    def {{name}}!
+    def {{name.id}}!
       @y += {{dy}}
       @x += {{dx}}
       self
     end
-  end
-
-  define_direction(zero, 0, 0)
-  define_direction(up, -1, 0)
-  define_direction(left, 0, -1)
-  define_direction(down, 1, 0)
-  define_direction(right, 0, 1)
-  define_direction(ul, -1, -1)
-  define_direction(ur, -1, 1)
-  define_direction(dl, 1, -1)
-  define_direction(dr, 1, 1)
+  {% end %}
 
   {% for op in %w[+ - * // %] %}
     def {{op.id}}(other : Point)
