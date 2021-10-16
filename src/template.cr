@@ -1,4 +1,5 @@
 require "./tuple/times"
+require "./tuple/each_product"
 require "./comparable/min_max"
 require "./array/new"
 require "./array/change"
