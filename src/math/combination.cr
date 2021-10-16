@@ -34,6 +34,7 @@ class Combination(T)
   end
 
   def finv(n : Int)
+    raise IndexError.new if n < 0
     expand_until(n)
     @finv.unsafe_fetch(n)
   end
