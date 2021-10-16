@@ -308,11 +308,11 @@ module BinaryTree(T, Node, NilNode)
 
   {% for method in [:le, :lt, :ge, :gt] %}
     def {{method.id}}(key : T) : T?
-			{{method.id}}_node(key).key?
+      {{method.id}}_node(key).key?
     end
 
     def {{method.id}}!(key : T) : T
-			{{method.id}}_node(key).key!
+      {{method.id}}_node(key).key!
     end
   {% end %}
 end
