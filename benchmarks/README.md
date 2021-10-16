@@ -3,144 +3,144 @@
 ## [datastructure/binary_heap.cr](https://github.com/yuruhi/crystal_lib/blob/master/benchmarks/datastructure/binary_heap.cr)
 
 ```
-Int32 10^2 sparse   222.90k (  4.49µs) (± 8.18%)  1.72kB/op  fastest
-Int32 10^2 dence    256.71k (  3.90µs) (± 4.31%)  1.72kB/op  fastest
-Int32 10^6 sparse     7.80  (128.27ms) (± 4.85%)  12.0MB/op  fastest
-Int32 10^6 dence      6.54  (152.83ms) (± 6.77%)  12.0MB/op  fastest
-Int32 10^6 sparse R   3.53  (282.93ms) (± 4.04%)  12.0MB/op  fastest
-Int32 10^6 dence  R   4.13  (242.24ms) (± 5.29%)  12.0MB/op  fastest
-SlowC 10^6 * 10^2   116.17m (  8.61s ) (± 0.00%)  24.0MB/op  fastest
+Int32 10^2 sparse   288.12k (  3.47µs) (± 3.62%)  1.72kB/op  fastest
+Int32 10^2 dence    270.95k (  3.69µs) (± 5.60%)  1.72kB/op  fastest
+Int32 10^6 sparse     7.71  (129.70ms) (± 5.80%)  12.0MB/op  fastest
+Int32 10^6 dence      7.05  (141.90ms) (± 3.80%)  12.0MB/op  fastest
+Int32 10^6 sparse R   3.80  (263.05ms) (± 2.23%)  12.0MB/op  fastest
+Int32 10^6 dence  R   4.34  (230.58ms) (± 5.21%)  12.0MB/op  fastest
+SlowC 10^6 * 10^2   136.22m (  7.34s ) (± 0.00%)  24.0MB/op  fastest
 ```
 
 ## [datastructure/smultiset/red_black_tree.cr](https://github.com/yuruhi/crystal_lib/blob/master/benchmarks/datastructure/smultiset/red_black_tree.cr)
 
 ```
 -------- add, delete --------
-Int32 1e3 sorted   5.13k (194.94µs) (± 6.04%)  141kB/op  fastest
-Int32 1e3          4.26k (234.86µs) (± 6.74%)  141kB/op  fastest
-Int32 1e6 sorted   1.14  (878.22ms) (± 2.59%)  137MB/op  fastest
-Int32 1e6        713.92m (  1.40s ) (± 2.01%)  137MB/op  fastest
-Int32 1e3 * 1e3    1.01  (987.67ms) (± 3.14%)  137MB/op  fastest
-Array 1e6 * 1e2  295.51m (  3.38s ) (± 0.68%)  183MB/op  fastest
-class 1e6          1.13  (882.33ms) (± 3.12%)  183MB/op  fastest
-SlowC 1e6 * 1e2  126.44m (  7.91s ) (± 0.00%)  183MB/op  fastest
+Int32 1e3 sorted   5.20k (192.43µs) (± 5.81%)  141kB/op  fastest
+Int32 1e3          4.66k (214.64µs) (± 3.10%)  141kB/op  fastest
+Int32 1e6 sorted   1.33  (750.72ms) (± 2.83%)  137MB/op  fastest
+Int32 1e6        764.96m (  1.31s ) (± 2.22%)  137MB/op  fastest
+Int32 1e3 * 1e3    1.07  (938.29ms) (± 0.85%)  137MB/op  fastest
+Array 1e6 * 1e2  345.21m (  2.90s ) (± 0.43%)  183MB/op  fastest
+class 1e6          1.20  (831.59ms) (± 3.71%)  183MB/op  fastest
+SlowC 1e6 * 1e2  144.16m (  6.94s ) (± 0.00%)  183MB/op  fastest
 
 -------- split --------
-Int32 5e5+5e5   3.93  (254.72ms) (±19.16%)  137MB/op  fastest
-Int32 1e5+9e5   4.94  (202.41ms) (±10.61%)  137MB/op  fastest
+Int32 5e5+5e5   4.57  (218.96ms) (±15.59%)  137MB/op  fastest
+Int32 1e5+9e5   5.74  (174.11ms) (± 9.86%)  137MB/op  fastest
 ```
 
 ## [datastructure/smultiset/treap.cr](https://github.com/yuruhi/crystal_lib/blob/master/benchmarks/datastructure/smultiset/treap.cr)
 
 ```
 -------- add, delete --------
-Int32 1e3 sorted   4.15k (241.03µs) (± 5.04%)  188kB/op  fastest
-Int32 1e3          3.29k (304.17µs) (± 6.80%)  188kB/op  fastest
-Int32 1e6 sorted 973.19m (  1.03s ) (± 1.17%)  183MB/op  fastest
-Int32 1e6        534.44m (  1.87s ) (± 2.48%)  183MB/op  fastest
-Int32 1e3 * 1e3  583.87m (  1.71s ) (± 0.51%)  183MB/op  fastest
-Array 1e6 * 1e2  228.33m (  4.38s ) (± 0.97%)  244MB/op  fastest
-class 1e6        552.26m (  1.81s ) (± 5.35%)  244MB/op  fastest
-SlowC 1e6 * 1e2   65.87m ( 15.18s ) (± 0.00%)  244MB/op  fastest
+Int32 1e3 sorted   4.76k (210.30µs) (± 4.63%)  188kB/op  fastest
+Int32 1e3          3.69k (271.07µs) (± 3.58%)  188kB/op  fastest
+Int32 1e6 sorted   1.09  (913.97ms) (± 2.11%)  183MB/op  fastest
+Int32 1e6        588.11m (  1.70s ) (± 6.04%)  183MB/op  fastest
+Int32 1e3 * 1e3  637.13m (  1.57s ) (± 1.50%)  183MB/op  fastest
+Array 1e6 * 1e2  248.33m (  4.03s ) (± 2.75%)  244MB/op  fastest
+class 1e6        614.30m (  1.63s ) (± 2.24%)  244MB/op  fastest
+SlowC 1e6 * 1e2   73.31m ( 13.64s ) (± 0.00%)  244MB/op  fastest
 
 -------- split --------
-Int32 5e5+5e5   5.26  (190.28ms) (±30.81%)  137MB/op  fastest
-Int32 1e5+9e5   7.51  (133.12ms) (±17.11%)  137MB/op  fastest
+Int32 5e5+5e5   6.33  (157.90ms) (±21.84%)  137MB/op  fastest
+Int32 1e5+9e5   8.11  (123.23ms) (±14.40%)  137MB/op  fastest
 ```
 
 ## [datastructure/sset/red_black_tree.cr](https://github.com/yuruhi/crystal_lib/blob/master/benchmarks/datastructure/sset/red_black_tree.cr)
 
 ```
 -------- add, delete --------
-Int32 1e3 sorted   4.37k (228.72µs) (± 5.01%)  141kB/op  fastest
-Int32 1e3          3.56k (281.02µs) (± 4.83%)  141kB/op  fastest
-Int32 1e6 sorted   1.07  (935.59ms) (± 0.94%)  137MB/op  fastest
-Int32 1e6        638.36m (  1.57s ) (± 3.81%)  137MB/op  fastest
-Int32 1e3 * 1e3   14.10  ( 70.95ms) (± 9.29%)  141kB/op  fastest
-Array 1e6 * 1e2  281.13m (  3.56s ) (± 0.46%)  183MB/op  fastest
-class 1e6         25.67  ( 38.96ms) (± 6.12%)  18.8kB/op  fastest
-SlowC 1e6 * 1e2  412.68m (  2.42s ) (± 1.01%)  426kB/op  fastest
+Int32 1e3 sorted   4.63k (215.99µs) (± 3.03%)  141kB/op  fastest
+Int32 1e3          3.58k (278.98µs) (± 4.72%)  141kB/op  fastest
+Int32 1e6 sorted   1.19  (839.02ms) (± 2.40%)  137MB/op  fastest
+Int32 1e6        740.83m (  1.35s ) (± 5.49%)  137MB/op  fastest
+Int32 1e3 * 1e3   15.57  ( 64.22ms) (± 5.37%)  141kB/op  fastest
+Array 1e6 * 1e2  324.25m (  3.08s ) (± 0.21%)  183MB/op  fastest
+class 1e6         25.54  ( 39.15ms) (± 6.29%)  18.8kB/op  fastest
+SlowC 1e6 * 1e2  443.46m (  2.26s ) (± 1.66%)  426kB/op  fastest
 
 -------- split --------
-Int32 5e5+5e5   3.15  (317.92ms) (±14.39%)  137MB/op  fastest
-Int32 1e5+9e5   3.80  (262.82ms) (± 9.45%)  137MB/op  fastest
+Int32 5e5+5e5   3.26  (306.47ms) (±11.29%)  137MB/op  fastest
+Int32 1e5+9e5   3.96  (252.81ms) (± 7.85%)  137MB/op  fastest
 ```
 
 ## [datastructure/sset/treap.cr](https://github.com/yuruhi/crystal_lib/blob/master/benchmarks/datastructure/sset/treap.cr)
 
 ```
 -------- add, delete --------
-Int32 1e3 sorted   4.60k (217.46µs) (± 5.17%)  188kB/op  fastest
-Int32 1e3          3.46k (288.78µs) (± 4.18%)  188kB/op  fastest
-Int32 1e6 sorted 881.91m (  1.13s ) (± 3.80%)  183MB/op  fastest
-Int32 1e6        474.24m (  2.11s ) (± 2.59%)  183MB/op  fastest
-Int32 1e3 * 1e3    5.39  (185.38ms) (± 4.84%)  137MB/op  fastest
-Array 1e6 * 1e2  190.74m (  5.24s ) (± 0.00%)  244MB/op  fastest
-class 1e6          6.70  (149.28ms) (±13.03%)  183MB/op  fastest
-SlowC 1e6 * 1e2  282.05m (  3.55s ) (± 5.00%)  183MB/op  fastest
+Int32 1e3 sorted   4.75k (210.66µs) (± 3.41%)  188kB/op  fastest
+Int32 1e3          3.56k (281.08µs) (± 4.64%)  188kB/op  fastest
+Int32 1e6 sorted 976.57m (  1.02s ) (± 2.55%)  183MB/op  fastest
+Int32 1e6        618.83m (  1.62s ) (± 2.37%)  183MB/op  fastest
+Int32 1e3 * 1e3    6.24  (160.20ms) (± 4.27%)  137MB/op  fastest
+Array 1e6 * 1e2  262.23m (  3.81s ) (± 0.75%)  244MB/op  fastest
+class 1e6          7.80  (128.14ms) (±11.50%)  183MB/op  fastest
+SlowC 1e6 * 1e2  293.66m (  3.41s ) (± 5.02%)  183MB/op  fastest
 
 -------- split --------
-Int32 5e5+5e5   4.96  (201.60ms) (±25.42%)  137MB/op  fastest
-Int32 1e5+9e5   7.33  (136.38ms) (±15.78%)  137MB/op  fastest
+Int32 5e5+5e5   5.63  (177.71ms) (±22.75%)  137MB/op  fastest
+Int32 1e5+9e5   6.68  (149.75ms) (±22.92%)  137MB/op  fastest
 ```
 
-## [math/barret.cr](https://github.com/yuruhi/crystal_lib/blob/master/benchmarks/math/barret.cr)
+## [math/barrett.cr](https://github.com/yuruhi/crystal_lib/blob/master/benchmarks/math/barrett.cr)
 
 ```
 -------- mod: 1 --------
- a * b % mod  85.98  ( 11.63ms) (± 5.25%)  0.0B/op  36.95× slower
-a &* b % mod  92.80  ( 10.78ms) (± 6.79%)  0.0B/op  34.24× slower
- a * b % MOD   3.18k (314.73µs) (± 4.47%)  0.0B/op        fastest
-a &* b % MOD   3.16k (316.16µs) (± 5.30%)  0.0B/op   1.00× slower
-bt.mul(a, b) 200.68  (  4.98ms) (± 6.34%)  0.0B/op  15.83× slower
+ a * b % mod  98.74  ( 10.13ms) (± 3.79%)  0.0B/op  33.55× slower
+a &* b % mod  96.71  ( 10.34ms) (± 5.22%)  0.0B/op  34.25× slower
+ a * b % MOD   3.31k (301.86µs) (± 4.04%)  0.0B/op        fastest
+a &* b % MOD   3.27k (305.71µs) (± 4.21%)  0.0B/op   1.01× slower
+bt.mul(a, b) 213.63  (  4.68ms) (± 5.06%)  0.0B/op  15.51× slower
 
 -------- mod: 100000 --------
- a * b % mod  85.43  ( 11.71ms) (± 6.41%)  0.0B/op   2.70× slower
-a &* b % mod  82.82  ( 12.07ms) (± 5.55%)  0.0B/op   2.79× slower
- a * b % MOD 230.92  (  4.33ms) (± 3.85%)  0.0B/op        fastest
-a &* b % MOD 228.79  (  4.37ms) (± 4.40%)  0.0B/op   1.01× slower
-bt.mul(a, b) 190.75  (  5.24ms) (± 6.33%)  0.0B/op   1.21× slower
+ a * b % mod  89.66  ( 11.15ms) (± 4.33%)  0.0B/op   2.76× slower
+a &* b % mod  90.48  ( 11.05ms) (± 3.69%)  0.0B/op   2.74× slower
+ a * b % MOD 245.13  (  4.08ms) (± 3.62%)  0.0B/op   1.01× slower
+a &* b % MOD 247.84  (  4.03ms) (± 5.06%)  0.0B/op        fastest
+bt.mul(a, b) 213.53  (  4.68ms) (± 4.48%)  0.0B/op   1.16× slower
 
 -------- mod: 1000000000 --------
- a * b % mod  73.94  ( 13.52ms) (± 5.16%)  0.0B/op   3.31× slower
-a &* b % mod  77.15  ( 12.96ms) (± 7.30%)  0.0B/op   3.17× slower
- a * b % MOD 244.06  (  4.10ms) (± 5.15%)  0.0B/op   1.00× slower
-a &* b % MOD 244.43  (  4.09ms) (± 6.14%)  0.0B/op        fastest
-bt.mul(a, b) 212.05  (  4.72ms) (± 4.88%)  0.0B/op   1.15× slower
+ a * b % mod  84.55  ( 11.83ms) (± 2.62%)  0.0B/op   2.97× slower
+a &* b % mod  83.77  ( 11.94ms) (± 3.62%)  0.0B/op   3.00× slower
+ a * b % MOD 251.48  (  3.98ms) (± 3.84%)  0.0B/op        fastest
+a &* b % MOD 249.61  (  4.01ms) (± 4.66%)  0.0B/op   1.01× slower
+bt.mul(a, b) 204.51  (  4.89ms) (± 6.04%)  0.0B/op   1.23× slower
 
 -------- mod: 1000000007 --------
- a * b % mod  83.11  ( 12.03ms) (± 4.56%)  0.0B/op   3.21× slower
-a &* b % mod  81.77  ( 12.23ms) (± 6.49%)  0.0B/op   3.26× slower
- a * b % MOD 266.43  (  3.75ms) (± 4.56%)  0.0B/op        fastest
-a &* b % MOD 260.99  (  3.83ms) (± 7.89%)  0.0B/op   1.02× slower
-bt.mul(a, b) 212.61  (  4.70ms) (± 5.67%)  0.0B/op   1.25× slower
+ a * b % mod  84.84  ( 11.79ms) (± 3.11%)  0.0B/op   3.26× slower
+a &* b % mod  83.83  ( 11.93ms) (± 5.15%)  0.0B/op   3.30× slower
+ a * b % MOD 276.86  (  3.61ms) (± 2.29%)  0.0B/op        fastest
+a &* b % MOD 266.40  (  3.75ms) (± 6.30%)  0.0B/op   1.04× slower
+bt.mul(a, b) 216.93  (  4.61ms) (± 4.14%)  0.0B/op   1.28× slower
 
 -------- mod: 2147483647 --------
- a * b % mod  76.96  ( 12.99ms) (± 7.86%)  0.0B/op   2.94× slower
-a &* b % mod  76.84  ( 13.01ms) (± 6.93%)  0.0B/op   2.94× slower
- a * b % MOD 225.75  (  4.43ms) (± 4.51%)  0.0B/op   1.00× slower
-a &* b % MOD 225.90  (  4.43ms) (± 3.91%)  0.0B/op        fastest
-bt.mul(a, b) 202.62  (  4.94ms) (± 7.23%)  0.0B/op   1.11× slower
+ a * b % mod  80.97  ( 12.35ms) (± 4.00%)  0.0B/op   2.84× slower
+a &* b % mod  79.16  ( 12.63ms) (± 5.68%)  0.0B/op   2.91× slower
+ a * b % MOD 217.65  (  4.59ms) (± 5.95%)  0.0B/op   1.06× slower
+a &* b % MOD 230.02  (  4.35ms) (± 4.12%)  0.0B/op        fastest
+bt.mul(a, b) 219.98  (  4.55ms) (± 3.70%)  0.0B/op   1.05× slower
 ```
 
 ## [scanner.cr](https://github.com/yuruhi/crystal_lib/blob/master/benchmarks/scanner.cr)
 
 ```
-      Scanner.i8 305.99  (  3.27ms) (± 6.89%)   106kB/op        fastest
- Scanner.s.to_i8 142.44  (  7.02ms) (± 4.44%)  2.51MB/op   2.15× slower
-     Scanner.i16 254.21  (  3.93ms) (± 4.80%)   204kB/op        fastest
-Scanner.s.to_i16 130.82  (  7.64ms) (± 5.78%)  3.26MB/op   1.94× slower
-     Scanner.i32 231.48  (  4.32ms) (± 5.70%)   399kB/op        fastest
-Scanner.s.to_i32 109.60  (  9.12ms) (± 5.09%)  3.46MB/op   2.11× slower
-     Scanner.i64 151.56  (  6.60ms) (± 6.82%)  790kB/op        fastest
-Scanner.s.to_i64  91.75  ( 10.90ms) (± 4.68%)  5.3MB/op   1.65× slower
-      Scanner.u8 486.19  (  2.06ms) (± 6.20%)   106kB/op        fastest
- Scanner.s.to_u8 161.95  (  6.17ms) (± 7.80%)  2.57MB/op   3.00× slower
-     Scanner.u16 499.49  (  2.00ms) (± 4.43%)   204kB/op        fastest
-Scanner.s.to_u16 156.36  (  6.40ms) (± 4.00%)  3.26MB/op   3.19× slower
-     Scanner.u32 340.59  (  2.94ms) (± 7.83%)   399kB/op        fastest
-Scanner.s.to_u32 132.27  (  7.56ms) (± 6.05%)  3.46MB/op   2.58× slower
-     Scanner.u64 217.13  (  4.61ms) (± 4.06%)   790kB/op        fastest
-Scanner.s.to_u64  99.61  ( 10.04ms) (± 4.85%)  5.31MB/op   2.18× slower
+      Scanner.i8 330.17  (  3.03ms) (± 5.36%)   106kB/op        fastest
+ Scanner.s.to_i8 169.03  (  5.92ms) (± 4.53%)  2.51MB/op   1.95× slower
+     Scanner.i16 298.19  (  3.35ms) (± 4.71%)   204kB/op        fastest
+Scanner.s.to_i16 156.06  (  6.41ms) (± 4.16%)  3.26MB/op   1.91× slower
+     Scanner.i32 223.80  (  4.47ms) (± 6.15%)   399kB/op        fastest
+Scanner.s.to_i32 129.78  (  7.71ms) (± 3.71%)  3.46MB/op   1.72× slower
+     Scanner.i64 164.01  (  6.10ms) (± 3.43%)  790kB/op        fastest
+Scanner.s.to_i64 101.86  (  9.82ms) (± 4.50%)  5.3MB/op   1.61× slower
+      Scanner.u8 545.61  (  1.83ms) (± 3.63%)   106kB/op        fastest
+ Scanner.s.to_u8 177.80  (  5.62ms) (± 4.53%)  2.57MB/op   3.07× slower
+     Scanner.u16 531.58  (  1.88ms) (± 4.44%)   204kB/op        fastest
+Scanner.s.to_u16 163.43  (  6.12ms) (± 5.48%)  3.26MB/op   3.25× slower
+     Scanner.u32 356.50  (  2.81ms) (± 7.52%)   399kB/op        fastest
+Scanner.s.to_u32 130.41  (  7.67ms) (± 6.06%)  3.46MB/op   2.73× slower
+     Scanner.u64 227.49  (  4.40ms) (± 3.84%)   790kB/op        fastest
+Scanner.s.to_u64 103.63  (  9.65ms) (± 3.59%)  5.31MB/op   2.20× slower
 ```
 
