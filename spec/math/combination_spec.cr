@@ -37,7 +37,7 @@ describe Combination do
       expected = (1..x).reduce(1.to_m) { |acc, x| acc * x.to_m.inv }
       C.finv(x).should eq expected
     end
-		expect_raises(IndexError) { C.finv(-1) }
+    expect_raises(IndexError) { C.finv(-1) }
   end
 
   it "#permutation" do
