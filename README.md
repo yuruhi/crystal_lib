@@ -15,4 +15,5 @@
 | Spec          | ✔️ `:heavy_check_mark:` |
 | Benchmark     | 💺 `:seat:`             |
 | Documantation | 📚 `:books:`            |
+| Lint, Format  | 👕 `:shirt:`            |
 | CI            | 💚 `:green_heart:`      |
