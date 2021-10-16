@@ -1,6 +1,5 @@
 class Sieve
-  getter size : Int32
-  getter factor : Array(Int32), primes : Array(Int32)
+  getter size : Int32, factor : Array(Int32), primes : Array(Int32)
 
   def initialize(@size)
     @factor = Array(Int32).new(@size + 1, 0)
