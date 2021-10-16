@@ -10,6 +10,7 @@
 | New feature   | ✨ `:sparkles:`         |
 | Bugfix        | 🐛 `:bug:`              |
 | Delete        | 🧹 `:broom:`            |
+| Move          | 🚚 `:truck:`            |
 | Refactor      | 🔨 `:hammer:`           |
 | Performance   | 🐎 `:racehorse:`        |
 | Spec          | ✔️ `:heavy_check_mark:` |
