@@ -9,6 +9,7 @@
 | ------------- | ----------------------- |
 | New feature   | ✨ `:sparkles:`         |
 | Bugfix        | 🐛 `:bug:`              |
+| Delete        | 🧹 `:broom:`            |
 | Refactor      | 🔨 `:hammer:`           |
 | Performance   | 🐎 `:racehorse:`        |
 | Spec          | ✔️ `:heavy_check_mark:` |
