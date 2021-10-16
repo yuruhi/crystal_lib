@@ -6,10 +6,10 @@ N = 1000000
 private macro benchmark(mod)
   mod = {{mod}}u32
 
-	b = rand(mod)
+  b = rand(mod)
   expect = N.times.reduce(1u64) { |acc| acc * b % {{mod}} }
 
-	puts "-------- mod: {{mod}} --------"
+  puts "-------- mod: {{mod}} --------"
   Benchmark.ips do |x|
     x.report("a * b % mod") do
       a = 1u64
@@ -42,7 +42,7 @@ private macro benchmark(mod)
       raise "" unless expect == a
     end
   end
-	puts
+  puts
 end
 
 benchmark 1
