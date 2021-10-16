@@ -38,7 +38,8 @@ struct Point
     @y, @x = 0, 0
   end
 
-  def initialize(@y : Int32, @x : Int32)
+  def initialize(y : Int, x : Int)
+    @y, @x = y.to_i, x.to_i
   end
 
   def initialize(i : Int)
@@ -46,24 +47,29 @@ struct Point
     @y, @x = i // Point.width, i % Point.width
   end
 
-  def self.from(array : Array(Int32)) : self
+  # Creates point fomr given array.
+  def self.from(array : Array) : self
     raise ArgumentError.new unless array.size == 2
     Point.new(array.unsafe_fetch(0), array.unsafe_fetch(1))
   end
 
+  # Alias for `.new(y : Int, x : Int)`
   def self.[](y : Int, x : Int) : self
     Point.new(y, x)
   end
 
   private macro define_direction(name, dy, dx)
+    # Returns `Point.new({{dy}}, {{dx}})`
     def self.{{name}}
       Point.new({{dy}}, {{dx}})
     end
 
+    # Returns `self + Point.new({{dy}}, {{dx}})`
     def {{name}}
       Point.new(y + {{dy}}, x + {{dx}})
     end
 
+    # Adds `Point.new({{dy}}, {{dx}})`
     def {{name}}!
       @y += {{dy}}
       @x += {{dx}}
@@ -91,10 +97,12 @@ struct Point
     end
   {% end %}
 
+  # Returns `Point.new(x, y)`
   def xy
     Point.new(x, y)
   end
 
+  # Returns `Point.new(y, x)`
   def yx
     self
   end
@@ -104,7 +112,7 @@ struct Point
   end
 
   def <=>(other : Point)
-    to_i <=> other.to_i
+    {y, x} <=> {other.y, other.x}
   end
 
   def [](i : Int)
@@ -179,14 +187,30 @@ struct Point
     end
   {% end %}
 
+  # Writes a string representation of the point to *io*.
+  #
+  # ```
+  # Point.new(1, 2).to_s # => "(1, 2)"
+  # ```
   def to_s(io : IO) : Nil
     io << '(' << y << ", " << x << ')'
   end
 
+  # Writes a string representation of the point to *io*.
+  #
+  # ```
+  # Point.new(1, 2).inspect # => "(1, 2)"
+  # ```
   def inspect(io : IO) : Nil
     to_s(io)
   end
 
+  # Convert `Point` into `Char` representing direction.
+  #
+  # ```
+  # Point.down.to_direction_char? # => 'D'
+  # Point.left.to_direction_char? # => 'L'
+  # ```
   def to_direction_char?(lrud = "LRUD") : Char?
     if y == 0 && x != 0
       x < 0 ? lrud[0] : lrud[1]
@@ -195,11 +219,21 @@ struct Point
     end
   end
 
+  # Convert `Char` representing direction into `Point`.
+  #
+  # ```
+  # Point.to_direction?('R') # => Point.new(0, 1)
+  # ```
   def self.to_direction?(c : Char, lrud = "LRUD")
     raise ArgumentError.new unless lrud.size == 4
     lrud.index(c).try { |i| {left, right, up, down}[i] }
   end
 
+  # Convert `String` representing direction into `Point`.
+  #
+  # ```
+  # Point.to_direction?("DR") # => Point.new(1, 1)
+  # ```
   def self.to_direction?(s : String, lrud = "LRUD")
     case s.size
     when 1
