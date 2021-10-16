@@ -51,24 +51,24 @@ class MultiSet(T)
     @count[object]
   end
 
-  # Adds *object* to the multiset and returns self.
+  # Adds *object* to the multiset and returns `self`.
   def add(object : T) : self
     @count[object] += 1
     @size += 1
     self
   end
 
-  # Adds *object* to the multiset *count* times and returns self.
+  # :ditto:
+  def <<(object : T) : self
+    add object
+  end
+
+  # Adds *object* to the multiset *count* times and returns `self`.
   def add(object : T, count : Int32) : self
     raise ArgumentError.new unless count >= 0
     @count[object] += count
     @size += count
     self
-  end
-
-  # Alias for `add`.
-  def <<(object : T) : self
-    add object
   end
 
   # Removes the *object* from the multiset and returns `true` if it was present, otherwise returns `false`.
@@ -80,7 +80,8 @@ class MultiSet(T)
     flag
   end
 
-  # Removes the *object* from the multiset at most *count* times and returns `true` if it was present, otherwise returns `false`.
+  # Removes the *object* from the multiset at most *count* times and returns `true`
+  # if it was present, otherwise returns `false`.
   def delete(object : T, count : Int32) : Bool
     raise ArgumentError.new unless count >= 0
     if flag = @count[object] > 0
@@ -90,7 +91,7 @@ class MultiSet(T)
     flag
   end
 
-  # Adds `each` element of *elems* to the multisetset and returns self.
+  # Adds `each` element of *elems* to the multisetset and returns `self`.
   def concat(elems) : self
     elems.each { |elem| self << elem }
     self

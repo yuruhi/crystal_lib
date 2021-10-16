@@ -1,6 +1,6 @@
 require "../graph"
 
-# Example of T:
+# Example of `T`:
 # ```
 # struct DP
 #   getter val : Int64, cnt : Int32

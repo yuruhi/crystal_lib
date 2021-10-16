@@ -23,12 +23,12 @@
 # 1 2 3 4 5
 # ```
 # ```
-# n, m = input(Int32, Int64) # => {5, 10i64}
+# n, m = input(Int32, Int64) # => {5, 5i64}
 # input(String, Char[m])     # => {"foo", ['b', 'a', 'r']}
 # input(Int32[n])            # => [1, 2, 3, 4, 5]
 # ```
 # ```
-# n, m = input(i, i64) # => {5, 10i64}
+# n, m = input(i, i64) # => {5, 5i64}
 # input(s, c[m])       # => {"foo", ['b', 'a', 'r']}
 # input(i[n])          # => [1, 2, 3, 4, 5]
 # ```
