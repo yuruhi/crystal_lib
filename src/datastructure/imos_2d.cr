@@ -9,7 +9,7 @@ class Imos2D(T)
   end
 
   def add(ys : Int, yc : Int, xs : Int, xc : Int, val : T) : Nil
-    raise "self had been called `build`" if @built
+    raise "self had been called `#build`" if @built
     raise ArgumentError.new "Negative count: #{yc}" if yc < 0
     raise ArgumentError.new "Negative count: #{xc}" if xc < 0
     @table[ys + yc][xs + xc] += val

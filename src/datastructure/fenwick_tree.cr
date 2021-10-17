@@ -32,8 +32,8 @@ class FenwickTree(T)
   end
 
   # :ditto:
-  def []=(i : Int, x) : Nil
-    set(i, x)
+  def []=(index : Int, x) : Nil
+    set(index, x)
   end
 
   # Culculates sum of `a[0...i]`.

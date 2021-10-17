@@ -1,31 +1,30 @@
-require "../../atcoder/src/PriorityQueue"
+require "./binary_heap"
 
-# reference: https://maspypy.com/slope-trick-1-%e8%a7%a3%e8%aa%ac%e7%b7%a8
+# reference: https://maspypy.com/slope-trick-1-解説編
 class SlopeTrick(T)
-  getter min : T, shift : T
-  getter left, right
+  getter min : T, shift : T, left, right
 
   # Lets `f(x) = 0`
   def initialize
     @min = T.zero
     @shift = T.zero
-    @left = AtCoder::PriorityQueue(T).new { |a, b| a <= b }
-    @right = AtCoder::PriorityQueue(T).new { |a, b| a >= b }
+    @left = BinaryHeap(T).new { |a, b| b <=> a }
+    @right = BinaryHeap(T).new
   end
 
   # Calculates `f(x)`
   def f(x : T) : T
-    left.heap.sum { |l| Math.max(l - x, T.zero) } +
-      right.heap.sum { |r| Math.max(x - r, T.zero) } +
-      min
+    min +
+      @left.sum { |l| Math.max(l - x, T.zero) } +
+      @right.sum { |r| Math.max(x - r, T.zero) }
   end
 
-  def l0
-    @left.empty? ? nil : @left.heap.first + shift
+  def l0 : T?
+    @left.top?.try &.+(shift)
   end
 
-  def r0
-    @right.empty? ? nil : @right.heap.first + shift
+  def r0 : T?
+    @right.top?.try &.+(shift)
   end
 
   # Adds constant function `a`
@@ -66,13 +65,13 @@ class SlopeTrick(T)
 
   # `g(x) := min_{y <= x} f(y)`
   def accumulate_min : self
-    @right.heap.clear
+    @right.clear
     self
   end
 
   # `g(x) := min_{y >= x} f(y)`
   def accumulate_min_right : self
-    @left.heap.clear
+    @left.clear
     self
   end
 
