@@ -17,10 +17,21 @@ struct Int
     end
   end
 
+  # Returns an iterator that returns all subsets of `self`.
+  #
+  # ```
+  # 0b101.each_subset.to_a # => [0b101, 0b100, 0b001, 0b000]
+  # ```
   def each_subset
     SubsetIterator.new(self)
   end
 
+  # Calls the given block for each subset of `self`.
+  #
+  # ```
+  # # x = 0b101, 0b100, 0b001, 0b000
+  # 0b101.each_subset { |x| }
+  # ```
   def each_subset(&)
     yield self
     sub = ~-self & self

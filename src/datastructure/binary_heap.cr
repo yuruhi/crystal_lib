@@ -1,4 +1,5 @@
 class BinaryHeap(T)
+  # Creates a new empty heap.
   def initialize
     @heap = Array(T).new
     @compare_proc = nil
@@ -98,6 +99,7 @@ class BinaryHeap(T)
     top { raise IndexError.new }
   end
 
+  # Requires `0 <= i < size`, `0 <= j < size`.
   private def compare(i : Int32, j : Int32)
     x, y = @heap.unsafe_fetch(i), @heap.unsafe_fetch(j)
     if @compare_proc
@@ -121,7 +123,7 @@ class BinaryHeap(T)
     self
   end
 
-  # Alias for `#add`.
+  # :ditto:
   def <<(object : T) : self
     add(object)
   end
@@ -214,6 +216,7 @@ class BinaryHeap(T)
   # ```
   def to_s(io : IO) : Nil
     io << "BinaryHeap{"
+    # TODO: use join
     each_with_index do |x, i|
       io << ", " if i > 0
       io << x
@@ -221,7 +224,11 @@ class BinaryHeap(T)
     io << '}'
   end
 
-  # Same to `#to_s`.
+  # Writes a string representation of the heap to `io`.
+  #
+  # ```
+  # BinaryHeap{1, 2}.inspect # => "BinaryHeap{1, 2}"
+  # ```
   def inspect(io : IO) : Nil
     to_s(io)
   end
