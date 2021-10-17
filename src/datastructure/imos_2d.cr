@@ -1,6 +1,6 @@
 class Imos2D(T)
   getter height : Int32, width : Int32
-  @builded = false
+  @built = false
 
   def initialize(@height, @width, init_val : T = T.zero)
     @table = Array(Array(T)).new(@height + 1) do
@@ -9,7 +9,7 @@ class Imos2D(T)
   end
 
   def add(ys : Int, yc : Int, xs : Int, xc : Int, val : T) : Nil
-    raise "self had been called `build`" if @builded
+    raise "self had been called `build`" if @built
     raise ArgumentError.new "Negative count: #{yc}" if yc < 0
     raise ArgumentError.new "Negative count: #{xc}" if xc < 0
     @table[ys + yc][xs + xc] += val
@@ -25,8 +25,8 @@ class Imos2D(T)
   end
 
   def build : Array(Array(T))
-    raise "self had been called `#build`" if @builded
-    @builded = true
+    raise "self had been called `#build`" if @built
+    @built = true
     (0..height).each do |y|
       (1..width).each do |x|
         @table[y][x] += @table[y][x - 1]
@@ -41,7 +41,7 @@ class Imos2D(T)
   end
 
   def [](y : Int32, x : Int32) : T
-    raise "self had not been called `#build`" unless @builded
+    raise "self had not been called `#build`" unless @built
     @table[y][x]
   end
 end

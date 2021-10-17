@@ -1,6 +1,6 @@
 class ImosLinear(T)
   getter size : Int32
-  @builded = false
+  @built = false
 
   def initialize(@size : Int32)
     @a = Array(T).new(@size + 1, T.zero)
@@ -9,7 +9,7 @@ class ImosLinear(T)
 
   # Add `a + (i - l) * b` to `[l, r)`.
   def add(start : Int, count : Int, val_a : T, val_b : T) : Nil
-    raise "self had been called `#build`" if @builded
+    raise "self had been called `#build`" if @built
     raise ArgumentError.new "Negative count: #{count}" if count < 0
     @a[start] += val_a - val_b * start
     @b[start] += val_b
@@ -23,8 +23,8 @@ class ImosLinear(T)
   end
 
   def build : Array(T)
-    raise "self had been called `#build`" if @builded
-    @builded = true
+    raise "self had been called `#build`" if @built
+    @built = true
     (0...size).map do |i|
       @a[i + 1] += @a[i]
       @b[i + 1] += @b[i]
