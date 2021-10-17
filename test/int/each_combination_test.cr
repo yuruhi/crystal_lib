@@ -3,8 +3,8 @@ require "../../src/int/each_combination"
 n, k = read_line.split.map(&.to_i)
 
 ans = [] of Int32
-n.each_combination(k) { |x| ans << x }
-ans2 = n.each_combination(k).to_a
+Int.each_combination(n, k) { |x| ans << x }
+ans2 = Int.each_combination(n, k).to_a
 raise "" unless ans == ans2
 
 ans.each do |x|

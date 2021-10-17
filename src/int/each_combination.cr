@@ -22,13 +22,24 @@ struct Int
     end
   end
 
-  def each_combination(k : Int)
-    CombinationIterator.new(self, k)
+  # Returns an iterator that returns all integers whose bit_length is *n* and popcount is *k*.
+  #
+  # ```
+  # Int.each_combination(3, 2).to_a # => [0b011, 0b101, 0b110]
+  # ```
+  def self.each_combination(n : Int, k : Int)
+    CombinationIterator.new(n, k)
   end
 
-  def each_combination(k : Int, &) : Nil
-    combination = (self.class.new(1) << k) - 1
-    while combination < (self.class.new(1) << self)
+  # Calls the given block for each integer whose bit_length is *n* and popcount is *k*.
+  #
+  # ```
+  # # x = 0b011, 0b101, 0b110
+  # Int.each_combination(3, 2) { |x| }
+  # ```
+  def self.each_combination(n : Int, k : Int, &) : Nil
+    combination = (n.class.new(1) << k) - 1
+    while combination < (n.class.new(1) << n)
       yield combination
       x = combination & (-combination)
       y = combination + x
