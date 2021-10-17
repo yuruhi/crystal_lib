@@ -122,8 +122,13 @@ struct DynamicMint
     value.to_i64
   end
 
-  delegate to_s, to: @value
-  delegate inspect, to: @value
+  def to_s(io : IO) : Nil
+    value.to_s(io)
+  end
+
+  def inspect(io : IO) : Nil
+    value.inspect(io)
+  end
 
   {% for op in %w[< <= > >=] %}
     def {{op.id}}(other)

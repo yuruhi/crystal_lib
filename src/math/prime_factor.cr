@@ -24,7 +24,7 @@ struct Int
     result
   end
 
-  def each_divisor(&)
+  def each_divisor(&) : Nil
     raise DivisionByZeroError.new if self == 0
     raise ArgumentError.new unless self > 0
     tmp = [] of self

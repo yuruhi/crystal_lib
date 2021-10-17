@@ -16,7 +16,7 @@ class Sieve
     end
   end
 
-  def prime?(x : Int)
+  def prime?(x : Int) : Bool
     factor[x] == x
   end
 
@@ -54,7 +54,7 @@ class Sieve
     end
   end
 
-  def number_of_divisors(x : Int)
+  def number_of_divisors(x : Int) : Int32
     cnt = 1
     each_factor(x) do |_, c|
       cnt *= c.succ
@@ -62,7 +62,7 @@ class Sieve
     cnt
   end
 
-  def sum_of_divisors(x : Int)
+  def sum_of_divisors(x : Int) : Int64
     sum = 1i64
     each_factor(x) do |elem, cnt|
       sum *= (elem.to_i64 ** cnt.succ - 1) // elem.pred

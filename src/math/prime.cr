@@ -22,7 +22,7 @@ module Prime
     947, 953, 967, 971, 977, 983, 991, 997,
   ]
 
-  private def generate_primes
+  private def generate_primes : Nil
     size = @@primes.size
     primes = Array.new(size) { |i| @@primes.last + (i + 1) * 2 }
     last = primes.last
@@ -60,13 +60,13 @@ module Prime
   end
 
   # Returns the *index* th prime, without doing any bounds check.
-  def unsafe_fetch(index : Int)
+  def unsafe_fetch(index : Int) : Int32
     generate_until(index: index)
     @@primes.unsafe_fetch(index)
   end
 
   # Returns the limit of size.
-  def size
+  def size : Int32
     10**9
   end
 
@@ -108,18 +108,18 @@ module Prime
     self[*range_to_index_and_count(range, size)]
   end
 
-  def includes?(x : Int)
+  def includes?(x : Int) : Bool
     generate_until(value: x)
     @@primes.bsearch { |y| y >= x } == x
   end
 
-  def index(x : Int)
+  def index(x : Int) : Int32?
     generate_until(value: x)
     i = @@primes.bsearch_index { |y| y >= x }.not_nil!
     @@primes[i] == x ? i : nil
   end
 
-  def each(x : Int, &)
+  def each(x : Int, &) : Nil
     i = 0
     loop do
       generate_primes if @@primes.size == i

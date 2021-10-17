@@ -146,8 +146,13 @@ macro static_modint(name, mod)
       value
     end
 
-    delegate to_s, to: @value
-    delegate inspect, to: @value
+    def to_s(io : IO) : Nil
+      value.to_s(io)
+    end
+
+    def inspect(io : IO) : Nil
+      value.inspect(io)
+    end
   end
 
   {% to = ("to_" + name.stringify.downcase.gsub(/mint|modint/, "m")).id %}

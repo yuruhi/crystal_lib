@@ -39,8 +39,13 @@ class Matrix(T)
     raise ArgumentError.new unless @data.all? { |a| a.size == width }
   end
 
-  delegate size, to: @data
-  delegate unsafe_fetch, to: @data
+  def size : Int32
+    @data.size
+  end
+
+  def unsafe_fetch(index : Int) : Array(Int32)
+    @data.unsafe_fetch(index)
+  end
 
   private def check_index_out_of_bounds(i, j)
     check_index_out_of_bounds(i, j) { raise IndexError.new }
@@ -77,28 +82,28 @@ class Matrix(T)
     @data.unsafe_fetch(i).unsafe_fetch(j)
   end
 
-  def +(other : self)
+  def +(other : self) : self
     raise IndexError.new unless height == other.height && width == other.width
     Matrix(T).new(height, width) { |i, j|
       unsafe_fetch(i, j) + other.unsafe_fetch(i, j)
     }
   end
 
-  def -(other : self)
+  def -(other : self) : self
     raise IndexError.new unless height == other.height && width == other.width
     Matrix(T).new(height, width) { |i, j|
       unsafe_fetch(i, j) - other.unsafe_fetch(i, j)
     }
   end
 
-  def *(other : self)
+  def *(other : self) : self
     raise IndexError.new unless width == other.height
     Matrix(T).new(height, other.width) { |i, j|
       (0...width).sum { |k| unsafe_fetch(i, k) * other.unsafe_fetch(k, j) }
     }
   end
 
-  def **(k : Int)
+  def **(k : Int) : self
     result = Matrix(T).identity(height)
     memo = Matrix.new(data)
     while k > 0
@@ -109,7 +114,7 @@ class Matrix(T)
     result
   end
 
-  def ==(other : Matrix)
+  def ==(other : Matrix) : Bool
     return false unless height == other.height && width == other.width
     data == other.data
   end
