@@ -43,7 +43,7 @@ class Matrix(T)
     @data.size
   end
 
-  def unsafe_fetch(index : Int) : Array(Int32)
+  def unsafe_fetch(index : Int) : Array(T)
     @data.unsafe_fetch(index)
   end
 
