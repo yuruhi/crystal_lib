@@ -62,5 +62,6 @@
 "test/scanner/6_test.cr": "2021-10-16 21:23:44 +0900",
 "test/scanner/7_test.cr": "2021-10-16 21:23:44 +0900",
 "test/scanner/8_test.cr": "2021-10-16 21:23:44 +0900",
+"test/scanner/9_test.cr": "2021-10-16 21:23:44 +0900",
 "test/string/rolling_hash_test.cr": "2021-08-04 18:11:49 +0900"
 }
