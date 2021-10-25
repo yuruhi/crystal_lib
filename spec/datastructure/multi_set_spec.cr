@@ -157,6 +157,13 @@ describe MultiSet do
     (a - b.to_a).inspect.should eq "{0(1), 2(1)}"
   end
 
+  it "#*" do
+    a = MultiSet{1, 2, 2}
+    (a * 10).inspect.should eq "{1(10), 2(20)}"
+    (a * 0).inspect.should eq "{}"
+    expect_raises(ArgumentError) { a * -1 }
+  end
+
   it "#subtract" do
     a = MultiSet{1, 2, 2, 3}
     a.subtract(MultiSet{1, 1, 2}).should be a

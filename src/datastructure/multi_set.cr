@@ -51,7 +51,7 @@ class MultiSet(T)
     @count[object] > 0
   end
 
-  # Same as `includes?`
+  # :ditto:
   def ===(object : T) : Bool
     includes?(object)
   end
@@ -108,7 +108,7 @@ class MultiSet(T)
   end
 
   # Removes all elements in the multiset and returns `self`.
-  def clear
+  def clear : self
     @count.clear
     @size = 0
     self
@@ -148,7 +148,7 @@ class MultiSet(T)
   end
 
   # Returns `true` if the multiset and the given multiset have at least one element in common.
-  def intersects?(other : self)
+  def intersects?(other : self) : Bool
     if kind_count < other.kind_count
       any? { |o| other.includes?(o) }
     else
@@ -157,13 +157,13 @@ class MultiSet(T)
   end
 
   # Returns `true` if the multiset is a subset of the given multiset.
-  def subset_of?(other : self)
+  def subset_of?(other : self) : Bool
     return false if other.size < size
     all? { |o| other.includes?(o) }
   end
 
   # Returns true if the multiset is a superset of the given multiset.
-  def superset_of?(other : self)
+  def superset_of?(other : self) : Bool
     other.subset_of?(self)
   end
 
@@ -179,7 +179,7 @@ class MultiSet(T)
     end
   end
 
-  # Intersection
+  # Intersection.
   #
   # ```
   # MultiSet{1, 2, 2, 3} & MultiSet{2, 3, 3, 4} # => MultiSet{2, 3}
@@ -198,40 +198,64 @@ class MultiSet(T)
     result
   end
 
-  # Union
+  # Union.
   #
   # ```
   # MultiSet{1, 2, 2} | MultiSet{2, 3} # => MultiSet{1, 2, 2, 3}
   # ```
-  def |(other : MultiSet(U)) forall U
+  def |(other : MultiSet(U)) : MultiSet(T | U) forall U
     result = MultiSet(T | U).new
     each_count { |elem, cnt| result.add elem, cnt }
     other.each_count { |elem, cnt| result.add elem, cnt }
     result
   end
 
-  # Addition. Same as `#|`
-  def +(other : MultiSet(U)) forall U
+  # Addition. Same as `#|`.
+  def +(other : MultiSet(U)) : MultiSet(T | U) forall U
     self | other
   end
 
-  # Difference
-  def -(other : MultiSet(U)) forall U
+  # Difference.
+  #
+  # ```
+  # MultiSet{1, 2, 2, 3} - MultiSet{1, 2} # => MultiSet{2, 3}
+  # MultiSet{1, 2, 2, 3} - [1, 2]         # => MultiSet{2, 3}
+  # ```
+  def -(other : MultiSet) : self
     dup.subtract other
   end
 
-  # Difference
-  def -(other : Enumerable)
+  # :ditto:
+  def -(other : Enumerable) : self
     dup.subtract other
+  end
+
+  # Repetition
+  #
+  # ```
+  # MultiSet{1, 2, 2} * 2 # => MultiSet{1, 1, 2, 2, 2, 2}
+  # ```
+  def *(times : Int) : self
+    if times == 0 || empty?
+      MultiSet(T).new
+    elsif times == 1
+      dup
+    else
+      set = MultiSet(T).new(@count.size)
+      each_count do |elem, cnt|
+        set.add elem, cnt * times
+      end
+      set
+    end
   end
 
   # Returns `self` after removing *other* elements.
   #
   # ```
-  # MultiSet{1, 2, 2, 3}.subtract MultiSet{1, 2, 3}
-  # MultiSet{1, 2, 2, 3}.subtract [1, 2]
+  # MultiSet{1, 2, 2, 3}.subtract MultiSet{1, 2} # => MultiSet{2, 3}
+  # MultiSet{1, 2, 2, 3}.subtract [1, 2]         # => MultiSet{2, 3}
   # ```
-  def subtract(other : MultiSet(U)) forall U
+  def subtract(other : MultiSet(U)) : self forall U
     other.each_count do |elem, cnt|
       delete elem, cnt
     end
@@ -239,7 +263,7 @@ class MultiSet(T)
   end
 
   # :ditto:
-  def subtract(other : Enumerable) forall U
+  def subtract(other : Enumerable) : self forall U
     other.each do |elem|
       delete elem
     end
@@ -247,12 +271,12 @@ class MultiSet(T)
   end
 
   # Returns a new multiset with all of the same elements.
-  def dup : MultiSet(T)
+  def dup : self
     MultiSet(T).new count: @count.dup, size: @size
   end
 
   # Returns a new multiset with all of the elements cloned.
-  def clone : MultiSet(T)
+  def clone : self
     set = MultiSet(T).new(@count.size)
     each_count do |elem, cnt|
       set.add elem.clone, cnt
@@ -266,7 +290,7 @@ class MultiSet(T)
   # set = MultiSet{3, 1, 4, 1, 5}
   # set.to_s # => "MultiSet{3, 1, 1, 4, 5}"
   # ```
-  def to_s(io : IO)
+  def to_s(io : IO) : Nil
     io << "MultiSet{"
     each.join(", ", io)
     io << '}'
@@ -278,7 +302,7 @@ class MultiSet(T)
   # set = MultiSet{3, 1, 4, 1, 5}
   # set.inspect # => "{3(1), 1(2), 4(1), 5(1)}"
   # ```
-  def inspect(io : IO)
+  def inspect(io : IO) : Nil
     io << '{'
     each_count.join(", ", io) do |(elem, count), io|
       io << elem << '(' << count << ')'
