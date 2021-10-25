@@ -170,6 +170,10 @@ class MultiSet(T)
   end
 
   # Intersection
+  #
+  # ```
+  # MultiSet{1, 2, 2, 3} & MultiSet{2, 3, 3, 4} # => MultiSet{2, 3}
+  # ```
   def &(other : MultiSet(T)) : self
     small, large = self, other
     if large.kind_count < small.kind_count
@@ -177,13 +181,18 @@ class MultiSet(T)
     end
 
     result = MultiSet(T).new
-    small.each_count do |elem, cnt|
-      result.add elem, Math.min(cnt, large.count(elem))
+    small.each_count do |elem, small_cnt|
+      large_cnt = large.count(elem)
+      result.add elem, Math.min(small_cnt, large_cnt) if large_cnt > 0
     end
     result
   end
 
   # Union
+  #
+  # ```
+  # MultiSet{1, 2, 2} | MultiSet{2, 3} # => MultiSet{1, 2, 2, 3}
+  # ```
   def |(other : MultiSet(U)) forall U
     result = MultiSet(T | U).new
     each_count { |elem, cnt| result.add elem, cnt }
@@ -191,7 +200,7 @@ class MultiSet(T)
     result
   end
 
-  # Addition
+  # Addition. Same as `#|`
   def +(other : MultiSet(U)) forall U
     self | other
   end
@@ -212,7 +221,7 @@ class MultiSet(T)
   #
   # ```
   # set = MultiSet{3, 1, 4, 1, 5}
-  # set.to_s # => "{3(1), 1(2), 4(1), 5(1)}"
+  # set.inspect # => "{3(1), 1(2), 4(1), 5(1)}"
   # ```
   def inspect(io : IO)
     io << '{'

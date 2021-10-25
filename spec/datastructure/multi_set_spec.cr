@@ -131,6 +131,9 @@ describe MultiSet do
     a = MultiSet{0, 0, 0, 1, 1, 2, 3}
     b = MultiSet{0, 1, 1, 2, 2, 2}
     (a & b).inspect.should eq "{0(1), 1(2), 2(1)}"
+    a = MultiSet{1, 2, 2, 3, 3, 3}
+    b = MultiSet{2, 3, 3, 4}
+    (a & b).inspect.should eq "{2(1), 3(2)}"
   end
 
   it "#|" do
