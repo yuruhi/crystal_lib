@@ -13,12 +13,17 @@ class MultiSet(T)
   end
 
   # Creates a new, empty multiset.
-  def initialize
+  def initialize(initial_capacity = nil)
+    @count = Hash(T, Int32).new(0, initial_capacity: initial_capacity)
   end
 
   # Creates a new multiset from the elements in *enumerable*.
   def initialize(enumerable : Enumerable(T))
+    @count = Hash(T, Int32).new(0)
     concat enumerable
+  end
+
+  protected def initialize(*, @count : Hash(T, Int32), @size : Int32)
   end
 
   # Returns the number of elements in the set.
@@ -34,6 +39,11 @@ class MultiSet(T)
   # Returns `true` if the multiset is empty.
   def empty? : Bool
     size == 0
+  end
+
+  # Compares with *other*.
+  def ==(other : MultiSet) : Bool
+    @count == other.@count
   end
 
   # Returns `true` if *object* exists in the multiset.
@@ -203,6 +213,51 @@ class MultiSet(T)
   # Addition. Same as `#|`
   def +(other : MultiSet(U)) forall U
     self | other
+  end
+
+  # Difference
+  def -(other : MultiSet(U)) forall U
+    dup.subtract other
+  end
+
+  # Difference
+  def -(other : Enumerable)
+    dup.subtract other
+  end
+
+  # Returns `self` after removing *other* elements.
+  #
+  # ```
+  # MultiSet{1, 2, 2, 3}.subtract MultiSet{1, 2, 3}
+  # MultiSet{1, 2, 2, 3}.subtract [1, 2]
+  # ```
+  def subtract(other : MultiSet(U)) forall U
+    other.each_count do |elem, cnt|
+      delete elem, cnt
+    end
+    self
+  end
+
+  # :ditto:
+  def subtract(other : Enumerable) forall U
+    other.each do |elem|
+      delete elem
+    end
+    self
+  end
+
+  # Returns a new multiset with all of the same elements.
+  def dup : MultiSet(T)
+    MultiSet(T).new count: @count.dup, size: @size
+  end
+
+  # Returns a new multiset with all of the elements cloned.
+  def clone : MultiSet(T)
+    set = MultiSet(T).new(@count.size)
+    each_count do |elem, cnt|
+      set.add elem.clone, cnt
+    end
+    set
   end
 
   # Writes a string representation of the multiset to *io*.

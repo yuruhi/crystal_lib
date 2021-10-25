@@ -18,6 +18,13 @@ describe MultiSet do
     MultiSet(Int32).new.kind_count.should eq 0
   end
 
+  it "#==" do
+    a = MultiSet{1, 2, 2}
+    (a == MultiSet{1, 2, 2}).should be_true
+    (a == MultiSet{1, 2}).should be_false
+    (a == MultiSet{1i64, 2i64, 2i64}).should be_true
+  end
+
   it "#add" do
     a = MultiSet(Int32).new
     a.add 1
@@ -136,11 +143,42 @@ describe MultiSet do
     (a & b).inspect.should eq "{2(1), 3(2)}"
   end
 
-  it "#|" do
+  it "#|, #+" do
     a = MultiSet{0, 0, 0, 1, 1, 2, 3}
     b = MultiSet{0, 1, 1, 2, 2, 2}
     (a | b).inspect.should eq "{0(4), 1(4), 2(4), 3(1)}"
     (a + b).inspect.should eq "{0(4), 1(4), 2(4), 3(1)}"
+  end
+
+  it "#-" do
+    a = MultiSet{0, 1, 2, 2, 3, 3}
+    b = MultiSet{1, 2, 3, 3, 3, 4}
+    (a - b).inspect.should eq "{0(1), 2(1)}"
+    (a - b.to_a).inspect.should eq "{0(1), 2(1)}"
+  end
+
+  it "#subtract" do
+    a = MultiSet{1, 2, 2, 3}
+    a.subtract(MultiSet{1, 1, 2}).should be a
+    a.inspect.should eq "{2(1), 3(1)}"
+    a = MultiSet{1, 2, 2, 3}
+    a.subtract([1, 1, 2]).should be a
+    a.inspect.should eq "{2(1), 3(1)}"
+  end
+
+  it "#dup" do
+    a = MultiSet{1, 2, 2, 3}
+    b = a.dup
+    b.should eq a
+    b.should_not be a
+  end
+
+  it "#clone" do
+    a = MultiSet{[1, 2, 3]}
+    b = a.clone
+    b.should eq a
+    b.should_not be a
+    a.to_a[0].should_not be b.to_a[0]
   end
 
   it "#to_s" do
