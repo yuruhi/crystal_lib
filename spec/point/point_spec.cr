@@ -85,6 +85,14 @@ describe Point do
     Point.new(1, 2).yx.should eq Point.new(1, 2)
   end
 
+  it "#dot" do
+    Point[1, 2].dot(Point[2, 3]).should eq 8
+  end
+
+  it "#cross" do
+    Point[1, 2].cross(Point[2, 3]).should eq 1
+  end
+
   it "#==(other)" do
     Point.each do |p1|
       Point.each do |p2|

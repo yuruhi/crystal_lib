@@ -103,6 +103,14 @@ struct Point
     self
   end
 
+  def dot(other : Point)
+    x * other.x + y * other.y
+  end
+
+  def cross(other : Point)
+    x * other.y - y * other.x
+  end
+
   def ==(other : Point)
     x == other.x && y == other.y
   end
