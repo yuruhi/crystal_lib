@@ -7,7 +7,7 @@ class PythagoreanTriples
   def initialize(@limit : Int32)
   end
 
-	# Enumerates all primitive Pythagorean triples not more than `#limit`.
+  # Enumerates all primitive Pythagorean triples not more than `#limit`.
   def each(&)
     (1...).each do |m|
       mm = m * m
