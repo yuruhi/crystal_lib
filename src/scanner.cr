@@ -84,19 +84,21 @@
 # n = input(i)
 # input_column({Int32, Int32}, n) # => {[1, 2, 3], [2, 3, 1]}
 # ```
-class Scanner
-  private def self.skip_to_not_space(io)
+module Scanner
+  extend self
+
+  private def skip_to_not_space(io)
     peek = io.peek
     not_space = peek.index { |x| x != 32 && x != 10 } || peek.size
     io.skip(not_space)
   end
 
-  def self.c(io = STDIN)
+  def c(io = STDIN)
     skip_to_not_space(io)
     io.read_char.not_nil!
   end
 
-  private def self.int(int_type : T.class, io = STDIN) : T forall T
+  private def int(int_type : T.class, io = STDIN) : T forall T
     skip_to_not_space(io)
 
     value = T.zero
@@ -132,7 +134,7 @@ class Scanner
     end
   end
 
-  private def self.uint(uint_type : T.class, io = STDIN) : T forall T
+  private def uint(uint_type : T.class, io = STDIN) : T forall T
     skip_to_not_space(io)
     value = T.zero
     found_digit = false
@@ -163,21 +165,27 @@ class Scanner
     end
   end
 
-  def self.i(io = STDIN)
+  def i(io = STDIN)
     int(Int32, io)
   end
 
   {% for n in [8, 16, 32, 64, 128] %}
-    def self.i{{n}}(io = STDIN)
+    def i{{n}}(io = STDIN)
       int(Int{{n}}, io)
     end
 
-    def self.u{{n}}(io = STDIN)
+    def u{{n}}(io = STDIN)
       uint(UInt{{n}}, io)
     end
   {% end %}
 
-  def self.s(io = STDIN)
+  {% for method in [:f, :f32, :f64] %}
+    def {{method.id}}(io = STDIN)
+      s(io).to_{{method.id}}
+    end
+  {% end %}
+
+  def s(io = STDIN)
     skip_to_not_space(io)
 
     peek = io.peek
@@ -212,8 +220,12 @@ macro internal_input(type, else_ast)
     Scanner.s
   {% elsif type.stringify == "Char" %}
     Scanner.c
-  {% elsif type.stringify =~ /[A-Z][a-z0-9_]*/ %}
-    {{type.id}}.new(Scanner.s)
+  {% elsif type.is_a?(Path) %}
+    {% if type.resolve.class.has_method?(:scan) %}
+      {{type}}.scan(Scanner)
+    {% else %}
+      {{type}}.new(Scanner.s)
+    {% end %}
   {% elsif String.has_method?("to_#{type}".id) %}
     Scanner.s.to_{{type.id}}
   {% else %}
@@ -232,38 +244,38 @@ macro internal_input_array(type, args)
   {% end %}
 end
 
-macro input(type)
-  {% if type.is_a?(Call) %}
-    {% if type.receiver.is_a?(Nop) %}
+macro input(ast)
+  {% if ast.is_a?(Call) %}
+    {% if ast.receiver.is_a?(Nop) %}
       internal_input(
-        {{type.name}}, {{type.name}}(
-          {% for argument in type.args %} input({{argument}}), {% end %}
+        {{ast.name}}, {{ast.name}}(
+          {% for argument in ast.args %} input({{argument}}), {% end %}
         )
       )
-    {% elsif type.name.stringify == "[]" %}
-      internal_input_array({{type.receiver}}, {{type.args}})
+    {% elsif ast.name.stringify == "[]" %}
+      internal_input_array({{ast.receiver}}, {{ast.args}})
     {% else %}
-      input({{type.receiver}}).{{type.name.id}}(
-        {% for argument in type.args %} input({{argument}}), {% end %}
-      ) {{type.block}}
+      input({{ast.receiver}}).{{ast.name}}(
+        {% for argument in ast.args %} input({{argument}}), {% end %}
+      ) {{ast.block}}
     {% end %}
-  {% elsif type.is_a?(TupleLiteral) %}
-    { {% for i in 0...type.size %} input({{type[i]}}), {% end %} }
-  {% elsif type.is_a?(ArrayLiteral) %}
-    [ {% for i in 0...type.size %} input({{type[i]}}), {% end %} ]
-  {% elsif type.is_a?(RangeLiteral) %}
-    Range.new(input({{type.begin}}), input({{type.end}}), {{type.excludes_end?}})
-  {% elsif type.is_a?(If) %}
-    {{type.cond}} ? input({{type.then}}) : input({{type.else}})
-  {% elsif type.is_a?(Assign) %}
-    {{type.target}} = input({{type.value}})
+  {% elsif ast.is_a?(TupleLiteral) %}
+    { {% for i in 0...ast.size %} input({{ast[i]}}), {% end %} }
+  {% elsif ast.is_a?(ArrayLiteral) %}
+    [ {% for i in 0...ast.size %} input({{ast[i]}}), {% end %} ]
+  {% elsif ast.is_a?(RangeLiteral) %}
+    Range.new(input({{ast.begin}}), input({{ast.end}}), {{ast.excludes_end?}})
+  {% elsif ast.is_a?(If) %}
+    {{ast.cond}} ? input({{ast.then}}) : input({{ast.else}})
+  {% elsif ast.is_a?(Assign) %}
+    {{ast.target}} = input({{ast.value}})
   {% else %}
-    internal_input({{type.id}}, {{type.id}})
+    internal_input({{ast.id}}, {{ast.id}})
   {% end %}
 end
 
-macro input(*types)
-  { {% for type in types %} input({{type}}), {% end %} }
+macro input(*asts)
+  { {% for ast in asts %} input({{ast}}), {% end %} }
 end
 
 macro input_column(types, size)
