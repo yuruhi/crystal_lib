@@ -75,5 +75,9 @@ module Geometric
     def inspect(io : IO)
       io << '(' << x << ", " << y << ')'
     end
+
+    def self.scan(scanner) : self
+      Vec2.new(scanner.f, scanner.f)
+    end
   end
 end
