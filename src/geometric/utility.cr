@@ -1,3 +1,5 @@
+require "./object/vec2"
+
 module Geometric
   extend self
 
