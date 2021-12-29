@@ -26,6 +26,10 @@ module Geometric
       radious * radious * Math::PI
     end
 
+    def in?(v : Vec2)
+      ((v - center).length <=> radious) < 0
+    end
+
     def inspect(io : IO)
       io << '(' << center << ", " << radious << ')'
     end

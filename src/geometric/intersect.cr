@@ -5,10 +5,6 @@ require "./distance"
 module Geometric
   extend self
 
-  def intersect?(v : Vec2, c : Circle)
-    (distance(v, c.center) <=> c.radious) < 0
-  end
-
   def intersect?(c1 : Circle, c2 : Circle)
     (distance(c1.center, c2.center) <=> (c1.radious + c2.radious)) < 0
   end
