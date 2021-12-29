@@ -34,7 +34,7 @@ module Geometric
       sum / size
     end
 
-    def in?(v : Vec2)
+    def contains?(v : Vec2)
       (0...size).count { |i|
         p1, p2 = {self[i], after(i)}.minmax_by &.y
         (p1.y <=> v.y) <= 0 && (v.y <=> p2.y) < 0 && (p1 - v).cross(p2 - v).sign == -1

@@ -26,7 +26,7 @@ module Geometric
       radious * radious * Math::PI
     end
 
-    def in?(v : Vec2)
+    def contains?(v : Vec2)
       ((v - center).length <=> radious) < 0
     end
 
