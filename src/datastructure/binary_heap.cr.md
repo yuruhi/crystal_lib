@@ -11,22 +11,22 @@ data:
   - icon: ':warning:'
     path: src/datastructure/slope_trick.cr
     title: src/datastructure/slope_trick.cr
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/graph/dijkstra.cr
     title: src/graph/dijkstra.cr
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/datastructure/binary_heap_test.cr
     title: test/datastructure/binary_heap_test.cr
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graph/dijkstra_path_test.cr
     title: test/graph/dijkstra_path_test.cr
   - icon: ':heavy_check_mark:'
     path: test/graph/dijkstra_test.cr
     title: test/graph/dijkstra_test.cr
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cr
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes: {}
   bundledCode: "class BinaryHeap(T)\n  # Creates a new empty heap.\n  def initialize\n\
     \    @heap = Array(T).new\n    @compare_proc = nil\n  end\n\n  # Creates a new\
@@ -178,8 +178,8 @@ data:
   - src/datastructure/slope_trick.cr
   - benchmarks/datastructure/binary_heap.cr
   - spec/datastructure/binary_heap_spec.cr
-  timestamp: '2022-01-02 07:36:08+00:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-01-02 08:46:32+00:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graph/dijkstra_test.cr
   - test/graph/dijkstra_path_test.cr

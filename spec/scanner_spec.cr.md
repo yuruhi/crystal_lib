@@ -69,62 +69,64 @@ data:
     \ peek\n        io.skip(peek.size)\n        peek = io.peek\n        break if peek.empty?\n\
     \        if index = peek.index { |x| x == 32 || x == 10 }\n          buffer.write\
     \ peek[0, index]\n          io.skip(index + 1)\n          break\n        end\n\
-    \      end\n    end\n  end\nend\n\nmacro internal_input(type, else_ast)\n  {%\
-    \ if Scanner.class.has_method?(type.id) %}\n    Scanner.{{type.id}}\n  {% elsif\
-    \ type.stringify == \"String\" %}\n    Scanner.s\n  {% elsif type.stringify ==\
-    \ \"Char\" %}\n    Scanner.c\n  {% elsif type.is_a?(Path) %}\n    {% if type.resolve.class.has_method?(:scan)\
-    \ %}\n      {{type}}.scan(Scanner)\n    {% else %}\n      {{type}}.new(Scanner.s)\n\
-    \    {% end %}\n  {% elsif String.has_method?(\"to_#{type}\".id) %}\n    Scanner.s.to_{{type.id}}\n\
+    \      end\n    end\n  end\nend\n\nmacro internal_input(type, else_ast, io)\n\
+    \  {% if Scanner.class.has_method?(type.id) %}\n    Scanner.{{type.id}}({{io}})\n\
+    \  {% elsif type.stringify == \"String\" %}\n    Scanner.s({{io}})\n  {% elsif\
+    \ type.stringify == \"Char\" %}\n    Scanner.c({{io}})\n  {% elsif type.is_a?(Path)\
+    \ %}\n    {% if type.resolve.class.has_method?(:scan) %}\n      {{type}}.scan(Scanner)\n\
+    \    {% else %}\n      {{type}}.new(Scanner.s({{io}}))\n    {% end %}\n  {% elsif\
+    \ String.has_method?(\"to_#{type}\".id) %}\n    Scanner.s({{io}}).to_{{type.id}}\n\
     \  {% else %}\n    {{else_ast}}\n  {% end %}\nend\n\nmacro internal_input_array(type,\
     \ args)\n  {% for i in 0...args.size %}\n    %size{i} = input({{args[i]}})\n \
     \ {% end %}\n  {% begin %}\n    {% for i in 0...args.size %} Array.new(%size{i})\
     \ { {% end %}\n      input({{type.id}})\n    {% for i in 0...args.size %} } {%\
-    \ end %}\n  {% end %}\nend\n\nmacro input(ast)\n  {% if ast.is_a?(Call) %}\n \
-    \   {% if ast.receiver.is_a?(Nop) %}\n      internal_input(\n        {{ast.name}},\
-    \ {{ast.name}}(\n          {% for argument in ast.args %} input({{argument}}),\
-    \ {% end %}\n        )\n      )\n    {% elsif ast.name.stringify == \"[]\" %}\n\
+    \ end %}\n  {% end %}\nend\n\nmacro input(ast, *, io = STDIN)\n  {% if ast.is_a?(Call)\
+    \ %}\n    {% if ast.receiver.is_a?(Nop) %}\n      internal_input(\n        {{ast.name}},\n\
+    \        {{ast.name}}({% for argument in ast.args %} input({{argument}}), {% end\
+    \ %}),\n        {{io}},\n      )\n    {% elsif ast.name.stringify == \"[]\" %}\n\
     \      internal_input_array({{ast.receiver}}, {{ast.args}})\n    {% else %}\n\
-    \      input({{ast.receiver}}).{{ast.name}}(\n        {% for argument in ast.args\
-    \ %} input({{argument}}), {% end %}\n      ) {{ast.block}}\n    {% end %}\n  {%\
-    \ elsif ast.is_a?(TupleLiteral) %}\n    { {% for i in 0...ast.size %} input({{ast[i]}}),\
-    \ {% end %} }\n  {% elsif ast.is_a?(ArrayLiteral) %}\n    [ {% for i in 0...ast.size\
-    \ %} input({{ast[i]}}), {% end %} ]\n  {% elsif ast.is_a?(RangeLiteral) %}\n \
-    \   Range.new(input({{ast.begin}}), input({{ast.end}}), {{ast.excludes_end?}})\n\
-    \  {% elsif ast.is_a?(If) %}\n    {{ast.cond}} ? input({{ast.then}}) : input({{ast.else}})\n\
-    \  {% elsif ast.is_a?(Assign) %}\n    {{ast.target}} = input({{ast.value}})\n\
-    \  {% else %}\n    internal_input({{ast.id}}, {{ast.id}})\n  {% end %}\nend\n\n\
-    macro input(*asts)\n  { {% for ast in asts %} input({{ast}}), {% end %} }\nend\n\
-    \nmacro input_column(types, size)\n  {% for type, i in types %}\n    %array{i}\
-    \ = Array({{type}}).new({{size}})\n  {% end %}\n  {{size}}.times do\n    {% for\
-    \ type, i in types %}\n      %array{i} << input({{type}})\n    {% end %}\n  end\n\
-    \  { {% for type, i in types %} %array{i}, {% end %} }\nend\n\nprivate macro check(method,\
-    \ input, expect)\n  %io = IO::Memory.new {{input}}\n  ({{expect}}).each { |str|\
-    \ Scanner.{{method.id}}(%io).should eq str }\n  expect_raises(IO::EOFError) {\
-    \ Scanner.{{method.id}}(%io) }\nend\n\nprivate macro check_raises(method, input,\
-    \ exception)\n  %io = IO::Memory.new {{input}}\n  expect_raises({{exception}})\
-    \ { Scanner.{{method.id}}(%io) }\nend\n\nprivate macro describe_scan_int(type,\
-    \ method)\n  {% signed = type.stringify =~ /$Int\\d+^/ %}\n  describe \".{{method.id}}\"\
-    \ do\n    it \"read integer separated by spaces or new lines\" do\n      check\
-    \ {{method}}, \"0 1 2 3\\n4 5 6\\n7 08 009\", 0..9\n      {% if signed %}\n  \
-    \      check {{method}}, \"-0 -1 -2 -3\\n-4 -5 -6\\n-7 -08 -009\", 0.to(-9)\n\
-    \      {% end %}\n      check {{method}}, \" \\n\\n1  2\\n  \\n\\n 3\\n\\n \"\
-    , 1..3\n    end\n\n    it \"raise if read unexpected charactor\" do\n      check_raises\
-    \ {{method}}, \"\", IO::EOFError\n      check_raises {{method}}, \"@\", Exception\n\
-    \      check_raises {{method}}, \" @\", Exception\n      check_raises {{method}},\
-    \ \"123@\", Exception\n      check_raises {{method}}, \" 123@\", Exception\n \
-    \   end\n\n    it \"read {{type}}::MIN and {{type}}::MAX\" do\n      min, max\
-    \ = {{type}}::MIN, {{type}}::MAX\n      a = (min..min + 100).to_a + (max - 100..max).to_a\n\
-    \      check {{method}}, a.join(' '), a\n    end\n  end\nend\n\ndescribe Scanner\
-    \ do\n  describe \".s\" do\n    it \"read string separated by spaces or new lines\"\
-    \ do\n      check :s, \"a b\\nc d\", %w[a b c d]\n      check :s, \"  \\na  b\
-    \ \\n c  \\n\\n  d  \\n\", %w[a b c d]\n      check :s, \"aaabbbccc\", [\"aaabbbccc\"\
-    ]\n    end\n\n    it \"read long string\" do\n      str = ('a'..'z').join * 1000\n\
-    \      check :s, \"#{str} #{str}\\n#{str}\", [str, str, str]\n    end\n  end\n\
-    \n  describe_scan_int Int32, :i\n  describe_scan_int Int8, :i8\n  describe_scan_int\
-    \ Int16, :i16\n  describe_scan_int Int32, :i32\n  describe_scan_int Int64, :i64\n\
-    \  describe_scan_int Int128, :i128\n  describe_scan_int UInt8, :u8\n  describe_scan_int\
-    \ UInt16, :u16\n  describe_scan_int UInt32, :u32\n  describe_scan_int UInt64,\
-    \ :u64\n  describe_scan_int UInt128, :u128\nend\n"
+    \      input({{ast.receiver}}, io: {{io}}).{{ast.name}}(\n        {% for argument\
+    \ in ast.args %} input({{argument}}), {% end %}\n      ) {{ast.block}}\n    {%\
+    \ end %}\n  {% elsif ast.is_a?(TupleLiteral) %}\n    { {% for i in 0...ast.size\
+    \ %} input({{ast[i]}}, io: {{io}}), {% end %} }\n  {% elsif ast.is_a?(ArrayLiteral)\
+    \ %}\n    [ {% for i in 0...ast.size %} input({{ast[i]}}, io: {{io}}), {% end\
+    \ %} ]\n  {% elsif ast.is_a?(RangeLiteral) %}\n    Range.new(\n      input({{ast.begin}},\
+    \ io: {{io}}),\n      input({{ast.end}}, io: {{io}}),\n      {{ast.excludes_end?}},\n\
+    \    )\n  {% elsif ast.is_a?(If) %}\n    {{ast.cond}} ? input({{ast.then}}, io:\
+    \ {{io}}) : input({{ast.else}}, io: {{io}})\n  {% elsif ast.is_a?(Assign) %}\n\
+    \    {{ast.target}} = input({{ast.value}}, io: {{io}})\n  {% else %}\n    internal_input({{ast}},\
+    \ {{ast}}, io: {{io}})\n  {% end %}\nend\n\nmacro input(*asts, io = STDIN)\n \
+    \ { {% for ast in asts %} input({{ast}}, io: {{io}}), {% end %} }\nend\n\nmacro\
+    \ input_column(types, size)\n  {% for type, i in types %}\n    %array{i} = Array({{type}}).new({{size}})\n\
+    \  {% end %}\n  {{size}}.times do\n    {% for type, i in types %}\n      %array{i}\
+    \ << input({{type}})\n    {% end %}\n  end\n  { {% for type, i in types %} %array{i},\
+    \ {% end %} }\nend\n\nprivate macro check(method, input, expect)\n  %io = IO::Memory.new\
+    \ {{input}}\n  ({{expect}}).each { |str| Scanner.{{method.id}}(%io).should eq\
+    \ str }\n  expect_raises(IO::EOFError) { Scanner.{{method.id}}(%io) }\nend\n\n\
+    private macro check_raises(method, input, exception)\n  %io = IO::Memory.new {{input}}\n\
+    \  expect_raises({{exception}}) { Scanner.{{method.id}}(%io) }\nend\n\nprivate\
+    \ macro describe_scan_int(type, method)\n  {% signed = type.stringify =~ /$Int\\\
+    d+^/ %}\n  describe \".{{method.id}}\" do\n    it \"read integer separated by\
+    \ spaces or new lines\" do\n      check {{method}}, \"0 1 2 3\\n4 5 6\\n7 08 009\"\
+    , 0..9\n      {% if signed %}\n        check {{method}}, \"-0 -1 -2 -3\\n-4 -5\
+    \ -6\\n-7 -08 -009\", 0.to(-9)\n      {% end %}\n      check {{method}}, \" \\\
+    n\\n1  2\\n  \\n\\n 3\\n\\n \", 1..3\n    end\n\n    it \"raise if read unexpected\
+    \ charactor\" do\n      check_raises {{method}}, \"\", IO::EOFError\n      check_raises\
+    \ {{method}}, \"@\", Exception\n      check_raises {{method}}, \" @\", Exception\n\
+    \      check_raises {{method}}, \"123@\", Exception\n      check_raises {{method}},\
+    \ \" 123@\", Exception\n    end\n\n    it \"read {{type}}::MIN and {{type}}::MAX\"\
+    \ do\n      min, max = {{type}}::MIN, {{type}}::MAX\n      a = (min..min + 100).to_a\
+    \ + (max - 100..max).to_a\n      check {{method}}, a.join(' '), a\n    end\n \
+    \ end\nend\n\ndescribe Scanner do\n  describe \".s\" do\n    it \"read string\
+    \ separated by spaces or new lines\" do\n      check :s, \"a b\\nc d\", %w[a b\
+    \ c d]\n      check :s, \"  \\na  b \\n c  \\n\\n  d  \\n\", %w[a b c d]\n   \
+    \   check :s, \"aaabbbccc\", [\"aaabbbccc\"]\n    end\n\n    it \"read long string\"\
+    \ do\n      str = ('a'..'z').join * 1000\n      check :s, \"#{str} #{str}\\n#{str}\"\
+    , [str, str, str]\n    end\n  end\n\n  describe_scan_int Int32, :i\n  describe_scan_int\
+    \ Int8, :i8\n  describe_scan_int Int16, :i16\n  describe_scan_int Int32, :i32\n\
+    \  describe_scan_int Int64, :i64\n  describe_scan_int Int128, :i128\n  describe_scan_int\
+    \ UInt8, :u8\n  describe_scan_int UInt16, :u16\n  describe_scan_int UInt32, :u32\n\
+    \  describe_scan_int UInt64, :u64\n  describe_scan_int UInt128, :u128\nend\n"
   code: "require \"spec\"\nrequire \"../src/scanner\"\n\nprivate macro check(method,\
     \ input, expect)\n  %io = IO::Memory.new {{input}}\n  ({{expect}}).each { |str|\
     \ Scanner.{{method.id}}(%io).should eq str }\n  expect_raises(IO::EOFError) {\
@@ -158,7 +160,7 @@ data:
   isVerificationFile: false
   path: spec/scanner_spec.cr
   requiredBy: []
-  timestamp: '2021-12-29 20:30:52+09:00'
+  timestamp: '2022-01-02 17:14:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: spec/scanner_spec.cr

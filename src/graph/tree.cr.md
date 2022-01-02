@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/graph/diameter_test.cr
     title: test/graph/diameter_test.cr
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/scanner/11_test.cr
     title: test/scanner/11_test.cr
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cr
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes: {}
   bundledCode: "# require \"../graph\"\n# require \"./graph/edge\"\nstruct WeightedEdge(T)\n\
     \  include Comparable(WeightedEdge(T))\n\n  property to : Int32, cost : T\n\n\
@@ -124,7 +124,7 @@ data:
   path: src/graph/tree.cr
   requiredBy: []
   timestamp: '2021-08-07 12:25:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/graph/diameter_test.cr
   - test/scanner/11_test.cr

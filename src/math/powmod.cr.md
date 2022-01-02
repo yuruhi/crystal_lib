@@ -19,7 +19,7 @@ data:
   isVerificationFile: false
   path: src/math/powmod.cr
   requiredBy: []
-  timestamp: '2022-01-02 07:36:08+00:00'
+  timestamp: '2022-01-02 08:46:32+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/math/powmod.cr

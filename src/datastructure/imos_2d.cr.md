@@ -56,7 +56,7 @@ data:
   isVerificationFile: false
   path: src/datastructure/imos_2d.cr
   requiredBy: []
-  timestamp: '2022-01-02 07:36:08+00:00'
+  timestamp: '2022-01-02 08:46:32+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/datastructure/cul_sum_2d_imos_2d_test.cr

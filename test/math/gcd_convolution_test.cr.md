@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/math/gcd.cr
     title: src/math/gcd.cr
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/math/mint.cr
     title: src/math/mint.cr
   - icon: ':heavy_check_mark:'

@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/math/matrix_product_test.cr
     title: test/math/matrix_product_test.cr
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/matrix_test.cr
     title: test/math/matrix_test.cr
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cr
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes: {}
   bundledCode: "class Matrix(T)\n  include Indexable(Array(T))\n\n  def Matrix.identity(size\
     \ : Int32) : self\n    result = Matrix(T).new(size, size, T.zero)\n    (0...size).each\
@@ -105,8 +105,8 @@ data:
   path: src/math/matrix.cr
   requiredBy:
   - spec/math/matrix_spec.cr
-  timestamp: '2022-01-02 07:36:08+00:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-01-02 08:46:32+00:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/math/matrix_test.cr
   - test/math/matrix_product_test.cr

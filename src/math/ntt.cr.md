@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/ntt_test.cr
     title: test/math/ntt_test.cr
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cr
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes: {}
   bundledCode: "# reference : https://kopricky.github.io/code/FFTs/ntt.html\nclass\
     \ NTT\n  ROOT = 3\n\n  private def self.ntt(a : Array(T), rev = false) forall\
@@ -44,8 +44,8 @@ data:
   isVerificationFile: false
   path: src/math/ntt.cr
   requiredBy: []
-  timestamp: '2022-01-02 07:36:08+00:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-01-02 08:46:32+00:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/math/ntt_test.cr
 documentation_of: src/math/ntt.cr

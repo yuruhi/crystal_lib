@@ -175,39 +175,41 @@ data:
     \ peek\n        io.skip(peek.size)\n        peek = io.peek\n        break if peek.empty?\n\
     \        if index = peek.index { |x| x == 32 || x == 10 }\n          buffer.write\
     \ peek[0, index]\n          io.skip(index + 1)\n          break\n        end\n\
-    \      end\n    end\n  end\nend\n\nmacro internal_input(type, else_ast)\n  {%\
-    \ if Scanner.class.has_method?(type.id) %}\n    Scanner.{{type.id}}\n  {% elsif\
-    \ type.stringify == \"String\" %}\n    Scanner.s\n  {% elsif type.stringify ==\
-    \ \"Char\" %}\n    Scanner.c\n  {% elsif type.is_a?(Path) %}\n    {% if type.resolve.class.has_method?(:scan)\
-    \ %}\n      {{type}}.scan(Scanner)\n    {% else %}\n      {{type}}.new(Scanner.s)\n\
-    \    {% end %}\n  {% elsif String.has_method?(\"to_#{type}\".id) %}\n    Scanner.s.to_{{type.id}}\n\
+    \      end\n    end\n  end\nend\n\nmacro internal_input(type, else_ast, io)\n\
+    \  {% if Scanner.class.has_method?(type.id) %}\n    Scanner.{{type.id}}({{io}})\n\
+    \  {% elsif type.stringify == \"String\" %}\n    Scanner.s({{io}})\n  {% elsif\
+    \ type.stringify == \"Char\" %}\n    Scanner.c({{io}})\n  {% elsif type.is_a?(Path)\
+    \ %}\n    {% if type.resolve.class.has_method?(:scan) %}\n      {{type}}.scan(Scanner)\n\
+    \    {% else %}\n      {{type}}.new(Scanner.s({{io}}))\n    {% end %}\n  {% elsif\
+    \ String.has_method?(\"to_#{type}\".id) %}\n    Scanner.s({{io}}).to_{{type.id}}\n\
     \  {% else %}\n    {{else_ast}}\n  {% end %}\nend\n\nmacro internal_input_array(type,\
     \ args)\n  {% for i in 0...args.size %}\n    %size{i} = input({{args[i]}})\n \
     \ {% end %}\n  {% begin %}\n    {% for i in 0...args.size %} Array.new(%size{i})\
     \ { {% end %}\n      input({{type.id}})\n    {% for i in 0...args.size %} } {%\
-    \ end %}\n  {% end %}\nend\n\nmacro input(ast)\n  {% if ast.is_a?(Call) %}\n \
-    \   {% if ast.receiver.is_a?(Nop) %}\n      internal_input(\n        {{ast.name}},\
-    \ {{ast.name}}(\n          {% for argument in ast.args %} input({{argument}}),\
-    \ {% end %}\n        )\n      )\n    {% elsif ast.name.stringify == \"[]\" %}\n\
+    \ end %}\n  {% end %}\nend\n\nmacro input(ast, *, io = STDIN)\n  {% if ast.is_a?(Call)\
+    \ %}\n    {% if ast.receiver.is_a?(Nop) %}\n      internal_input(\n        {{ast.name}},\n\
+    \        {{ast.name}}({% for argument in ast.args %} input({{argument}}), {% end\
+    \ %}),\n        {{io}},\n      )\n    {% elsif ast.name.stringify == \"[]\" %}\n\
     \      internal_input_array({{ast.receiver}}, {{ast.args}})\n    {% else %}\n\
-    \      input({{ast.receiver}}).{{ast.name}}(\n        {% for argument in ast.args\
-    \ %} input({{argument}}), {% end %}\n      ) {{ast.block}}\n    {% end %}\n  {%\
-    \ elsif ast.is_a?(TupleLiteral) %}\n    { {% for i in 0...ast.size %} input({{ast[i]}}),\
-    \ {% end %} }\n  {% elsif ast.is_a?(ArrayLiteral) %}\n    [ {% for i in 0...ast.size\
-    \ %} input({{ast[i]}}), {% end %} ]\n  {% elsif ast.is_a?(RangeLiteral) %}\n \
-    \   Range.new(input({{ast.begin}}), input({{ast.end}}), {{ast.excludes_end?}})\n\
-    \  {% elsif ast.is_a?(If) %}\n    {{ast.cond}} ? input({{ast.then}}) : input({{ast.else}})\n\
-    \  {% elsif ast.is_a?(Assign) %}\n    {{ast.target}} = input({{ast.value}})\n\
-    \  {% else %}\n    internal_input({{ast.id}}, {{ast.id}})\n  {% end %}\nend\n\n\
-    macro input(*asts)\n  { {% for ast in asts %} input({{ast}}), {% end %} }\nend\n\
-    \nmacro input_column(types, size)\n  {% for type, i in types %}\n    %array{i}\
-    \ = Array({{type}}).new({{size}})\n  {% end %}\n  {{size}}.times do\n    {% for\
-    \ type, i in types %}\n      %array{i} << input({{type}})\n    {% end %}\n  end\n\
-    \  { {% for type, i in types %} %array{i}, {% end %} }\nend\n\nn = input(i)\n\
-    graph = UnweightedUndirectedGraph.new n, input({i - 1, i - 1}[n])\n_, cycle =\
-    \ graph.namori_decompose\nset = Set.new cycle\n\ninput(i).times do\n  x, y = input(i\
-    \ - 1, i - 1)\n  if set.includes?(x) && set.includes?(y)\n    puts 2\n  else\n\
-    \    puts 1\n  end\nend\n"
+    \      input({{ast.receiver}}, io: {{io}}).{{ast.name}}(\n        {% for argument\
+    \ in ast.args %} input({{argument}}), {% end %}\n      ) {{ast.block}}\n    {%\
+    \ end %}\n  {% elsif ast.is_a?(TupleLiteral) %}\n    { {% for i in 0...ast.size\
+    \ %} input({{ast[i]}}, io: {{io}}), {% end %} }\n  {% elsif ast.is_a?(ArrayLiteral)\
+    \ %}\n    [ {% for i in 0...ast.size %} input({{ast[i]}}, io: {{io}}), {% end\
+    \ %} ]\n  {% elsif ast.is_a?(RangeLiteral) %}\n    Range.new(\n      input({{ast.begin}},\
+    \ io: {{io}}),\n      input({{ast.end}}, io: {{io}}),\n      {{ast.excludes_end?}},\n\
+    \    )\n  {% elsif ast.is_a?(If) %}\n    {{ast.cond}} ? input({{ast.then}}, io:\
+    \ {{io}}) : input({{ast.else}}, io: {{io}})\n  {% elsif ast.is_a?(Assign) %}\n\
+    \    {{ast.target}} = input({{ast.value}}, io: {{io}})\n  {% else %}\n    internal_input({{ast}},\
+    \ {{ast}}, io: {{io}})\n  {% end %}\nend\n\nmacro input(*asts, io = STDIN)\n \
+    \ { {% for ast in asts %} input({{ast}}, io: {{io}}), {% end %} }\nend\n\nmacro\
+    \ input_column(types, size)\n  {% for type, i in types %}\n    %array{i} = Array({{type}}).new({{size}})\n\
+    \  {% end %}\n  {{size}}.times do\n    {% for type, i in types %}\n      %array{i}\
+    \ << input({{type}})\n    {% end %}\n  end\n  { {% for type, i in types %} %array{i},\
+    \ {% end %} }\nend\n\nn = input(i)\ngraph = UnweightedUndirectedGraph.new n, input({i\
+    \ - 1, i - 1}[n])\n_, cycle = graph.namori_decompose\nset = Set.new cycle\n\n\
+    input(i).times do\n  x, y = input(i - 1, i - 1)\n  if set.includes?(x) && set.includes?(y)\n\
+    \    puts 2\n  else\n    puts 1\n  end\nend\n"
   code: "# verification-helper: PROBLEM https://onlinejudge.u-aizu.ac.jp/problems/2891\n\
     require \"../../src/graph/namori_decompose\"\nrequire \"../../src/scanner\"\n\n\
     n = input(i)\ngraph = UnweightedUndirectedGraph.new n, input({i - 1, i - 1}[n])\n\
@@ -223,7 +225,7 @@ data:
   isVerificationFile: true
   path: test/graph/namori_decompose_test.cr
   requiredBy: []
-  timestamp: '2021-12-29 20:30:52+09:00'
+  timestamp: '2022-01-02 17:14:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graph/namori_decompose_test.cr

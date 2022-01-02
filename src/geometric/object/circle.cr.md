@@ -47,7 +47,7 @@ data:
   - src/geometric.cr
   - src/geometric/distance.cr
   - src/geometric/intersect.cr
-  timestamp: '2022-01-02 07:36:08+00:00'
+  timestamp: '2022-01-02 08:46:32+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/geometric/object/circle.cr

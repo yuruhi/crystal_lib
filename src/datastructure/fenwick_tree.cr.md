@@ -63,7 +63,7 @@ data:
   requiredBy:
   - src/dp/inversion.cr
   - spec/datastructure/fenwick_tree_spec.cr
-  timestamp: '2022-01-02 07:36:08+00:00'
+  timestamp: '2022-01-02 08:46:32+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/datastructure/fewnick_tree_test.cr

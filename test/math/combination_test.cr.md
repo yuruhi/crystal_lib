@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/math/combination.cr
     title: src/math/combination.cr
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/math/mint.cr
     title: src/math/mint.cr
   _extendedRequiredBy: []

@@ -64,7 +64,7 @@ data:
   - src/graph/components.cr
   - src/graph/decompose.cr
   - test/graph/namori_decompose_test_.cr
-  timestamp: '2022-01-02 07:36:08+00:00'
+  timestamp: '2022-01-02 08:46:32+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graph/compress_degree_test.cr

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/datastructure/binary_heap.cr
     title: src/datastructure/binary_heap.cr
   - icon: ':question:'
     path: src/graph.cr
     title: src/graph.cr
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/graph/dijkstra.cr
     title: src/graph/dijkstra.cr
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: src/scanner.cr
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cr
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     PROBLEM: https://judge.yosupo.jp/problem/shortest_path
   bundledCode: "# verification-helper: PROBLEM https://judge.yosupo.jp/problem/shortest_path\n\
@@ -192,11 +192,11 @@ data:
     \ end\n      end\n    end\n  end\n\n  # Returns the distance of *start* to *goal*.\n\
     \  def dijkstra!(start : Int, goal : Int)\n    dijkstra(start, goal).not_nil!\n\
     \  end\n\n  def dijkstra_with_prev(start : Int)\n    raise ArgumentError.new unless\
-    \ 0 <= start < size\n    que = AtCoder::PriorityQueue({Int32, typeof(first.cost)}).new\
-    \ { |(v1, d1), (v2, d2)| d1 > d2 }\n    que << {start, typeof(first.cost).zero}\n\
-    \    dist = Array(typeof(first.cost)?).new(size, nil)\n    dist[start] = typeof(first.cost).zero\n\
-    \    prev = Array(Int32?).new(size, nil)\n\n    while vd = que.pop\n      v, d\
-    \ = vd\n      next if dist[v].try { |dist_v| dist_v < d }\n      current_dist\
+    \ 0 <= start < size\n    que = BinaryHeap({Int32, typeof(first.cost)}).new { |(v1,\
+    \ d1), (v2, d2)| d1 <=> d2 }\n    que << {start, typeof(first.cost).zero}\n  \
+    \  dist = Array(typeof(first.cost)?).new(size, nil)\n    dist[start] = typeof(first.cost).zero\n\
+    \    prev = Array(Int32?).new(size, nil)\n\n    until que.empty?\n      v, d =\
+    \ que.pop\n      next if dist[v].try { |dist_v| dist_v < d }\n      current_dist\
     \ = dist[v].not_nil!\n      graph[v].each do |edge|\n        next_dist = current_dist\
     \ + edge.cost\n        if dist[edge.to].nil? || dist[edge.to].not_nil! > next_dist\n\
     \          dist[edge.to] = next_dist\n          prev[edge.to] = v\n          que\
@@ -265,39 +265,41 @@ data:
     \ peek\n        io.skip(peek.size)\n        peek = io.peek\n        break if peek.empty?\n\
     \        if index = peek.index { |x| x == 32 || x == 10 }\n          buffer.write\
     \ peek[0, index]\n          io.skip(index + 1)\n          break\n        end\n\
-    \      end\n    end\n  end\nend\n\nmacro internal_input(type, else_ast)\n  {%\
-    \ if Scanner.class.has_method?(type.id) %}\n    Scanner.{{type.id}}\n  {% elsif\
-    \ type.stringify == \"String\" %}\n    Scanner.s\n  {% elsif type.stringify ==\
-    \ \"Char\" %}\n    Scanner.c\n  {% elsif type.is_a?(Path) %}\n    {% if type.resolve.class.has_method?(:scan)\
-    \ %}\n      {{type}}.scan(Scanner)\n    {% else %}\n      {{type}}.new(Scanner.s)\n\
-    \    {% end %}\n  {% elsif String.has_method?(\"to_#{type}\".id) %}\n    Scanner.s.to_{{type.id}}\n\
+    \      end\n    end\n  end\nend\n\nmacro internal_input(type, else_ast, io)\n\
+    \  {% if Scanner.class.has_method?(type.id) %}\n    Scanner.{{type.id}}({{io}})\n\
+    \  {% elsif type.stringify == \"String\" %}\n    Scanner.s({{io}})\n  {% elsif\
+    \ type.stringify == \"Char\" %}\n    Scanner.c({{io}})\n  {% elsif type.is_a?(Path)\
+    \ %}\n    {% if type.resolve.class.has_method?(:scan) %}\n      {{type}}.scan(Scanner)\n\
+    \    {% else %}\n      {{type}}.new(Scanner.s({{io}}))\n    {% end %}\n  {% elsif\
+    \ String.has_method?(\"to_#{type}\".id) %}\n    Scanner.s({{io}}).to_{{type.id}}\n\
     \  {% else %}\n    {{else_ast}}\n  {% end %}\nend\n\nmacro internal_input_array(type,\
     \ args)\n  {% for i in 0...args.size %}\n    %size{i} = input({{args[i]}})\n \
     \ {% end %}\n  {% begin %}\n    {% for i in 0...args.size %} Array.new(%size{i})\
     \ { {% end %}\n      input({{type.id}})\n    {% for i in 0...args.size %} } {%\
-    \ end %}\n  {% end %}\nend\n\nmacro input(ast)\n  {% if ast.is_a?(Call) %}\n \
-    \   {% if ast.receiver.is_a?(Nop) %}\n      internal_input(\n        {{ast.name}},\
-    \ {{ast.name}}(\n          {% for argument in ast.args %} input({{argument}}),\
-    \ {% end %}\n        )\n      )\n    {% elsif ast.name.stringify == \"[]\" %}\n\
+    \ end %}\n  {% end %}\nend\n\nmacro input(ast, *, io = STDIN)\n  {% if ast.is_a?(Call)\
+    \ %}\n    {% if ast.receiver.is_a?(Nop) %}\n      internal_input(\n        {{ast.name}},\n\
+    \        {{ast.name}}({% for argument in ast.args %} input({{argument}}), {% end\
+    \ %}),\n        {{io}},\n      )\n    {% elsif ast.name.stringify == \"[]\" %}\n\
     \      internal_input_array({{ast.receiver}}, {{ast.args}})\n    {% else %}\n\
-    \      input({{ast.receiver}}).{{ast.name}}(\n        {% for argument in ast.args\
-    \ %} input({{argument}}), {% end %}\n      ) {{ast.block}}\n    {% end %}\n  {%\
-    \ elsif ast.is_a?(TupleLiteral) %}\n    { {% for i in 0...ast.size %} input({{ast[i]}}),\
-    \ {% end %} }\n  {% elsif ast.is_a?(ArrayLiteral) %}\n    [ {% for i in 0...ast.size\
-    \ %} input({{ast[i]}}), {% end %} ]\n  {% elsif ast.is_a?(RangeLiteral) %}\n \
-    \   Range.new(input({{ast.begin}}), input({{ast.end}}), {{ast.excludes_end?}})\n\
-    \  {% elsif ast.is_a?(If) %}\n    {{ast.cond}} ? input({{ast.then}}) : input({{ast.else}})\n\
-    \  {% elsif ast.is_a?(Assign) %}\n    {{ast.target}} = input({{ast.value}})\n\
-    \  {% else %}\n    internal_input({{ast.id}}, {{ast.id}})\n  {% end %}\nend\n\n\
-    macro input(*asts)\n  { {% for ast in asts %} input({{ast}}), {% end %} }\nend\n\
-    \nmacro input_column(types, size)\n  {% for type, i in types %}\n    %array{i}\
-    \ = Array({{type}}).new({{size}})\n  {% end %}\n  {{size}}.times do\n    {% for\
-    \ type, i in types %}\n      %array{i} << input({{type}})\n    {% end %}\n  end\n\
-    \  { {% for type, i in types %} %array{i}, {% end %} }\nend\n\nn, m, s, t = input(i,\
-    \ i, i, i)\ngraph = DirectedGraph.new n, input({i, i, i64}[m])\nif dist_path =\
-    \ graph.dijkstra_with_path(s, t)\n  d, path = dist_path\n  puts \"#{d} #{path.size\
-    \ - 1}\"\n  path.each_cons_pair do |u, v|\n    puts \"#{u} #{v}\"\n  end\nelse\n\
-    \  puts -1\nend\n"
+    \      input({{ast.receiver}}, io: {{io}}).{{ast.name}}(\n        {% for argument\
+    \ in ast.args %} input({{argument}}), {% end %}\n      ) {{ast.block}}\n    {%\
+    \ end %}\n  {% elsif ast.is_a?(TupleLiteral) %}\n    { {% for i in 0...ast.size\
+    \ %} input({{ast[i]}}, io: {{io}}), {% end %} }\n  {% elsif ast.is_a?(ArrayLiteral)\
+    \ %}\n    [ {% for i in 0...ast.size %} input({{ast[i]}}, io: {{io}}), {% end\
+    \ %} ]\n  {% elsif ast.is_a?(RangeLiteral) %}\n    Range.new(\n      input({{ast.begin}},\
+    \ io: {{io}}),\n      input({{ast.end}}, io: {{io}}),\n      {{ast.excludes_end?}},\n\
+    \    )\n  {% elsif ast.is_a?(If) %}\n    {{ast.cond}} ? input({{ast.then}}, io:\
+    \ {{io}}) : input({{ast.else}}, io: {{io}})\n  {% elsif ast.is_a?(Assign) %}\n\
+    \    {{ast.target}} = input({{ast.value}}, io: {{io}})\n  {% else %}\n    internal_input({{ast}},\
+    \ {{ast}}, io: {{io}})\n  {% end %}\nend\n\nmacro input(*asts, io = STDIN)\n \
+    \ { {% for ast in asts %} input({{ast}}, io: {{io}}), {% end %} }\nend\n\nmacro\
+    \ input_column(types, size)\n  {% for type, i in types %}\n    %array{i} = Array({{type}}).new({{size}})\n\
+    \  {% end %}\n  {{size}}.times do\n    {% for type, i in types %}\n      %array{i}\
+    \ << input({{type}})\n    {% end %}\n  end\n  { {% for type, i in types %} %array{i},\
+    \ {% end %} }\nend\n\nn, m, s, t = input(i, i, i, i)\ngraph = DirectedGraph.new\
+    \ n, input({i, i, i64}[m])\nif dist_path = graph.dijkstra_with_path(s, t)\n  d,\
+    \ path = dist_path\n  puts \"#{d} #{path.size - 1}\"\n  path.each_cons_pair do\
+    \ |u, v|\n    puts \"#{u} #{v}\"\n  end\nelse\n  puts -1\nend\n"
   code: "# verification-helper: PROBLEM https://judge.yosupo.jp/problem/shortest_path\n\
     require \"../../src/graph/dijkstra\"\nrequire \"../../src/scanner\"\nn, m, s,\
     \ t = input(i, i, i, i)\ngraph = DirectedGraph.new n, input({i, i, i64}[m])\n\
@@ -313,8 +315,8 @@ data:
   isVerificationFile: true
   path: test/graph/dijkstra_path_test.cr
   requiredBy: []
-  timestamp: '2022-01-01 11:25:12+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-01-02 17:14:17+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graph/dijkstra_path_test.cr
 layout: document

@@ -21,21 +21,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/math/matrix_product_test.cr
     title: test/math/matrix_product_test.cr
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/matrix_test.cr
     title: test/math/matrix_test.cr
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/ntt_test.cr
     title: test/math/ntt_test.cr
   - icon: ':heavy_check_mark:'
     path: test/math/powmod_test.cr
     title: test/math/powmod_test.cr
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/scanner/11_test.cr
     title: test/scanner/11_test.cr
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cr
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes: {}
   bundledCode: "macro static_modint(name, mod)\n  struct {{name}}\n    MOD = {{mod}}i64\n\
     \n    def self.zero\n      new\n    end\n\n    def self.raw(value : Int64)\n \
@@ -128,8 +128,8 @@ data:
   - spec/math/mint_spec.cr
   - spec/math/combination_spec.cr
   - spec/math/matrix_spec.cr
-  timestamp: '2022-01-02 07:36:08+00:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-01-02 08:46:32+00:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/math/gcd_convolution_test.cr
   - test/math/powmod_test.cr

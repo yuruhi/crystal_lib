@@ -178,60 +178,62 @@ data:
     \ peek\n        io.skip(peek.size)\n        peek = io.peek\n        break if peek.empty?\n\
     \        if index = peek.index { |x| x == 32 || x == 10 }\n          buffer.write\
     \ peek[0, index]\n          io.skip(index + 1)\n          break\n        end\n\
-    \      end\n    end\n  end\nend\n\nmacro internal_input(type, else_ast)\n  {%\
-    \ if Scanner.class.has_method?(type.id) %}\n    Scanner.{{type.id}}\n  {% elsif\
-    \ type.stringify == \"String\" %}\n    Scanner.s\n  {% elsif type.stringify ==\
-    \ \"Char\" %}\n    Scanner.c\n  {% elsif type.is_a?(Path) %}\n    {% if type.resolve.class.has_method?(:scan)\
-    \ %}\n      {{type}}.scan(Scanner)\n    {% else %}\n      {{type}}.new(Scanner.s)\n\
-    \    {% end %}\n  {% elsif String.has_method?(\"to_#{type}\".id) %}\n    Scanner.s.to_{{type.id}}\n\
+    \      end\n    end\n  end\nend\n\nmacro internal_input(type, else_ast, io)\n\
+    \  {% if Scanner.class.has_method?(type.id) %}\n    Scanner.{{type.id}}({{io}})\n\
+    \  {% elsif type.stringify == \"String\" %}\n    Scanner.s({{io}})\n  {% elsif\
+    \ type.stringify == \"Char\" %}\n    Scanner.c({{io}})\n  {% elsif type.is_a?(Path)\
+    \ %}\n    {% if type.resolve.class.has_method?(:scan) %}\n      {{type}}.scan(Scanner)\n\
+    \    {% else %}\n      {{type}}.new(Scanner.s({{io}}))\n    {% end %}\n  {% elsif\
+    \ String.has_method?(\"to_#{type}\".id) %}\n    Scanner.s({{io}}).to_{{type.id}}\n\
     \  {% else %}\n    {{else_ast}}\n  {% end %}\nend\n\nmacro internal_input_array(type,\
     \ args)\n  {% for i in 0...args.size %}\n    %size{i} = input({{args[i]}})\n \
     \ {% end %}\n  {% begin %}\n    {% for i in 0...args.size %} Array.new(%size{i})\
     \ { {% end %}\n      input({{type.id}})\n    {% for i in 0...args.size %} } {%\
-    \ end %}\n  {% end %}\nend\n\nmacro input(ast)\n  {% if ast.is_a?(Call) %}\n \
-    \   {% if ast.receiver.is_a?(Nop) %}\n      internal_input(\n        {{ast.name}},\
-    \ {{ast.name}}(\n          {% for argument in ast.args %} input({{argument}}),\
-    \ {% end %}\n        )\n      )\n    {% elsif ast.name.stringify == \"[]\" %}\n\
+    \ end %}\n  {% end %}\nend\n\nmacro input(ast, *, io = STDIN)\n  {% if ast.is_a?(Call)\
+    \ %}\n    {% if ast.receiver.is_a?(Nop) %}\n      internal_input(\n        {{ast.name}},\n\
+    \        {{ast.name}}({% for argument in ast.args %} input({{argument}}), {% end\
+    \ %}),\n        {{io}},\n      )\n    {% elsif ast.name.stringify == \"[]\" %}\n\
     \      internal_input_array({{ast.receiver}}, {{ast.args}})\n    {% else %}\n\
-    \      input({{ast.receiver}}).{{ast.name}}(\n        {% for argument in ast.args\
-    \ %} input({{argument}}), {% end %}\n      ) {{ast.block}}\n    {% end %}\n  {%\
-    \ elsif ast.is_a?(TupleLiteral) %}\n    { {% for i in 0...ast.size %} input({{ast[i]}}),\
-    \ {% end %} }\n  {% elsif ast.is_a?(ArrayLiteral) %}\n    [ {% for i in 0...ast.size\
-    \ %} input({{ast[i]}}), {% end %} ]\n  {% elsif ast.is_a?(RangeLiteral) %}\n \
-    \   Range.new(input({{ast.begin}}), input({{ast.end}}), {{ast.excludes_end?}})\n\
-    \  {% elsif ast.is_a?(If) %}\n    {{ast.cond}} ? input({{ast.then}}) : input({{ast.else}})\n\
-    \  {% elsif ast.is_a?(Assign) %}\n    {{ast.target}} = input({{ast.value}})\n\
-    \  {% else %}\n    internal_input({{ast.id}}, {{ast.id}})\n  {% end %}\nend\n\n\
-    macro input(*asts)\n  { {% for ast in asts %} input({{ast}}), {% end %} }\nend\n\
-    \nmacro input_column(types, size)\n  {% for type, i in types %}\n    %array{i}\
-    \ = Array({{type}}).new({{size}})\n  {% end %}\n  {{size}}.times do\n    {% for\
-    \ type, i in types %}\n      %array{i} << input({{type}})\n    {% end %}\n  end\n\
-    \  { {% for type, i in types %} %array{i}, {% end %} }\nend\n\n# require \"../../src/tuple/times\"\
-    \nstruct Tuple\n  def times(&block) : Nil\n    {% begin %}\n      {% for i in\
-    \ 0...@type.size %}\n        self[{{i}}].times do |i{{i}}|\n      {% end %}\n\
-    \      yield({% for i in 0...@type.size %} i{{i}}, {% end %})\n      {% for i\
-    \ in 0...@type.size %}\n        end\n      {% end %}\n    {% end %}\n  end\n\n\
-    \  private class TimesIterator(T)\n    include Iterator(T)\n\n    def initialize(@n\
-    \ : T)\n      tuple = {% begin %} { {% for type in T %} {{type}}.zero, {% end\
-    \ %} } {% end %}\n      @index = tuple.as(T)\n      @first = true\n    end\n\n\
-    \    def next\n      if @first\n        @first = false\n        return @index\n\
-    \      end\n      {% begin %}\n        {%\n          type = @type.type_vars[0]\n\
-    \          size = type.size\n        %}\n        {% for i in 1..size %}\n    \
-    \      if @index[{{size - i}}] < @n[{{size - i}}] - 1\n            @index = {\n\
-    \              {% for j in 0...size %}\n                {% if j < size - i %}\n\
-    \                  @index[{{j}}],\n                {% elsif j == size - i %}\n\
-    \                  @index[{{j}}] + 1,\n                {% else %}\n          \
-    \        {{type[j]}}.zero,\n                {% end %}\n              {% end %}\n\
-    \            }\n            return @index\n          end\n        {% end %}\n\
-    \        stop\n      {% end %}\n    end\n  end\n\n  def times\n    TimesIterator(self).new(self)\n\
-    \  end\nend\n\nh, w = input(i, i)\na = input(i[h, w])\n\nl, r = 0, 0\nedges =\
-    \ {h, w}.times.group_by { |(i, j)|\n  a[i][j]\n}.flat_map { |val, points|\n  next\
-    \ [] of {Int32, Int32} if val == 0\n  row = {} of Int32 => Int32\n  column = {}\
-    \ of Int32 => Int32\n  points.map do |(y, x)|\n    ll = row[y]? || (row[y] = (l\
-    \ += 1) - 1)\n    rr = column[x]? || (column[x] = (r += 1) - 1)\n    {ll, rr}\n\
-    \  end\n}\n\nans1 = BipartiteMatching.new(l, r).add_edges(edges).solve\nans2 =\
-    \ BipartiteMatching.new(l, r, edges).solve\nraise \"\" unless ans1 == ans2\nputs\
-    \ ans1\n"
+    \      input({{ast.receiver}}, io: {{io}}).{{ast.name}}(\n        {% for argument\
+    \ in ast.args %} input({{argument}}), {% end %}\n      ) {{ast.block}}\n    {%\
+    \ end %}\n  {% elsif ast.is_a?(TupleLiteral) %}\n    { {% for i in 0...ast.size\
+    \ %} input({{ast[i]}}, io: {{io}}), {% end %} }\n  {% elsif ast.is_a?(ArrayLiteral)\
+    \ %}\n    [ {% for i in 0...ast.size %} input({{ast[i]}}, io: {{io}}), {% end\
+    \ %} ]\n  {% elsif ast.is_a?(RangeLiteral) %}\n    Range.new(\n      input({{ast.begin}},\
+    \ io: {{io}}),\n      input({{ast.end}}, io: {{io}}),\n      {{ast.excludes_end?}},\n\
+    \    )\n  {% elsif ast.is_a?(If) %}\n    {{ast.cond}} ? input({{ast.then}}, io:\
+    \ {{io}}) : input({{ast.else}}, io: {{io}})\n  {% elsif ast.is_a?(Assign) %}\n\
+    \    {{ast.target}} = input({{ast.value}}, io: {{io}})\n  {% else %}\n    internal_input({{ast}},\
+    \ {{ast}}, io: {{io}})\n  {% end %}\nend\n\nmacro input(*asts, io = STDIN)\n \
+    \ { {% for ast in asts %} input({{ast}}, io: {{io}}), {% end %} }\nend\n\nmacro\
+    \ input_column(types, size)\n  {% for type, i in types %}\n    %array{i} = Array({{type}}).new({{size}})\n\
+    \  {% end %}\n  {{size}}.times do\n    {% for type, i in types %}\n      %array{i}\
+    \ << input({{type}})\n    {% end %}\n  end\n  { {% for type, i in types %} %array{i},\
+    \ {% end %} }\nend\n\n# require \"../../src/tuple/times\"\nstruct Tuple\n  def\
+    \ times(&block) : Nil\n    {% begin %}\n      {% for i in 0...@type.size %}\n\
+    \        self[{{i}}].times do |i{{i}}|\n      {% end %}\n      yield({% for i\
+    \ in 0...@type.size %} i{{i}}, {% end %})\n      {% for i in 0...@type.size %}\n\
+    \        end\n      {% end %}\n    {% end %}\n  end\n\n  private class TimesIterator(T)\n\
+    \    include Iterator(T)\n\n    def initialize(@n : T)\n      tuple = {% begin\
+    \ %} { {% for type in T %} {{type}}.zero, {% end %} } {% end %}\n      @index\
+    \ = tuple.as(T)\n      @first = true\n    end\n\n    def next\n      if @first\n\
+    \        @first = false\n        return @index\n      end\n      {% begin %}\n\
+    \        {%\n          type = @type.type_vars[0]\n          size = type.size\n\
+    \        %}\n        {% for i in 1..size %}\n          if @index[{{size - i}}]\
+    \ < @n[{{size - i}}] - 1\n            @index = {\n              {% for j in 0...size\
+    \ %}\n                {% if j < size - i %}\n                  @index[{{j}}],\n\
+    \                {% elsif j == size - i %}\n                  @index[{{j}}] +\
+    \ 1,\n                {% else %}\n                  {{type[j]}}.zero,\n      \
+    \          {% end %}\n              {% end %}\n            }\n            return\
+    \ @index\n          end\n        {% end %}\n        stop\n      {% end %}\n  \
+    \  end\n  end\n\n  def times\n    TimesIterator(self).new(self)\n  end\nend\n\n\
+    h, w = input(i, i)\na = input(i[h, w])\n\nl, r = 0, 0\nedges = {h, w}.times.group_by\
+    \ { |(i, j)|\n  a[i][j]\n}.flat_map { |val, points|\n  next [] of {Int32, Int32}\
+    \ if val == 0\n  row = {} of Int32 => Int32\n  column = {} of Int32 => Int32\n\
+    \  points.map do |(y, x)|\n    ll = row[y]? || (row[y] = (l += 1) - 1)\n    rr\
+    \ = column[x]? || (column[x] = (r += 1) - 1)\n    {ll, rr}\n  end\n}\n\nans1 =\
+    \ BipartiteMatching.new(l, r).add_edges(edges).solve\nans2 = BipartiteMatching.new(l,\
+    \ r, edges).solve\nraise \"\" unless ans1 == ans2\nputs ans1\n"
   code: "# verification-helper: PROBLEM https://yukicoder.me/problems/no/1479\nrequire\
     \ \"../../src/graph/bipartite_matching\"\nrequire \"../../src/scanner\"\nrequire\
     \ \"../../src/tuple/times\"\n\nh, w = input(i, i)\na = input(i[h, w])\n\nl, r\
@@ -251,7 +253,7 @@ data:
   isVerificationFile: true
   path: test/graph/bipartite_matching_test.cr
   requiredBy: []
-  timestamp: '2021-12-29 20:30:52+09:00'
+  timestamp: '2022-01-02 17:14:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graph/bipartite_matching_test.cr

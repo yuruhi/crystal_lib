@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/graph/bfs.cr
     title: src/graph/bfs.cr
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/graph/bfs01.cr
     title: src/graph/bfs01.cr
   - icon: ':heavy_check_mark:'
@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/graph/detect_cycle.cr
     title: src/graph/detect_cycle.cr
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/graph/dijkstra.cr
     title: src/graph/dijkstra.cr
   - icon: ':heavy_check_mark:'
@@ -56,7 +56,7 @@ data:
   - icon: ':warning:'
     path: src/graph/topological_sort.cr
     title: src/graph/topological_sort.cr
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/graph/tree.cr
     title: src/graph/tree.cr
   - icon: ':heavy_check_mark:'
@@ -102,7 +102,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/graph/diameter_test.cr
     title: test/graph/diameter_test.cr
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graph/dijkstra_path_test.cr
     title: test/graph/dijkstra_path_test.cr
   - icon: ':heavy_check_mark:'
@@ -126,10 +126,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/graph/tree_walk_test.cr
     title: test/graph/tree_walk_test.cr
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/scanner/11_test.cr
     title: test/scanner/11_test.cr
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/scanner/13_test.cr
     title: test/scanner/13_test.cr
   _isVerificationFailed: true

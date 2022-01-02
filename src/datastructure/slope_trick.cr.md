@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/datastructure/binary_heap.cr
     title: src/datastructure/binary_heap.cr
   _extendedRequiredBy: []

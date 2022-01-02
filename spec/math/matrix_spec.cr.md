@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/math/matrix.cr
     title: src/math/matrix.cr
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: src/math/mint.cr
     title: src/math/mint.cr
   _extendedRequiredBy: []

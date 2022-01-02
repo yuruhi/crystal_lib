@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/datastructure/binary_heap.cr
     title: src/datastructure/binary_heap.cr
   - icon: ':question:'
@@ -12,15 +12,15 @@ data:
     title: src/graph/edge.cr
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graph/dijkstra_path_test.cr
     title: test/graph/dijkstra_path_test.cr
   - icon: ':heavy_check_mark:'
     path: test/graph/dijkstra_test.cr
     title: test/graph/dijkstra_test.cr
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cr
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes: {}
   bundledCode: "# require \"../datastructure/binary_heap\"\nclass BinaryHeap(T)\n\
     \  # Creates a new empty heap.\n  def initialize\n    @heap = Array(T).new\n \
@@ -190,11 +190,11 @@ data:
     \ end\n      end\n    end\n  end\n\n  # Returns the distance of *start* to *goal*.\n\
     \  def dijkstra!(start : Int, goal : Int)\n    dijkstra(start, goal).not_nil!\n\
     \  end\n\n  def dijkstra_with_prev(start : Int)\n    raise ArgumentError.new unless\
-    \ 0 <= start < size\n    que = AtCoder::PriorityQueue({Int32, typeof(first.cost)}).new\
-    \ { |(v1, d1), (v2, d2)| d1 > d2 }\n    que << {start, typeof(first.cost).zero}\n\
-    \    dist = Array(typeof(first.cost)?).new(size, nil)\n    dist[start] = typeof(first.cost).zero\n\
-    \    prev = Array(Int32?).new(size, nil)\n\n    while vd = que.pop\n      v, d\
-    \ = vd\n      next if dist[v].try { |dist_v| dist_v < d }\n      current_dist\
+    \ 0 <= start < size\n    que = BinaryHeap({Int32, typeof(first.cost)}).new { |(v1,\
+    \ d1), (v2, d2)| d1 <=> d2 }\n    que << {start, typeof(first.cost).zero}\n  \
+    \  dist = Array(typeof(first.cost)?).new(size, nil)\n    dist[start] = typeof(first.cost).zero\n\
+    \    prev = Array(Int32?).new(size, nil)\n\n    until que.empty?\n      v, d =\
+    \ que.pop\n      next if dist[v].try { |dist_v| dist_v < d }\n      current_dist\
     \ = dist[v].not_nil!\n      graph[v].each do |edge|\n        next_dist = current_dist\
     \ + edge.cost\n        if dist[edge.to].nil? || dist[edge.to].not_nil! > next_dist\n\
     \          dist[edge.to] = next_dist\n          prev[edge.to] = v\n          que\
@@ -229,12 +229,12 @@ data:
     \          que << {edge.to, next_dist}\n        end\n      end\n    end\n  end\n\
     \n  # Returns the distance of *start* to *goal*.\n  def dijkstra!(start : Int,\
     \ goal : Int)\n    dijkstra(start, goal).not_nil!\n  end\n\n  def dijkstra_with_prev(start\
-    \ : Int)\n    raise ArgumentError.new unless 0 <= start < size\n    que = AtCoder::PriorityQueue({Int32,\
-    \ typeof(first.cost)}).new { |(v1, d1), (v2, d2)| d1 > d2 }\n    que << {start,\
+    \ : Int)\n    raise ArgumentError.new unless 0 <= start < size\n    que = BinaryHeap({Int32,\
+    \ typeof(first.cost)}).new { |(v1, d1), (v2, d2)| d1 <=> d2 }\n    que << {start,\
     \ typeof(first.cost).zero}\n    dist = Array(typeof(first.cost)?).new(size, nil)\n\
     \    dist[start] = typeof(first.cost).zero\n    prev = Array(Int32?).new(size,\
-    \ nil)\n\n    while vd = que.pop\n      v, d = vd\n      next if dist[v].try {\
-    \ |dist_v| dist_v < d }\n      current_dist = dist[v].not_nil!\n      graph[v].each\
+    \ nil)\n\n    until que.empty?\n      v, d = que.pop\n      next if dist[v].try\
+    \ { |dist_v| dist_v < d }\n      current_dist = dist[v].not_nil!\n      graph[v].each\
     \ do |edge|\n        next_dist = current_dist + edge.cost\n        if dist[edge.to].nil?\
     \ || dist[edge.to].not_nil! > next_dist\n          dist[edge.to] = next_dist\n\
     \          prev[edge.to] = v\n          que << {edge.to, next_dist}\n        end\n\
@@ -250,8 +250,8 @@ data:
   isVerificationFile: false
   path: src/graph/dijkstra.cr
   requiredBy: []
-  timestamp: '2022-01-01 11:25:12+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-01-02 17:13:38+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graph/dijkstra_test.cr
   - test/graph/dijkstra_path_test.cr

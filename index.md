@@ -213,7 +213,7 @@ data:
     - icon: ':warning:'
       path: src/datastructure/ascii_binary_tree.cr
       title: src/datastructure/ascii_binary_tree.cr
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: src/datastructure/binary_heap.cr
       title: src/datastructure/binary_heap.cr
     - icon: ':warning:'
@@ -340,7 +340,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/graph/bfs.cr
       title: src/graph/bfs.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: src/graph/bfs01.cr
       title: src/graph/bfs01.cr
     - icon: ':heavy_check_mark:'
@@ -364,7 +364,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/graph/detect_cycle.cr
       title: src/graph/detect_cycle.cr
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: src/graph/dijkstra.cr
       title: src/graph/dijkstra.cr
     - icon: ':question:'
@@ -388,7 +388,7 @@ data:
     - icon: ':warning:'
       path: src/graph/topological_sort.cr
       title: src/graph/topological_sort.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: src/graph/tree.cr
       title: src/graph/tree.cr
     - icon: ':heavy_check_mark:'
@@ -419,13 +419,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/math/gcd.cr
       title: src/math/gcd.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: src/math/matrix.cr
       title: src/math/matrix.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: src/math/mint.cr
       title: src/math/mint.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: src/math/ntt.cr
       title: src/math/ntt.cr
     - icon: ':warning:'
@@ -563,7 +563,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/graph/diameter_test.cr
       title: test/graph/diameter_test.cr
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/graph/dijkstra_path_test.cr
       title: test/graph/dijkstra_path_test.cr
     - icon: ':heavy_check_mark:'
@@ -612,10 +612,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/math/matrix_product_test.cr
       title: test/math/matrix_product_test.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/math/matrix_test.cr
       title: test/math/matrix_test.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/math/ntt_test.cr
       title: test/math/ntt_test.cr
     - icon: ':heavy_check_mark:'
@@ -631,55 +631,55 @@ data:
       title: test/point/point_to_direction_test.cr
   - name: test/scanner
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/scanner/10_test.cr
       title: test/scanner/10_test.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/scanner/11_test.cr
       title: test/scanner/11_test.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/scanner/12_test.cr
       title: test/scanner/12_test.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/scanner/13_test.cr
       title: test/scanner/13_test.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/scanner/14_test.cr
       title: test/scanner/14_test.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/scanner/15_test.cr
       title: test/scanner/15_test.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/scanner/16_test.cr
       title: test/scanner/16_test.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/scanner/17_test.cr
       title: test/scanner/17_test.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/scanner/1_test.cr
       title: test/scanner/1_test.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/scanner/2_test.cr
       title: test/scanner/2_test.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/scanner/3_test.cr
       title: test/scanner/3_test.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/scanner/4_test.cr
       title: test/scanner/4_test.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/scanner/5_test.cr
       title: test/scanner/5_test.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/scanner/6_test.cr
       title: test/scanner/6_test.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/scanner/7_test.cr
       title: test/scanner/7_test.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/scanner/8_test.cr
       title: test/scanner/8_test.cr
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/scanner/9_test.cr
       title: test/scanner/9_test.cr
   - name: test/string
