@@ -17,6 +17,7 @@ class Sieve
   end
 
   def prime?(x : Int) : Bool
+    raise ArgumentError.new unless 1 <= x <= size
     factor[x] == x
   end
 
@@ -39,10 +40,12 @@ class Sieve
   end
 
   def prime_division(x : Int)
+    raise ArgumentError.new unless 1 <= x <= size
     PrimeDivisionIterator.new(x, factor)
   end
 
   def each_factor(x : Int, &) : Nil
+    raise ArgumentError.new unless 1 <= x <= size
     while x > 1
       element = @factor[x]
       count = 0
@@ -55,6 +58,7 @@ class Sieve
   end
 
   def number_of_divisors(x : Int) : Int32
+    raise ArgumentError.new unless 1 <= x <= size
     cnt = 1
     each_factor(x) do |_, c|
       cnt *= c.succ
@@ -63,6 +67,7 @@ class Sieve
   end
 
   def sum_of_divisors(x : Int) : Int64
+    raise ArgumentError.new unless 1 <= x <= size
     sum = 1i64
     each_factor(x) do |elem, cnt|
       sum *= (elem.to_i64 ** cnt.succ - 1) // elem.pred
