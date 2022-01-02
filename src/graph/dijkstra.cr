@@ -60,14 +60,14 @@ module Graph(Edge, Edge2)
 
   def dijkstra_with_prev(start : Int)
     raise ArgumentError.new unless 0 <= start < size
-    que = AtCoder::PriorityQueue({Int32, typeof(first.cost)}).new { |(v1, d1), (v2, d2)| d1 > d2 }
+    que = BinaryHeap({Int32, typeof(first.cost)}).new { |(v1, d1), (v2, d2)| d1 <=> d2 }
     que << {start, typeof(first.cost).zero}
     dist = Array(typeof(first.cost)?).new(size, nil)
     dist[start] = typeof(first.cost).zero
     prev = Array(Int32?).new(size, nil)
 
-    while vd = que.pop
-      v, d = vd
+    until que.empty?
+      v, d = que.pop
       next if dist[v].try { |dist_v| dist_v < d }
       current_dist = dist[v].not_nil!
       graph[v].each do |edge|
