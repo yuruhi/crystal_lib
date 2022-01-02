@@ -213,21 +213,21 @@ module Scanner
   end
 end
 
-macro internal_input(type, else_ast)
+macro internal_input(type, else_ast, io)
   {% if Scanner.class.has_method?(type.id) %}
-    Scanner.{{type.id}}
+    Scanner.{{type.id}}({{io}})
   {% elsif type.stringify == "String" %}
-    Scanner.s
+    Scanner.s({{io}})
   {% elsif type.stringify == "Char" %}
-    Scanner.c
+    Scanner.c({{io}})
   {% elsif type.is_a?(Path) %}
     {% if type.resolve.class.has_method?(:scan) %}
       {{type}}.scan(Scanner)
     {% else %}
-      {{type}}.new(Scanner.s)
+      {{type}}.new(Scanner.s({{io}}))
     {% end %}
   {% elsif String.has_method?("to_#{type}".id) %}
-    Scanner.s.to_{{type.id}}
+    Scanner.s({{io}}).to_{{type.id}}
   {% else %}
     {{else_ast}}
   {% end %}
@@ -244,38 +244,42 @@ macro internal_input_array(type, args)
   {% end %}
 end
 
-macro input(ast)
+macro input(ast, *, io = STDIN)
   {% if ast.is_a?(Call) %}
     {% if ast.receiver.is_a?(Nop) %}
       internal_input(
-        {{ast.name}}, {{ast.name}}(
-          {% for argument in ast.args %} input({{argument}}), {% end %}
-        )
+        {{ast.name}},
+        {{ast.name}}({% for argument in ast.args %} input({{argument}}), {% end %}),
+        {{io}},
       )
     {% elsif ast.name.stringify == "[]" %}
       internal_input_array({{ast.receiver}}, {{ast.args}})
     {% else %}
-      input({{ast.receiver}}).{{ast.name}}(
+      input({{ast.receiver}}, io: {{io}}).{{ast.name}}(
         {% for argument in ast.args %} input({{argument}}), {% end %}
       ) {{ast.block}}
     {% end %}
   {% elsif ast.is_a?(TupleLiteral) %}
-    { {% for i in 0...ast.size %} input({{ast[i]}}), {% end %} }
+    { {% for i in 0...ast.size %} input({{ast[i]}}, io: {{io}}), {% end %} }
   {% elsif ast.is_a?(ArrayLiteral) %}
-    [ {% for i in 0...ast.size %} input({{ast[i]}}), {% end %} ]
+    [ {% for i in 0...ast.size %} input({{ast[i]}}, io: {{io}}), {% end %} ]
   {% elsif ast.is_a?(RangeLiteral) %}
-    Range.new(input({{ast.begin}}), input({{ast.end}}), {{ast.excludes_end?}})
+    Range.new(
+      input({{ast.begin}}, io: {{io}}),
+      input({{ast.end}}, io: {{io}}),
+      {{ast.excludes_end?}},
+    )
   {% elsif ast.is_a?(If) %}
-    {{ast.cond}} ? input({{ast.then}}) : input({{ast.else}})
+    {{ast.cond}} ? input({{ast.then}}, io: {{io}}) : input({{ast.else}}, io: {{io}})
   {% elsif ast.is_a?(Assign) %}
-    {{ast.target}} = input({{ast.value}})
+    {{ast.target}} = input({{ast.value}}, io: {{io}})
   {% else %}
-    internal_input({{ast.id}}, {{ast.id}})
+    internal_input({{ast}}, {{ast}}, io: {{io}})
   {% end %}
 end
 
-macro input(*asts)
-  { {% for ast in asts %} input({{ast}}), {% end %} }
+macro input(*asts, io = STDIN)
+  { {% for ast in asts %} input({{ast}}, io: {{io}}), {% end %} }
 end
 
 macro input_column(types, size)
