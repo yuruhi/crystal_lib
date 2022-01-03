@@ -111,6 +111,56 @@ struct Point
     x * other.y - y * other.x
   end
 
+  # Rotates 90 degrees clockwise.
+  #
+  # x....      ..x
+  # .....  ->  ...
+  # ....y      ...
+  #            ...
+  #            y..
+  #
+  def rotate90!
+    @y, @x = x, Point.height - 1 - y
+    self
+  end
+
+  # :ditto:
+  def rotate90
+    dup.rotate90!
+  end
+
+  # Flips the grid vertically.
+  #
+  # .x....      .....y
+  # ......  ->  ......
+  # .....y      .x....
+  #
+  def flip_vertically!
+    @y, @x = Point.height - y - 1, x
+    self
+  end
+
+  # :ditto:
+  def flip_vertically
+    dup.flip_vertically!
+  end
+
+  # Flips the grid horizontally.
+  #
+  # .x....      ....x.
+  # ......  ->  ......
+  # .....y      y.....
+  #
+  def flip_horizontally!
+    @y, @x = y, Point.width - x - 1
+    self
+  end
+
+  # :ditto:
+  def flip_horizontally
+    dup.flip_horizontally!
+  end
+
   def ==(other : Point)
     x == other.x && y == other.y
   end

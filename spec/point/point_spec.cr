@@ -93,6 +93,36 @@ describe Point do
     Point[1, 2].cross(Point[2, 3]).should eq 1
   end
 
+  it "#rotate90" do
+    Point[0, 0].rotate90.should eq Point[0, 2]
+    Point[0, 1].rotate90.should eq Point[1, 2]
+    Point[1, 0].rotate90.should eq Point[0, 1]
+    Point[1, 1].rotate90.should eq Point[1, 1]
+    x = Point[1, 2]
+    x.rotate90!.should eq Point[2, 1]
+    x.should eq Point[2, 1]
+  end
+
+  it "#flip_vertically" do
+    Point[0, 0].flip_vertically.should eq Point[2, 0]
+    Point[0, 1].flip_vertically.should eq Point[2, 1]
+    Point[1, 0].flip_vertically.should eq Point[1, 0]
+    Point[1, 1].flip_vertically.should eq Point[1, 1]
+    x = Point[0, 0]
+    x.flip_vertically!.should eq Point[2, 0]
+    x.should eq Point[2, 0]
+  end
+
+  it "#flip_horizontally" do
+    Point[0, 0].flip_horizontally.should eq Point[0, 3]
+    Point[0, 1].flip_horizontally.should eq Point[0, 2]
+    Point[1, 0].flip_horizontally.should eq Point[1, 3]
+    Point[1, 1].flip_horizontally.should eq Point[1, 2]
+    x = Point[0, 0]
+    x.flip_horizontally!.should eq Point[0, 3]
+    x.should eq Point[0, 3]
+  end
+
   it "#==(other)" do
     Point.each do |p1|
       Point.each do |p2|
