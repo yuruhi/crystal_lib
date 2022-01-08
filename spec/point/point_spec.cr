@@ -126,7 +126,7 @@ describe Point do
   it "#==(other)" do
     Point.each do |p1|
       Point.each do |p2|
-        (p1 == p2).should eq ({p1.y, p1.x} == {p2.y, p2.x})
+        (p1 == p2).should eq({p1.y, p1.x} == {p2.y, p2.x})
       end
     end
   end
@@ -134,7 +134,7 @@ describe Point do
   it "#<=>(other)" do
     Point.each do |p1|
       Point.each do |p2|
-        (p1 <=> p2).should eq ({p1.y, p1.x} <=> {p2.y, p2.x})
+        (p1 <=> p2).should eq({p1.y, p1.x} <=> {p2.y, p2.x})
       end
     end
   end

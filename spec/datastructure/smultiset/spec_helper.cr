@@ -191,7 +191,7 @@ def run_smultiset_spec(type : MS.class, class_name : String) forall MS
       end
       s.to_a.should eq (1..n).to_a
       (-n..n*2).each do |x|
-        s.includes?(x).should (1 <= x <= n ? be_true : be_false)
+        s.includes?(x).should(1 <= x <= n ? be_true : be_false)
       end
       (1..n).each do |x|
         s.delete(x).should be_true
