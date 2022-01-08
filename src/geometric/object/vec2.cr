@@ -14,6 +14,10 @@ module Geometric
       @x, @y = Real.new(x), Real.new(y)
     end
 
+    def self.scan(scanner, io : IO) : self
+      Vec2.new(scanner.f(io), scanner.f(io))
+    end
+
     def +
       self
     end
@@ -74,10 +78,6 @@ module Geometric
 
     def inspect(io : IO)
       io << '(' << x << ", " << y << ')'
-    end
-
-    def self.scan(scanner) : self
-      Vec2.new(scanner.f, scanner.f)
     end
   end
 end

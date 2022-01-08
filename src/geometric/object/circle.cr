@@ -10,6 +10,10 @@ module Geometric
       initialize(Vec2.new(x, y), radious)
     end
 
+    def self.scan(s, io : IO) : self
+      new Real.scan(s, io), Real.scan(s, io), Real.scan(s, io)
+    end
+
     delegate x, y, to: center
 
     {% for op in %w[+ - * /] %}

@@ -48,9 +48,17 @@ module Geometric
 
   struct Line
     include LineBase
+
+    def self.scan(s, io : IO) : self
+      new Real.scan(s, io), Real.scan(s, io), Real.scan(s, io), Real.scan(s, io)
+    end
   end
 
   struct Segment
     include LineBase
+
+    def self.scan(scanner, io : IO) : self
+      new Real.scan(s, io), Real.scan(s, io), Real.scan(s, io), Real.scan(s, io)
+    end
   end
 end

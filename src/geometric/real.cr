@@ -35,4 +35,8 @@ struct Real
   def to_degree
     self * 180 / Math::PI
   end
+
+  def self.scan(scanner, io : IO) : self
+    Real.new scanner.s(io)
+  end
 end
