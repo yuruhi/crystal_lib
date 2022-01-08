@@ -58,6 +58,10 @@ struct Point
     Point.new(y, x)
   end
 
+  def self.scan(scanner, io : IO) : self
+    Point.new(scanner.i(io), scanner.i(io))
+  end
+
   {% for name, d in {
                       :zero => {0, 0},
                       :up => {-1, 0}, :down => {1, 0}, :left => {0, -1}, :right => {0, 1},
