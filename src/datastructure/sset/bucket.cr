@@ -1,13 +1,10 @@
 # reference: https://github.com/tatyam-prime/SortedSet/blob/main/SortedSet.py
-class SSet::Bucket(T)
+class SSet::Bucket(T, BUCKET_RATIO, REBUILD_RATIO, BSEARCH)
   include Enumerable(T)
   include Iterable(T)
   include Indexable(T)
 
-  BUCKET_RATIO  =  60
-  REBUILD_RATIO = 170
-
-  getter size : Int32 = 0
+  getter size = 0
   @buckets = [] of Array(T)
 
   def initialize
@@ -92,7 +89,11 @@ class SSet::Bucket(T)
   end
 
   private def find_bucket(object : T)
-    @buckets.find(@buckets.last) { |bucket| object <= bucket.last }
+    {% if BSEARCH > 0 %}
+      @buckets.bsearch { |bucket| object <= bucket.last } || @buckets.last
+    {% else %}
+      @buckets.find(@buckets.last) { |bucket| object <= bucket.last }
+    {% end %}
   end
 
   def includes?(object : T) : Bool
@@ -178,15 +179,21 @@ class SSet::Bucket(T)
   end
 
   def ge(object : T) : T?
-    @buckets.each do |bucket|
-      if bucket.last >= object
-        return bucket.bsearch { |x| x >= object }.not_nil!
+    {% if BSEARCH > 0 %}
+      @buckets.bsearch { |bucket| bucket.last >= object }.try do |bucket|
+        bucket.bsearch { |x| x >= object }.not_nil!
       end
-    end
+    {% else %}
+      @buckets.each do |bucket|
+        if bucket.last >= object
+          return bucket.bsearch { |x| x >= object }.not_nil!
+        end
+      end
+    {% end %}
   end
 
   def gt(object : T) : T?
-    @buckets.reverse_each do |bucket|
+    @buckets.each do |bucket|
       if bucket.last > object
         return bucket.bsearch { |x| x > object }.not_nil!
       end
@@ -201,7 +208,7 @@ class SSet::Bucket(T)
 
   {% for op in [:&, :|, :^, :+, :-] %}
     def {{op.id}}(other : Enumerable(T)) : self
-      SSet::Bucket.new (self.to_set {{op.id}} other.to_set)
+      SSet::Bucket(T, BUCKET_RATIO, REBUILD_RATIO, BSEARCH).new (self.to_set {{op.id}} other.to_set)
     end
   {% end %}
 
