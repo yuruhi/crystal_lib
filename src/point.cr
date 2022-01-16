@@ -14,6 +14,10 @@ struct Point
     @@height, @@width = height, width
   end
 
+  def self.reset_range
+    @@height, @@width = nil, nil
+  end
+
   def self.size
     height * width
   end

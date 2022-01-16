@@ -22,6 +22,8 @@ end
 private H = 3
 private W = 4
 
+Point.reset_range
+
 describe Point do
   it ".set_range and .height and .width" do
     expect_raises(NilAssertionError) { Point.height }
