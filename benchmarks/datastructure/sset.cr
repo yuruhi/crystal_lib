@@ -44,43 +44,43 @@ R = Random.new(42)
 values5 = (0...10**5).to_a.shuffle(R)
 values6 = (0...10**6).to_a.shuffle(R)
 {% begin %}
-	{% hash = {
-      "SSet::RedBlackTree" => "RBT",
-      "SSet::Treap"        => "Treap",
-      "SSet::Bucket"       => "Bucket",
-    } %}
-	puts "#add (1e5 times)"
-	Benchmark.ips do |x|
-		{% for type, label in hash %} add({{type.id}}, x, {{label}}, values5); {% end %}
-	end
+  {% hash = {
+       "SSet::RedBlackTree" => "RBT",
+       "SSet::Treap"        => "Treap",
+       "SSet::Bucket"       => "Bucket",
+     } %}
+  puts "#add (1e5 times)"
+  Benchmark.ips do |x|
+    {% for type, label in hash %} add({{type.id}}, x, {{label}}, values5); {% end %}
+  end
 
-	puts "\n#add and #delete (1e5 times)"
-	Benchmark.ips do |x|
-		{% for type, label in hash %} add_delete({{type.id}}, x, {{label}}, values5); {% end %}
-	end
+  puts "\n#add and #delete (1e5 times)"
+  Benchmark.ips do |x|
+    {% for type, label in hash %} add_delete({{type.id}}, x, {{label}}, values5); {% end %}
+  end
 
-	puts "\n#add (1e6 times)"
-	Benchmark.ips do |x|
-		{% for type, label in hash %} add({{type.id}}, x, {{label}}, values6); {% end %}
-	end
+  puts "\n#add (1e6 times)"
+  Benchmark.ips do |x|
+    {% for type, label in hash %} add({{type.id}}, x, {{label}}, values6); {% end %}
+  end
 
-	puts "\n#add (1e6 times) and #delete (1e6 times)"
-	Benchmark.ips do |x|
-		{% for type, label in hash %} add_delete({{type.id}}, x, {{label}}, values6); {% end %}
-	end
+  puts "\n#add (1e6 times) and #delete (1e6 times)"
+  Benchmark.ips do |x|
+    {% for type, label in hash %} add_delete({{type.id}}, x, {{label}}, values6); {% end %}
+  end
 
-	puts "\n#each (1e6 elements)"
-	Benchmark.ips do |x|
-		{% for type, label in hash %} each({{type.id}}, x, {{label}}, 10**6); {% end %}
-	end
+  puts "\n#each (1e6 elements)"
+  Benchmark.ips do |x|
+    {% for type, label in hash %} each({{type.id}}, x, {{label}}, 10**6); {% end %}
+  end
 
   puts "\n#includes? (1e6 times with 5e5 elements)"
-	Benchmark.ips do |x|
-		{% for type, label in hash %} includes?({{type.id}}, x, {{label}}, 10**6); {% end %}
-	end
-	
-	puts "\n#le (1e6 times with 5e5 elements)"
-	Benchmark.ips do |x|
-		{% for type, label in hash %} le({{type.id}}, x, {{label}}, 10**6); {% end %}
-	end
+  Benchmark.ips do |x|
+    {% for type, label in hash %} includes?({{type.id}}, x, {{label}}, 10**6); {% end %}
+  end
+
+  puts "\n#le (1e6 times with 5e5 elements)"
+  Benchmark.ips do |x|
+    {% for type, label in hash %} le({{type.id}}, x, {{label}}, 10**6); {% end %}
+  end
 {% end %}

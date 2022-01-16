@@ -194,16 +194,16 @@ class SSet::Bucket(T)
   end
 
   {% for method in [:le, :lt, :ge, :gt] %}
-		def {{method.id}}!(object : T) : T
-			{{method.id}}(object).not_nil!
-		end
-	{% end %}
+    def {{method.id}}!(object : T) : T
+      {{method.id}}(object).not_nil!
+    end
+  {% end %}
 
   {% for op in [:&, :|, :^, :+, :-] %}
-		def {{op.id}}(other : Enumerable(T)) : self
-			SSet::Bucket.new (self.to_set {{op.id}} other.to_set)
-		end
-	{% end %}
+    def {{op.id}}(other : Enumerable(T)) : self
+      SSet::Bucket.new (self.to_set {{op.id}} other.to_set)
+    end
+  {% end %}
 
   def to_a : Array(T)
     @buckets.each_with_object(Array(T).new size) do |bucket, a|

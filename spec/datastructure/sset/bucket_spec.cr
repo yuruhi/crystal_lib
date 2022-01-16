@@ -134,8 +134,8 @@ describe "SSet::Bucket(Int32)" do
     it "\#{{op.id}}" do
       a = SSet::Bucket{0, 1, 2, 2, 3}
       b = {1, 1, 2, 3, 4, 5}
-			expected = a.to_set {{op.id}} b.to_set
-			(a {{op.id}} b).to_a.should eq expected.to_a
+      expected = a.to_set {{op.id}} b.to_set
+      (a {{op.id}} b).to_a.should eq expected.to_a
     end
   {% end %}
 
