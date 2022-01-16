@@ -118,7 +118,6 @@ describe "input" do
     assert_input 'A', "", 'A'
     assert_input "String", "", "String"
     assert_input /regex/, "", /regex/
-    assert_input :symbol, "", :symbol
     assert_input({1, 2, 3}, "", {1, 2, 3})
     assert_input({i, i, i}, "1 2 3", {1, 2, 3})
     assert_input [1, 2, 3], "", [1, 2, 3]
@@ -144,6 +143,8 @@ describe "input" do
     i, f = 1, 2
     assert_input i, "42", 42
     assert_input f, "42.0", 42.0
+    assert_input :i, "", 1
+    assert_input :f, "", 2
   end
 
   it "reads array" do

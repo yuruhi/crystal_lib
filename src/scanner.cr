@@ -294,6 +294,8 @@ macro input(ast, *, io = STDIN)
       input({{ast.end}}, io: {{io}}),
       {{ast.excludes_end?}},
     )
+  {% elsif ast.is_a?(SymbolLiteral) %}
+    {{ast.id}}
   {% elsif ast.is_a?(Expressions) %}
     ( {% for exp in ast.expressions %} input({{exp}}, io: {{io}}); {% end %} )
   {% elsif ast.is_a?(If) %}
