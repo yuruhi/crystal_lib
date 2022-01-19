@@ -1,6 +1,7 @@
 require "./tuple/times"
 require "./tuple/each_product"
 require "./comparable/min_max"
+require "./indexable/each_pair"
 require "./array/new"
 require "./array/change"
 require "./scanner"
