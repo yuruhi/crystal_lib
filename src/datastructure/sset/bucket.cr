@@ -219,7 +219,7 @@ class SSet::Bucket(T, BUCKET_RATIO, REBUILD_RATIO, BSEARCH)
   end
 
   def to_s(io : IO) : Nil
-    io << "Bucket{"
+    io << "SSet::Bucket{"
     join(", ", io)
     io << "}"
   end

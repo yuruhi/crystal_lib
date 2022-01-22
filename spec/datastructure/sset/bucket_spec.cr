@@ -148,7 +148,7 @@ describe "SSet::Bucket(Int32)" do
 
   it "#to_s" do
     s = S{1, 2, 3, 4}
-    s.to_s.should eq "Bucket{1, 2, 3, 4}"
+    s.to_s.should eq "SSet::Bucket{1, 2, 3, 4}"
   end
 
   it "includes Enumerable" do
