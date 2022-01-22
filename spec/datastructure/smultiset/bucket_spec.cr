@@ -91,6 +91,28 @@ describe "SMultiSet::Bucket(Int32)" do
     {0, 2, 4}.each { |x| s.includes?(x).should be_false }
   end
 
+  it "#index" do
+    s = S{1, 1, 2, 3, 4}
+    [nil, 0, 2, 3, 4, nil].each_with_index do |expected, x|
+      s.index(x).should eq expected
+    end
+  end
+
+  it "#index_left, #index_right" do
+    s = S{1, 1, 2, 3, 4}
+    [{0, 0}, {0, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 5}].each_with_index do |(l, r), x|
+      s.index_left(x).should eq l
+      s.index_right(x).should eq r
+    end
+  end
+
+  it "#count" do
+    s = S{1, 1, 2, 3, 4}
+    [0, 2, 1, 1, 1, 0].each_with_index do |c, x|
+      s.count(x).should eq c
+    end
+  end
+
   it "#le, #le!" do
     s = S{1, 3, 3}
     [nil, 1, 1, 3, 3].each_with_index { |e, x| s.le(x).should eq e }

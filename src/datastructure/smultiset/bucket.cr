@@ -144,13 +144,35 @@ class SMultiSet::Bucket(T, BUCKET_RATIO, REBUILD_RATIO, BSEARCH)
     true
   end
 
-  def index(object : T, offset : Int = 0)
+  def count(object : T) : Int32?
+    index_right(object) - index_left(object)
+  end
+
+  def index(object : T) : Int32?
+    offset = 0
     @buckets.each do |bucket|
-      if bucket.last >= x
-        i = bucket.bsearch_index { |x| x >= object }
-        return i ? offset + i : nil
+      if bucket.last >= object
+        i = bucket.bsearch_index { |x| x >= object }.not_nil!
+        return offset + i if bucket[i] == object
       end
-      offset += bucket.size
+    end
+  end
+
+  def index_left(object : T) : Int32
+    @buckets.reduce(0) do |offset, bucket|
+      if bucket.last >= object
+        return offset + bucket.bsearch_index { |x| x >= object }.not_nil!
+      end
+      offset + bucket.size
+    end
+  end
+
+  def index_right(object : T) : Int32?
+    @buckets.reduce(0) do |offset, bucket|
+      if bucket.last > object
+        return offset + bucket.bsearch_index { |x| x > object }.not_nil!
+      end
+      offset + bucket.size
     end
   end
 
