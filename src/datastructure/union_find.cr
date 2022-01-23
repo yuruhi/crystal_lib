@@ -1,8 +1,10 @@
 class UnionFind
   @d : Array(Int32)
+  getter count_components : Int32
 
   def initialize(n : Int)
     @d = Array.new(n, -1)
+    @count_components = n
   end
 
   def initialize(n : Int, edges : Enumerable({Int32, Int32}))
@@ -21,6 +23,7 @@ class UnionFind
     x, y = y, x if @d[x] > @d[y]
     @d[x] += @d[y]
     @d[y] = x
+    @count_components -= 1
     true
   end
 
