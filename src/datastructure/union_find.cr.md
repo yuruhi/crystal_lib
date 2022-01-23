@@ -1,0 +1,83 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: src/graph/components.cr
+    title: src/graph/components.cr
+  - icon: ':heavy_check_mark:'
+    path: src/graph/decompose.cr
+    title: src/graph/decompose.cr
+  - icon: ':heavy_check_mark:'
+    path: src/graph/kruskal.cr
+    title: src/graph/kruskal.cr
+  - icon: ':warning:'
+    path: test/graph/namori_decompose_test_.cr
+    title: test/graph/namori_decompose_test_.cr
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/datastructure/union_find_test.cr
+    title: test/datastructure/union_find_test.cr
+  - icon: ':heavy_check_mark:'
+    path: test/graph/components_test.cr
+    title: test/graph/components_test.cr
+  - icon: ':heavy_check_mark:'
+    path: test/graph/compress_degree_test.cr
+    title: test/graph/compress_degree_test.cr
+  - icon: ':heavy_check_mark:'
+    path: test/graph/decompose_test.cr
+    title: test/graph/decompose_test.cr
+  - icon: ':heavy_check_mark:'
+    path: test/graph/kruskal_test.cr
+    title: test/graph/kruskal_test.cr
+  _isVerificationFailed: false
+  _pathExtension: cr
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes: {}
+  bundledCode: "class UnionFind\n  @d : Array(Int32)\n  getter count_components :\
+    \ Int32\n\n  def initialize(n : Int)\n    @d = Array.new(n, -1)\n    @count_components\
+    \ = n\n  end\n\n  def initialize(n : Int, edges : Enumerable({Int32, Int32}))\n\
+    \    initialize(n)\n    edges.each { |u, v| unite(u, v) }\n  end\n\n  def root(x\
+    \ : Int)\n    @d[x] < 0 ? x : (@d[x] = root(@d[x]))\n  end\n\n  def unite(x :\
+    \ Int, y : Int)\n    x = root(x)\n    y = root(y)\n    return false if x == y\n\
+    \    x, y = y, x if @d[x] > @d[y]\n    @d[x] += @d[y]\n    @d[y] = x\n    @count_components\
+    \ -= 1\n    true\n  end\n\n  def same?(x : Int, y : Int)\n    root(x) == root(y)\n\
+    \  end\n\n  def size(x : Int)\n    -@d[root(x)]\n  end\n\n  def groups\n    groups\
+    \ = Hash(Int32, Set(Int32)).new { |h, k| h[k] = Set(Int32).new }\n    @d.size.times\
+    \ do |i|\n      groups[root(i)] << i\n    end\n    groups.values.to_set\n  end\n\
+    end\n"
+  code: "class UnionFind\n  @d : Array(Int32)\n  getter count_components : Int32\n\
+    \n  def initialize(n : Int)\n    @d = Array.new(n, -1)\n    @count_components\
+    \ = n\n  end\n\n  def initialize(n : Int, edges : Enumerable({Int32, Int32}))\n\
+    \    initialize(n)\n    edges.each { |u, v| unite(u, v) }\n  end\n\n  def root(x\
+    \ : Int)\n    @d[x] < 0 ? x : (@d[x] = root(@d[x]))\n  end\n\n  def unite(x :\
+    \ Int, y : Int)\n    x = root(x)\n    y = root(y)\n    return false if x == y\n\
+    \    x, y = y, x if @d[x] > @d[y]\n    @d[x] += @d[y]\n    @d[y] = x\n    @count_components\
+    \ -= 1\n    true\n  end\n\n  def same?(x : Int, y : Int)\n    root(x) == root(y)\n\
+    \  end\n\n  def size(x : Int)\n    -@d[root(x)]\n  end\n\n  def groups\n    groups\
+    \ = Hash(Int32, Set(Int32)).new { |h, k| h[k] = Set(Int32).new }\n    @d.size.times\
+    \ do |i|\n      groups[root(i)] << i\n    end\n    groups.values.to_set\n  end\n\
+    end\n"
+  dependsOn: []
+  isVerificationFile: false
+  path: src/datastructure/union_find.cr
+  requiredBy:
+  - src/graph/components.cr
+  - src/graph/decompose.cr
+  - src/graph/kruskal.cr
+  - test/graph/namori_decompose_test_.cr
+  timestamp: '2022-01-23 00:45:43+00:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/graph/compress_degree_test.cr
+  - test/graph/components_test.cr
+  - test/graph/decompose_test.cr
+  - test/graph/kruskal_test.cr
+  - test/datastructure/union_find_test.cr
+documentation_of: src/datastructure/union_find.cr
+layout: document
+redirect_from:
+- /library/src/datastructure/union_find.cr
+- /library/src/datastructure/union_find.cr.html
+title: src/datastructure/union_find.cr
+---
