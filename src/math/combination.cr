@@ -14,7 +14,7 @@ class Combination(T)
   private def expand_until(n : Int)
     while @size <= n
       @factorial << @factorial[-1] * @size
-      @inv << -@inv[T::MOD % @size] * (T::MOD // @size)
+      @inv << -@inv[T.mod % @size] * (T.mod // @size)
       @finv << @finv[-1] * @inv[@size]
       @size += 1
     end

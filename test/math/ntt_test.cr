@@ -3,5 +3,5 @@ require "../../src/math/ntt"
 require "../../src/math/mint"
 require "../../src/scanner"
 n, m = input(i, i) # ameba:disable Lint/UselessAssign
-a, b = input(m2[n], m2[:m])
+a, b = input(Mint2[n], Mint2[:m])
 puts NTT.convolution(a, b).join(' ')

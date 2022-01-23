@@ -18,7 +18,7 @@ end
 describe Combination do
   it "#factorial" do
     iterator.each do |x|
-      C.factorial(x).should eq (1..x).reduce(1.to_m) { |acc, x| acc * x }
+      C.factorial(x).should eq (1..x).reduce(Mint.new(1)) { |acc, x| acc * x }
     end
     expect_raises(IndexError) { C.factorial(-1) }
   end
@@ -34,7 +34,7 @@ describe Combination do
 
   it "#finv" do
     iterator.each do |x|
-      expected = (1..x).reduce(1.to_m) { |acc, x| acc * x.to_m.inv }
+      expected = (1..x).reduce(Mint.new(1)) { |acc, x| acc * Mint.new(x).inv }
       C.finv(x).should eq expected
     end
     expect_raises(IndexError) { C.finv(-1) }
