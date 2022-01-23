@@ -5,8 +5,8 @@ require "../../src/scanner"
 n, w, k = input(i, i, i64)
 a = input(i[n])
 
-dp = Array.new(2 * w + 1) { [0.to_m, 0.to_m] }
-dp[0][0] = 1.to_m
+dp = Array.new(2 * w + 1) { Mint[0, 0] }
+dp[0][0] = Mint.new(1)
 (1..2 * w).each do |i|
   (0...n).each do |j|
     i2 = i - a[j]
@@ -17,6 +17,6 @@ dp[0][0] = 1.to_m
 end
 
 val1, val2 = dp[w][0], dp[2 * w][1]
-x = Matrix.new([[val1, val2], [1.to_m, 0.to_m]])
-y = Matrix.new([[val1], [1.to_m]])
+x = Matrix(Mint).from [val1, val2], [1, 0]
+y = Matrix(Mint).from [val1], [1]
 puts (x**k * y)[1][0]

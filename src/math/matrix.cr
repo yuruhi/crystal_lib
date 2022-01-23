@@ -9,8 +9,8 @@ class Matrix(T)
     result
   end
 
-  macro [](*args)
-    Matrix.new [{{args.splat}}]
+  macro [](*rows)
+    Matrix.new [{{rows.splat}}]
   end
 
   getter height : Int32, width : Int32, data : Array(Array(T))
@@ -37,6 +37,12 @@ class Matrix(T)
     @height = @data.size
     @width = @data[0].size
     raise ArgumentError.new unless @data.all? { |a| a.size == width }
+  end
+
+  def self.from(*rows) : self
+    Matrix(T).new rows.map { |row|
+      row.map { |value| T.new(value) }.to_a
+    }.to_a
   end
 
   def size : Int32

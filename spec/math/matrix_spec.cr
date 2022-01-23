@@ -24,6 +24,13 @@ describe Matrix do
     M.should eq Matrix.new [[1, 2], [3, 4]]
   end
 
+  it ".from" do
+    Matrix(Int64).from([1, 2], [3, 4]).should eq Matrix[[1i64, 2i64], [3i64, 4i64]]
+    Matrix(Int64).from({1, 2}, {3, 4}).should eq Matrix[[1i64, 2i64], [3i64, 4i64]]
+    Matrix(Int32).from(%w[1 2], %w[3 4]).should eq Matrix[[1, 2], [3, 4]]
+    Matrix(Int32).from(1..2, 3..4).should eq Matrix[[1, 2], [3, 4]]
+  end
+
   describe ".new" do
     it "receives initial value" do
       Matrix.new(1, 1, 0).should eq Matrix[[0]]
@@ -117,8 +124,8 @@ describe Matrix do
     (a1 ** 2).should eq a1 * a1
     (a1 ** 3).should eq a1 * a1 * a1
 
-    m1 = Matrix[[1.to_m, 2.to_m], [3.to_m, 4.to_m]]
-    m2 = Matrix[[414846427.to_m, 59557274.to_m], [89335911.to_m, 504182338.to_m]]
+    m1 = Matrix(Mint).from [1, 2], [3, 4]
+    m2 = Matrix(Mint).from [414846427, 59557274], [89335911, 504182338]
     (m1 ** (10i64**18)).should eq m2
   end
 
