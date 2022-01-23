@@ -71,6 +71,11 @@ private macro assert_input(ast, input, expect)
   input({{ast}}, io: %io).should eq({{expect}})
 end
 
+private macro assert_input_column(types, size, input, expect)
+  %io = IO::Memory.new {{input}}
+  input_column({{types}}, {{size}}, io: %io).should eq({{expect}})
+end
+
 private struct Scannable
   getter x : Int32, y : Int32
 
@@ -98,7 +103,9 @@ describe "input" do
     assert_input c, "abc\ndef", 'a'
     assert_input s, "abc\ndef", "abc"
     assert_input Char, "abc\ndef", 'a'
+    assert_input [Char, Char, Char], "ab \n c", ['a', 'b', 'c']
     assert_input String, "abc\ndef", "abc"
+    assert_input String, "abc def", "abc"
   end
 
   it "reads float" do
@@ -145,15 +152,22 @@ describe "input" do
     assert_input f, "42.0", 42.0
     assert_input :i, "", 1
     assert_input :f, "", 2
+    assert_input i[:f], "1 2", [1, 2]
   end
 
   it "reads array" do
     assert_input i[3], "1 2 3", [1, 2, 3]
     assert_input (i * i)[3], "1 2 3 4 5 6", [2, 12, 30]
     assert_input String[i], "3 a b c d", %w[a b c]
+    assert_input String[i], "3 a  \n \n b\nc d", %w[a b c]
     assert_input i[2, 3], "1 2 3 4 5 6", [[1, 2, 3], [4, 5, 6]]
     assert_input i[i, i], "2 3 1 2 3 4 5 6", [[1, 2, 3], [4, 5, 6]]
     assert_input i[i][i], "3 \n 2 1 2 \n 3 1 2 3 \n 4 1 2 3 4", [[1, 2], [1, 2, 3], [1, 2, 3, 4]]
+    assert_input({i, i - 1}[2], "1 2 3 4", [{1, 1}, {3, 3}])
+  end
+
+  it "reads method" do
+    assert_input i + i, "1 2", 3
   end
 
   it "reads class method" do
@@ -165,4 +179,13 @@ describe "input" do
     assert_input Scannable, "1 2", Scannable.new(1, 2)
     assert_input Scannable.sum, "1 2", 3
   end
+end
+
+it "input_column" do
+  assert_input_column [Int32], 3, "1 2 3", {[1, 2, 3]}
+  assert_input_column [Int32, Int32], 3, "1 2\n3 4\n5 6", {[1, 3, 5], [2, 4, 6]}
+  n = 3
+  assert_input_column [Int32, Int32], n, "1 2\n3 4\n5 6", {[1, 3, 5], [2, 4, 6]}
+  s = [Scannable.new(2, 3), Scannable.new(5, 6), Scannable.new(8, 9)]
+  assert_input_column [Int32, Scannable], 3, "1 2 3\n4 5 6\n7 8 9", {[1, 4, 7], s}
 end
