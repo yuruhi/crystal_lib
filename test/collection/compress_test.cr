@@ -1,5 +1,5 @@
 # verification-helper: PROBLEM https://onlinejudge.u-aizu.ac.jp/problems/DSL_4_A
-require "../../src/array/compress"
+require "../../src/collection/compress"
 require "../../src/datastructure/imos_2d"
 require "../../src/scanner"
 n = read_line.to_i

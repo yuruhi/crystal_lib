@@ -1,5 +1,5 @@
 require "spec"
-require "../../src/indexable/each_pair"
+require "../../src/collection/each_pair"
 
 describe Indexable do
   it "#each_pair(&)" do

@@ -1,5 +1,5 @@
 require "spec"
-require "../../src/enumerable/accumulate"
+require "../../src/collection/accumulate"
 
 describe Enumerable do
   it "#accumulate(init)" do

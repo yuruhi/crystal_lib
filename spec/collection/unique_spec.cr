@@ -1,5 +1,5 @@
 require "spec"
-require "../../src/utility/unique"
+require "../../src/collection/unique"
 
 describe Enumerable do
   it "#unique" do

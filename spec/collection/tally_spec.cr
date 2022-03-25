@@ -1,5 +1,5 @@
 require "spec"
-require "../../src/enumerable/tally"
+require "../../src/collection/tally"
 
 describe Enumerable do
   it "#tally(*, default)" do

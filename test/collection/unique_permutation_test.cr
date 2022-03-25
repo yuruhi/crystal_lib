@@ -1,5 +1,5 @@
 # verification-helper: PROBLEM https://yukicoder.me/problems/no/170
-require "../..//src/array/unique_permutation"
+require "../../src/collection/unique_permutation"
 s = read_line.chars.sort!
 
 ans1 = -1
