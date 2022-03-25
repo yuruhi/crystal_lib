@@ -3,27 +3,33 @@ require "../graph"
 class EulerTourForVertex
   getter graph : UnweightedUndirectedGraph
 
-  def initialize(@graph)
-    @ls = Array(Int32).new(size, 0)
-    @rs = Array(Int32).new(size, 0)
-    @k = 0
+  def in
+    @in
   end
 
-  delegate size, to: @graph
-  delegate :[], to: @graph
-  delegate add_edge, to: @graph
+  def out
+    @out
+  end
 
-  def dfs(v : Int, p : Int) : Nil
-    @ls[v] = @k
+  private def dfs(vertex : Int32, parent : Int32) : Nil
+    @in[vertex] = @k
     @k += 1
-    @graph[v].each do |edge|
-      dfs(edge.to, v) if edge.to != p
+    @graph[vertex].each do |edge|
+      dfs(edge.to, vertex) if edge.to != parent
     end
-    @rs[v] = @k
+    @out[vertex] = @k
   end
 
-  def run(root : Int)
+  def initialize(@graph, root : Int32)
+    @in = Array(Int32).new(size, 0)
+    @out = Array(Int32).new(size, 0)
+    @k = 0
     dfs(root, -1)
-    {@ls, @rs}
+  end
+
+  delegate size, :[], to: @graph
+
+  def ancestor?(ancestor : Int32, child : Int32) : Bool
+    @in[ancestor] <= @in[child] < @out[ancestor]
   end
 end
