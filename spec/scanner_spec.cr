@@ -188,4 +188,8 @@ it "input_column" do
   assert_input_column [Int32, Int32], n, "1 2\n3 4\n5 6", {[1, 3, 5], [2, 4, 6]}
   s = [Scannable.new(2, 3), Scannable.new(5, 6), Scannable.new(8, 9)]
   assert_input_column [Int32, Scannable], 3, "1 2 3\n4 5 6\n7 8 9", {[1, 4, 7], s}
+
+  size = 2
+  assert_input_column [Int32, Int32], (size += 1), "1 2\n3 4\n5 6", {[1, 3, 5], [2, 4, 6]}
+  size.should eq 3
 end

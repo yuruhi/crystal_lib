@@ -312,10 +312,11 @@ macro input(*asts, io = STDIN)
 end
 
 macro input_column(types, size, *, io = STDIN)
+  %size = {{size}}
   {% for type, i in types %}
-    %array{i} = Array({{type}}).new({{size}})
+    %array{i} = Array({{type}}).new(%size)
   {% end %}
-  {{size}}.times do
+  %size.times do
     {% for type, i in types %}
       %array{i} << input({{type}}, io: {{io}})
     {% end %}
