@@ -1,8 +1,4 @@
 class Array(T)
-  private def compare_slope(p1, p2, q1, q2)
-    (p2[0] - p1[0]) * (q2[1] - q1[1]) > (q2[0] - q1[0]) * (p2[1] - p1[1])
-  end
-
   # Returns convex hull of points that consist of `(value, index)`.
   #
   # ```
@@ -18,14 +14,14 @@ class Array(T)
   # 1 |         o   o
   # ```
   def convex_hull_with_index : Array({T, Int32})
-    res = [] of {T, Int32}
+    hull = [] of {T, Int32}
     each_with_index do |x, i|
-      while res.size >= 2 && compare_slope(res[-2], res[-1], res[-2], {x, i})
-        res.pop
+      while hull.size >= 2 && (hull[-1][0] - hull[-2][0]) * (i - hull[-2][1]) > (x - hull[-2][0]) * (hull[-1][1] - hull[-2][1])
+        hull.pop
       end
-      res << {x, i}
+      hull << {x, i}
     end
-    res
+    hull
   end
 
   # Returns convex hull of points that consist of `(value, index)`.
