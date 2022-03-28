@@ -43,7 +43,8 @@ struct ModInt(MOD)
     @value = value.to_i64 % MOD
   end
 
-  def initialize(m : self)
+  def initialize(m : ModInt(MOD2)) forall MOD2
+    {% raise "Can't create ModInt(#{MOD}) from ModInt(#{MOD2})" if MOD != MOD2 %}
     check_mod
     @value = m.value
   end
