@@ -7,40 +7,48 @@ class Array(T)
     true
   end
 
+  def next_permutation? : Array(T)?
+    arr = dup
+    arr.next_permutation! ? arr : nil
+  end
+
+  def each_unique_permutation(reuse : Bool = false, &block) : Nil
+    pool = dup
+    loop do
+      yield reuse ? pool : pool.dup
+      break unless pool.next_permutation!
+    end
+  end
+
+  def each_unique_permutation(reuse : Bool = false)
+    UniquePermutationIterator.new(clone, reuse)
+  end
+
+  def unique_permutations : Array(Array(T))
+    permutations = [] of Array(T)
+    each_unique_permutation { |perm| permutations << perm.dup }
+    permutations
+  end
+
   private class UniquePermutationIterator(T)
     include Iterator(T)
 
-    def initialize(@array : T)
+    @pool : T
+
+    def initialize(a : T, @reuse : Bool)
+      @pool = a.dup
       @first = true
     end
 
     def next
       if @first
         @first = false
-        @array
-      elsif @array.next_permutation!
-        @array
+        @reuse ? @pool : @pool.dup
+      elsif @pool.next_permutation!
+        @reuse ? @pool : @pool.dup
       else
         stop
       end
     end
-  end
-
-  def each_unique_permutation
-    UniquePermutationIterator.new(clone)
-  end
-
-  def each_unique_permutation(&block)
-    perm = clone
-    loop do
-      yield perm
-      break unless perm.next_permutation!
-    end
-  end
-
-  def unique_permutations
-    permutations = [] of Array(T)
-    each_unique_permutation { |perm| permutations << perm }
-    permutations
   end
 end
