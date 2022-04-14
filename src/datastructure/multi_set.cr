@@ -17,10 +17,19 @@ class MultiSet(T)
     @count = Hash(T, Int32).new(0, initial_capacity: initial_capacity)
   end
 
-  # Creates a new multiset from the elements in *enumerable*.
-  def initialize(enumerable : Enumerable(T))
+  # Creates a new multiset from the elements in *elements*.
+  def initialize(elements : Enumerable(T))
     @count = Hash(T, Int32).new(0)
-    concat enumerable
+    concat elements
+  end
+
+  # Creates a new multiset from the enumerable of {element, count}.
+  def self.from_counts(counts : Enumerable({T, Int32})) : MultiSet(T)
+    counts.each_with_object(MultiSet(T).new) do |(elem, cnt), set|
+      raise ArgumentError.new "Duplicate element: #{elem}" if set.includes?(elem)
+      raise ArgumentError.new "Negative count: #{cnt}" if cnt < 0
+      set.@count[elem] += cnt
+    end
   end
 
   protected def initialize(*, @count : Hash(T, Int32), @size : Int32)

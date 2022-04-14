@@ -8,6 +8,14 @@ describe MultiSet do
     MultiSet{0, 1, 2, 2}.to_s.should eq "MultiSet{0, 1, 2, 2}"
   end
 
+  it ".from_counts" do
+    MultiSet.from_counts([{0, 1}]).should eq MultiSet{0}
+    MultiSet.from_counts([{0, 3}]).should eq MultiSet{0, 0, 0}
+    MultiSet.from_counts([{1, 1}, {2, 2}, {3, 3}]).should eq MultiSet{1, 2, 2, 3, 3, 3}
+    expect_raises(ArgumentError) { MultiSet.from_counts [{1, 1}, {2, 2}, {1, 3}] }
+    expect_raises(ArgumentError) { MultiSet.from_counts [{0, -1}] }
+  end
+
   it "#size" do
     MultiSet{0, 0, 0, 1, 1, 2}.size.should eq 6
     MultiSet(Int32).new.size.should eq 0
@@ -25,39 +33,42 @@ describe MultiSet do
     (a == MultiSet{1i64, 2i64, 2i64}).should be_true
   end
 
-  it "#add" do
+  it "#add, #<<" do
     a = MultiSet(Int32).new
-    a.add 1
-    a.add 2
-    a << 1
-    a.inspect.should eq "{1(2), 2(1)}"
+    a.add(1).should be a
+    a.add(2) << 1
+    a.should eq MultiSet{1, 1, 2}
 
-    a.add 3, 5
+    a.add(3, 5).should be a
     a.add 2, 3
-    a.inspect.should eq "{1(2), 2(4), 3(5)}"
+    a.should eq MultiSet.from_counts [{1, 2}, {2, 4}, {3, 5}]
   end
 
   it "#delete" do
     a = MultiSet{1, 1, 1, 1, 1, 2, 2, 3}
-    a.delete 2
-    a.inspect.should eq "{1(5), 2(1), 3(1)}"
-    a.delete 1, 3
-    a.inspect.should eq "{1(2), 2(1), 3(1)}"
-    a.delete 3, 128
-    a.inspect.should eq "{1(2), 2(1)}"
+    a.delete(2).should be_true
+    a.should eq MultiSet{1, 1, 1, 1, 1, 2, 3}
+    a.delete(1, 3).should be_true
+    a.should eq MultiSet{1, 1, 2, 3}
+    a.delete(3, 128).should be_true
+    a.should eq MultiSet{1, 1, 2}
+    a.delete(3).should be_false
+    a.should eq MultiSet{1, 1, 2}
+    expect_raises(ArgumentError) { a.delete 1, -1 }
   end
 
   it "#concat" do
     a = MultiSet{1, 1, 1, 1, 1, 2, 2, 3}
     a.concat a
-    a.inspect.should eq "{1(10), 2(4), 3(2)}"
+    a.should eq MultiSet.from_counts [{1, 10}, {2, 4}, {3, 2}]
     a.concat({0, 0, 0, 1, 2, 3})
-    a.inspect.should eq "{1(11), 2(5), 3(3), 0(3)}"
+    a.should eq MultiSet.from_counts [{1, 11}, {2, 5}, {3, 3}, {0, 3}]
   end
 
   it "#clear" do
     a = MultiSet{0, 0, 1, 1}
-    a.clear
+    a.clear.should be a
+    a.should eq MultiSet(Int32).new
   end
 
   it "#count" do
@@ -68,44 +79,44 @@ describe MultiSet do
     a.count(3).should eq 0
   end
 
-  it "#includes?" do
+  it "#includes?, #===" do
     a = MultiSet{0, 0, 0, 1, 1, 2}
-    a.includes?(0).should eq true
-    a.includes?(1).should eq true
-    a.includes?(2).should eq true
-    a.includes?(3).should eq false
+    4.times do |i|
+      a.includes?(i).should eq i < 3
+      (a === i).should eq i < 3
+    end
   end
 
   it "#empty?" do
-    MultiSet{0, 0, 0, 1, 1, 2}.empty?.should eq false
-    MultiSet(Int32).new.empty?.should eq true
+    MultiSet{0}.should_not be_empty
+    MultiSet(Int32).new.should be_empty
   end
 
   it "#intersects?" do
     a = MultiSet{0, 0, 0, 1, 1, 2}
     b = MultiSet{2, 3}
     c = MultiSet{3, 3, 3, 4, 4, 5}
-    a.intersects?(b).should eq true
-    b.intersects?(c).should eq true
-    a.intersects?(c).should eq false
+    a.intersects?(b).should be_true
+    b.intersects?(c).should be_true
+    a.intersects?(c).should be_false
   end
 
   it "#subset_of?" do
     a = MultiSet{0, 0, 0, 1, 1, 2}
     b = MultiSet{0, 1, 0}
     c = MultiSet{-1, 0, 0, 1}
-    a.subset_of?(b).should eq false
-    b.subset_of?(a).should eq true
-    c.subset_of?(a).should eq false
+    a.subset_of?(b).should be_false
+    b.subset_of?(a).should be_true
+    c.subset_of?(a).should be_false
   end
 
   it "#superset_of?" do
     a = MultiSet{0, 0, 0, 1, 1, 2}
     b = MultiSet{0, 1, 0}
     c = MultiSet{-1, 0, 0, 1}
-    a.superset_of?(b).should eq true
-    b.superset_of?(a).should eq false
-    c.superset_of?(a).should eq false
+    a.superset_of?(b).should be_true
+    b.superset_of?(a).should be_false
+    c.superset_of?(a).should be_false
   end
 
   it "#each" do
@@ -137,40 +148,41 @@ describe MultiSet do
   it "#&" do
     a = MultiSet{0, 0, 0, 1, 1, 2, 3}
     b = MultiSet{0, 1, 1, 2, 2, 2}
-    (a & b).inspect.should eq "{0(1), 1(2), 2(1)}"
+    (a & b).should eq MultiSet{0, 1, 1, 2}
     a = MultiSet{1, 2, 2, 3, 3, 3}
     b = MultiSet{2, 3, 3, 4}
-    (a & b).inspect.should eq "{2(1), 3(2)}"
+    (a & b).should eq MultiSet{2, 3, 3}
   end
 
   it "#|, #+" do
     a = MultiSet{0, 0, 0, 1, 1, 2, 3}
     b = MultiSet{0, 1, 1, 2, 2, 2}
-    (a | b).inspect.should eq "{0(4), 1(4), 2(4), 3(1)}"
-    (a + b).inspect.should eq "{0(4), 1(4), 2(4), 3(1)}"
+    c = MultiSet{0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3}
+    (a | b).should eq c
+    (a + b).should eq c
   end
 
   it "#-" do
     a = MultiSet{0, 1, 2, 2, 3, 3}
     b = MultiSet{1, 2, 3, 3, 3, 4}
-    (a - b).inspect.should eq "{0(1), 2(1)}"
-    (a - b.to_a).inspect.should eq "{0(1), 2(1)}"
+    (a - b).should eq MultiSet{0, 2}
+    (a - b.to_a).should eq MultiSet{0, 2}
   end
 
   it "#*" do
     a = MultiSet{1, 2, 2}
-    (a * 10).inspect.should eq "{1(10), 2(20)}"
-    (a * 0).inspect.should eq "{}"
+    (a * 10).should eq MultiSet.from_counts [{1, 10}, {2, 20}]
+    (a * 0).should be_empty
     expect_raises(ArgumentError) { a * -1 }
   end
 
   it "#subtract" do
     a = MultiSet{1, 2, 2, 3}
     a.subtract(MultiSet{1, 1, 2}).should be a
-    a.inspect.should eq "{2(1), 3(1)}"
+    a.should eq MultiSet{2, 3}
     a = MultiSet{1, 2, 2, 3}
     a.subtract([1, 1, 2]).should be a
-    a.inspect.should eq "{2(1), 3(1)}"
+    a.should eq MultiSet{2, 3}
   end
 
   it "#dup" do
@@ -193,9 +205,8 @@ describe MultiSet do
   end
 
   it "#inspect" do
-    io = IO::Memory.new
-    MultiSet{0, 0, 0, 1, 1, 2}.inspect(io)
-    io.to_s.should eq "{0(3), 1(2), 2(1)}"
+    MultiSet{0, 0, 0, 1, 1, 2}.inspect.should eq "{0(3), 1(2), 2(1)}"
+    MultiSet{0, 1, 2, 0, 1, 0}.inspect.should eq "{0(3), 1(2), 2(1)}"
   end
 
   it "includes Iterable" do
@@ -204,12 +215,13 @@ describe MultiSet do
   end
 
   it "includes Enumeratable" do
-    MultiSet{0, 0, 0, 1, 1, 2}.all?(&.even?).should eq false
-    MultiSet{0, 0, 0, 1, 1, 2}.all? { |i| i >= 0 }.should eq true
-    MultiSet{0, 0, 0, 1, 1, 2}.max.should eq 2
+    a = MultiSet{0, 0, 0, 1, 1, 2}
+    a.all?(&.even?).should be_false
+    a.all? { |i| i >= 0 }.should be_true
+    a.max.should eq 2
     MultiSet{"a", "ab", "abc", "abcd"}.max_by(&.size).should eq "abcd"
-    MultiSet{0, 0, 0, 1, 1, 2}.first.should eq 0
-    MultiSet{0, 0, 0, 1, 1, 2}.index(1).should eq 3
-    MultiSet{0, 0, 0, 1, 1, 2}.join.should eq "000112"
+    a.first.should eq 0
+    a.index(1).should eq 3
+    a.join.should eq "000112"
   end
 end
