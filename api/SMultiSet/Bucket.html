@@ -1,0 +1,1832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.32.1">
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+
+  <meta id="repository-name" content="github.com/yuruhi/crystal_lib">
+  <title>SMultiSet::Bucket(T, BUCKET_RATIO, REBUILD_RATIO, BSEARCH) - github.com/yuruhi/crystal_lib</title>
+  <script type="text/javascript">
+    CrystalDoc.base_path = "../";
+  </script>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="repository-links">
+      <a href="../index.html">README</a>
+    </div>
+  </div>
+
+  <div class="search-results" class="hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/toplevel" data-name="top level namespace">
+      <a href="../toplevel.html">Top Level Namespace</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Array" data-name="array(t)">
+      <a href="../Array.html">Array</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/AsciiBinaryTree" data-name="asciibinarytree(node)">
+      <a href="../AsciiBinaryTree.html">AsciiBinaryTree</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Barrett" data-name="barrett">
+      <a href="../Barrett.html">Barrett</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/BigFloat" data-name="bigfloat">
+      <a href="../BigFloat.html">BigFloat</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/BigFloat" data-name="bigfloat">
+      <a href="../BigFloat.html">BigFloat</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/BinaryHeap" data-name="binaryheap(t)">
+      <a href="../BinaryHeap.html">BinaryHeap</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/yuruhi/crystal_lib/BinaryTree" data-name="binarytree(t, node, nilnode)">
+      <a href="../BinaryTree.html">BinaryTree</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/BinaryTree/EmptyError" data-name="binarytree::emptyerror">
+      <a href="../BinaryTree/EmptyError.html">EmptyError</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/BipartiteMatching" data-name="bipartitematching">
+      <a href="../BipartiteMatching.html">BipartiteMatching</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Combination" data-name="combination(t)">
+      <a href="../Combination.html">Combination</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Comparable" data-name="comparable(t)">
+      <a href="../Comparable.html">Comparable</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/CulSum" data-name="culsum(t)">
+      <a href="../CulSum.html">CulSum</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/CulSum2D" data-name="culsum2d(t)">
+      <a href="../CulSum2D.html">CulSum2D</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/DirectedGraph" data-name="directedgraph(t)">
+      <a href="../DirectedGraph.html">DirectedGraph</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/DP" data-name="dp">
+      <a href="../DP.html">DP</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/yuruhi/crystal_lib/DynamicMint" data-name="dynamicmint">
+      <a href="../DynamicMint.html">DynamicMint</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/DynamicMint/Mint" data-name="dynamicmint::mint">
+      <a href="../DynamicMint/Mint.html">Mint</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Enumerable" data-name="enumerable(t)">
+      <a href="../Enumerable.html">Enumerable</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/EulerTourForVertex" data-name="eulertourforvertex">
+      <a href="../EulerTourForVertex.html">EulerTourForVertex</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/FenwickTree" data-name="fenwicktree(t)">
+      <a href="../FenwickTree.html">FenwickTree</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/GCD" data-name="gcd">
+      <a href="../GCD.html">GCD</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/yuruhi/crystal_lib/Geometric" data-name="geometric">
+      <a href="../Geometric.html">Geometric</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Geometric/Circle" data-name="geometric::circle">
+      <a href="../Geometric/Circle.html">Circle</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Geometric/Line" data-name="geometric::line">
+      <a href="../Geometric/Line.html">Line</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Geometric/Polygon" data-name="geometric::polygon">
+      <a href="../Geometric/Polygon.html">Polygon</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Geometric/Segment" data-name="geometric::segment">
+      <a href="../Geometric/Segment.html">Segment</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Geometric/Vec2" data-name="geometric::vec2">
+      <a href="../Geometric/Vec2.html">Vec2</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Graph" data-name="graph(edge, edge2)">
+      <a href="../Graph.html">Graph</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Imos" data-name="imos(t)">
+      <a href="../Imos.html">Imos</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Imos2D" data-name="imos2d(t)">
+      <a href="../Imos2D.html">Imos2D</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/ImosLinear" data-name="imoslinear(t)">
+      <a href="../ImosLinear.html">ImosLinear</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Indexable" data-name="indexable(t)">
+      <a href="../Indexable.html">Indexable</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Int" data-name="int">
+      <a href="../Int.html">Int</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Iterator" data-name="iterator(t)">
+      <a href="../Iterator.html">Iterator</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/LCA" data-name="lca(edge, edge2)">
+      <a href="../LCA.html">LCA</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Math" data-name="math">
+      <a href="../Math.html">Math</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Matrix" data-name="matrix(t)">
+      <a href="../Matrix.html">Matrix</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Mint" data-name="mint">
+      <a href="../Mint.html">Mint</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Mint2" data-name="mint2">
+      <a href="../Mint2.html">Mint2</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/ModInt" data-name="modint(mod)">
+      <a href="../ModInt.html">ModInt</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/MultiSet" data-name="multiset(t)">
+      <a href="../MultiSet.html">MultiSet</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/NTT" data-name="ntt">
+      <a href="../NTT.html">NTT</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/PartiallyPersistentUnionFind" data-name="partiallypersistentunionfind">
+      <a href="../PartiallyPersistentUnionFind.html">PartiallyPersistentUnionFind</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/PersistentArray" data-name="persistentarray(t)">
+      <a href="../PersistentArray.html">PersistentArray</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/PersistentUnionFind" data-name="persistentunionfind">
+      <a href="../PersistentUnionFind.html">PersistentUnionFind</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Point" data-name="point">
+      <a href="../Point.html">Point</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Prime" data-name="prime">
+      <a href="../Prime.html">Prime</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/PythagoreanTriples" data-name="pythagoreantriples">
+      <a href="../PythagoreanTriples.html">PythagoreanTriples</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/ReRooting" data-name="rerooting(t, graphtype)">
+      <a href="../ReRooting.html">ReRooting</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/RollingHash" data-name="rollinghash">
+      <a href="../RollingHash.html">RollingHash</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Scanner" data-name="scanner">
+      <a href="../Scanner.html">Scanner</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/SCC" data-name="scc(edge, edge2)">
+      <a href="../SCC.html">SCC</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Sieve" data-name="sieve">
+      <a href="../Sieve.html">Sieve</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/SieveFast" data-name="sievefast">
+      <a href="../SieveFast.html">SieveFast</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/SlopeTrick" data-name="slopetrick(t)">
+      <a href="../SlopeTrick.html">SlopeTrick</a>
+      
+    </li>
+  
+  <li class="parent open current" data-id="github.com/yuruhi/crystal_lib/SMultiSet" data-name="smultiset">
+      <a href="../SMultiSet.html">SMultiSet</a>
+      
+        <ul>
+  
+  <li class=" current" data-id="github.com/yuruhi/crystal_lib/SMultiSet/Bucket" data-name="smultiset::bucket(t, bucket_ratio, rebuild_ratio, bsearch)">
+      <a href="../SMultiSet/Bucket.html">Bucket</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/yuruhi/crystal_lib/SMultiSet/RedBlackTree" data-name="smultiset::redblacktree(t)">
+      <a href="../SMultiSet/RedBlackTree.html">RedBlackTree</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/SMultiSet/RedBlackTree/NilNode" data-name="smultiset::redblacktree::nilnode(t)">
+      <a href="../SMultiSet/RedBlackTree/NilNode.html">NilNode</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/yuruhi/crystal_lib/SMultiSet/RedBlackTree/Node" data-name="smultiset::redblacktree::node(t)">
+      <a href="../SMultiSet/RedBlackTree/Node.html">Node</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/SMultiSet/RedBlackTree/Node/Color" data-name="smultiset::redblacktree::node::color">
+      <a href="../SMultiSet/RedBlackTree/Node/Color.html">Color</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/yuruhi/crystal_lib/SMultiSet/Treap" data-name="smultiset::treap(t)">
+      <a href="../SMultiSet/Treap.html">Treap</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/SMultiSet/Treap/NilNode" data-name="smultiset::treap::nilnode(t)">
+      <a href="../SMultiSet/Treap/NilNode.html">NilNode</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/SMultiSet/Treap/Node" data-name="smultiset::treap::node(t)">
+      <a href="../SMultiSet/Treap/Node.html">Node</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/yuruhi/crystal_lib/SSet" data-name="sset">
+      <a href="../SSet.html">SSet</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/SSet/Bucket" data-name="sset::bucket(t, bucket_ratio, rebuild_ratio, bsearch)">
+      <a href="../SSet/Bucket.html">Bucket</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/yuruhi/crystal_lib/SSet/RedBlackTree" data-name="sset::redblacktree(t)">
+      <a href="../SSet/RedBlackTree.html">RedBlackTree</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/SSet/RedBlackTree/NilNode" data-name="sset::redblacktree::nilnode(t)">
+      <a href="../SSet/RedBlackTree/NilNode.html">NilNode</a>
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/yuruhi/crystal_lib/SSet/RedBlackTree/Node" data-name="sset::redblacktree::node(t)">
+      <a href="../SSet/RedBlackTree/Node.html">Node</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/SSet/RedBlackTree/Node/Color" data-name="sset::redblacktree::node::color">
+      <a href="../SSet/RedBlackTree/Node/Color.html">Color</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="github.com/yuruhi/crystal_lib/SSet/Treap" data-name="sset::treap(t)">
+      <a href="../SSet/Treap.html">Treap</a>
+      
+        <ul>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/SSet/Treap/NilNode" data-name="sset::treap::nilnode(t)">
+      <a href="../SSet/Treap/NilNode.html">NilNode</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/SSet/Treap/Node" data-name="sset::treap::node(t)">
+      <a href="../SSet/Treap/Node.html">Node</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/String" data-name="string">
+      <a href="../String.html">String</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/TreeNilNode" data-name="treenilnode(t)">
+      <a href="../TreeNilNode.html">TreeNilNode</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/TreeNode" data-name="treenode(t)">
+      <a href="../TreeNode.html">TreeNode</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/Tuple" data-name="tuple(*t)">
+      <a href="../Tuple.html">Tuple</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/UndirectedGraph" data-name="undirectedgraph(t)">
+      <a href="../UndirectedGraph.html">UndirectedGraph</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnionFind" data-name="unionfind">
+      <a href="../UnionFind.html">UnionFind</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedDirectedGraph" data-name="unweighteddirectedgraph">
+      <a href="../UnweightedDirectedGraph.html">UnweightedDirectedGraph</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedEdge" data-name="unweightededge">
+      <a href="../UnweightedEdge.html">UnweightedEdge</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedEdge2" data-name="unweightededge2">
+      <a href="../UnweightedEdge2.html">UnweightedEdge2</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/UnweightedUndirectedGraph" data-name="unweightedundirectedgraph">
+      <a href="../UnweightedUndirectedGraph.html">UnweightedUndirectedGraph</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/WeightedEdge" data-name="weightededge(t)">
+      <a href="../WeightedEdge.html">WeightedEdge</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/yuruhi/crystal_lib/WeightedEdge2" data-name="weightededge2(t)">
+      <a href="../WeightedEdge2.html">WeightedEdge2</a>
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> SMultiSet::Bucket(T, BUCKET_RATIO, REBUILD_RATIO, BSEARCH)
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../SMultiSet/Bucket.html">SMultiSet::Bucket(T, BUCKET_RATIO, REBUILD_RATIO, BSEARCH)</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>reference: https://github.com/tatyam-prime/SortedSet/blob/main/SortedSet.py</p>
+
+
+
+
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../Enumerable.html">Enumerable(T)</a></li>
+    
+      <li class="other-type"><a href="../Indexable.html">Indexable(T)</a></li>
+    
+      <li class="other-type">Iterable(T)</li>
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L2" target="_blank">
+        datastructure/smultiset/bucket.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new(a:Enumerable(T))-class-method" class="signature"><strong>.new</strong>(a : Enumerable(T))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#new-class-method" class="signature"><strong>.new</strong></a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#&(other:Enumerable(T)):self-instance-method" class="signature"><strong>#&</strong>(other : Enumerable(T)) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#+(other:Enumerable(T)):self-instance-method" class="signature"><strong>#+</strong>(other : Enumerable(T)) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#-(other:Enumerable(T)):self-instance-method" class="signature"><strong>#-</strong>(other : Enumerable(T)) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#self-instance-method" class="signature"><strong>#<<</strong>(object : T) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%5E(other:Enumerable(T)):self-instance-method" class="signature"><strong>#^</strong>(other : Enumerable(T)) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#add(object:T):self-instance-method" class="signature"><strong>#add</strong>(object : T) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#clear-instance-method" class="signature"><strong>#clear</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#concat(elems):self-instance-method" class="signature"><strong>#concat</strong>(elems) : <span class="k">self</span></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#count(object:T):Int32?-instance-method" class="signature"><strong>#count</strong>(object : T) : Int32?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#delete(object:T):Bool-instance-method" class="signature"><strong>#delete</strong>(object : T) : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each-instance-method" class="signature"><strong>#each</strong></a>
+        
+          <div class="summary"><p>Returns an <code><a href="../Iterator.html">Iterator</a></code> for the elements of <code>self</code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#each(&):Nil-instance-method" class="signature"><strong>#each</strong>(&) : Nil</a>
+        
+          <div class="summary"><p>Calls the given block once for each element in <code>self</code>, passing that element as a parameter.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#empty?:Bool-instance-method" class="signature"><strong>#empty?</strong> : Bool</a>
+        
+          <div class="summary"><p>Returns <code>true</code> if <code>self</code> is empty, <code>false</code> otherwise.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ge(object:T):T?-instance-method" class="signature"><strong>#ge</strong>(object : T) : T?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#ge!(object:T):T-instance-method" class="signature"><strong>#ge!</strong>(object : T) : T</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#gt(object:T):T?-instance-method" class="signature"><strong>#gt</strong>(object : T) : T?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#gt!(object:T):T-instance-method" class="signature"><strong>#gt!</strong>(object : T) : T</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#includes?(object:T):Bool-instance-method" class="signature"><strong>#includes?</strong>(object : T) : Bool</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#index(object:T):Int32?-instance-method" class="signature"><strong>#index</strong>(object : T) : Int32?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#index_left(object:T):Int32-instance-method" class="signature"><strong>#index_left</strong>(object : T) : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#index_right(object:T):Int32?-instance-method" class="signature"><strong>#index_right</strong>(object : T) : Int32?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#inspect(io:IO):Nil-instance-method" class="signature"><strong>#inspect</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Appends a String representation of this object which includes its class name, its object address and the values of all instance variables.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#le(object:T):T?-instance-method" class="signature"><strong>#le</strong>(object : T) : T?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#le!(object:T):T-instance-method" class="signature"><strong>#le!</strong>(object : T) : T</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#lt(object:T):T?-instance-method" class="signature"><strong>#lt</strong>(object : T) : T?</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#lt!(object:T):T-instance-method" class="signature"><strong>#lt!</strong>(object : T) : T</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#max:T-instance-method" class="signature"><strong>#max</strong> : T</a>
+        
+          <div class="summary"><p>Returns the element with the maximum value in the collection.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#max?:T?-instance-method" class="signature"><strong>#max?</strong> : T?</a>
+        
+          <div class="summary"><p>Like <code><a href="../SMultiSet/Bucket.html#max:T-instance-method">#max</a></code> but returns <code>nil</code> if the collection is empty.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#min:T-instance-method" class="signature"><strong>#min</strong> : T</a>
+        
+          <div class="summary"><p>Returns the element with the minimum value in the collection.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#min?:T?-instance-method" class="signature"><strong>#min?</strong> : T?</a>
+        
+          <div class="summary"><p>Like <code><a href="../SMultiSet/Bucket.html#min:T-instance-method">#min</a></code> but returns <code>nil</code> if the collection is empty.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reverse_each(&):Nil-instance-method" class="signature"><strong>#reverse_each</strong>(&) : Nil</a>
+        
+          <div class="summary"><p>Same as <code><a href="../SMultiSet/Bucket.html#each-instance-method">#each</a></code>, but works in reverse.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#size-instance-method" class="signature"><strong>#size</strong></a>
+        
+          <div class="summary"><p>Returns the number of elements in this container.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_a:Array(T)-instance-method" class="signature"><strong>#to_a</strong> : Array(T)</a>
+        
+          <div class="summary"><p>Returns an <code><a href="../Array.html">Array</a></code> with all the elements in the collection.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s(io:IO):Nil-instance-method" class="signature"><strong>#to_s</strong>(io : IO) : Nil</a>
+        
+          <div class="summary"><p>Appends a short String representation of this object which includes its class name and its object address.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#unsafe_fetch(index:Int):T-instance-method" class="signature"><strong>#unsafe_fetch</strong>(index : Int) : T</a>
+        
+          <div class="summary"><p>Returns the element at the given <em>index</em>, without doing any bounds check.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#%7C(other:Enumerable(T)):self-instance-method" class="signature"><strong>#|</strong>(other : Enumerable(T)) : <span class="k">self</span></a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+  <h3>Instance methods inherited from module <code><a href="../Indexable.html">Indexable(T)</a></code></h3>
+  
+  
+    <a href="../Indexable.html#[](point:Point)-instance-method" class="tooltip">
+      <span>[](point : Point)</span>
+    []</a>, 
+    
+  
+    <a href="../Indexable.html#[]?(point:Point)-instance-method" class="tooltip">
+      <span>[]?(point : Point)</span>
+    []?</a>, 
+    
+  
+    <a href="../Indexable.html#each_pair(&)-instance-method" class="tooltip">
+      <span>each_pair(&)<br/>each_pair</span>
+    each_pair</a>, 
+    
+  
+    <a href="../Indexable.html#fetch(point:Point,&)-instance-method" class="tooltip">
+      <span>fetch(point : Point, &)</span>
+    fetch</a>
+    
+  
+
+
+    
+
+
+    
+
+
+  
+    
+
+  <h3>Instance methods inherited from module <code><a href="../Enumerable.html">Enumerable(T)</a></code></h3>
+  
+  
+    <a href="../Enumerable.html#accumulate(init:U):Array(U)forallU-instance-method" class="tooltip">
+      <span>accumulate(init : U) : Array(U) forall U<br/>accumulate : Array(T)<br/>accumulate(init : U, &block : U, T -> U) : Array(U) forall U<br/>accumulate(&block : T, T -> T) : Array(T)</span>
+    accumulate</a>, 
+    
+  
+    <a href="../Enumerable.html#mex:T-instance-method" class="tooltip">
+      <span>mex : T</span>
+    mex</a>, 
+    
+  
+    <a href="../Enumerable.html#mex_sorted:T-instance-method" class="tooltip">
+      <span>mex_sorted : T</span>
+    mex_sorted</a>, 
+    
+  
+    <a href="../Enumerable.html#tally(*,default:Int32):Hash(T,Int32)-instance-method" class="tooltip">
+      <span>tally(*, default : Int32) : Hash(T, Int32)</span>
+    tally</a>, 
+    
+  
+    <a href="../Enumerable.html#unique:self-instance-method" class="tooltip">
+      <span>unique : <span class="k">self</span><br/>unique(&) : <span class="k">self</span></span>
+    unique</a>
+    
+  
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+  <h3>Instance methods inherited from module <code><a href="../Enumerable.html">Enumerable(T)</a></code></h3>
+  
+  
+    <a href="../Enumerable.html#accumulate(init:U):Array(U)forallU-instance-method" class="tooltip">
+      <span>accumulate(init : U) : Array(U) forall U<br/>accumulate : Array(T)<br/>accumulate(init : U, &block : U, T -> U) : Array(U) forall U<br/>accumulate(&block : T, T -> T) : Array(T)</span>
+    accumulate</a>, 
+    
+  
+    <a href="../Enumerable.html#mex:T-instance-method" class="tooltip">
+      <span>mex : T</span>
+    mex</a>, 
+    
+  
+    <a href="../Enumerable.html#mex_sorted:T-instance-method" class="tooltip">
+      <span>mex_sorted : T</span>
+    mex_sorted</a>, 
+    
+  
+    <a href="../Enumerable.html#tally(*,default:Int32):Hash(T,Int32)-instance-method" class="tooltip">
+      <span>tally(*, default : Int32) : Hash(T, Int32)</span>
+    tally</a>, 
+    
+  
+    <a href="../Enumerable.html#unique:self-instance-method" class="tooltip">
+      <span>unique : <span class="k">self</span><br/>unique(&) : <span class="k">self</span></span>
+    unique</a>
+    
+  
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(a:Enumerable(T))-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(a : <a href="../Enumerable.html">Enumerable</a>(T))
+
+        <a class="method-permalink" href="#new(a:Enumerable(T))-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L13" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>
+
+        <a class="method-permalink" href="#new-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="&amp;(other:Enumerable(T)):self-instance-method">
+      <div class="signature">
+        
+        def <strong>&</strong>(other : <a href="../Enumerable.html">Enumerable</a>(T)) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#&(other:Enumerable(T)):self-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L225" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="+(other:Enumerable(T)):self-instance-method">
+      <div class="signature">
+        
+        def <strong>+</strong>(other : <a href="../Enumerable.html">Enumerable</a>(T)) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#+(other:Enumerable(T)):self-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L225" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="-(other:Enumerable(T)):self-instance-method">
+      <div class="signature">
+        
+        def <strong>-</strong>(other : <a href="../Enumerable.html">Enumerable</a>(T)) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#-(other:Enumerable(T)):self-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L225" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="self-instance-method">
+      <div class="signature">
+        
+        def <strong><<</strong>(object : T) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#self-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L127" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="^(other:Enumerable(T)):self-instance-method">
+      <div class="signature">
+        
+        def <strong>^</strong>(other : <a href="../Enumerable.html">Enumerable</a>(T)) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#%5E(other:Enumerable(T)):self-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L225" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="add(object:T):self-instance-method">
+      <div class="signature">
+        
+        def <strong>add</strong>(object : T) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#add(object:T):self-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L112" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="clear-instance-method">
+      <div class="signature">
+        
+        def <strong>clear</strong>
+
+        <a class="method-permalink" href="#clear-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L31" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="concat(elems):self-instance-method">
+      <div class="signature">
+        
+        def <strong>concat</strong>(elems) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#concat(elems):self-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L131" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="count(object:T):Int32?-instance-method">
+      <div class="signature">
+        
+        def <strong>count</strong>(object : T) : Int32?
+
+        <a class="method-permalink" href="#count(object:T):Int32?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L147" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="delete(object:T):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>delete</strong>(object : T) : Bool
+
+        <a class="method-permalink" href="#delete(object:T):Bool-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L136" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each-instance-method">
+      <div class="signature">
+        
+        def <strong>each</strong>
+
+        <a class="method-permalink" href="#each-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="../Indexable.html">Indexable(T)</a>
+            </div>
+          
+          <p>Returns an <code><a href="../Iterator.html">Iterator</a></code> for the elements of <code>self</code>.</p>
+
+<pre><code>a <span class="o">=</span> [<span class="s">&quot;a&quot;</span>, <span class="s">&quot;b&quot;</span>, <span class="s">&quot;c&quot;</span>]
+iter <span class="o">=</span> a.each
+iter.<span class="k">next</span> <span class="c"># =&gt; &quot;a&quot;</span>
+iter.<span class="k">next</span> <span class="c"># =&gt; &quot;b&quot;</span></code></pre>
+
+<p>The returned iterator keeps a reference to <code>self</code>: if the array
+changes, the returned values of the iterator change as well.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L79" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="each(&amp;):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>each</strong>(&) : Nil
+
+        <a class="method-permalink" href="#each(&):Nil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="../Indexable.html">Indexable(T)</a>
+            </div>
+          
+          <p>Calls the given block once for each element in <code>self</code>, passing that
+element as a parameter.</p>
+
+<pre><code>a <span class="o">=</span> [<span class="s">&quot;a&quot;</span>, <span class="s">&quot;b&quot;</span>, <span class="s">&quot;c&quot;</span>]
+a.each { <span class="o">|</span>x<span class="o">|</span> print x, <span class="s">&quot; -- &quot;</span> }</code></pre>
+
+<p>produces:</p>
+
+<pre><code class="language-text">a -- b -- c --</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L52" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="empty?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>empty?</strong> : Bool
+
+        <a class="method-permalink" href="#empty?:Bool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="../Indexable.html">Indexable(T)</a>
+            </div>
+          
+          <p>Returns <code>true</code> if <code>self</code> is empty, <code>false</code> otherwise.</p>
+
+<pre><code>(<span class="o">[]</span> <span class="k">of</span> <span class="t">Int32</span>).empty? <span class="c"># =&gt; true</span>
+([<span class="n">1</span>]).empty?         <span class="c"># =&gt; false</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L27" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ge(object:T):T?-instance-method">
+      <div class="signature">
+        
+        def <strong>ge</strong>(object : T) : T?
+
+        <a class="method-permalink" href="#ge(object:T):T?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L197" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="ge!(object:T):T-instance-method">
+      <div class="signature">
+        
+        def <strong>ge!</strong>(object : T) : T
+
+        <a class="method-permalink" href="#ge!(object:T):T-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L219" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="gt(object:T):T?-instance-method">
+      <div class="signature">
+        
+        def <strong>gt</strong>(object : T) : T?
+
+        <a class="method-permalink" href="#gt(object:T):T?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L211" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="gt!(object:T):T-instance-method">
+      <div class="signature">
+        
+        def <strong>gt!</strong>(object : T) : T
+
+        <a class="method-permalink" href="#gt!(object:T):T-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L219" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="includes?(object:T):Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>includes?</strong>(object : T) : Bool
+
+        <a class="method-permalink" href="#includes?(object:T):Bool-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L99" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="index(object:T):Int32?-instance-method">
+      <div class="signature">
+        
+        def <strong>index</strong>(object : T) : Int32?
+
+        <a class="method-permalink" href="#index(object:T):Int32?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L151" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="index_left(object:T):Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>index_left</strong>(object : T) : Int32
+
+        <a class="method-permalink" href="#index_left(object:T):Int32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L161" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="index_right(object:T):Int32?-instance-method">
+      <div class="signature">
+        
+        def <strong>index_right</strong>(object : T) : Int32?
+
+        <a class="method-permalink" href="#index_right(object:T):Int32?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L170" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="inspect(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>inspect</strong>(io : IO) : Nil
+
+        <a class="method-permalink" href="#inspect(io:IO):Nil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class Reference
+            </div>
+          
+          <p>Appends a String representation of this object
+which includes its class name, its object address
+and the values of all instance variables.</p>
+
+<pre><code><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name : <span class="t">String</span>, @age : <span class="t">Int32</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">Person</span>.<span class="k">new</span>(<span class="s">&quot;John&quot;</span>, <span class="n">32</span>).inspect <span class="c"># =&gt; #&lt;Person:0x10fd31f20 @name=&quot;John&quot;, @age=32&gt;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L243" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="le(object:T):T?-instance-method">
+      <div class="signature">
+        
+        def <strong>le</strong>(object : T) : T?
+
+        <a class="method-permalink" href="#le(object:T):T?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L179" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="le!(object:T):T-instance-method">
+      <div class="signature">
+        
+        def <strong>le!</strong>(object : T) : T
+
+        <a class="method-permalink" href="#le!(object:T):T-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L219" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="lt(object:T):T?-instance-method">
+      <div class="signature">
+        
+        def <strong>lt</strong>(object : T) : T?
+
+        <a class="method-permalink" href="#lt(object:T):T?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L188" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="lt!(object:T):T-instance-method">
+      <div class="signature">
+        
+        def <strong>lt!</strong>(object : T) : T
+
+        <a class="method-permalink" href="#lt!(object:T):T-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L219" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="max:T-instance-method">
+      <div class="signature">
+        
+        def <strong>max</strong> : T
+
+        <a class="method-permalink" href="#max:T-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="../Enumerable.html">Enumerable(T)</a>
+            </div>
+          
+          <p>Returns the element with the maximum value in the collection.</p>
+
+<p>It compares using <code>></code> so it will work for any type that supports that method.</p>
+
+<pre><code>[<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>].max        <span class="c"># =&gt; 3</span>
+[<span class="s">&quot;Alice&quot;</span>, <span class="s">&quot;Bob&quot;</span>].max <span class="c"># =&gt; &quot;Bob&quot;</span></code></pre>
+
+<p>Raises <code>Enumerable::EmptyError</code> if the collection is empty.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L48" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="max?:T?-instance-method">
+      <div class="signature">
+        
+        def <strong>max?</strong> : T?
+
+        <a class="method-permalink" href="#max?:T?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="../Enumerable.html">Enumerable(T)</a>
+            </div>
+          
+          <p>Like <code><a href="../SMultiSet/Bucket.html#max:T-instance-method">#max</a></code> but returns <code>nil</code> if the collection is empty.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L44" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="min:T-instance-method">
+      <div class="signature">
+        
+        def <strong>min</strong> : T
+
+        <a class="method-permalink" href="#min:T-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="../Enumerable.html">Enumerable(T)</a>
+            </div>
+          
+          <p>Returns the element with the minimum value in the collection.</p>
+
+<p>It compares using <code><</code> so it will work for any type that supports that method.</p>
+
+<pre><code>[<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>].min        <span class="c"># =&gt; 1</span>
+[<span class="s">&quot;Alice&quot;</span>, <span class="s">&quot;Bob&quot;</span>].min <span class="c"># =&gt; &quot;Alice&quot;</span></code></pre>
+
+<p>Raises <code>Enumerable::EmptyError</code> if the collection is empty.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L40" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="min?:T?-instance-method">
+      <div class="signature">
+        
+        def <strong>min?</strong> : T?
+
+        <a class="method-permalink" href="#min?:T?-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="../Enumerable.html">Enumerable(T)</a>
+            </div>
+          
+          <p>Like <code><a href="../SMultiSet/Bucket.html#min:T-instance-method">#min</a></code> but returns <code>nil</code> if the collection is empty.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L36" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reverse_each(&amp;):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>reverse_each</strong>(&) : Nil
+
+        <a class="method-permalink" href="#reverse_each(&):Nil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="../Indexable.html">Indexable(T)</a>
+            </div>
+          
+          <p>Same as <code><a href="../SMultiSet/Bucket.html#each-instance-method">#each</a></code>, but works in reverse.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L83" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="size-instance-method">
+      <div class="signature">
+        
+        def <strong>size</strong>
+
+        <a class="method-permalink" href="#size-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="../Indexable.html">Indexable(T)</a>
+            </div>
+          
+          <p>Returns the number of elements in this container.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L7" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_a:Array(T)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_a</strong> : <a href="../Array.html">Array</a>(T)
+
+        <a class="method-permalink" href="#to_a:Array(T)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="../Indexable.html">Indexable(T)</a>
+            </div>
+          
+          <p>Returns an <code><a href="../Array.html">Array</a></code> with all the elements in the collection.</p>
+
+<pre><code>{<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>}.to_a <span class="c"># =&gt; [1, 2, 3]</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L231" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io:IO):Nil-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io : IO) : Nil
+
+        <a class="method-permalink" href="#to_s(io:IO):Nil-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class Reference
+            </div>
+          
+          <p>Appends a short String representation of this object
+which includes its class name and its object address.</p>
+
+<pre><code><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name : <span class="t">String</span>, @age : <span class="t">Int32</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">Person</span>.<span class="k">new</span>(<span class="s">&quot;John&quot;</span>, <span class="n">32</span>).to_s <span class="c"># =&gt; #&lt;Person:0x10a199f20&gt;</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L237" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="unsafe_fetch(index:Int):T-instance-method">
+      <div class="signature">
+        
+        def <strong>unsafe_fetch</strong>(index : <a href="../Int.html">Int</a>) : T
+
+        <a class="method-permalink" href="#unsafe_fetch(index:Int):T-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from module <a href="../Indexable.html">Indexable(T)</a>
+            </div>
+          
+          <p>Returns the element at the given <em>index</em>, without doing any bounds check.</p>
+
+<p><code><a href="../Indexable.html">Indexable</a></code> makes sure to invoke this method with <em>index</em> in <code>0..<a href="../SMultiSet/Bucket.html#size-instance-method">.size</a></code>,
+so converting negative indices to positive ones is not needed here.</p>
+
+<p>Clients never invoke this method directly. Instead, they access
+elements with <code>#[](index)</code> and <code>#[]?(index)</code>.</p>
+
+<p>This method should only be directly invoked if you are absolutely
+sure the index is in bounds, to avoid a bounds check for a small boost
+of performance.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L104" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="|(other:Enumerable(T)):self-instance-method">
+      <div class="signature">
+        
+        def <strong>|</strong>(other : <a href="../Enumerable.html">Enumerable</a>(T)) : <span class="k">self</span>
+
+        <a class="method-permalink" href="#%7C(other:Enumerable(T)):self-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/yuruhi/crystal_lib/blob/b3035b708c1216ed24d68a90f95a9c82ed74d7ae/src/datastructure/smultiset/bucket.cr#L225" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>
