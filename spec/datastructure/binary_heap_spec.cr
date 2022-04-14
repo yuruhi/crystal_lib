@@ -37,22 +37,30 @@ describe BinaryHeap do
   end
 
   it "#empty?" do
-    BinaryHeap(Int32).new.empty?.should be_true
-    BinaryHeap{1, 2, 3}.empty?.should be_false
+    BinaryHeap(Int32).new.should be_empty
+    BinaryHeap{1, 2, 3}.should_not be_empty
   end
 
   it "#clear" do
     a = BinaryHeap{1, 2, 3}
-    a.clear.should eq BinaryHeap(Int32).new
-    a.empty?.should be_true
+    a.clear.should be a
+    a.should be_empty
+  end
+
+  it "#dup" do
+    a = BinaryHeap{[1], [2], [3]}
+    b = a.dup
+    b.should eq a
+    b.should_not be a
+    a.top.should be b.top
   end
 
   it "#clone" do
-    a = BinaryHeap{1, 2, 3}
+    a = BinaryHeap{[1], [2], [3]}
     b = a.clone
-    b.pop
-    b.should eq BinaryHeap{2, 3}
-    a.should eq BinaryHeap{1, 2, 3}
+    b.should eq a
+    b.should_not be a
+    a.top.should_not be b.top
   end
 
   describe "compare" do
@@ -72,18 +80,22 @@ describe BinaryHeap do
   end
 
   describe "#top" do
-    it "gets top element when non empty" do
-      a = BinaryHeap{3, 1, 2}
-      a.top.should eq 1
-      a.top?.should eq 1
-      a.top { "none" }.should eq 1
+    context "when heap is not empty" do
+      it "returns top element" do
+        a = BinaryHeap{3, 1, 2}
+        a.top.should eq 1
+        a.top?.should eq 1
+        a.top { "none" }.should eq 1
+      end
     end
 
-    it "gets top element when empty" do
-      a = BinaryHeap(Int32).new
-      expect_raises(IndexError) { a.top }
-      a.top?.should be_nil
-      a.top { "none" }.should eq "none"
+    context "when heap is empty" do
+      it "returns top element" do
+        a = BinaryHeap(Int32).new
+        expect_raises(IndexError) { a.top }
+        a.top?.should be_nil
+        a.top { "none" }.should eq "none"
+      end
     end
   end
 
@@ -95,14 +107,14 @@ describe BinaryHeap do
   end
 
   describe "#pop" do
-    it "pops when non empty" do
+    it "pops when heap is not empty" do
       a = BinaryHeap{1, 2, 3}
       a.pop.should eq 1
       a.pop?.should eq 2
       a.pop { "none" }.should eq 3
     end
 
-    it "pops when empty" do
+    it "pops when heap is empty" do
       a = BinaryHeap(Int32).new
       expect_raises(IndexError) { a.pop }
       a.pop?.should be_nil
@@ -120,11 +132,11 @@ describe BinaryHeap do
     it "pops more elements that what is available" do
       a = BinaryHeap{1, 2, 3, 4, 5}
       a.pop(9).should eq [1, 2, 3, 4, 5]
-      a.empty?.should be_true
+      a.should be_empty
       a.pop(1).should eq [] of Int32
     end
 
-    it "pops negative count raises" do
+    it "raises if pops negative number of elements" do
       a = BinaryHeap{1, 2}
       expect_raises(ArgumentError) { a.pop(-1) }
     end
@@ -156,7 +168,9 @@ describe BinaryHeap do
 
   it "#to_a" do
     a = BinaryHeap{3, 1, 2}
-    a.sort.should eq [1, 2, 3]
+    a.to_a.sort.should eq [1, 2, 3]
+    a = BinaryHeap{3, 1, 4, 1, 5}
+    a.to_a.sort.should eq [1, 1, 3, 4, 5]
   end
 
   it "#to_s, #inspect" do
@@ -181,29 +195,31 @@ describe BinaryHeap do
 
   describe "big test" do
     it "hasn't compare proc" do
-      test = ->(values : Array(Int32)) {
+      n = 100000
+      [
+        Array.new(n) { rand(Int32) },
+        Array.new(n) { rand(100) },
+        (1..n).to_a,
+        (1..n).to_a.reverse,
+      ].each do |values|
         a = BinaryHeap(Int32).new
         values.each { |x| a << x }
         a.sort.should eq values.sort
-      }
-      n = 100000
-      test.call Array.new(n) { rand(Int32) }
-      test.call Array.new(n) { rand(100) }
-      test.call (1..n).to_a
-      test.call (1..n).to_a.reverse
+      end
     end
 
     it "has compare proc" do
-      test = ->(values : Array(Int32)) {
+      n = 100000
+      [
+        Array.new(n) { rand(Int32) },
+        Array.new(n) { rand(100) },
+        (1..n).to_a,
+        (1..n).to_a.reverse,
+      ].each do |values|
         a = BinaryHeap(Int32).new { |a, b| b <=> a }
         values.each { |x| a << x }
         a.sort.should eq values.sort_by(&.-)
-      }
-      n = 100000
-      test.call Array.new(n) { rand(Int32) }
-      test.call Array.new(n) { rand(100) }
-      test.call (1..n).to_a
-      test.call (1..n).to_a.reverse
+      end
     end
   end
 
