@@ -33,9 +33,9 @@ describe Tuple do
       {0, 1, 0}, {0, 1, 1}, {0, 1, 2},
     ]
     {1, 2u8, 3i64}.times.each do |i, j, k|
-      typeof(i).should eq Int32
-      typeof(j).should eq UInt8
-      typeof(k).should eq Int64
+      i.should be_a Int32
+      j.should be_a UInt8
+      k.should be_a Int64
     end
   end
 end

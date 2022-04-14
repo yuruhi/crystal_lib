@@ -5,9 +5,9 @@ describe Tuple do
   it "#product_each(&block)" do
     result = [] of {Int32, Int32, Int64}
     {1..2, [3, 4], {5i64, 6i64}}.each_product do |i, j, k|
-      typeof(i).should eq Int32
-      typeof(j).should eq Int32
-      typeof(k).should eq Int64
+      i.should be_a Int32
+      j.should be_a Int32
+      k.should be_a Int64
       result << {i, j, k}
     end
     result.should eq [

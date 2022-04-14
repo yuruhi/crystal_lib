@@ -81,16 +81,16 @@ describe Prime do
   end
 
   it "#includes?(x)" do
-    Prime.includes?(-10**9).should be_false
-    Prime.includes?(-1).should be_false
-    Prime.includes?(0).should be_false
-    Prime.includes?(57).should be_false
-    Prime.includes?(91).should be_false
-    Prime.includes?(9943081).should be_false
+    Prime.should_not contain -10**9
+    Prime.should_not contain -1
+    Prime.should_not contain 0
+    Prime.should_not contain 57
+    Prime.should_not contain 91
+    Prime.should_not contain 9943081
 
-    Prime.includes?(13).should be_true
-    Prime.includes?(10**6 + 3).should be_true
-    Prime.includes?(10**8 + 7).should be_true
+    Prime.should contain 13
+    Prime.should contain 10**6 + 3
+    Prime.should contain 10**8 + 7
   end
 
   it "#index(x)" do

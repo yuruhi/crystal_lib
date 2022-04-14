@@ -9,7 +9,7 @@ describe Array do
 
   it ".new(sizes, &block)" do
     Array.new({2, 2}) { |i, j| i + j }.should eq [[0, 1], [1, 2]]
-    Array.new({3, 3, 3}) { |i, j, k| i*j*k }.should eq [
+    Array.new({3, 3, 3}) { |i, j, k| i * j * k }.should eq [
       [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
       [[0, 0, 0], [0, 1, 2], [0, 2, 4]],
       [[0, 0, 0], [0, 2, 4], [0, 4, 8]],
