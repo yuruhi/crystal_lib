@@ -2,14 +2,16 @@ require "spec"
 require "../../src/math/dynamic_mint"
 
 private alias M = DynamicMint
-init = 998244353
+private Init = 998244353
 
 private macro check_binary_operator(mod, op)
   %mod = {{mod}}
   M.mod = %mod
   (0...%mod).each do |x|
     (0...%mod).each do |y|
-      (M.new(x) {{op.id}} M.new(y)).should eq (x {{op.id}} y) % %mod
+      v = M.new(x) {{ op.id }} M.new(y)
+      e = (x {{ op.id }} y) % %mod
+      v.should eq e
     end
   end
 end
@@ -18,7 +20,7 @@ private macro check_method(mod, method)
   %mod = {{mod}}
   M.mod = %mod
   (0...%mod).each do |x|
-    M.new(x).{{method}}.should eq x.{{method}}
+    M.new(x).{{ method.id }}.should eq x.{{ method.id }}
   end
 end
 
@@ -26,13 +28,13 @@ private macro check_method_mod(mod, method)
   %mod = {{mod}}
   M.mod = %mod
   (0...%mod).each do |x|
-    M.new(x).{{method}}.should eq x.{{method}} % %mod
+    M.new(x).{{ method.id }}.should eq x.{{ method.id }} % %mod
   end
 end
 
 describe "DynamicModint" do
   it ".mod and .setmod" do
-    M.mod.should eq init
+    M.mod.should eq Init
     M.mod = 42
     M.mod.should eq 42
     M.mod = Int32::MAX
@@ -57,65 +59,42 @@ describe "DynamicModint" do
   end
 
   it "#+" do
-    M.mod = init
+    M.mod = Init
     (+M.new(1)).should eq 1
-    (+M.new(init)).should eq 0
+    (+M.new(Init)).should eq 0
   end
 
   it "#-" do
-    M.mod = init
-    x = M.new(1)
-    (-x).should eq init - 1
-    x = M.new(0)
-    (-x).value.should eq 0
+    M.mod = Init
+    (-M.new(1)).should eq Init - 1
+    (-M.new(0)).should eq 0
 
     M.mod = 3
     (-M.new(1)).should eq 2
   end
 
-  it "#+(x)" do
-    check_binary_operator(1, "+")
-    check_binary_operator(60, "+")
-    check_binary_operator(1009, "+")
-  end
+  {% for op in [:+, :-, :*] %}
+    it "##{{{ op }}}" do
+      check_binary_operator(1, {{ op }})
+      check_binary_operator(60, {{ op }})
+      check_binary_operator(1009, {{ op }})
+    end
+  {% end %}
 
-  it "#-(x)" do
-    check_binary_operator(1, "-")
-    check_binary_operator(60, "-")
-    check_binary_operator(1009, "-")
-  end
-
-  it "#*(x)" do
-    check_binary_operator(1, "*")
-    check_binary_operator(60, "*")
-    check_binary_operator(1009, "*")
-  end
-
-  it "#/(x)" do
-    {1, 60, 1009}.each do |mod|
-      M.mod = mod
-      (0...mod).each do |x|
-        (0...mod).each do |y|
-          next unless y.gcd(mod) == 1
-          z = M.new(x) / y
-          (z * y).should eq x
+  {% for op in [:/, ://] %}
+    it "##{{{ op }}}" do
+      {1, 60, 1009}.each do |mod|
+        M.mod = mod
+        (0...mod).each do |x|
+          (0...mod).each do |y|
+            next unless y.gcd(mod) == 1
+            z = M.new(x) {{ op.id }} y
+            (z * y).should eq x
+          end
         end
       end
     end
-  end
-
-  it "#//(x)" do
-    {1, 60, 1009}.each do |mod|
-      M.mod = mod
-      (0...mod).each do |x|
-        (0...mod).each do |y|
-          next unless y.gcd(mod) == 1
-          z = M.new(x) // y
-          (z * y).should eq x
-        end
-      end
-    end
-  end
+  {% end %}
 
   it "#**(x)" do
     {1, 60, 1009}.each do |mod|
@@ -138,49 +117,25 @@ describe "DynamicModint" do
     end
   end
 
-  it "#succ" do
-    check_method_mod(1, succ)
-    check_method_mod(60, succ)
-    check_method_mod(1009, succ)
-    check_method_mod(1000003, succ)
-  end
+  {% for method in [:succ, :pred, :abs, :to_i64] %}
+    it "##{{{ method }}}" do
+      check_method_mod(1, {{ method }})
+      check_method_mod(60, {{ method }})
+      check_method_mod(1009, {{ method }})
+      check_method_mod(1000003, {{ method }})
+    end
+  {% end %}
 
-  it "#pred" do
-    check_method_mod(1, pred)
-    check_method_mod(60, pred)
-    check_method_mod(1009, pred)
-    check_method_mod(1000003, pred)
-  end
+  {% for method in [:to_s, :inspect] %}
+    it "##{{{ method }}}" do
+      check_method(1, {{ method }})
+      check_method(60, {{ method }})
+      check_method(1009, {{ method }})
+      check_method(1000003, {{ method }})
+    end
+  {% end %}
 
-  it "#abs" do
-    check_method_mod(1, abs)
-    check_method_mod(60, abs)
-    check_method_mod(1009, abs)
-    check_method_mod(1000003, abs)
-  end
-
-  it "#to_i64" do
-    check_method_mod(1, to_i64)
-    check_method_mod(60, to_i64)
-    check_method_mod(1009, to_i64)
-    check_method_mod(1000003, to_i64)
-  end
-
-  it "#to_s" do
-    check_method(1, to_s)
-    check_method(60, to_s)
-    check_method(1009, to_s)
-    check_method(1000003, to_s)
-  end
-
-  it "#inspect" do
-    check_method(1, inspect)
-    check_method(60, inspect)
-    check_method(1009, inspect)
-    check_method(1000003, inspect)
-  end
-
-  it "compare" do
+  it "compares" do
     expect_raises(NotImplementedError) { M.new(0) < 0 }
     expect_raises(NotImplementedError) { M.new(0) <= 0 }
     expect_raises(NotImplementedError) { M.new(0) > 0 }
