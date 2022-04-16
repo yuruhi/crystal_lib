@@ -18,16 +18,16 @@ module Graph(Edge, Edge2)
   abstract def <<(edge : Edge2)
 
   # :ditto:
-  def <<(edge : Tuple)
+  def <<(edge : Tuple) : self
     self << Edge2.new(*edge)
   end
 
-  def add_edges(edges : Enumerable)
+  def add_edges(edges : Enumerable) : self
     edges.each { |edge| self << edge }
+    self
   end
 
-  delegate size, to: @graph
-  delegate :[], to: @graph
+  delegate size, :[], to: @graph
 
   # Yields each edge of the graph, ans returns `nil`.
   def each(&) : Nil
@@ -38,7 +38,7 @@ module Graph(Edge, Edge2)
     end
   end
 
-  def reverse
+  def reverse : self
     if self.class.directed?
       each_with_object(self.class.new(size)) do |edge, reversed|
         reversed << edge.reverse
@@ -48,11 +48,10 @@ module Graph(Edge, Edge2)
     end
   end
 
-  def to_undirected
+  def to_undirected : self
     if self.class.directed?
       each_with_object(self.class.new(size)) do |edge, graph|
-        graph << edge
-        graph << edge.reverse if self.class.directed?
+        graph << edge << edge.reverse
       end
     else
       dup
@@ -79,24 +78,6 @@ end
 class DiGraph(T)
   include Graph(WeightedEdge(T), WeightedEdge2(T))
 
-  def initialize(size : Int)
-    super
-  end
-
-  def initialize(size : Int, edges : Enumerable(WeightedEdge2(T)))
-    super
-  end
-
-  def initialize(size : Int, edges : Enumerable({Int32, Int32, T}))
-    super
-  end
-
-  def <<(edge : WeightedEdge2(T))
-    raise IndexError.new unless 0 <= edge.from < size && 0 <= edge.to < size
-    @graph[edge.from] << WeightedEdge.new(edge.to, edge.cost)
-    self
-  end
-
   def self.weighted?
     true
   end
@@ -104,10 +85,6 @@ class DiGraph(T)
   def self.directed?
     true
   end
-end
-
-class UnGraph(T)
-  include Graph(WeightedEdge(T), WeightedEdge2(T))
 
   def initialize(size : Int)
     super
@@ -121,7 +98,37 @@ class UnGraph(T)
     super
   end
 
-  def <<(edge : WeightedEdge2(T))
+  def <<(edge : WeightedEdge2(T)) : self
+    raise IndexError.new unless 0 <= edge.from < size && 0 <= edge.to < size
+    @graph[edge.from] << WeightedEdge.new(edge.to, edge.cost)
+    self
+  end
+end
+
+class UnGraph(T)
+  include Graph(WeightedEdge(T), WeightedEdge2(T))
+
+  def self.weighted?
+    true
+  end
+
+  def self.directed?
+    false
+  end
+
+  def initialize(size : Int)
+    super
+  end
+
+  def initialize(size : Int, edges : Enumerable(WeightedEdge2(T)))
+    super
+  end
+
+  def initialize(size : Int, edges : Enumerable({Int32, Int32, T}))
+    super
+  end
+
+  def <<(edge : WeightedEdge2(T)) : self
     raise IndexError.new unless 0 <= edge.from < size && 0 <= edge.to < size
     @graph[edge.from] << WeightedEdge.new(edge.to, edge.cost)
     @graph[edge.to] << WeightedEdge.new(edge.from, edge.cost)
@@ -137,18 +144,18 @@ class UnGraph(T)
   def each_child(vertex : Int, parent)
     graph[vertex].each.reject(&.to.== parent)
   end
-
-  def self.weighted?
-    true
-  end
-
-  def self.directed?
-    false
-  end
 end
 
 class UnweightedDiGraph
   include Graph(UnweightedEdge, UnweightedEdge2)
+
+  def self.weighted?
+    false
+  end
+
+  def self.directed?
+    true
+  end
 
   def initialize(size : Int)
     super
@@ -158,24 +165,24 @@ class UnweightedDiGraph
     super
   end
 
-  def <<(edge : UnweightedEdge2)
+  def <<(edge : UnweightedEdge2) : self
     raise IndexError.new unless 0 <= edge.from < size && 0 <= edge.to < size
     @graph[edge.from] << UnweightedEdge.new(edge.to)
     self
-  end
-
-  def self.weighted?
-    false
-  end
-
-  def self.directed?
-    true
   end
 end
 
 class UnweightedUnGraph
   include Graph(UnweightedEdge, UnweightedEdge2)
 
+  def self.weighted?
+    false
+  end
+
+  def self.directed?
+    false
+  end
+
   def initialize(size : Int)
     super
   end
@@ -184,7 +191,7 @@ class UnweightedUnGraph
     super
   end
 
-  def <<(edge : UnweightedEdge2)
+  def <<(edge : UnweightedEdge2) : self
     raise IndexError.new unless 0 <= edge.from < size && 0 <= edge.to < size
     @graph[edge.from] << UnweightedEdge.new(edge.to)
     @graph[edge.to] << UnweightedEdge.new(edge.from)
@@ -199,13 +206,5 @@ class UnweightedUnGraph
 
   def each_child(vertex : Int, parent)
     graph[vertex].each.reject(&.to.== parent)
-  end
-
-  def self.weighted?
-    false
-  end
-
-  def self.directed?
-    false
   end
 end

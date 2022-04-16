@@ -29,16 +29,16 @@ describe DiGraph do
     expect_raises(IndexError) { DiGraph.new 1, [WeightedEdge2.new(0, 1, 10)] }
   end
 
-  it "#add_edge, #add_edges" do
+  it "#<<, #add_edges" do
     g = DiGraph(Int32).new(5)
     edges = [
       WeightedEdge2.new(0, 1, 10), WeightedEdge2.new(0, 1, 11), WeightedEdge2.new(1, 2, 12),
       WeightedEdge2.new(2, 3, 13), WeightedEdge2.new(3, 4, 14),
     ]
-    g << (edges[0])
+    (g << edges[0]).should be g
     g << {0, 1, 11}
     g << {1, 2, 12}
-    g.add_edges(edges[3..4])
+    g.add_edges(edges[3..4]).should be g
     expect_raises(IndexError) { g << {4, 5, -1} }
 
     g[0].should eq [WeightedEdge.new(1, 10), WeightedEdge.new(1, 11)]
@@ -92,7 +92,7 @@ describe UnGraph do
     expect_raises(IndexError) { UnGraph.new 1, [WeightedEdge2.new(0, 1, 10)] }
   end
 
-  it "#add_edge, #add_edges" do
+  it "#<<, #add_edges" do
     edges = [
       [WeightedEdge.new(1, 10)],
       [WeightedEdge.new(0, 10), WeightedEdge.new(2, 11)],
@@ -106,7 +106,7 @@ describe UnGraph do
     ]
 
     g = UnGraph(Int32).new(4)
-    g << {0, 1, 10}
+    (g << {0, 1, 10}).should be g
     g << {1, 2, 11}
     g << WeightedEdge2.new(2, 3, 12)
     g[0].should eq edges[0]
@@ -116,7 +116,7 @@ describe UnGraph do
     g.to_a.should eq all_edges
 
     g = UnGraph(Int32).new(4)
-    g.add_edges([{0, 1, 10}])
+    g.add_edges([{0, 1, 10}]).should be g
     g.add_edges({WeightedEdge2.new(1, 2, 11), WeightedEdge2.new(2, 3, 12)})
     g[0].should eq edges[0]
     g[1].should eq edges[1]
@@ -195,16 +195,16 @@ describe UnweightedDiGraph do
     expect_raises(IndexError) { UnweightedDiGraph.new 1, [UnweightedEdge2.new(0, 1)] }
   end
 
-  it "#add_edge, #add_edges" do
+  it "#<<, #add_edges" do
     g = UnweightedDiGraph.new(5)
     edges = [
       UnweightedEdge2.new(0, 1), UnweightedEdge2.new(0, 1), UnweightedEdge2.new(1, 2),
       UnweightedEdge2.new(2, 3), UnweightedEdge2.new(3, 4),
     ]
-    g << edges[0]
+    (g << edges[0]).should be g
     g << {0, 1}
     g << {1, 2}
-    g.add_edges(edges[3..4])
+    g.add_edges(edges[3..4]).should be g
     expect_raises(IndexError) { g << {4, 5} }
 
     g[0].should eq [UnweightedEdge.new(1), UnweightedEdge.new(1)]
@@ -258,7 +258,7 @@ describe UnweightedUnGraph do
     expect_raises(IndexError) { UnweightedUnGraph.new 1, [UnweightedEdge2.new(0, 1)] }
   end
 
-  it "#add_edge, #add_edges" do
+  it "#<<, #add_edges" do
     edges = [
       [UnweightedEdge.new(1)],
       [UnweightedEdge.new(0), UnweightedEdge.new(2)],
@@ -272,7 +272,7 @@ describe UnweightedUnGraph do
     ]
 
     g = UnweightedUnGraph.new(4)
-    g << {0, 1}
+    (g << {0, 1}).should be g
     g << {1, 2}
     g << UnweightedEdge2.new(2, 3)
     g[0].should eq edges[0]
@@ -282,7 +282,7 @@ describe UnweightedUnGraph do
     g.to_a.should eq all_edges
 
     g = UnweightedUnGraph.new(4)
-    g.add_edges([{0, 1}])
+    g.add_edges([{0, 1}]).should be g
     g.add_edges({UnweightedEdge2.new(1, 2), UnweightedEdge2.new(2, 3)})
     g[0].should eq edges[0]
     g[1].should eq edges[1]
