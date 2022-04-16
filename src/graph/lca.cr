@@ -1,9 +1,7 @@
 require "../graph"
 
 class LCA(Edge, Edge2)
-  getter graph : Graph(Edge, Edge2)
-  getter depth : Array(Int32)
-  getter log2 : Int32
+  getter graph : Graph(Edge, Edge2), depth : Array(Int32), log2 : Int32
 
   private def dfs(vertex : Int32, par : Int32, dep : Int32) : Nil
     @parent[0][vertex] = par
@@ -20,11 +18,7 @@ class LCA(Edge, Edge2)
     dfs(root, -1, 0)
     (0...log2 - 1).each do |k|
       (0...size).each do |v|
-        if @parent[k][v] < 0
-          @parent[k + 1][v] = -1
-        else
-          @parent[k + 1][v] = @parent[k][@parent[k][v]]
-        end
+        @parent[k + 1][v] = @parent[k][v] < 0 ? -1 : @parent[k][@parent[k][v]]
       end
     end
   end
