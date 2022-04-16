@@ -15,7 +15,7 @@ struct WeightedEdge(T)
   end
 
   def inspect(io) : Nil
-    io << "->#{to}(#{cost})"
+    io << "->" << to << '(' << cost << ')'
   end
 end
 
@@ -35,11 +35,11 @@ struct WeightedEdge2(T)
     {cost, from, to} <=> {other.cost, other.from, other.to}
   end
 
-  def reverse
+  def reverse : self
     WeightedEdge2(T).new(to, from, cost)
   end
 
-  def sort
+  def sort : self
     WeightedEdge2(T).new(*{to, from}.minmax, cost)
   end
 
@@ -61,7 +61,7 @@ struct UnweightedEdge
   def initialize(@to, cost)
   end
 
-  def cost
+  def cost : Int32
     1
   end
 
@@ -87,15 +87,15 @@ struct UnweightedEdge2
     @to = edge.to
   end
 
-  def cost
+  def cost : Int32
     1
   end
 
-  def reverse
+  def reverse : self
     UnweightedEdge2.new(to, from)
   end
 
-  def sort
+  def sort : self
     UnweightedEdge2.new(*{to, from}.minmax)
   end
 
