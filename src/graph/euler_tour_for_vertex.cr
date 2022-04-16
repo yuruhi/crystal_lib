@@ -3,14 +3,6 @@ require "../graph"
 class EulerTourForVertex
   getter graph : UnweightedUnGraph
 
-  def in
-    @in
-  end
-
-  def out
-    @out
-  end
-
   private def dfs(vertex : Int32, parent : Int32) : Nil
     @in[vertex] = @k
     @k += 1
@@ -28,6 +20,14 @@ class EulerTourForVertex
   end
 
   delegate size, :[], to: @graph
+
+  def in : Array(Int32)
+    @in
+  end
+
+  def out : Array(Int32)
+    @out
+  end
 
   def ancestor?(ancestor : Int32, child : Int32) : Bool
     @in[ancestor] <= @in[child] < @out[ancestor]
