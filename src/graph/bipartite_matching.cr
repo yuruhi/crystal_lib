@@ -4,8 +4,7 @@ class BipartiteMatching
   include Enumerable(UnweightedEdge2)
   include Iterable(UnweightedEdge2)
 
-  getter left : Int32, right : Int32
-  getter graph : Array(Array(Int32))
+  getter left : Int32, right : Int32, graph : Array(Array(Int32))
 
   def initialize(@left, @right)
     raise ArgumentError.new unless left >= 0 && right >= 0
@@ -15,7 +14,7 @@ class BipartiteMatching
     @used = Array(Bool).new(left, false)
   end
 
-  def initialize(left, right, edges : Enumerable)
+  def initialize(left : Int32, right : Int32, edges : Enumerable)
     initialize(left, right)
     edges.each { |edge| self << edge }
   end
@@ -39,7 +38,8 @@ class BipartiteMatching
     return false if @used[v]
     @used[v] = true
     graph[v].each do |edge|
-      if @right_match[edge].nil? || dfs(@right_match[edge].not_nil!)
+      r = @right_match[edge]
+      if r.nil? || dfs(r)
         @left_match[v], @right_match[edge] = edge, v
         return true
       end
