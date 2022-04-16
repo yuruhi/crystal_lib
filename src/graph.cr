@@ -32,10 +32,20 @@ module Graph(Edge, Edge2)
   # Yields each edge of the graph, ans returns `nil`.
   def each(&) : Nil
     (0...size).each do |v|
-      self[v].each do |edge|
+      graph[v].each do |edge|
         yield Edge2.new(v, edge)
       end
     end
+  end
+
+  def each_child(vertex : Int, parent, &block) : Nil
+    graph[vertex].each do |edge|
+      yield edge if edge.to != parent
+    end
+  end
+
+  def each_child(vertex : Int, parent)
+    graph[vertex].each.reject(&.to.== parent)
   end
 
   def reverse : self
@@ -134,16 +144,6 @@ class UnGraph(T)
     @graph[edge.to] << WeightedEdge.new(edge.from, edge.cost)
     self
   end
-
-  def each_child(vertex : Int, parent, &block) : Nil
-    graph[vertex].each do |edge|
-      yield edge if edge.to != parent
-    end
-  end
-
-  def each_child(vertex : Int, parent)
-    graph[vertex].each.reject(&.to.== parent)
-  end
 end
 
 class UnweightedDiGraph
@@ -196,15 +196,5 @@ class UnweightedUnGraph
     @graph[edge.from] << UnweightedEdge.new(edge.to)
     @graph[edge.to] << UnweightedEdge.new(edge.from)
     self
-  end
-
-  def each_child(vertex : Int, parent, &block) : Nil
-    graph[vertex].each do |edge|
-      yield edge if edge.to != parent
-    end
-  end
-
-  def each_child(vertex : Int, parent)
-    graph[vertex].each.reject(&.to.== parent)
   end
 end

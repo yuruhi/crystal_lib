@@ -13,6 +13,6 @@ module Graph(Edge, Edge2)
         queue << edge.to if (deg[edge.to] -= 1) == 0
       end
     end
-    deg.any? { |x| x > 0 } ? nil : result
+    deg.all?(0) ? result : nil
   end
 end

@@ -16,7 +16,7 @@ module Graph(Edge, Edge2)
 
   def post_order(root : Int) : Array(Int32)
     result = Array(Int32).new(size)
-    visited = Array(Bool).new(size, false)
+    visited = Array.new(size, false)
     stack = Deque{ {root, -1} }
     while vp = stack.last?
       vertex, parent = vp
