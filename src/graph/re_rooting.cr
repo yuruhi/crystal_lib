@@ -37,19 +37,21 @@ class ReRooting(T, GraphType)
     initialize(GraphType.new(size, edges))
   end
 
-  delegate size, to: @graph
-  delegate :<<, to: @graph
-  delegate add_edges, to: @graph
+  delegate size, :<<, add_edges, to: @graph
 
   private def dfs(v : Int32, p : Int32) : T
-    graph[v].each_with_index.select { |(edge, i)| edge.to != p }.reduce(T.new) { |acc, (edge, i)|
-      acc + (@dp[v][i] = dfs(edge.to, v))
-    }.add_root(v)
+    acc = T.new
+    graph[v].each_with_index do |edge, i|
+      if edge.to != p
+        acc += (@dp[v][i] = dfs(edge.to, v))
+      end
+    end
+    acc.add_root(v)
   end
 
-  private def bfs(v : Int32, p : Int32, dp_par : T) : Nil
+  private def bfs(v : Int32, p : Int32, dp_p : T) : Nil
     graph[v].each_with_index do |edge, i|
-      @dp[v][i] = dp_par if edge.to == p
+      @dp[v][i] = dp_p if edge.to == p
     end
 
     n = graph[v].size
