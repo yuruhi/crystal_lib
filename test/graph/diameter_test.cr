@@ -2,5 +2,5 @@
 require "../../src/graph/tree"
 require "../../src/scanner"
 n = input(i)
-g = UndirectedGraph.new n, input({i, i, i}[n - 1])
+g = UnGraph.new n, input({i, i, i}[n - 1])
 puts g.diameter[0]

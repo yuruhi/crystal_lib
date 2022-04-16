@@ -2,7 +2,7 @@
 require "../../src/graph/dijkstra"
 require "../../src/scanner"
 n, m, s, t = input(i, i, i, i)
-graph = DirectedGraph.new n, input({i, i, i64}[m])
+graph = DiGraph.new n, input({i, i, i64}[m])
 if dist_path = graph.dijkstra_with_path(s, t)
   d, path = dist_path
   puts "#{d} #{path.size - 1}"

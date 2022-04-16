@@ -3,7 +3,7 @@ require "../../src/graph/detect_cycle"
 require "../../src/scanner"
 
 n = input(i)
-graph = UnweightedUndirectedGraph.new n, input({i - 1, i - 1}[n])
+graph = UnweightedUnGraph.new n, input({i - 1, i - 1}[n])
 
 cycle = Set.new graph.detect_cycle.not_nil!.map(&.to)
 

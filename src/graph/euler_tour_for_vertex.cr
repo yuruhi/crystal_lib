@@ -1,7 +1,7 @@
 require "../graph"
 
 class EulerTourForVertex
-  getter graph : UnweightedUndirectedGraph
+  getter graph : UnweightedUnGraph
 
   def in
     @in

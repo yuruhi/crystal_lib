@@ -12,7 +12,7 @@ def in_order(graph, v, result)
 end
 
 n = read_line.to_i
-graph = UnweightedUndirectedGraph.new(n)
+graph = UnweightedUnGraph.new(n)
 graph2 = Array({Int32?, Int32?}).new(n, {nil, nil})
 in_degree = [0] * n
 n.times do

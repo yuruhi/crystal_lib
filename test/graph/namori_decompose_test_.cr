@@ -15,7 +15,7 @@ end
 n = input(i)
 edges = input({i - 1, i - 1}[n])
 ans = Array(Int32?).new(n, nil)
-g = UndirectedGraph.new n, edges.each_with_index.map { |(e, i)| {e[0], e[1], i} }
+g = UnGraph.new n, edges.each_with_index.map { |(e, i)| {e[0], e[1], i} }
 graphs, _, normalize = g.decompose
 
 graphs.zip(normalize) do |graph, normalize|

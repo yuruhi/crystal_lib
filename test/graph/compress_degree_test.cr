@@ -5,7 +5,7 @@ require "../../src/datastructure/union_find"
 require "../../src/scanner"
 n = input(i)
 edges = input({i, i}[n])
-graph = UnweightedDirectedGraph.new(2*10**5 + 1, edges).compress
+graph = UnweightedDiGraph.new(2*10**5 + 1, edges).compress
 m = graph.size
 uf = UnionFind.new(m)
 graph.each { |edge| uf.unite(edge.from, edge.to) }

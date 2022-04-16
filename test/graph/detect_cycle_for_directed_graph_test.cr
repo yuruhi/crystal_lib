@@ -3,7 +3,7 @@ require "../../src/graph/detect_cycle"
 require "../../src/scanner"
 
 n, m = input(i, i)
-graph = DirectedGraph.new n, (0...m).map { |i| input(i, i) + {i} }
+graph = DiGraph.new n, (0...m).map { |i| input(i, i) + {i} }
 if ans = graph.detect_cycle
   puts ans.size, ans.join('\n', &.cost)
 else

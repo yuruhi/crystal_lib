@@ -3,7 +3,7 @@ require "../../src/graph/namori_decompose"
 require "../../src/scanner"
 
 n = input(i)
-graph = UnweightedUndirectedGraph.new n, input({i - 1, i - 1}[n])
+graph = UnweightedUnGraph.new n, input({i - 1, i - 1}[n])
 _, cycle = graph.namori_decompose
 set = Set.new cycle
 

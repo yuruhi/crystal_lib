@@ -6,7 +6,7 @@ a = read_line.split.map(&.to_i.pred)
 if a.each_cons(3).any? { |(x, y, z)| x == y || x == z || y == z }
   puts "No"
 else
-  graph = UnweightedDirectedGraph.new(m)
+  graph = UnweightedDiGraph.new(m)
   (0...n - 1).each do |i|
     if i.even?
       graph << {a[i], a[i + 1]}

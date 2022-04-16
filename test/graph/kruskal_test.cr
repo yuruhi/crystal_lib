@@ -2,5 +2,5 @@
 require "../../src/graph/kruskal"
 require "../../src/scanner"
 n, m = input(i, i)
-graph = DirectedGraph.new n, input({i, i, i64}[m])
+graph = DiGraph.new n, input({i, i, i64}[m])
 puts graph.kruskal.not_nil!

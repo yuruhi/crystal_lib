@@ -5,7 +5,7 @@ require "../../src/scanner"
 
 n, q = input(i, i)
 c = input(i64[n])
-graph = UnweightedUndirectedGraph.new n, input({i - 1, i - 1}[n - 1])
+graph = UnweightedUnGraph.new n, input({i - 1, i - 1}[n - 1])
 euler = EulerTourForVertex.new(graph, 0)
 
 seg = AtCoder::SegTree.new([0i64] * n) { |x, y| x ^ y }

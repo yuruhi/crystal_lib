@@ -2,7 +2,7 @@
 require "../../src/graph/bfs"
 require "../../src/scanner"
 n = input(i)
-graph = UnweightedDirectedGraph.new(n)
+graph = UnweightedDiGraph.new(n)
 n.times do
   u, a = input(i, i[i])
   a.each do |v|

@@ -26,7 +26,7 @@ struct DP
 end
 
 n, m, q = input(i, i, i)
-g = UnweightedUndirectedGraph.new n, input({i - 1, i - 1}[m])
+g = UnweightedUnGraph.new n, input({i - 1, i - 1}[m])
 
 graphs, index, _ = g.decompose
 lcas = graphs.map { |graph| LCA.new(graph, 0) }
@@ -48,7 +48,7 @@ end
 
 graphs.each_with_index do |graph, i|
   DP.k = cnts[i]
-  dp = ReRooting(DP, UnweightedUndirectedGraph).new(graph)
+  dp = ReRooting(DP, UnweightedUnGraph).new(graph)
   ans += dp.solve.min_of(&.sum)
 end
 

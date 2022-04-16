@@ -3,8 +3,8 @@ require "../../src/graph/lca"
 require "../../src/scanner"
 n = input(i)
 
-g1 = UnweightedUndirectedGraph.new(n)
-g2 = UndirectedGraph(Int32).new(n)
+g1 = UnweightedUnGraph.new(n)
+g2 = UnGraph(Int32).new(n)
 n.times do |u|
   input(i[i]).each do |v|
     g1 << {u, v}

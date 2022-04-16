@@ -2,5 +2,5 @@
 require "../../src/graph/dijkstra"
 require "../../src/scanner"
 n, m, s = input(i, i, i)
-graph = DirectedGraph.new n, input({i, i, i}[m])
+graph = DiGraph.new n, input({i, i, i}[m])
 puts graph.dijkstra(s).join('\n') { |d| d || "INF" }

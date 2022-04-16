@@ -76,7 +76,7 @@ module Graph(Edge, Edge2)
   end
 end
 
-class DirectedGraph(T)
+class DiGraph(T)
   include Graph(WeightedEdge(T), WeightedEdge2(T))
 
   def initialize(size : Int)
@@ -106,7 +106,7 @@ class DirectedGraph(T)
   end
 end
 
-class UndirectedGraph(T)
+class UnGraph(T)
   include Graph(WeightedEdge(T), WeightedEdge2(T))
 
   def initialize(size : Int)
@@ -137,7 +137,7 @@ class UndirectedGraph(T)
   end
 end
 
-class UnweightedDirectedGraph
+class UnweightedDiGraph
   include Graph(UnweightedEdge, UnweightedEdge2)
 
   def initialize(size : Int)
@@ -163,7 +163,7 @@ class UnweightedDirectedGraph
   end
 end
 
-class UnweightedUndirectedGraph
+class UnweightedUnGraph
   include Graph(UnweightedEdge, UnweightedEdge2)
 
   def initialize(size : Int)

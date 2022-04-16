@@ -29,5 +29,5 @@ end
 
 n = input(i)
 DP.a = input(i64[n])
-dp = ReRooting(DP, UnweightedUndirectedGraph).new n, input({i - 1, i - 1}[n - 1])
+dp = ReRooting(DP, UnweightedUnGraph).new n, input({i - 1, i - 1}[n - 1])
 puts dp.solve.join('\n', &.val)

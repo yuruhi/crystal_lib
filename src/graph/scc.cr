@@ -53,16 +53,16 @@ class SCC(Edge, Edge2)
     groups
   end
 
-  def dag : UnweightedDirectedGraph
+  def dag : UnweightedDiGraph
     edges = Set({Int32, Int32}).new
     @graph.each do |edge|
       from, to = @ids[edge.from], @ids[edge.to]
       edges << {from, to} if from != to
     end
-    UnweightedDirectedGraph.new count_scc, edges
+    UnweightedDiGraph.new count_scc, edges
   end
 
-  def scc : {Int32, Array(Set(Int32)), UnweightedDirectedGraph}
+  def scc : {Int32, Array(Set(Int32)), UnweightedDiGraph}
     {count_scc, groups, dag}
   end
 end
