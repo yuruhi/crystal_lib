@@ -128,6 +128,16 @@ class UnGraph(T)
     self
   end
 
+  def each_child(vertex : Int, parent, &block) : Nil
+    graph[vertex].each do |edge|
+      yield edge if edge.to != parent
+    end
+  end
+
+  def each_child(vertex : Int, parent)
+    graph[vertex].each.reject(&.to.== parent)
+  end
+
   def self.weighted?
     true
   end
@@ -182,13 +192,13 @@ class UnweightedUnGraph
   end
 
   def each_child(vertex : Int, parent, &block) : Nil
-    graph[vertex].each do |u|
-      yield u if u != parent
+    graph[vertex].each do |edge|
+      yield edge if edge.to != parent
     end
   end
 
   def each_child(vertex : Int, parent)
-    graph[vertex].each.select { |u| u != parent }
+    graph[vertex].each.reject(&.to.== parent)
   end
 
   def self.weighted?

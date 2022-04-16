@@ -148,6 +148,23 @@ describe UnGraph do
     g << {0, 1, 10} << {1, 2, 11} << {2, 3, 12}
     g.to_undirected.to_set.should eq all_edges.map(&.reverse).to_set
   end
+
+  it "#each_child" do
+    g = UnGraph(Int32).new(6)
+    g << {0, 1, 1} << {0, 2, 2} << {0, 3, 3} << {3, 4, 4} << {3, 5, 5}
+    v = [] of Int32
+    g.each_child(0, nil) { |e| v << e.to }
+    v.should eq [1, 2, 3]
+    v.clear
+    g.each_child(3, nil) { |e| v << e.to }
+    v.should eq [0, 4, 5]
+    v.clear
+    g.each_child(3, 0) { |e| v << e.to }
+    v.should eq [4, 5]
+    g.each_child(0, nil).map(&.to).to_a.should eq [1, 2, 3]
+    g.each_child(3, nil).map(&.to).to_a.should eq [0, 4, 5]
+    g.each_child(3, 0).map(&.to).to_a.should eq [4, 5]
+  end
 end
 
 describe UnweightedDiGraph do
@@ -296,5 +313,22 @@ describe UnweightedUnGraph do
     g = UnweightedUnGraph.new(4)
     g << {0, 1} << {1, 2} << {2, 3}
     g.to_undirected.to_set.should eq all_edges.to_set
+  end
+
+  it "#each_child" do
+    g = UnweightedUnGraph.new(6)
+    g << {0, 1} << {0, 2} << {0, 3} << {3, 4} << {3, 5}
+    v = [] of Int32
+    g.each_child(0, nil) { |e| v << e.to }
+    v.should eq [1, 2, 3]
+    v.clear
+    g.each_child(3, nil) { |e| v << e.to }
+    v.should eq [0, 4, 5]
+    v.clear
+    g.each_child(3, 0) { |e| v << e.to }
+    v.should eq [4, 5]
+    g.each_child(0, nil).map(&.to).to_a.should eq [1, 2, 3]
+    g.each_child(3, nil).map(&.to).to_a.should eq [0, 4, 5]
+    g.each_child(3, 0).map(&.to).to_a.should eq [4, 5]
   end
 end
